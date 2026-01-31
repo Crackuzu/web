@@ -1,0 +1,47 @@
+{
+  "categories": [
+    "ALL",
+    "ONLINE",
+    "HORROR",
+    "ACTION",
+    "CAR RACE"
+  ],
+  "games": [
+    {
+      "name": "Spider-Man 2",
+      "cat": "ACTION",
+      "magnet": "magnet:?xt=urn:btih:TON_HASH_1&dn=Spider-Man+2",
+      "cover": "images/spiderman2.jpg"
+    },
+    {
+      "name": "Assassin's Creed Mirage",
+      "cat": "ACTION",
+      "magnet": "magnet:?xt=urn:btih:TON_HASH_2&dn=AC+Mirage",
+      "cover": "images/acmirage.jpg"
+    },
+    {
+      "name": "NFS Heat",
+      "cat": "CAR RACE",
+      "magnet": "magnet:?xt=urn:btih:TON_HASH_3&dn=NFS+Heat",
+      "cover": "images/nfsheat.jpg"
+    },
+    {
+      "name": "Fast Food Simulator",
+      "cat": "ONLINE",
+      "magnet": "magnet:?xt=urn:btih:TON_HASH_4&dn=Fast+Food+Simulator",
+      "cover": "images/fastfood.jpg"
+    },
+    {
+      "name": "Detroit Become Human",
+      "cat": "ACTION",
+      "magnet": "magnet:?xt=urn:btih:TON_HASH_5&dn=Detroit+Become+Human",
+      "cover": "images/detroit.jpg"
+    },
+    {
+      "name": "Horizon Complete Edition",
+      "cat": "ACTION",
+      "magnet": "magnet:?xt=urn:btih:TON_HASH_6&dn=Horizon+Complete+Edition",
+      "cover": "images/horizon.jpg"
+    }
+  ]
+}
