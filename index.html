@@ -239,49 +239,110 @@
       align-content: start;
     }
 
-    .card{
-      position: relative;
-      border-radius: var(--r-md);
-      overflow:hidden;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.06);
-      box-shadow: 0 16px 40px rgba(0,0,0,.45);
-      aspect-ratio: 3 / 4;
-    }
+   .card{
+  position: relative;
+  border-radius: var(--r-md);
+  overflow:hidden;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.06);
+  box-shadow: 0 16px 40px rgba(0,0,0,.45);
+  aspect-ratio: 3 / 4;
 
-    .card img{
-      width:100%;
-      height:100%;
-      object-fit: cover;
-      display:block;
-      transform: scale(1.02);
-      filter: saturate(1.05) contrast(1.05);
-    }
+  transform: translateZ(0);
+  transition: transform .22s ease, border-color .22s ease;
+}
 
-    .download{
-      position:absolute;
-      left: 50%;
-      bottom: clamp(10px, 1.2vw, 12px);
-      transform: translateX(-50%);
-      height: clamp(30px, 3.4vh, 34px);
-      width: min(82%, 190px);
-      border-radius: 999px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-decoration:none;
-      letter-spacing: 1px;
-      font-size: clamp(11px, 1vw, 12px);
-      color: rgba(0,0,0,.65);
-      background: rgba(255,255,255,.78);
-      border: 1px solid rgba(255,255,255,.65);
-      box-shadow: 0 10px 22px rgba(0,0,0,.35);
-      transition: transform .15s ease, background .15s ease;
-    }
-    .download:hover{
-      transform: translateX(-50%) translateY(-1px);
-      background: rgba(255,255,255,.88);
-    }
+/* Glow border (léger, dans ton style glass) */
+.card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius: inherit;
+  pointer-events:none;
+  opacity:0;
+  transition: opacity .22s ease;
+  background:
+    radial-gradient(600px 260px at 30% 10%, rgba(170,140,255,.28), transparent 60%),
+    radial-gradient(500px 240px at 80% 90%, rgba(0,210,255,.20), transparent 55%);
+}
+
+/* Shadow performant via pseudo-element (évite d’animer box-shadow directement) */
+.card::after{
+  content:"";
+  position:absolute;
+  inset:-18px;
+  border-radius: inherit;
+  pointer-events:none;
+  opacity:0;
+  transition: opacity .22s ease;
+  box-shadow: 0 30px 90px rgba(0,0,0,.55);
+}
+
+.card img{
+  width:100%;
+  height:100%;
+  object-fit: cover;
+  display:block;
+  transform: scale(1.02);
+  transition: transform .28s ease, filter .28s ease;
+  filter: saturate(1.05) contrast(1.05);
+}
+
+.card:hover{
+  transform: scale(1.035);
+  border-color: rgba(255,255,255,.20);
+}
+
+.card:hover::before{ opacity: 1; }
+.card:hover::after{ opacity: 1; }
+
+.card:hover img{
+  transform: scale(1.06);
+  filter: saturate(1.12) contrast(1.08);
+}
+
+/* Bouton: visible seulement au hover, semi-transparent, pas full arrondi */
+.download{
+  position:absolute;
+  left: 50%;
+  bottom: clamp(10px, 1.2vw, 12px);
+  transform: translateX(-50%) translateY(10px);
+  height: clamp(32px, 3.6vh, 36px);
+  width: min(84%, 210px);
+
+  border-radius: 12px; /* au lieu de pill 999px */
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-decoration:none;
+  letter-spacing: .8px;
+  font-size: clamp(11px, 1vw, 12px);
+  font-weight: 700;
+
+  /* semi transparent + lisible */
+  color: rgba(255,255,255,.92);
+  background: rgba(20,20,24,.38);
+  border: 1px solid rgba(255,255,255,.18);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+
+  box-shadow: 0 14px 28px rgba(0,0,0,.40);
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .18s ease, transform .18s ease, background .18s ease, border-color .18s ease;
+}
+
+.card:hover .download{
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+}
+
+.download:hover{
+  background: rgba(20,20,24,.52);
+  border-color: rgba(255,255,255,.28);
+}
 
     .state{
       padding: 12px 14px;
@@ -1010,3 +1071,4 @@
   </script>
 </body>
 </html>
+
