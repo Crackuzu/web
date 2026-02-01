@@ -4,29 +4,38 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>CRACKUZU</title>
+
   <style>
     :root{
       --bg0:#0b0e12;
       --bg1:#10151b;
+
       --glass: rgba(255,255,255,.065);
       --glass2: rgba(255,255,255,.045);
       --stroke: rgba(255,255,255,.11);
       --stroke2: rgba(255,255,255,.16);
+
       --text: rgba(255,255,255,.92);
       --muted: rgba(255,255,255,.62);
+
       --outer: clamp(14px, 2.2vw, 26px);
-      --gap: clamp(12px, 1.2vw, 18px);
-      --pad: clamp(14px, 1.6vw, 20px);
-      --r-xl: clamp(18px, 2vw, 26px);
-      --r-md: clamp(14px, 1.5vw, 18px);
+      --gap:   clamp(12px, 1.2vw, 18px);
+      --pad:   clamp(14px, 1.6vw, 20px);
+
+      --r-xl:  clamp(18px, 2vw, 26px);
+      --r-md:  clamp(14px, 1.5vw, 18px);
+
       --shadow: 0 28px 90px rgba(0,0,0,.58);
       --shadow2: 0 18px 46px rgba(0,0,0,.45);
+
       --side: clamp(250px, 20vw, 330px);
-      /* Cards fixed-ish size - more columns when window wider */
+
+      /* Cards: fixed-ish size -> more columns when window wider */
       --cardW: clamp(140px, 10.5vw, 185px);
     }
+
     *{ box-sizing:border-box; }
-    html, body { height:100%; }
+    html, body{ height:100%; }
     body{
       margin:0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -37,31 +46,35 @@
         linear-gradient(180deg, var(--bg0), var(--bg1));
       overflow-x:hidden;
     }
+
     .glass{
       background: linear-gradient(180deg, var(--glass), var(--glass2));
       border: 1px solid var(--stroke);
       box-shadow: var(--shadow2);
     }
-    @supports (-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px)) {
+    @supports ((-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px))){
       .glass{
         -webkit-backdrop-filter: blur(14px);
         backdrop-filter: blur(14px);
       }
     }
+
     .app{
       min-height: 100vh;
       min-height: 100dvh;
       padding: var(--outer);
       width: 100%;
     }
+
     .shell{
-      width: min(1800px, calc(100dvw - 2 * var(--outer)));
+      width: min(1800px, calc(100dvw - (2 * var(--outer))));
       margin: 0 auto;
       display:flex;
       flex-direction:column;
       gap: var(--gap);
-      min-height: calc(100dvh - 2 * var(--outer));
+      min-height: calc(100dvh - (2 * var(--outer)));
     }
+
     header{
       border-radius: var(--r-xl);
       padding: var(--pad);
@@ -72,7 +85,12 @@
       gap: var(--gap);
       min-height: clamp(86px, 10vh, 120px);
     }
-    .brand{ text-align:center; user-select:none; line-height:1.05; }
+
+    .brand{
+      text-align:center;
+      user-select:none;
+      line-height:1.05;
+    }
     .brand .big{
       font-weight: 300;
       letter-spacing: clamp(1px, .25vw, 2.5px);
@@ -90,6 +108,7 @@
       cursor: pointer;
     }
     .brand .small:hover{ color: rgba(255,255,255,.78); }
+
     .pill{
       font-size: 11px;
       padding: 4px 8px;
@@ -99,6 +118,7 @@
       color: rgba(255,255,255,.70);
       letter-spacing: 1px;
     }
+
     .search{
       width: clamp(220px, 26vw, 360px);
       height: clamp(34px, 4.2vh, 40px);
@@ -129,6 +149,7 @@
       grid-template-columns: var(--side) 1fr;
       gap: var(--gap);
     }
+
     aside{
       border-radius: var(--r-xl);
       padding: var(--pad);
@@ -137,6 +158,7 @@
       flex-direction:column;
       min-height: 0;
     }
+
     aside h2{
       margin: 6px 0 12px;
       text-align:center;
@@ -145,12 +167,14 @@
       font-size: clamp(22px, 2.3vw, 28px);
       color: rgba(255,255,255,.86);
     }
+
     .catlist{
       display:flex;
       flex-direction:column;
       gap: clamp(10px, 1.2vw, 14px);
       margin-top: clamp(10px, 1.3vw, 18px);
     }
+
     .catbtn{
       height: clamp(46px, 5.8vh, 54px);
       border-radius: clamp(14px, 1.4vw, 16px);
@@ -178,6 +202,7 @@
       border-color: rgba(255,255,255,.28);
       color: rgba(255,255,255,.92);
     }
+
     .sidefoot{
       margin-top:auto;
       padding-top: 14px;
@@ -190,14 +215,8 @@
       font-size: clamp(12px, 1.05vw, 13px);
       letter-spacing: .8px;
     }
-    .sidefoot .boondocks{
-      color: rgba(255,255,255,.55);
-      text-decoration:none;
-    }
-    .sidefoot .boondocks:hover{
-      color: rgba(255,255,255,.80);
-      text-decoration: underline;
-    }
+    .sidefoot .boondocks{ color: rgba(255,255,255,.55); text-decoration: none; }
+    .sidefoot .boondocks:hover{ color: rgba(255,255,255,.80); text-decoration: underline; }
 
     section{
       border-radius: var(--r-xl);
@@ -223,9 +242,11 @@
       background: rgba(255,255,255,.06);
       box-shadow: 0 16px 40px rgba(0,0,0,.45);
       aspect-ratio: 3 / 4;
+
       transform: translateZ(0);
       transition: transform .22s ease, border-color .22s ease;
     }
+
     .card::before{
       content:"";
       position:absolute;
@@ -248,6 +269,7 @@
       transition: opacity .22s ease;
       box-shadow: 0 30px 90px rgba(0,0,0,.55);
     }
+
     .card img{
       width:100%;
       height:100%;
@@ -257,6 +279,7 @@
       transition: transform .28s ease, filter .28s ease;
       filter: saturate(1.05) contrast(1.05);
     }
+
     .card:hover{
       transform: scale(1.035);
       border-color: rgba(255,255,255,.20);
@@ -276,6 +299,7 @@
       transform: translateX(-50%) translateY(10px);
       height: clamp(32px, 3.6vh, 36px);
       width: min(84%, 210px);
+
       border-radius: 12px;
       display:flex;
       align-items:center;
@@ -284,13 +308,18 @@
       letter-spacing: .8px;
       font-size: clamp(11px, 1vw, 12px);
       font-weight: 800;
+
       color: #fff;
       text-shadow: 0 1px 0 rgba(0,0,0,.55);
+
       background: rgba(20,20,24,.52);
       border: 1px solid rgba(255,255,255,.20);
+
       -webkit-backdrop-filter: blur(10px);
       backdrop-filter: blur(10px);
+
       box-shadow: 0 14px 28px rgba(0,0,0,.40);
+
       opacity: 0;
       pointer-events: none;
       transition: opacity .18s ease, transform .18s ease, background .18s ease, border-color .18s ease;
@@ -304,12 +333,9 @@
       background: rgba(20,20,24,.62);
       border-color: rgba(255,255,255,.30);
     }
+
     @media (hover: none){
-      .download{
-        opacity: 1;
-        transform: translateX(-50%) translateY(0);
-        pointer-events: auto;
-      }
+      .download{ opacity: 1; transform: translateX(-50%) translateY(0); pointer-events: auto; }
     }
 
     .state{
@@ -335,12 +361,14 @@
       z-index: 9999;
     }
     .modalWrap.open{ display:flex; }
+
     .modal{
       width: min(980px, 100%);
       border-radius: var(--r-xl);
       padding: var(--pad);
       box-shadow: var(--shadow);
     }
+
     .modalHead{
       display:flex;
       align-items:center;
@@ -355,12 +383,8 @@
       font-size: clamp(16px, 1.4vw, 18px);
       color: rgba(255,255,255,.88);
     }
-    .btnRow{
-      display:flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content:flex-end;
-    }
+
+    .btnRow{ display:flex; gap: 10px; flex-wrap: wrap; justify-content:flex-end; }
     .btn{
       border: 1px solid rgba(255,255,255,.18);
       background: rgba(255,255,255,.10);
@@ -373,19 +397,9 @@
       letter-spacing: .5px;
       font-size: 13px;
     }
-    .btn:hover{
-      background: rgba(255,255,255,.14);
-      border-color: rgba(255,255,255,.25);
-      transform: translateY(-1px);
-    }
-    .btn.danger{
-      background: rgba(255,80,80,.12);
-      border-color: rgba(255,80,80,.30);
-    }
-    .btn.primary{
-      background: rgba(255,255,255,.16);
-      border-color: rgba(255,255,255,.28);
-    }
+    .btn:hover{ background: rgba(255,255,255,.14); border-color: rgba(255,255,255,.25); transform: translateY(-1px); }
+    .btn.danger{ background: rgba(255,80,80,.12); border-color: rgba(255,80,80,.30); }
+    .btn.primary{ background: rgba(255,255,255,.16); border-color: rgba(255,255,255,.28); }
 
     .adminGrid{
       display:grid;
@@ -393,18 +407,21 @@
       gap: var(--gap);
       margin-top: 12px;
     }
+
     .panel{
       border-radius: var(--r-xl);
       padding: var(--pad);
       border: 1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.06);
     }
+
     .panel h4{
       margin:0 0 10px;
       font-weight: 520;
       letter-spacing: .8px;
       color: rgba(255,255,255,.86);
     }
+
     .field{
       display:flex;
       flex-direction:column;
@@ -427,12 +444,14 @@
     }
     .field input[readonly]{ opacity: .9; }
     .field textarea{ min-height: 120px; resize: vertical; }
+
     .hint{
       font-size: 12px;
       color: rgba(255,255,255,.55);
       margin-top: 6px;
       line-height: 1.35;
     }
+
     .list{
       display:flex;
       flex-direction:column;
@@ -485,14 +504,8 @@
       cursor:pointer;
       white-space: nowrap;
     }
-    .iconBtn:hover{
-      background: rgba(255,255,255,.14);
-      border-color: rgba(255,255,255,.25);
-    }
-    .iconBtn.danger{
-      background: rgba(255,80,80,.12);
-      border-color: rgba(255,80,80,.30);
-    }
+    .iconBtn:hover{ background: rgba(255,255,255,.14); border-color: rgba(255,255,255,.25); }
+    .iconBtn.danger{ background: rgba(255,80,80,.12); border-color: rgba(255,80,80,.30); }
 
     .toast{
       position: fixed;
@@ -521,14 +534,15 @@
     }
   </style>
 </head>
+
 <body>
   <div class="app">
     <div class="shell">
       <header class="glass">
         <div class="brand">
           <div class="big">CRACKUZU</div>
-          <div class="small" id="adminEntry" title="Admin BY CHARUZU">
-            <span class="pill" id="adminPill" style="display:none;">ADMIN</span>
+          <div class="small" id="adminEntry" title="Admin">
+            BY CHARUZU <span class="pill" id="adminPill" style="display:none;">ADMIN</span>
           </div>
         </div>
 
@@ -545,8 +559,9 @@
         <aside class="glass">
           <h2>CATEGORY</h2>
           <div class="catlist" id="catlist"></div>
+
           <div class="sidefoot">
-            <a class="boondocks" href="https://discord.gg/ktx5Cb2we3" target="_blank" rel="noopener noreferrer">THEBOONDOCKS</a>
+            <a class="boondocks" href="https://discord.gg/ktx5Cb2we3" target="_blank" rel="noopener noreferrer">@THE_BOONDOCKS</a>
             <span class="pill" id="countPill">0</span>
           </div>
         </aside>
@@ -580,6 +595,7 @@
             <input id="catName" placeholder="ex: ONLINE" />
           </div>
           <button class="btn primary" id="addCatBtn" type="button">Ajouter catégorie</button>
+
           <div class="hint">
             Les catégories sont stockées dans data.json. Après “Download data.json”, remplace le fichier dans ton repo GitHub.
           </div>
@@ -603,7 +619,7 @@
 
           <div class="field">
             <label for="gameMagnet">Lien magnet</label>
-            <input id="gameMagnet" placeholder="magnet:?xt=urn:btih..." />
+            <input id="gameMagnet" placeholder="magnet:?xt=urn:btih:..." />
           </div>
 
           <div class="field">
@@ -652,7 +668,7 @@
         </div>
       </div>
 
-      <input id="filePick" type="file" accept="application/json" style="display:none;" />
+      <input id="filePick" type="file" accept="application/json" style="display:none" />
     </div>
   </div>
 
@@ -660,15 +676,14 @@
 
   <script>
     const ADMIN_PASSWORD = "141592";
-    const LOCAL_KEY = "crackuzu_localDraft_v1";
+    const LOCAL_KEY = "crackuzu:localDraft:v1";
 
     const DEFAULT_DATA = {
       categories: ["ALL", "ONLINE", "HORROR", "ACTION", "CAR RACE"],
       games: []
     };
 
-    const el = id => document.getElementById(id);
-
+    const el = (id) => document.getElementById(id);
     const grid = el("grid");
     const catlist = el("catlist");
     const q = el("q");
@@ -699,10 +714,10 @@
     const addGameBtn = el("addGameBtn");
     const saveEditBtn = el("saveEditBtn");
     const cancelEditBtn = el("cancelEditBtn");
+
     const gameListAdmin = el("gameListAdmin");
 
     const jsonPreview = el("jsonPreview");
-
     const publishBtn = el("publishBtn");
     const resetBtn = el("resetBtn");
     const toast = el("toast");
@@ -722,8 +737,8 @@
     function toastMsg(msg){
       toast.textContent = msg;
       toast.classList.add("show");
-      clearTimeout(toast.t);
-      toast.t = setTimeout(() => toast.classList.remove("show"), 1200);
+      clearTimeout(toast._t);
+      toast._t = setTimeout(() => toast.classList.remove("show"), 1200);
     }
 
     function norm(s){ return (s || "").trim(); }
@@ -736,13 +751,12 @@
 
       const uniq = new Set();
       cats.forEach(c => {
-        const v = upper(String(c));
+        const v = upper(c);
         if(!v) return;
         if(uniq.has(v)) return;
         uniq.add(v);
         out.categories.push(v);
       });
-
       if(!out.categories.includes("ALL")) out.categories.unshift("ALL");
 
       out.games = games
@@ -759,9 +773,9 @@
 
     async function loadDataFromRepo(){
       try{
-        const res = await fetch("./data.json", { cache: "no-store" });
+        const res = await fetch("./data.json", { cache: "no-store" }); // fetch JSON [web:168]
         if(!res.ok) throw new Error("no data.json");
-        const json = await res.json();
+        const json = await res.json(); // parse JSON [web:205]
         return sanitizeData(json);
       }catch{
         return null;
@@ -824,18 +838,17 @@
     }
 
     function renderGames(){
-      const query = state.query.toLowerCase();
+      const query = (state.query || "").toLowerCase();
       const active = state.activeCat;
 
       grid.innerHTML = "";
       let shown = 0;
 
       state.data.games.forEach(g => {
-        const title = g.name.toLowerCase();
-        const okCat = (active === "ALL") || upper(g.cat) === active;
+        const title = (g.name || "").toLowerCase();
+        const okCat = (active === "ALL") || (upper(g.cat) === active);
         const okText = !query || title.includes(query);
-
-        if(!okCat || !okText) return;
+        if(!(okCat && okText)) return;
 
         const card = document.createElement("article");
         card.className = "card";
@@ -856,7 +869,6 @@
       });
 
       countPill.textContent = String(shown);
-
       if(shown === 0) setStateMessage("Aucun jeu trouvé.");
       else setStateMessage("");
     }
@@ -869,23 +881,26 @@
       }else{
         coverUploadWrap.style.display = "";
         coverLinkWrap.style.display = "none";
+        // cover filled by upload; keep current if already set
         if(!gameCover.value) gameCover.value = "";
       }
     }
 
     coverMode.addEventListener("change", () => setCoverMode(coverMode.value));
     gameCoverLink.addEventListener("input", () => {
-      if(coverMode.value === "link") gameCover.value = norm(gameCoverLink.value);
+      if(coverMode.value === "link"){
+        gameCover.value = norm(gameCoverLink.value);
+      }
     });
 
-    // File picker - convert image to data URL base64
+    // File picker -> convert image to data URL base64 [web:308]
     gameCoverFile.addEventListener("change", () => {
       const file = gameCoverFile.files?.[0];
       if(!file) return;
 
       const reader = new FileReader();
       reader.addEventListener("load", () => {
-        gameCover.value = String(reader.result);
+        gameCover.value = String(reader.result || "");
         toastMsg("Cover convertie");
         coverMode.value = "upload";
         setCoverMode("upload");
@@ -899,6 +914,7 @@
       addGameBtn.style.display = "";
       saveEditBtn.style.display = "none";
       cancelEditBtn.style.display = "none";
+
       gameName.value = "";
       gameMagnet.value = "";
       gameCover.value = "";
@@ -930,13 +946,11 @@
           del.type = "button";
           del.textContent = "Suppr";
           del.addEventListener("click", () => {
-            const ok = confirm(`Supprimer la catégorie ${c} et ses jeux ?`);
+            const ok = confirm(`Supprimer la catégorie "${c}" et ses jeux ?`);
             if(!ok) return;
-
             state.data.categories = state.data.categories.filter(x => x !== c);
             state.data.games = state.data.games.filter(g => upper(g.cat) !== c);
             if(state.activeCat === c) state.activeCat = "ALL";
-
             saveLocalDraft();
             renderCategories();
             renderGames();
@@ -956,8 +970,7 @@
 
         const left = document.createElement("div");
         left.className = "left";
-        left.innerHTML = `<div class="name">${g.name}</div>
-                          <div class="meta">${upper(g.cat)} • cover: ${g.cover.startsWith("data:") ? "data-url" : g.cover}</div>`;
+        left.innerHTML = `<div class="name">${g.name}</div><div class="meta">${upper(g.cat)} • cover:${(g.cover || "").startsWith("data:") ? "data-url" : g.cover}</div>`;
 
         const edit = document.createElement("button");
         edit.className = "iconBtn";
@@ -965,21 +978,23 @@
         edit.textContent = "Modif";
         edit.addEventListener("click", () => {
           editIndex = idx;
-
           gameFormTitle.textContent = "Modifier un jeu";
           addGameBtn.style.display = "none";
           saveEditBtn.style.display = "";
           cancelEditBtn.style.display = "";
 
+          // Pre-fill
           gameName.value = g.name;
           gameMagnet.value = g.magnet;
 
+          // Ensure category exists
           const cat = upper(g.cat);
           if(!state.data.categories.includes(cat)) state.data.categories.push(cat);
           renderCategories();
           gameCat.value = cat;
 
-          if(g.cover.startsWith("data:")){
+          // Cover prefill
+          if((g.cover || "").startsWith("data:")){
             coverMode.value = "upload";
             setCoverMode("upload");
             gameCover.value = g.cover;
@@ -999,9 +1014,8 @@
         del.type = "button";
         del.textContent = "Suppr";
         del.addEventListener("click", () => {
-          const ok = confirm(`Supprimer ${g.name} ?`);
+          const ok = confirm(`Supprimer "${g.name}" ?`);
           if(!ok) return;
-
           state.data.games.splice(idx, 1);
           saveLocalDraft();
           renderGames();
@@ -1023,14 +1037,13 @@
       refreshPreview();
       renderAdminLists();
     }
-
     function closeAdminModal(){
       adminModal.classList.remove("open");
       adminModal.setAttribute("aria-hidden", "true");
     }
 
     adminEntry.addEventListener("click", () => {
-      const pwd = prompt("Admin password");
+      const pwd = prompt("Admin password:");
       if(pwd === ADMIN_PASSWORD){
         state.adminUnlocked = true;
         adminPill.style.display = "inline-flex";
@@ -1042,11 +1055,11 @@
     });
 
     closeAdmin.addEventListener("click", closeAdminModal);
-    adminModal.addEventListener("click", e => { if(e.target === adminModal) closeAdminModal(); });
-    window.addEventListener("keydown", e => { if(e.key === "Escape") closeAdminModal(); });
+    adminModal.addEventListener("click", (e) => { if(e.target === adminModal) closeAdminModal(); });
+    window.addEventListener("keydown", (e) => { if(e.key === "Escape") closeAdminModal(); });
 
     q.addEventListener("input", () => {
-      state.query = q.value;
+      state.query = q.value || "";
       renderGames();
     });
 
@@ -1074,7 +1087,7 @@
 
       if(!name) return toastMsg("Nom manquant");
       if(!cat || cat === "ALL") return toastMsg("Catégorie invalide");
-      if(!magnet.startsWith("magnet")) return toastMsg("Magnet invalide");
+      if(!magnet.startsWith("magnet:")) return toastMsg("Magnet invalide");
       if(!cover) return toastMsg("Cover manquante");
 
       if(!state.data.categories.includes(cat)) state.data.categories.push(cat);
@@ -1086,6 +1099,7 @@
       gameCover.value = "";
       gameCoverFile.value = "";
       gameCoverLink.value = "";
+
       coverMode.value = "upload";
       setCoverMode("upload");
 
@@ -1106,7 +1120,7 @@
 
       if(!name) return toastMsg("Nom manquant");
       if(!cat || cat === "ALL") return toastMsg("Catégorie invalide");
-      if(!magnet.startsWith("magnet")) return toastMsg("Magnet invalide");
+      if(!magnet.startsWith("magnet:")) return toastMsg("Magnet invalide");
       if(!cover) return toastMsg("Cover manquante");
 
       if(!state.data.categories.includes(cat)) state.data.categories.push(cat);
@@ -1121,46 +1135,23 @@
       toastMsg("Modif sauvegardée");
     });
 
-    // --- MODIF ICI: Download data.json avec "Enregistrer sous..." ---
-    async function downloadDataJson(){
-      try{
-        const json = JSON.stringify(state.data, null, 2);
-        const blob = new Blob([json], { type: "application/json" });
-
-        // Chrome/Edge: ouvre une vraie fenêtre "Enregistrer sous..."
-        if ("showSaveFilePicker" in window){
-          const handle = await window.showSaveFilePicker({
-            suggestedName: "data.json",
-            types: [{
-              description: "JSON",
-              accept: { "application/json": [".json"] }
-            }]
-          });
-          const writable = await handle.createWritable();
-          await writable.write(blob);
-          await writable.close();
-
-          toastMsg("data.json enregistré");
-          return;
-        }
-
-        // Fallback: téléchargement classique (dossier selon réglage navigateur)
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = "data.json";
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
-        URL.revokeObjectURL(url);
-
-        toastMsg("data.json téléchargé (fallback)");
-      }catch(e){
-        toastMsg("Download annulé/erreur");
-      }
+    function downloadDataJson(){
+      const json = JSON.stringify(state.data, null, 2);
+      const blob = new Blob([json], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "data.json";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
     }
-    publishBtn.addEventListener("click", downloadDataJson);
-    // --- fin modif ---
+
+    publishBtn.addEventListener("click", () => {
+      downloadDataJson();
+      toastMsg("data.json téléchargé");
+    });
 
     resetBtn.addEventListener("click", () => {
       const ok = confirm("Reset local: revenir aux données du repo ?");
@@ -1168,22 +1159,18 @@
       localStorage.removeItem(LOCAL_KEY);
       toastMsg("Draft local supprimé");
       init();
+      closeAdminModal();
     });
 
-    closeAdminModal();
-
     importBtn.addEventListener("click", () => filePick.click());
-
     filePick.addEventListener("change", async () => {
       const f = filePick.files?.[0];
       filePick.value = "";
       if(!f) return;
-
       try{
         const text = await f.text();
         const json = sanitizeData(JSON.parse(text));
         state.data = json;
-
         saveLocalDraft();
         renderCategories();
         renderGames();
@@ -1209,11 +1196,13 @@
         setStateMessage("");
       }else{
         state.data = structuredClone(DEFAULT_DATA);
-        setStateMessage("data.json introuvable — mode local.");
+        setStateMessage("data.json introuvable (mode local).");
       }
 
       state.activeCat = "ALL";
-      state.query = q.value;
+      state.query = "";
+      q.value = "";
+
       editIndex = null;
       exitEditMode();
 
