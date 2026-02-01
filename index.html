@@ -267,708 +267,657 @@
       pointer-events:none;
       opacity:0;
       transition: opacity .22s ease;
-      background:
-        radial-gradient(circle at 50% 50%,
-          rgba(255,255,255,.20),
-          rgba(255,255,255,.10) 40%,
-          transparent 70%);
-    }
-    .card:hover{
-      transform: translateY(-6px) scale(1.015);
-      border-color: rgba(255,255,255,.24);
-    }
-    .card:hover::before,
-    .card:hover::after{
-      opacity:1;
+      box-shadow: 0 30px 90px rgba(0,0,0,.55);
     }
 
     .card img{
       width:100%;
       height:100%;
-      object-fit:cover;
+      object-fit: cover;
       display:block;
-      filter: brightness(.86) saturate(1.05);
-      transition: filter .22s ease;
+      transform: scale(1.02);
+      transition: transform .28s ease, filter .28s ease;
+      filter: saturate(1.05) contrast(1.05);
     }
+
+    .card:hover{
+      transform: scale(1.035);
+      border-color: rgba(255,255,255,.20);
+    }
+    .card:hover::before{ opacity: 1; }
+    .card:hover::after{ opacity: 1; }
     .card:hover img{
-      filter: brightness(1.05) saturate(1.12);
+      transform: scale(1.10);
+      filter: none;
     }
 
-    .cinfo{
+    /* Download only on hover */
+    .download{
       position:absolute;
-      left:0; right:0; bottom:0;
-      padding: clamp(12px, 1.4vw, 16px);
-      background: linear-gradient(to top, rgba(0,0,0,.88), transparent);
+      left: 50%;
+      bottom: clamp(10px, 1.2vw, 12px);
+      transform: translateX(-50%) translateY(10px);
+      height: clamp(32px, 3.6vh, 36px);
+      width: min(84%, 210px);
+
+      border-radius: 12px;
       display:flex;
-      flex-direction:column;
-      gap: clamp(6px, .8vw, 8px);
-      pointer-events:none;
-      opacity:0;
-      transform: translateY(8px);
-      transition: opacity .22s ease, transform .22s ease;
-    }
-    .card:hover .cinfo{
-      opacity:1;
-      transform: translateY(0);
-    }
-    .cinfo .gname{
-      font-weight: 600;
-      letter-spacing: .6px;
-      font-size: clamp(13px, 1.1vw, 14px);
-      color: rgba(255,255,255,.95);
-    }
-    .cinfo .catpill{
-      display:inline-flex;
-      align-self:flex-start;
-      background: rgba(255,255,255,.16);
-      border: 1px solid rgba(255,255,255,.30);
-      padding: clamp(3px, .4vw, 4px) clamp(7px, .8vw, 9px);
-      border-radius: 999px;
-      font-size: clamp(10px, .92vw, 11px);
-      color: rgba(255,255,255,.85);
-      letter-spacing: .8px;
-    }
-
-    .card a{
-      position:absolute;
-      inset:0;
-      z-index:2;
-    }
-
-    .stateMsg{
-      text-align:center;
-      color: rgba(255,255,255,.65);
-      font-size: clamp(13px, 1.1vw, 14px);
-      letter-spacing: .8px;
-      padding: clamp(20px, 3vw, 40px);
-    }
-
-    .modal{
-      display:none;
-      position:fixed;
-      inset:0;
-      background: rgba(0,0,0,.78);
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
-      z-index:999;
       align-items:center;
       justify-content:center;
-      padding: clamp(20px, 3vw, 40px);
-    }
-    .modal.open{ display:flex; }
+      text-decoration:none;
+      letter-spacing: .8px;
+      font-size: clamp(11px, 1vw, 12px);
+      font-weight: 800;
 
-    .modalBox{
-      background: linear-gradient(155deg, rgba(20,25,35,.92), rgba(14,18,26,.95));
-      border: 1px solid rgba(255,255,255,.14);
-      border-radius: clamp(18px, 2.2vw, 28px);
-      padding: clamp(24px, 3vw, 40px);
-      width: min(900px, 100%);
-      max-height: 90vh;
-      overflow:auto;
-      box-shadow: 0 40px 140px rgba(0,0,0,.75);
+      color: #fff;
+      text-shadow: 0 1px 0 rgba(0,0,0,.55);
+
+      background: rgba(20,20,24,.52);
+      border: 1px solid rgba(255,255,255,.20);
+
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+
+      box-shadow: 0 14px 28px rgba(0,0,0,.40);
+
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .18s ease, transform .18s ease, background .18s ease, border-color .18s ease;
+    }
+    .card:hover .download{
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+      pointer-events: auto;
+    }
+    .download:hover{
+      background: rgba(20,20,24,.62);
+      border-color: rgba(255,255,255,.30);
     }
 
-    .modalHeader{
+    @media (hover: none){
+      .download{ opacity: 1; transform: translateX(-50%) translateY(0); pointer-events: auto; }
+    }
+
+    .state{
+      padding: 12px 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: rgba(255,255,255,.75);
+      font-size: 13px;
+      letter-spacing: .2px;
+      margin-bottom: var(--gap);
+    }
+
+    /* ADMIN MODAL */
+    .modalWrap{
+      position: fixed;
+      inset: 0;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding: var(--outer);
+      background: rgba(0,0,0,.55);
+      z-index: 9999;
+    }
+    .modalWrap.open{ display:flex; }
+
+    .modal{
+      width: min(980px, 100%);
+      border-radius: var(--r-xl);
+      padding: var(--pad);
+      box-shadow: var(--shadow);
+    }
+
+    .modalHead{
       display:flex;
       align-items:center;
       justify-content:space-between;
-      margin-bottom: clamp(18px, 2.2vw, 28px);
+      gap: 12px;
+      margin-bottom: 12px;
     }
-    .modalHeader h2{
+    .modalHead h3{
       margin:0;
-      font-size: clamp(22px, 2.4vw, 28px);
-      font-weight: 300;
-      letter-spacing: clamp(1px, .3vw, 2px);
+      font-weight: 420;
+      letter-spacing: 1px;
+      font-size: clamp(16px, 1.4vw, 18px);
       color: rgba(255,255,255,.88);
     }
-    .closeBtn{
+
+    .btnRow{ display:flex; gap: 10px; flex-wrap: wrap; justify-content:flex-end; }
+    .btn{
+      border: 1px solid rgba(255,255,255,.18);
       background: rgba(255,255,255,.10);
-      border: 1px solid rgba(255,255,255,.16);
-      border-radius: 50%;
-      width: clamp(30px, 3.6vw, 38px);
-      height: clamp(30px, 3.6vw, 38px);
+      color: rgba(255,255,255,.85);
+      border-radius: 14px;
+      padding: 10px 12px;
       cursor:pointer;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size: clamp(18px, 2vw, 22px);
-      color: rgba(255,255,255,.75);
-      transition: background .15s ease, border-color .15s ease;
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+      font-weight: 650;
+      letter-spacing: .5px;
+      font-size: 13px;
     }
-    .closeBtn:hover{
-      background: rgba(255,255,255,.16);
-      border-color: rgba(255,255,255,.28);
+    .btn:hover{ background: rgba(255,255,255,.14); border-color: rgba(255,255,255,.25); transform: translateY(-1px); }
+    .btn.danger{ background: rgba(255,80,80,.12); border-color: rgba(255,80,80,.30); }
+    .btn.primary{ background: rgba(255,255,255,.16); border-color: rgba(255,255,255,.28); }
+
+    .adminGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--gap);
+      margin-top: 12px;
     }
 
-    .adminSect{
-      margin-bottom: clamp(22px, 2.6vw, 32px);
-    }
-    .adminSect h3{
-      margin: 0 0 clamp(10px, 1.2vw, 14px);
-      font-size: clamp(16px, 1.6vw, 18px);
-      font-weight: 500;
-      letter-spacing: 1px;
-      color: rgba(255,255,255,.82);
+    .panel{
+      border-radius: var(--r-xl);
+      padding: var(--pad);
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.06);
     }
 
-    .formRow{
-      display:flex;
-      gap: clamp(10px, 1.2vw, 14px);
-      margin-bottom: clamp(12px, 1.4vw, 16px);
-      align-items:flex-start;
-    }
-    .formRow input, .formRow select, .formRow textarea{
-      flex:1;
-      background: rgba(255,255,255,.08);
-      border: 1px solid rgba(255,255,255,.16);
-      border-radius: clamp(10px, 1.2vw, 12px);
-      padding: clamp(9px, 1vw, 11px) clamp(12px, 1.3vw, 14px);
-      color: var(--text);
-      font-size: clamp(13px, 1.1vw, 14px);
-      outline:0;
-      transition: border-color .15s ease, background .15s ease;
-    }
-    .formRow input:focus, .formRow select:focus, .formRow textarea:focus{
-      background: rgba(255,255,255,.11);
-      border-color: rgba(255,255,255,.28);
-    }
-
-    .iconBtn, .bigBtn{
-      background: rgba(255,255,255,.12);
-      border: 1px solid rgba(255,255,255,.20);
-      border-radius: clamp(10px, 1.2vw, 12px);
-      padding: clamp(9px, 1vw, 11px) clamp(14px, 1.6vw, 18px);
+    .panel h4{
+      margin:0 0 10px;
+      font-weight: 520;
+      letter-spacing: .8px;
       color: rgba(255,255,255,.86);
-      font-size: clamp(13px, 1.1vw, 14px);
-      letter-spacing: .6px;
-      cursor:pointer;
-      transition: background .15s ease, border-color .15s ease, transform .12s ease;
-    }
-    .iconBtn:hover, .bigBtn:hover{
-      background: rgba(255,255,255,.16);
-      border-color: rgba(255,255,255,.32);
-      transform: translateY(-1px);
-    }
-    .iconBtn:active, .bigBtn:active{
-      transform: translateY(0);
     }
 
-    .iconBtn.danger{
-      background: rgba(255,80,80,.14);
-      border-color: rgba(255,80,80,.30);
-      color: rgba(255,150,150,.92);
+    .field{
+      display:flex;
+      flex-direction:column;
+      gap: 6px;
+      margin: 10px 0;
     }
-    .iconBtn.danger:hover{
-      background: rgba(255,80,80,.20);
-      border-color: rgba(255,80,80,.42);
+    .field label{
+      font-size: 12px;
+      letter-spacing: .8px;
+      color: rgba(255,255,255,.65);
     }
+    .field input, .field select, .field textarea{
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.08);
+      color: rgba(255,255,255,.90);
+      border-radius: 14px;
+      padding: 10px 12px;
+      outline: none;
+      font-size: 13px;
+    }
+    .field input[readonly]{ opacity: .9; }
+    .field textarea{ min-height: 120px; resize: vertical; }
 
-    .bigBtn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap: 8px;
-      font-weight: 500;
+    .hint{
+      font-size: 12px;
+      color: rgba(255,255,255,.55);
+      margin-top: 6px;
+      line-height: 1.35;
     }
 
     .list{
-      margin-top: clamp(10px, 1.2vw, 14px);
       display:flex;
       flex-direction:column;
-      gap: clamp(8px, 1vw, 12px);
+      gap: 10px;
+      margin-top: 10px;
+      max-height: 260px;
+      overflow:auto;
+      padding-right: 6px;
     }
-    .list .row{
+    .row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.12);
       background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.11);
-      border-radius: clamp(10px, 1.2vw, 12px);
-      padding: clamp(10px, 1.2vw, 14px);
-      display:flex;
-      gap: clamp(8px, 1vw, 12px);
-      align-items:center;
     }
-    .list .row .left{
-      flex:1;
-      min-width:0;
-    }
-    .list .row .name{
-      font-weight: 600;
-      font-size: clamp(13px, 1.1vw, 14px);
-      color: rgba(255,255,255,.90);
-      letter-spacing: .5px;
-      margin-bottom: 4px;
-    }
-    .list .row .meta{
-      font-size: clamp(11px, .95vw, 12px);
-      color: rgba(255,255,255,.55);
-      letter-spacing: .4px;
-    }
-
-    .coverGroup{
+    .row .left{
       display:flex;
       flex-direction:column;
-      gap: clamp(10px, 1.2vw, 14px);
+      gap: 2px;
+      min-width: 0;
     }
-    .coverLine{
-      display:flex;
-      gap: clamp(10px, 1.2vw, 14px);
-      align-items:center;
+    .row .name{
+      font-weight: 700;
+      letter-spacing: .2px;
+      font-size: 13px;
+      color: rgba(255,255,255,.88);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 46ch;
     }
-    .coverLine label{
-      flex-shrink:0;
-      font-size: clamp(13px, 1.1vw, 14px);
-      letter-spacing: .5px;
-      color: rgba(255,255,255,.78);
+    .row .meta{
+      font-size: 12px;
+      color: rgba(255,255,255,.60);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 52ch;
     }
-    .coverLine input[type="radio"]{
-      transform: scale(1.2);
+    .iconBtn{
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.10);
+      color: rgba(255,255,255,.86);
+      border-radius: 14px;
+      padding: 8px 10px;
       cursor:pointer;
+      white-space: nowrap;
     }
-    .coverInputWrap{
-      display:none;
-    }
-    .coverInputWrap.active{ display:block; }
-
-    .previewWrap{
-      margin-top: clamp(12px, 1.4vw, 16px);
-      background: rgba(0,0,0,.40);
-      border-radius: clamp(10px, 1.2vw, 12px);
-      padding: clamp(10px, 1.2vw, 14px);
-      text-align:center;
-    }
-    .previewWrap img{
-      max-width: 160px;
-      max-height: 240px;
-      border-radius: clamp(8px, 1vw, 10px);
-      border: 1px solid rgba(255,255,255,.16);
-    }
-
-    .publishWrap{
-      margin-top: clamp(14px, 1.6vw, 18px);
-      display:flex;
-      gap: clamp(10px, 1.2vw, 14px);
-      flex-wrap:wrap;
-    }
+    .iconBtn:hover{ background: rgba(255,255,255,.14); border-color: rgba(255,255,255,.25); }
+    .iconBtn.danger{ background: rgba(255,80,80,.12); border-color: rgba(255,80,80,.30); }
 
     .toast{
-      position:fixed;
-      top: 50%; left:50%;
-      transform: translate(-50%, -50%);
-      background: rgba(0,0,0,.90);
-      border: 1px solid rgba(255,255,255,.20);
-      border-radius: clamp(12px, 1.4vw, 16px);
-      padding: clamp(12px, 1.4vw, 16px) clamp(18px, 2vw, 24px);
-      color: rgba(255,255,255,.92);
-      font-size: clamp(13px, 1.1vw, 14px);
-      letter-spacing: .6px;
-      z-index:9999;
-      box-shadow: 0 20px 60px rgba(0,0,0,.75);
-      pointer-events:none;
-      opacity:0;
-      transition: opacity .2s ease;
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(20,20,20,.55);
+      color: rgba(255,255,255,.85);
+      box-shadow: 0 16px 38px rgba(0,0,0,.45);
+      display:none;
+      z-index: 10000;
     }
-    .toast.show{ opacity:1; }
+    .toast.show{ display:block; }
 
-    @media(max-width: 900px){
+    @media (max-width: 980px){
+      header{ grid-template-columns: 1fr; }
+      .search{ width: 100%; justify-self:stretch; }
       .main{ grid-template-columns: 1fr; }
-      aside{ display:none; }
+      :root{ --cardW: clamp(150px, 26vw, 210px); }
+      .shell{ width: 100%; min-height:auto; }
+      .adminGrid{ grid-template-columns: 1fr; }
+      .list{ max-height: 220px; }
     }
   </style>
 </head>
+
 <body>
   <div class="app">
     <div class="shell">
       <header class="glass">
         <div class="brand">
           <div class="big">CRACKUZU</div>
-          <div class="small">
-            <span id="adminEntry">BY CHARUZU</span>
-            <span class="pill" id="adminPill" style="display:none;">ADMIN</span>
+          <div class="small" id="adminEntry" title="Admin">
+            BY CHARUZU <span class="pill" id="adminPill" style="display:none;">ADMIN</span>
           </div>
         </div>
-        <div class="search">
-          <svg fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+
+        <label class="search" aria-label="Search">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z" stroke="currentColor" stroke-width="2"/>
+            <path d="M16.3 16.3 21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
           </svg>
-          <input type="text" id="q" placeholder="Chercher un jeu…" />
-        </div>
+          <input id="q" type="search" placeholder="search games" autocomplete="off" />
+        </label>
       </header>
 
       <div class="main">
         <aside class="glass">
-          <h2>CATÉGORIES</h2>
+          <h2>CATEGORY</h2>
           <div class="catlist" id="catlist"></div>
+
           <div class="sidefoot">
-            <a href="https://www.google.com" target="_blank" class="boondocks">LIEN</a>
-            <span id="catCount">0 JEUX</span>
+            <a class="boondocks" href="https://discord.gg/ktx5Cb2we3" target="_blank" rel="noopener noreferrer">@THE_BOONDOCKS</a>
+            <span class="pill" id="countPill">0</span>
           </div>
         </aside>
 
         <section class="glass">
-          <div id="stateMsg" class="stateMsg"></div>
+          <div id="state" class="state" style="display:none;"></div>
           <div class="grid" id="grid"></div>
         </section>
       </div>
     </div>
   </div>
 
-  <!-- ADMIN MODAL -->
-  <div class="modal" id="adminModal" aria-hidden="true">
-    <div class="modalBox">
-      <div class="modalHeader">
-        <h2>ADMIN PANEL</h2>
-        <button class="closeBtn" id="closeAdmin" aria-label="Close">×</button>
-      </div>
-
-      <!-- ADD CATEGORY -->
-      <div class="adminSect">
-        <h3>Ajouter une catégorie</h3>
-        <div class="formRow">
-          <input type="text" id="catName" placeholder="NOM EN MAJUSCULE" />
-          <button class="iconBtn" id="addCatBtn">Ajouter</button>
+  <!-- ADMIN -->
+  <div class="modalWrap" id="adminModal" aria-hidden="true">
+    <div class="modal glass" role="dialog" aria-modal="true" aria-label="Admin">
+      <div class="modalHead">
+        <h3>ADMIN PANEL</h3>
+        <div class="btnRow">
+          <button class="btn" id="importBtn" type="button">Importer data.json</button>
+          <button class="btn primary" id="publishBtn" type="button">Download data.json</button>
+          <button class="btn danger" id="resetBtn" type="button">Reset local</button>
+          <button class="btn primary" id="closeAdmin" type="button">Fermer</button>
         </div>
       </div>
 
-      <!-- ADD GAME -->
-      <div class="adminSect">
-        <h3 id="gameFormTitle">Ajouter un jeu</h3>
-        <div class="formRow">
-          <input type="text" id="gameName" placeholder="Nom du jeu" />
-        </div>
-        <div class="formRow">
-          <select id="gameCat"></select>
-        </div>
-        <div class="formRow">
-          <textarea id="gameMagnet" rows="3" placeholder="magnet:?xt=..."></textarea>
-        </div>
+      <div class="adminGrid">
+        <div class="panel">
+          <h4>Ajouter une catégorie</h4>
+          <div class="field">
+            <label for="catName">Nom catégorie</label>
+            <input id="catName" placeholder="ex: ONLINE" />
+          </div>
+          <button class="btn primary" id="addCatBtn" type="button">Ajouter catégorie</button>
 
-        <div class="coverGroup">
-          <div class="coverLine">
-            <label><input type="radio" name="coverMode" id="coverModeUpload" value="upload" checked /> Upload image</label>
-            <label><input type="radio" name="coverMode" id="coverModeLink" value="link" /> Lien URL</label>
+          <div class="hint">
+            Les catégories sont stockées dans data.json. Après “Download data.json”, remplace le fichier dans ton repo GitHub.
           </div>
 
-          <div class="coverInputWrap active" id="uploadWrap">
-            <input type="file" id="gameCoverFile" accept="image/*" />
+          <h4 style="margin-top:16px;">Catégories</h4>
+          <div class="list" id="catListAdmin"></div>
+        </div>
+
+        <div class="panel">
+          <h4 id="gameFormTitle">Ajouter un jeu</h4>
+
+          <div class="field">
+            <label for="gameName">Nom du jeu</label>
+            <input id="gameName" placeholder="ex: Spider-Man 2" />
           </div>
-          <div class="coverInputWrap" id="linkWrap">
-            <input type="text" id="gameCoverLink" placeholder="https://...image.jpg" />
+
+          <div class="field">
+            <label for="gameCat">Catégorie</label>
+            <select id="gameCat"></select>
+          </div>
+
+          <div class="field">
+            <label for="gameMagnet">Lien magnet</label>
+            <input id="gameMagnet" placeholder="magnet:?xt=urn:btih:..." />
+          </div>
+
+          <div class="field">
+            <label for="coverMode">Cover (mode)</label>
+            <select id="coverMode">
+              <option value="upload" selected>Upload → data URL</option>
+              <option value="link">Lien/chemin</option>
+            </select>
+          </div>
+
+          <div class="field" id="coverUploadWrap">
+            <label for="gameCoverFile">Cover (fichier)</label>
+            <input id="gameCoverFile" type="file" accept="image/*" />
+          </div>
+
+          <div class="field" id="coverLinkWrap" style="display:none;">
+            <label for="gameCoverLink">Cover (lien/chemin)</label>
+            <input id="gameCoverLink" placeholder="images/cover.jpg ou https://..." />
+          </div>
+
+          <div class="field">
+            <label for="gameCover">Cover (valeur finale)</label>
+            <input id="gameCover" placeholder="Rempli automatiquement..." readonly />
+          </div>
+
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <button class="btn primary" id="addGameBtn" type="button">Ajouter jeu</button>
+            <button class="btn primary" id="saveEditBtn" type="button" style="display:none;">Sauvegarder modif</button>
+            <button class="btn" id="cancelEditBtn" type="button" style="display:none;">Annuler</button>
+          </div>
+
+          <h4 style="margin-top:16px;">Jeux</h4>
+          <div class="list" id="gameListAdmin"></div>
+
+          <div class="hint">
+            Upload = cover en data URL (base64) dans data.json, lien = tu gères toi-même images/ ou une URL.
           </div>
         </div>
 
-        <div class="previewWrap" id="previewWrap" style="display:none;">
-          <img id="previewImg" alt="Preview" />
-        </div>
-
-        <input type="hidden" id="gameCover" />
-
-        <div class="formRow" style="margin-top:18px;">
-          <button class="bigBtn" id="addGameBtn">Ajouter le jeu</button>
-          <button class="bigBtn" id="saveEditBtn" style="display:none;">Sauvegarder modif</button>
-          <button class="iconBtn" id="cancelEditBtn" style="display:none;">Annuler</button>
+        <div class="panel" style="grid-column: 1 / -1;">
+          <h4>Preview JSON (lecture)</h4>
+          <div class="field">
+            <label for="jsonPreview">data.json généré</label>
+            <textarea id="jsonPreview" readonly></textarea>
+          </div>
         </div>
       </div>
 
-      <!-- PUBLISH & TOOLS -->
-      <div class="adminSect">
-        <h3>Publier & Outils</h3>
-        <div class="publishWrap">
-          <button class="bigBtn" id="publishBtn">🚀 Upload to GitHub</button>
-          <button class="bigBtn" id="downloadBtn">💾 Download data.json</button>
-          <button class="bigBtn" id="resetBtn">♻️ Reset local</button>
-          <button class="bigBtn" id="importBtn">📥 Import JSON</button>
-        </div>
-        <input type="file" id="filePick" accept=".json" style="display:none;" />
-      </div>
-
-      <!-- LISTS -->
-      <div class="adminSect">
-        <h3>Catégories (clic = activer)</h3>
-        <div class="list" id="catListAdmin"></div>
-      </div>
-      <div class="adminSect">
-        <h3>Jeux</h3>
-        <div class="list" id="gameListAdmin"></div>
-      </div>
+      <input id="filePick" type="file" accept="application/json" style="display:none" />
     </div>
   </div>
 
-  <!-- TOAST -->
   <div class="toast" id="toast"></div>
 
-  <script>
-    // ========== GITHUB CONFIG ==========
+<script>
+    const ADMIN_PASSWORD = "141592";
+    const LOCAL_KEY = "crackuzu:localDraft:v1";
+
+    const DEFAULT_DATA = {
+      categories: ["ALL", "ONLINE", "HORROR", "ACTION", "CAR RACE"],
+      games: []
+    };
+
+    // ===== GITHUB CONFIG (DANGEREUX) =====
     const GITHUB_CONFIG = {
-      token: "YOUR_GITHUB_TOKEN_HERE",
-      owner: "YOUR_USERNAME",
-      repo: "YOUR_REPO",
+      token: "TON_TOKEN_GITHUB_ICI",
+      owner: "TON_USERNAME",
+      repo: "TON_REPO",
       branch: "main",
       path: "data.json"
     };
 
-    const ADMIN_PASSWORD = "141592";
-    const LOCAL_KEY = "crackuzu_local_draft";
 
-    const DEFAULT_DATA = {
-      categories: ["ONLINE", "HORROR", "ACTION", "CAR RACE"],
-      games: []
-    };
+    const el = (id) => document.getElementById(id);
+    const grid = el("grid");
+    const catlist = el("catlist");
+    const q = el("q");
+    const stateBox = el("state");
+    const countPill = el("countPill");
+
+    const adminEntry = el("adminEntry");
+    const adminPill = el("adminPill");
+    const adminModal = el("adminModal");
+    const closeAdmin = el("closeAdmin");
+
+    const catName = el("catName");
+    const addCatBtn = el("addCatBtn");
+    const catListAdmin = el("catListAdmin");
+
+    const gameFormTitle = el("gameFormTitle");
+    const gameName = el("gameName");
+    const gameCat = el("gameCat");
+    const gameMagnet = el("gameMagnet");
+
+    const coverMode = el("coverMode");
+    const coverUploadWrap = el("coverUploadWrap");
+    const coverLinkWrap = el("coverLinkWrap");
+    const gameCoverFile = el("gameCoverFile");
+    const gameCoverLink = el("gameCoverLink");
+    const gameCover = el("gameCover");
+
+    const addGameBtn = el("addGameBtn");
+    const saveEditBtn = el("saveEditBtn");
+    const cancelEditBtn = el("cancelEditBtn");
+
+    const gameListAdmin = el("gameListAdmin");
+
+    const jsonPreview = el("jsonPreview");
+    const publishBtn = el("publishBtn");
+    const resetBtn = el("resetBtn");
+    const toast = el("toast");
+
+    const importBtn = el("importBtn");
+    const filePick = el("filePick");
 
     const state = {
       data: structuredClone(DEFAULT_DATA),
-      adminUnlocked: false,
       activeCat: "ALL",
-      query: ""
+      query: "",
+      adminUnlocked: false
     };
 
     let editIndex = null;
 
-    const q = document.getElementById("q");
-    const catlist = document.getElementById("catlist");
-    const catCount = document.getElementById("catCount");
-    const grid = document.getElementById("grid");
-    const stateMsg = document.getElementById("stateMsg");
-
-    const adminModal = document.getElementById("adminModal");
-    const closeAdmin = document.getElementById("closeAdmin");
-    const adminPill = document.getElementById("adminPill");
-    const adminEntry = document.getElementById("adminEntry");
-
-    const catName = document.getElementById("catName");
-    const addCatBtn = document.getElementById("addCatBtn");
-
-    const gameFormTitle = document.getElementById("gameFormTitle");
-    const gameName = document.getElementById("gameName");
-    const gameCat = document.getElementById("gameCat");
-    const gameMagnet = document.getElementById("gameMagnet");
-    const gameCover = document.getElementById("gameCover");
-    const gameCoverFile = document.getElementById("gameCoverFile");
-    const gameCoverLink = document.getElementById("gameCoverLink");
-
-    const coverModeUpload = document.getElementById("coverModeUpload");
-    const coverModeLink = document.getElementById("coverModeLink");
-    const uploadWrap = document.getElementById("uploadWrap");
-    const linkWrap = document.getElementById("linkWrap");
-    const previewWrap = document.getElementById("previewWrap");
-    const previewImg = document.getElementById("previewImg");
-
-    const addGameBtn = document.getElementById("addGameBtn");
-    const saveEditBtn = document.getElementById("saveEditBtn");
-    const cancelEditBtn = document.getElementById("cancelEditBtn");
-
-    const publishBtn = document.getElementById("publishBtn");
-    const downloadBtn = document.getElementById("downloadBtn");
-    const resetBtn = document.getElementById("resetBtn");
-    const importBtn = document.getElementById("importBtn");
-    const filePick = document.getElementById("filePick");
-
-    const catListAdmin = document.getElementById("catListAdmin");
-    const gameListAdmin = document.getElementById("gameListAdmin");
-
-    const toast = document.getElementById("toast");
-
-    // ========== HELPERS ==========
-    function norm(s){ return (s || "").trim(); }
-    function upper(s){ return (s || "").toUpperCase().trim(); }
-    function sanitizeData(obj){
-      return {
-        categories: Array.isArray(obj.categories) ? obj.categories.map(upper).filter(Boolean) : [],
-        games: Array.isArray(obj.games) ? obj.games.map(g => ({
-          name: norm(g.name) || "",
-          cat: upper(g.cat) || "",
-          magnet: norm(g.magnet) || "",
-          cover: norm(g.cover) || ""
-        })) : []
-      };
-    }
-
     function toastMsg(msg){
       toast.textContent = msg;
       toast.classList.add("show");
-      setTimeout(() => toast.classList.remove("show"), 2200);
+      clearTimeout(toast._t);
+      toast._t = setTimeout(() => toast.classList.remove("show"), 1200);
     }
 
-    function setStateMessage(msg){
-      stateMsg.textContent = msg;
-      stateMsg.style.display = msg ? "block" : "none";
+    function norm(s){ return (s || "").trim(); }
+    function upper(s){ return norm(s).toUpperCase(); }
+
+    function sanitizeData(d){
+      const out = { categories: [], games: [] };
+      const cats = Array.isArray(d?.categories) ? d.categories : [];
+      const games = Array.isArray(d?.games) ? d.games : [];
+
+      const uniq = new Set();
+      cats.forEach(c => {
+        const v = upper(c);
+        if(!v) return;
+        if(uniq.has(v)) return;
+        uniq.add(v);
+        out.categories.push(v);
+      });
+      if(!out.categories.includes("ALL")) out.categories.unshift("ALL");
+
+      out.games = games
+        .map(g => ({
+          name: norm(g?.name),
+          cat: upper(g?.cat),
+          magnet: norm(g?.magnet).replaceAll("&amp;", "&"),
+          cover: norm(g?.cover)
+        }))
+        .filter(g => g.name && g.cat && g.magnet && g.cover);
+
+      return out;
     }
 
-    // ========== LOCAL STORAGE ==========
-    function saveLocalDraft(){
-      try{
-        localStorage.setItem(LOCAL_KEY, JSON.stringify(state.data));
-      }catch{}
-    }
-    function loadLocalDraft(){
-      try{
-        const raw = localStorage.getItem(LOCAL_KEY);
-        return raw ? sanitizeData(JSON.parse(raw)) : null;
-      }catch{ return null; }
-    }
-
-    // ========== LOAD FROM REPO ==========
     async function loadDataFromRepo(){
       try{
-        const url = `https://raw.githubusercontent.com/${GITHUB_CONFIG.owner}/${GITHUB_CONFIG.repo}/${GITHUB_CONFIG.branch}/${GITHUB_CONFIG.path}`;
-        const resp = await fetch(url);
-        if(!resp.ok) return null;
-        const json = await resp.json();
+        const res = await fetch("./data.json", { cache: "no-store" }); // fetch JSON [web:168]
+        if(!res.ok) throw new Error("no data.json");
+        const json = await res.json(); // parse JSON [web:205]
         return sanitizeData(json);
       }catch{
         return null;
       }
     }
 
-    // ========== UPLOAD TO GITHUB ==========
-    async function uploadToGithub(){
-      const { token, owner, repo, branch, path } = GITHUB_CONFIG;
+    function loadLocalDraft(){
+      try{
+        const raw = localStorage.getItem(LOCAL_KEY);
+        if(!raw) return null;
+        return sanitizeData(JSON.parse(raw));
+      }catch{
+        return null;
+      }
+    }
 
-      if(token === "YOUR_GITHUB_TOKEN_HERE" || owner === "YOUR_USERNAME" || repo === "YOUR_REPO"){
-        toastMsg("⚠️ Configure GITHUB_CONFIG d'abord!");
+    function saveLocalDraft(){
+      localStorage.setItem(LOCAL_KEY, JSON.stringify(state.data));
+      refreshPreview();
+    }
+
+    function setStateMessage(msg){
+      if(!msg){
+        stateBox.style.display = "none";
+        stateBox.textContent = "";
         return;
       }
-
-      try{
-        toastMsg("📤 Upload en cours...");
-        
-        // Headers communs
-        const headers = {
-          "Authorization": `token ${token}`,
-          "Accept": "application/vnd.github.v3+json",
-          "User-Agent": "CRACKUZU-App"
-        };
-
-        // 1) Get current file SHA (required for update)
-        const getUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
-        let sha = null;
-        try{
-          const getResp = await fetch(getUrl, { headers });
-          console.log("GET status:", getResp.status);
-          if(getResp.ok){
-            const getData = await getResp.json();
-            sha = getData.sha;
-            console.log("SHA trouvé:", sha);
-          } else {
-            const errText = await getResp.text();
-            console.log("GET erreur:", errText);
-          }
-        }catch(e){
-          console.log("GET error (fichier n'existe peut-être pas):", e);
-        }
-
-        // 2) Prepare content
-        const jsonContent = JSON.stringify(state.data, null, 2);
-        const base64Content = btoa(unescape(encodeURIComponent(jsonContent)));
-
-        // 3) Upload/update file
-        const putUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
-        const body = {
-          message: `Update ${path} via admin panel`,
-          content: base64Content,
-          branch: branch
-        };
-        if(sha) body.sha = sha;
-
-        console.log("PUT URL:", putUrl);
-        console.log("Token (premiers chars):", token.substring(0, 10) + "...");
-        console.log("Owner:", owner);
-        console.log("Repo:", repo);
-
-        const putResp = await fetch(putUrl, {
-          method: "PUT",
-          headers: {
-            ...headers,
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(body)
-        });
-
-        console.log("PUT status:", putResp.status);
-
-        if(!putResp.ok){
-          const errText = await putResp.text();
-          console.error("Erreur complète GitHub:", errText);
-          
-          let errData;
-          try {
-            errData = JSON.parse(errText);
-          } catch {
-            errData = { message: errText };
-          }
-          
-          // Afficher la vraie erreur GitHub
-          const errorMsg = errData.message || errText;
-          throw new Error(`GitHub Error (${putResp.status}): ${errorMsg}`);
-        }
-
-        const successData = await putResp.json();
-        console.log("Upload réussi:", successData);
-        toastMsg("✅ Upload GitHub réussi!");
-      }catch(err){
-        console.error("Erreur complète:", err);
-        toastMsg(err.message || "❌ Erreur upload");
-      }
+      stateBox.style.display = "block";
+      stateBox.textContent = msg;
     }
-
-    publishBtn.addEventListener("click", uploadToGithub);
-
-    function downloadDataJson(){
-      const json = JSON.stringify(state.data, null, 2);
-      const blob = new Blob([json], { type: "application/json" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "data.json";
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      URL.revokeObjectURL(url);
-      toastMsg("📥 data.json téléchargé");
-    }
-
-    downloadBtn.addEventListener("click", downloadDataJson);
-
-    // ========== COVER MODE ==========
-    function setCoverMode(mode){
-      if(mode === "upload"){
-        uploadWrap.classList.add("active");
-        linkWrap.classList.remove("active");
-      }else{
-        linkWrap.classList.add("active");
-        uploadWrap.classList.remove("active");
-      }
-    }
-
-    coverModeUpload.addEventListener("change", () => { setCoverMode("upload"); refreshPreview(); });
-    coverModeLink.addEventListener("change", () => { setCoverMode("link"); refreshPreview(); });
-
-    gameCoverFile.addEventListener("change", async () => {
-      const f = gameCoverFile.files?.[0];
-      if(!f){ gameCover.value = ""; refreshPreview(); return; }
-      const reader = new FileReader();
-      reader.onload = () => {
-        gameCover.value = reader.result;
-        refreshPreview();
-      };
-      reader.readAsDataURL(f);
-    });
-
-    gameCoverLink.addEventListener("input", () => {
-      gameCover.value = norm(gameCoverLink.value);
-      refreshPreview();
-    });
 
     function refreshPreview(){
-      const val = norm(gameCover.value);
-      if(!val){
-        previewWrap.style.display = "none";
-        previewImg.src = "";
+      jsonPreview.value = JSON.stringify(state.data, null, 2);
+    }
+
+    function renderCategories(){
+      catlist.innerHTML = "";
+      const cats = state.data.categories;
+
+      cats.forEach(cat => {
+        const b = document.createElement("button");
+        b.className = "catbtn" + (state.activeCat === cat ? " active" : "");
+        b.type = "button";
+        b.textContent = cat;
+        b.addEventListener("click", () => {
+          state.activeCat = cat;
+          renderCategories();
+          renderGames();
+        });
+        catlist.appendChild(b);
+      });
+
+      gameCat.innerHTML = "";
+      cats.filter(c => c !== "ALL").forEach(c => {
+        const opt = document.createElement("option");
+        opt.value = c;
+        opt.textContent = c;
+        gameCat.appendChild(opt);
+      });
+    }
+
+    function renderGames(){
+      const query = (state.query || "").toLowerCase();
+      const active = state.activeCat;
+
+      grid.innerHTML = "";
+      let shown = 0;
+
+      state.data.games.forEach(g => {
+        const title = (g.name || "").toLowerCase();
+        const okCat = (active === "ALL") || (upper(g.cat) === active);
+        const okText = !query || title.includes(query);
+        if(!(okCat && okText)) return;
+
+        const card = document.createElement("article");
+        card.className = "card";
+
+        const img = document.createElement("img");
+        img.src = g.cover;
+        img.alt = g.name;
+        card.appendChild(img);
+
+        const a = document.createElement("a");
+        a.className = "download";
+        a.href = g.magnet;
+        a.textContent = "Download";
+        card.appendChild(a);
+
+        grid.appendChild(card);
+        shown++;
+      });
+
+      countPill.textContent = String(shown);
+      if(shown === 0) setStateMessage("Aucun jeu trouvé.");
+      else setStateMessage("");
+    }
+
+    function setCoverMode(mode){
+      if(mode === "link"){
+        coverUploadWrap.style.display = "none";
+        coverLinkWrap.style.display = "";
+        gameCover.value = norm(gameCoverLink.value);
       }else{
-        previewWrap.style.display = "block";
-        previewImg.src = val;
+        coverUploadWrap.style.display = "";
+        coverLinkWrap.style.display = "none";
+        // cover filled by upload; keep current if already set
+        if(!gameCover.value) gameCover.value = "";
       }
     }
 
-    // ========== EDIT MODE ==========
+    coverMode.addEventListener("change", () => setCoverMode(coverMode.value));
+    gameCoverLink.addEventListener("input", () => {
+      if(coverMode.value === "link"){
+        gameCover.value = norm(gameCoverLink.value);
+      }
+    });
+
+    // File picker -> convert image to data URL base64 [web:308]
+    gameCoverFile.addEventListener("change", () => {
+      const file = gameCoverFile.files?.[0];
+      if(!file) return;
+
+      const reader = new FileReader();
+      reader.addEventListener("load", () => {
+        gameCover.value = String(reader.result || "");
+        toastMsg("Cover convertie");
+        coverMode.value = "upload";
+        setCoverMode("upload");
+      });
+      reader.readAsDataURL(file);
+    });
+
     function exitEditMode(){
       editIndex = null;
       gameFormTitle.textContent = "Ajouter un jeu";
@@ -979,130 +928,50 @@
       gameName.value = "";
       gameMagnet.value = "";
       gameCover.value = "";
-      gameCoverFile.value = "";
       gameCoverLink.value = "";
-      coverModeUpload.checked = true;
+      gameCoverFile.value = "";
+      coverMode.value = "upload";
       setCoverMode("upload");
-      refreshPreview();
     }
+
     cancelEditBtn.addEventListener("click", () => {
       exitEditMode();
       toastMsg("Annulé");
     });
 
-    // ========== RENDER ==========
-    function renderCategories(){
-      catlist.innerHTML = "";
-      const all = document.createElement("div");
-      all.className = "catbtn" + (state.activeCat === "ALL" ? " active" : "");
-      all.textContent = "ALL";
-      all.addEventListener("click", () => {
-        state.activeCat = "ALL";
-        renderCategories();
-        renderGames();
-      });
-      catlist.appendChild(all);
-
-      state.data.categories.forEach(c => {
-        const btn = document.createElement("div");
-        btn.className = "catbtn" + (state.activeCat === c ? " active" : "");
-        btn.textContent = c;
-        btn.addEventListener("click", () => {
-          state.activeCat = c;
-          renderCategories();
-          renderGames();
-        });
-        catlist.appendChild(btn);
-      });
-
-      gameCat.innerHTML = "";
-      state.data.categories.forEach(c => {
-        const opt = document.createElement("option");
-        opt.value = c;
-        opt.textContent = c;
-        gameCat.appendChild(opt);
-      });
-    }
-
-    function renderGames(){
-      const q = norm(state.query).toLowerCase();
-      const filtered = state.data.games.filter(g => {
-        const match = state.activeCat === "ALL" || upper(g.cat) === state.activeCat;
-        const search = !q || g.name.toLowerCase().includes(q);
-        return match && search;
-      });
-
-      catCount.textContent = `${filtered.length} JEUX`;
-
-      grid.innerHTML = "";
-      if(filtered.length === 0){
-        setStateMessage("Aucun jeu trouvé.");
-        return;
-      }
-      setStateMessage("");
-
-      filtered.forEach(g => {
-        const card = document.createElement("div");
-        card.className = "card";
-
-        const img = document.createElement("img");
-        img.src = g.cover;
-        img.alt = g.name;
-        img.loading = "lazy";
-
-        const info = document.createElement("div");
-        info.className = "cinfo";
-        info.innerHTML = `<div class="gname">${g.name}</div><span class="catpill">${upper(g.cat)}</span>`;
-
-        const link = document.createElement("a");
-        link.href = g.magnet;
-        link.setAttribute("aria-label", `Télécharger ${g.name}`);
-
-        card.appendChild(img);
-        card.appendChild(info);
-        card.appendChild(link);
-        grid.appendChild(card);
-      });
-    }
-
     function renderAdminLists(){
       catListAdmin.innerHTML = "";
-      state.data.categories.forEach(c => {
-        const row = document.createElement("div");
-        row.className = "row";
+      state.data.categories
+        .filter(c => c !== "ALL")
+        .forEach(c => {
+          const row = document.createElement("div");
+          row.className = "row";
 
-        const left = document.createElement("div");
-        left.className = "left";
-        left.innerHTML = `<div class="name">${c}</div>`;
-        left.style.cursor = "pointer";
-        left.addEventListener("click", () => {
-          state.activeCat = c;
-          renderCategories();
-          renderGames();
-          toastMsg(`Catégorie "${c}" active`);
+          const left = document.createElement("div");
+          left.className = "left";
+          left.innerHTML = `<div class="name">${c}</div><div class="meta">Catégorie</div>`;
+
+          const del = document.createElement("button");
+          del.className = "iconBtn danger";
+          del.type = "button";
+          del.textContent = "Suppr";
+          del.addEventListener("click", () => {
+            const ok = confirm(`Supprimer la catégorie "${c}" et ses jeux ?`);
+            if(!ok) return;
+            state.data.categories = state.data.categories.filter(x => x !== c);
+            state.data.games = state.data.games.filter(g => upper(g.cat) !== c);
+            if(state.activeCat === c) state.activeCat = "ALL";
+            saveLocalDraft();
+            renderCategories();
+            renderGames();
+            renderAdminLists();
+            toastMsg("Catégorie supprimée");
+          });
+
+          row.appendChild(left);
+          row.appendChild(del);
+          catListAdmin.appendChild(row);
         });
-
-        const del = document.createElement("button");
-        del.className = "iconBtn danger";
-        del.type = "button";
-        del.textContent = "Suppr";
-        del.addEventListener("click", () => {
-          const ok = confirm(`Supprimer la catégorie "${c}" et ses jeux ?`);
-          if(!ok) return;
-          state.data.categories = state.data.categories.filter(x => x !== c);
-          state.data.games = state.data.games.filter(g => upper(g.cat) !== c);
-          if(state.activeCat === c) state.activeCat = "ALL";
-          saveLocalDraft();
-          renderCategories();
-          renderGames();
-          renderAdminLists();
-          toastMsg("Catégorie supprimée");
-        });
-
-        row.appendChild(left);
-        row.appendChild(del);
-        catListAdmin.appendChild(row);
-      });
 
       gameListAdmin.innerHTML = "";
       state.data.games.forEach((g, idx) => {
@@ -1136,18 +1005,17 @@
 
           // Cover prefill
           if((g.cover || "").startsWith("data:")){
-            coverModeUpload.checked = true;
+            coverMode.value = "upload";
             setCoverMode("upload");
             gameCover.value = g.cover;
             gameCoverFile.value = "";
             gameCoverLink.value = "";
           }else{
-            coverModeLink.checked = true;
+            coverMode.value = "link";
             gameCoverLink.value = g.cover;
             setCoverMode("link");
           }
 
-          refreshPreview();
           toastMsg("Mode modification");
         });
 
@@ -1242,7 +1110,7 @@
       gameCoverFile.value = "";
       gameCoverLink.value = "";
 
-      coverModeUpload.checked = true;
+      coverMode.value = "upload";
       setCoverMode("upload");
 
       saveLocalDraft();
@@ -1276,6 +1144,22 @@
       exitEditMode();
       toastMsg("Modif sauvegardée");
     });
+
+    function downloadDataJson(){
+      const json = JSON.stringify(state.data, null, 2);
+      const blob = new Blob([json], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "data.json";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    }
+
+	publishToGithub()
+
 
     resetBtn.addEventListener("click", () => {
       const ok = confirm("Reset local: revenir aux données du repo ?");
