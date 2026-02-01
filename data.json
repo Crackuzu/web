@@ -26,12 +26,6 @@
       "cover": "images/nfsheat.jpg"
     },
     {
-      "name": "Fast Food Simulator",
-      "cat": "ONLINE",
-      "magnet": "magnet:?xt=urn:btih:TON_HASH_4&dn=Fast+Food+Simulator",
-      "cover": "images/fastfood.jpg"
-    },
-    {
       "name": "Detroit Become Human",
       "cat": "ACTION",
       "magnet": "magnet:?xt=urn:btih:TON_HASH_5&dn=Detroit+Become+Human",
@@ -45,3 +39,4 @@
     }
   ]
 }
+
