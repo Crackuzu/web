@@ -673,6 +673,7 @@
         <h3>Publier & Outils</h3>
         <div class="publishWrap">
           <button class="bigBtn" id="publishBtn">🚀 Upload to GitHub</button>
+          <button class="bigBtn" id="downloadBtn">💾 Download data.json</button>
           <button class="bigBtn" id="resetBtn">♻️ Reset local</button>
           <button class="bigBtn" id="importBtn">📥 Import JSON</button>
         </div>
@@ -697,9 +698,9 @@
   <script>
     // ========== GITHUB CONFIG ==========
     const GITHUB_CONFIG = {
-      token: "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",
-      owner: "Crackuzu",
-      repo: "web",
+      token: "YOUR_GITHUB_TOKEN_HERE",
+      owner: "YOUR_USERNAME",
+      repo: "YOUR_REPO",
       branch: "main",
       path: "data.json"
     };
@@ -755,6 +756,7 @@
     const cancelEditBtn = document.getElementById("cancelEditBtn");
 
     const publishBtn = document.getElementById("publishBtn");
+    const downloadBtn = document.getElementById("downloadBtn");
     const resetBtn = document.getElementById("resetBtn");
     const importBtn = document.getElementById("importBtn");
     const filePick = document.getElementById("filePick");
@@ -827,23 +829,30 @@
 
       try{
         toastMsg("📤 Upload en cours...");
+        
+        // Headers communs
+        const headers = {
+          "Authorization": `token ${token}`,
+          "Accept": "application/vnd.github.v3+json",
+          "User-Agent": "CRACKUZU-App"
+        };
 
         // 1) Get current file SHA (required for update)
         const getUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
         let sha = null;
         try{
-          const getResp = await fetch(getUrl, {
-            headers: {
-              "Authorization": `token ${token}`,
-              "Accept": "application/vnd.github.v3+json"
-            }
-          });
+          const getResp = await fetch(getUrl, { headers });
+          console.log("GET status:", getResp.status);
           if(getResp.ok){
             const getData = await getResp.json();
             sha = getData.sha;
+            console.log("SHA trouvé:", sha);
+          } else {
+            const errText = await getResp.text();
+            console.log("GET erreur:", errText);
           }
         }catch(e){
-          console.log("Fichier n'existe pas encore, création...", e);
+          console.log("GET error (fichier n'existe peut-être pas):", e);
         }
 
         // 2) Prepare content
@@ -859,33 +868,64 @@
         };
         if(sha) body.sha = sha;
 
+        console.log("PUT URL:", putUrl);
+        console.log("Token (premiers chars):", token.substring(0, 10) + "...");
+        console.log("Owner:", owner);
+        console.log("Repo:", repo);
+
         const putResp = await fetch(putUrl, {
           method: "PUT",
           headers: {
-            "Authorization": `token ${token}`,
-            "Accept": "application/vnd.github.v3+json",
+            ...headers,
             "Content-Type": "application/json"
           },
           body: JSON.stringify(body)
         });
 
+        console.log("PUT status:", putResp.status);
+
         if(!putResp.ok){
-          const errData = await putResp.json();
-          console.error("Erreur GitHub:", errData);
-          if(putResp.status === 401 || putResp.status === 403){
-            throw new Error("❌ Bad credentials! Vérifie ton token GitHub.");
+          const errText = await putResp.text();
+          console.error("Erreur complète GitHub:", errText);
+          
+          let errData;
+          try {
+            errData = JSON.parse(errText);
+          } catch {
+            errData = { message: errText };
           }
-          throw new Error(errData.message || "Upload failed");
+          
+          // Afficher la vraie erreur GitHub
+          const errorMsg = errData.message || errText;
+          throw new Error(`GitHub Error (${putResp.status}): ${errorMsg}`);
         }
 
+        const successData = await putResp.json();
+        console.log("Upload réussi:", successData);
         toastMsg("✅ Upload GitHub réussi!");
       }catch(err){
-        console.error(err);
+        console.error("Erreur complète:", err);
         toastMsg(err.message || "❌ Erreur upload");
       }
     }
 
     publishBtn.addEventListener("click", uploadToGithub);
+
+    function downloadDataJson(){
+      const json = JSON.stringify(state.data, null, 2);
+      const blob = new Blob([json], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "data.json";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+      toastMsg("📥 data.json téléchargé");
+    }
+
+    downloadBtn.addEventListener("click", downloadDataJson);
 
     // ========== COVER MODE ==========
     function setCoverMode(mode){
@@ -1300,4 +1340,3 @@
   </script>
 </body>
 </html>
-
