@@ -215,14 +215,8 @@
       font-size: clamp(12px, 1.05vw, 13px);
       letter-spacing: .8px;
     }
-    .sidefoot .boondocks{
-      color: rgba(255,255,255,.55);
-      text-decoration: none;
-    }
-    .sidefoot .boondocks:hover{
-      color: rgba(255,255,255,.80);
-      text-decoration: underline;
-    }
+    .sidefoot .boondocks{ color: rgba(255,255,255,.55); text-decoration: none; }
+    .sidefoot .boondocks:hover{ color: rgba(255,255,255,.80); text-decoration: underline; }
 
     section{
       border-radius: var(--r-xl);
@@ -239,113 +233,110 @@
       align-content: start;
     }
 
-   .card{
-  position: relative;
-  border-radius: var(--r-md);
-  overflow:hidden;
-  border: 1px solid rgba(255,255,255,.12);
-  background: rgba(255,255,255,.06);
-  box-shadow: 0 16px 40px rgba(0,0,0,.45);
-  aspect-ratio: 3 / 4;
+    /* Hover card */
+    .card{
+      position: relative;
+      border-radius: var(--r-md);
+      overflow:hidden;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      box-shadow: 0 16px 40px rgba(0,0,0,.45);
+      aspect-ratio: 3 / 4;
 
-  transform: translateZ(0);
-  transition: transform .22s ease, border-color .22s ease;
-}
+      transform: translateZ(0);
+      transition: transform .22s ease, border-color .22s ease;
+    }
 
-/* Glow border (léger, dans ton style glass) */
-.card::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  border-radius: inherit;
-  pointer-events:none;
-  opacity:0;
-  transition: opacity .22s ease;
-  background:
-    radial-gradient(600px 260px at 30% 10%, rgba(170,140,255,.28), transparent 60%),
-    radial-gradient(500px 240px at 80% 90%, rgba(0,210,255,.20), transparent 55%);
-}
+    .card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      border-radius: inherit;
+      pointer-events:none;
+      opacity:0;
+      transition: opacity .22s ease;
+      background:
+        radial-gradient(600px 260px at 30% 10%, rgba(170,140,255,.28), transparent 60%),
+        radial-gradient(500px 240px at 80% 90%, rgba(0,210,255,.20), transparent 55%);
+    }
+    .card::after{
+      content:"";
+      position:absolute;
+      inset:-18px;
+      border-radius: inherit;
+      pointer-events:none;
+      opacity:0;
+      transition: opacity .22s ease;
+      box-shadow: 0 30px 90px rgba(0,0,0,.55);
+    }
 
-/* Shadow performant via pseudo-element (évite d’animer box-shadow directement) */
-.card::after{
-  content:"";
-  position:absolute;
-  inset:-18px;
-  border-radius: inherit;
-  pointer-events:none;
-  opacity:0;
-  transition: opacity .22s ease;
-  box-shadow: 0 30px 90px rgba(0,0,0,.55);
-}
+    .card img{
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      display:block;
+      transform: scale(1.02);
+      transition: transform .28s ease, filter .28s ease;
+      filter: saturate(1.05) contrast(1.05);
+    }
 
-.card img{
-  width:100%;
-  height:100%;
-  object-fit: cover;
-  display:block;
-  transform: scale(1.02);
-  transition: transform .28s ease, filter .28s ease;
-  filter: saturate(1.05) contrast(1.05);
-}
+    .card:hover{
+      transform: scale(1.035);
+      border-color: rgba(255,255,255,.20);
+    }
+    .card:hover::before{ opacity: 1; }
+    .card:hover::after{ opacity: 1; }
+    .card:hover img{
+      transform: scale(1.10);
+      filter: none;
+    }
 
-.card:hover{
-  transform: scale(1.035);
-  border-color: rgba(255,255,255,.20);
-}
+    /* Download only on hover */
+    .download{
+      position:absolute;
+      left: 50%;
+      bottom: clamp(10px, 1.2vw, 12px);
+      transform: translateX(-50%) translateY(10px);
+      height: clamp(32px, 3.6vh, 36px);
+      width: min(84%, 210px);
 
-.card:hover::before{ opacity: 1; }
-.card:hover::after{ opacity: 1; }
+      border-radius: 12px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-decoration:none;
+      letter-spacing: .8px;
+      font-size: clamp(11px, 1vw, 12px);
+      font-weight: 800;
 
-.card:hover img{
-  transform: scale(1.1);
-  filter: none;
-}
+      color: #fff;
+      text-shadow: 0 1px 0 rgba(0,0,0,.55);
 
+      background: rgba(20,20,24,.52);
+      border: 1px solid rgba(255,255,255,.20);
 
-/* Bouton: visible seulement au hover, semi-transparent, pas full arrondi */
-.download{
-  position:absolute;
-  left: 50%;
-  bottom: clamp(10px, 1.2vw, 12px);
-  transform: translateX(-50%) translateY(10px);
-  height: clamp(32px, 3.6vh, 36px);
-  width: min(84%, 210px);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
 
-  border-radius: 12px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-decoration:none;
-  letter-spacing: .8px;
-  font-size: clamp(11px, 1vw, 12px);
-  font-weight: 800;
+      box-shadow: 0 14px 28px rgba(0,0,0,.40);
 
-  color: #fff;
-  text-shadow: 0 1px 0 rgba(0,0,0,.55); /* rend le texte net */
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .18s ease, transform .18s ease, background .18s ease, border-color .18s ease;
+    }
+    .card:hover .download{
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+      pointer-events: auto;
+    }
+    .download:hover{
+      background: rgba(20,20,24,.62);
+      border-color: rgba(255,255,255,.30);
+    }
 
-  background: rgba(20,20,24,.52);       /* moins transparent */
-  border: 1px solid rgba(255,255,255,.20);
-
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);          /* blur utile sur le fond */
-  box-shadow: 0 14px 28px rgba(0,0,0,.40);
-
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity .18s ease, transform .18s ease, background .18s ease, border-color .18s ease;
-}
-
-.card:hover .download{
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
-  pointer-events: auto;
-}
-
-.download:hover{
-  background: rgba(20,20,24,.62);
-  border-color: rgba(255,255,255,.30);
-}
-
+    @media (hover: none){
+      .download{ opacity: 1; transform: translateX(-50%) translateY(0); pointer-events: auto; }
+    }
 
     .state{
       padding: 12px 14px;
@@ -452,7 +443,6 @@
       font-size: 13px;
     }
     .field input[readonly]{ opacity: .9; }
-
     .field textarea{ min-height: 120px; resize: vertical; }
 
     .hint{
@@ -512,6 +502,7 @@
       border-radius: 14px;
       padding: 8px 10px;
       cursor:pointer;
+      white-space: nowrap;
     }
     .iconBtn:hover{ background: rgba(255,255,255,.14); border-color: rgba(255,255,255,.25); }
     .iconBtn.danger{ background: rgba(255,80,80,.12); border-color: rgba(255,80,80,.30); }
@@ -614,7 +605,7 @@
         </div>
 
         <div class="panel">
-          <h4>Ajouter un jeu</h4>
+          <h4 id="gameFormTitle">Ajouter un jeu</h4>
 
           <div class="field">
             <label for="gameName">Nom du jeu</label>
@@ -632,22 +623,39 @@
           </div>
 
           <div class="field">
+            <label for="coverMode">Cover (mode)</label>
+            <select id="coverMode">
+              <option value="upload" selected>Upload → data URL</option>
+              <option value="link">Lien/chemin</option>
+            </select>
+          </div>
+
+          <div class="field" id="coverUploadWrap">
             <label for="gameCoverFile">Cover (fichier)</label>
             <input id="gameCoverFile" type="file" accept="image/*" />
           </div>
 
+          <div class="field" id="coverLinkWrap" style="display:none;">
+            <label for="gameCoverLink">Cover (lien/chemin)</label>
+            <input id="gameCoverLink" placeholder="images/cover.jpg ou https://..." />
+          </div>
+
           <div class="field">
-            <label for="gameCover">Cover (auto)</label>
+            <label for="gameCover">Cover (valeur finale)</label>
             <input id="gameCover" placeholder="Rempli automatiquement..." readonly />
           </div>
 
-          <button class="btn primary" id="addGameBtn" type="button">Ajouter jeu</button>
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <button class="btn primary" id="addGameBtn" type="button">Ajouter jeu</button>
+            <button class="btn primary" id="saveEditBtn" type="button" style="display:none;">Sauvegarder modif</button>
+            <button class="btn" id="cancelEditBtn" type="button" style="display:none;">Annuler</button>
+          </div>
 
           <h4 style="margin-top:16px;">Jeux</h4>
           <div class="list" id="gameListAdmin"></div>
 
           <div class="hint">
-            Si tu utilises le picker, la cover devient une data URL (base64) et ira dans data.json.
+            Upload = cover en data URL (base64) dans data.json, lien = tu gères toi-même images/ ou une URL.
           </div>
         </div>
 
@@ -691,12 +699,22 @@
     const addCatBtn = el("addCatBtn");
     const catListAdmin = el("catListAdmin");
 
+    const gameFormTitle = el("gameFormTitle");
     const gameName = el("gameName");
     const gameCat = el("gameCat");
     const gameMagnet = el("gameMagnet");
+
+    const coverMode = el("coverMode");
+    const coverUploadWrap = el("coverUploadWrap");
+    const coverLinkWrap = el("coverLinkWrap");
     const gameCoverFile = el("gameCoverFile");
+    const gameCoverLink = el("gameCoverLink");
     const gameCover = el("gameCover");
+
     const addGameBtn = el("addGameBtn");
+    const saveEditBtn = el("saveEditBtn");
+    const cancelEditBtn = el("cancelEditBtn");
+
     const gameListAdmin = el("gameListAdmin");
 
     const jsonPreview = el("jsonPreview");
@@ -713,6 +731,8 @@
       query: "",
       adminUnlocked: false
     };
+
+    let editIndex = null;
 
     function toastMsg(msg){
       toast.textContent = msg;
@@ -853,6 +873,62 @@
       else setStateMessage("");
     }
 
+    function setCoverMode(mode){
+      if(mode === "link"){
+        coverUploadWrap.style.display = "none";
+        coverLinkWrap.style.display = "";
+        gameCover.value = norm(gameCoverLink.value);
+      }else{
+        coverUploadWrap.style.display = "";
+        coverLinkWrap.style.display = "none";
+        // cover filled by upload; keep current if already set
+        if(!gameCover.value) gameCover.value = "";
+      }
+    }
+
+    coverMode.addEventListener("change", () => setCoverMode(coverMode.value));
+    gameCoverLink.addEventListener("input", () => {
+      if(coverMode.value === "link"){
+        gameCover.value = norm(gameCoverLink.value);
+      }
+    });
+
+    // File picker -> convert image to data URL base64 [web:308]
+    gameCoverFile.addEventListener("change", () => {
+      const file = gameCoverFile.files?.[0];
+      if(!file) return;
+
+      const reader = new FileReader();
+      reader.addEventListener("load", () => {
+        gameCover.value = String(reader.result || "");
+        toastMsg("Cover convertie");
+        coverMode.value = "upload";
+        setCoverMode("upload");
+      });
+      reader.readAsDataURL(file);
+    });
+
+    function exitEditMode(){
+      editIndex = null;
+      gameFormTitle.textContent = "Ajouter un jeu";
+      addGameBtn.style.display = "";
+      saveEditBtn.style.display = "none";
+      cancelEditBtn.style.display = "none";
+
+      gameName.value = "";
+      gameMagnet.value = "";
+      gameCover.value = "";
+      gameCoverLink.value = "";
+      gameCoverFile.value = "";
+      coverMode.value = "upload";
+      setCoverMode("upload");
+    }
+
+    cancelEditBtn.addEventListener("click", () => {
+      exitEditMode();
+      toastMsg("Annulé");
+    });
+
     function renderAdminLists(){
       catListAdmin.innerHTML = "";
       state.data.categories
@@ -894,21 +970,62 @@
 
         const left = document.createElement("div");
         left.className = "left";
-        left.innerHTML = `<div class="name">${g.name}</div><div class="meta">${upper(g.cat)} • cover:${g.cover.startsWith("data:") ? "data-url" : g.cover}</div>`;
+        left.innerHTML = `<div class="name">${g.name}</div><div class="meta">${upper(g.cat)} • cover:${(g.cover || "").startsWith("data:") ? "data-url" : g.cover}</div>`;
+
+        const edit = document.createElement("button");
+        edit.className = "iconBtn";
+        edit.type = "button";
+        edit.textContent = "Modif";
+        edit.addEventListener("click", () => {
+          editIndex = idx;
+          gameFormTitle.textContent = "Modifier un jeu";
+          addGameBtn.style.display = "none";
+          saveEditBtn.style.display = "";
+          cancelEditBtn.style.display = "";
+
+          // Pre-fill
+          gameName.value = g.name;
+          gameMagnet.value = g.magnet;
+
+          // Ensure category exists
+          const cat = upper(g.cat);
+          if(!state.data.categories.includes(cat)) state.data.categories.push(cat);
+          renderCategories();
+          gameCat.value = cat;
+
+          // Cover prefill
+          if((g.cover || "").startsWith("data:")){
+            coverMode.value = "upload";
+            setCoverMode("upload");
+            gameCover.value = g.cover;
+            gameCoverFile.value = "";
+            gameCoverLink.value = "";
+          }else{
+            coverMode.value = "link";
+            gameCoverLink.value = g.cover;
+            setCoverMode("link");
+          }
+
+          toastMsg("Mode modification");
+        });
 
         const del = document.createElement("button");
         del.className = "iconBtn danger";
         del.type = "button";
         del.textContent = "Suppr";
         del.addEventListener("click", () => {
+          const ok = confirm(`Supprimer "${g.name}" ?`);
+          if(!ok) return;
           state.data.games.splice(idx, 1);
           saveLocalDraft();
           renderGames();
           renderAdminLists();
+          if(editIndex === idx) exitEditMode();
           toastMsg("Jeu supprimé");
         });
 
         row.appendChild(left);
+        row.appendChild(edit);
         row.appendChild(del);
         gameListAdmin.appendChild(row);
       });
@@ -960,20 +1077,9 @@
       toastMsg("Catégorie ajoutée");
     });
 
-    // File picker -> convert image to data URL (base64) [web:308]
-    gameCoverFile.addEventListener("change", () => {
-      const file = gameCoverFile.files?.[0];
-      if(!file) return;
-
-      const reader = new FileReader();
-      reader.addEventListener("load", () => {
-        gameCover.value = String(reader.result || "");
-        toastMsg("Cover convertie");
-      });
-      reader.readAsDataURL(file);
-    });
-
     addGameBtn.addEventListener("click", () => {
+      if(editIndex !== null) return toastMsg("Tu es en mode modif (annule ou sauvegarde).");
+
       const name = norm(gameName.value);
       const cat = upper(gameCat.value);
       const magnet = norm(gameMagnet.value).replaceAll("&amp;", "&");
@@ -982,20 +1088,51 @@
       if(!name) return toastMsg("Nom manquant");
       if(!cat || cat === "ALL") return toastMsg("Catégorie invalide");
       if(!magnet.startsWith("magnet:")) return toastMsg("Magnet invalide");
-      if(!cover) return toastMsg("Cover manquante (choisis un fichier)");
+      if(!cover) return toastMsg("Cover manquante");
 
       if(!state.data.categories.includes(cat)) state.data.categories.push(cat);
 
       state.data.games.unshift({ name, cat, magnet, cover });
+
       gameName.value = "";
       gameMagnet.value = "";
       gameCover.value = "";
       gameCoverFile.value = "";
+      gameCoverLink.value = "";
+
+      coverMode.value = "upload";
+      setCoverMode("upload");
+
       saveLocalDraft();
       renderGames();
       renderCategories();
       renderAdminLists();
       toastMsg("Jeu ajouté");
+    });
+
+    saveEditBtn.addEventListener("click", () => {
+      if(editIndex === null) return;
+
+      const name = norm(gameName.value);
+      const cat = upper(gameCat.value);
+      const magnet = norm(gameMagnet.value).replaceAll("&amp;", "&");
+      const cover = norm(gameCover.value);
+
+      if(!name) return toastMsg("Nom manquant");
+      if(!cat || cat === "ALL") return toastMsg("Catégorie invalide");
+      if(!magnet.startsWith("magnet:")) return toastMsg("Magnet invalide");
+      if(!cover) return toastMsg("Cover manquante");
+
+      if(!state.data.categories.includes(cat)) state.data.categories.push(cat);
+
+      state.data.games[editIndex] = { name, cat, magnet, cover };
+
+      saveLocalDraft();
+      renderGames();
+      renderCategories();
+      renderAdminLists();
+      exitEditMode();
+      toastMsg("Modif sauvegardée");
     });
 
     function downloadDataJson(){
@@ -1038,6 +1175,7 @@
         renderCategories();
         renderGames();
         renderAdminLists();
+        exitEditMode();
         toastMsg("Import OK");
       }catch{
         toastMsg("Import invalide");
@@ -1065,15 +1203,16 @@
       state.query = "";
       q.value = "";
 
+      editIndex = null;
+      exitEditMode();
+
       refreshPreview();
       renderCategories();
       renderGames();
+      renderAdminLists();
     }
 
     init();
   </script>
 </body>
 </html>
-
-
-
