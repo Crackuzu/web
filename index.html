@@ -311,22 +311,23 @@
   height: clamp(32px, 3.6vh, 36px);
   width: min(84%, 210px);
 
-  border-radius: 12px; /* au lieu de pill 999px */
+  border-radius: 12px;
   display:flex;
   align-items:center;
   justify-content:center;
   text-decoration:none;
   letter-spacing: .8px;
   font-size: clamp(11px, 1vw, 12px);
-  font-weight: 700;
+  font-weight: 800;
 
-  /* semi transparent + lisible */
-  color: rgba(255,255,255,.92);
-  background: rgba(20,20,24,.38);
-  border: 1px solid rgba(255,255,255,.18);
+  color: #fff;
+  text-shadow: 0 1px 0 rgba(0,0,0,.55); /* rend le texte net */
+
+  background: rgba(20,20,24,.52);       /* moins transparent */
+  border: 1px solid rgba(255,255,255,.20);
+
   -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-
+  backdrop-filter: blur(10px);          /* blur utile sur le fond */
   box-shadow: 0 14px 28px rgba(0,0,0,.40);
 
   opacity: 0;
@@ -341,9 +342,10 @@
 }
 
 .download:hover{
-  background: rgba(20,20,24,.52);
-  border-color: rgba(255,255,255,.28);
+  background: rgba(20,20,24,.62);
+  border-color: rgba(255,255,255,.30);
 }
+
 
     .state{
       padding: 12px 14px;
@@ -1072,5 +1074,6 @@
   </script>
 </body>
 </html>
+
 
 
