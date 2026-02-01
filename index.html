@@ -215,9 +215,15 @@
       font-size: clamp(12px, 1.05vw, 13px);
       letter-spacing: .8px;
     }
-    .sidefoot a{ color: rgba(255,255,255,.55); text-decoration:none; }
-    .sidefoot a:hover{ color: rgba(255,255,255,.80); text-decoration:underline; }
-    
+    .sidefoot .boondocks{
+      color: rgba(255,255,255,.55);
+      text-decoration: none;
+    }
+    .sidefoot .boondocks:hover{
+      color: rgba(255,255,255,.80);
+      text-decoration: underline;
+    }
+
     section{
       border-radius: var(--r-xl);
       padding: var(--pad);
@@ -277,7 +283,6 @@
       background: rgba(255,255,255,.88);
     }
 
-    /* STATE */
     .state{
       padding: 12px 14px;
       border-radius: 16px;
@@ -286,6 +291,7 @@
       color: rgba(255,255,255,.75);
       font-size: 13px;
       letter-spacing: .2px;
+      margin-bottom: var(--gap);
     }
 
     /* ADMIN MODAL */
@@ -381,6 +387,8 @@
       outline: none;
       font-size: 13px;
     }
+    .field input[readonly]{ opacity: .9; }
+
     .field textarea{ min-height: 120px; resize: vertical; }
 
     .hint{
@@ -498,7 +506,7 @@
           <div class="catlist" id="catlist"></div>
 
           <div class="sidefoot">
-            <a href="https://discord.gg/ktx5Cb2we3" target="_blank" rel="noopener noreferrer">@THE_BOONDOCKS</a>
+            <a class="boondocks" href="https://discord.gg/ktx5Cb2we3" target="_blank" rel="noopener noreferrer">@THE_BOONDOCKS</a>
             <span class="pill" id="countPill">0</span>
           </div>
         </aside>
@@ -560,14 +568,23 @@
           </div>
 
           <div class="field">
-            <label for="gameCover">Cover (URL ou chemin)</label>
-            <input id="gameCover" placeholder="images/cover.jpg ou https://..." />
+            <label for="gameCoverFile">Cover (fichier)</label>
+            <input id="gameCoverFile" type="file" accept="image/*" />
+          </div>
+
+          <div class="field">
+            <label for="gameCover">Cover (auto)</label>
+            <input id="gameCover" placeholder="Rempli automatiquement..." readonly />
           </div>
 
           <button class="btn primary" id="addGameBtn" type="button">Ajouter jeu</button>
 
           <h4 style="margin-top:16px;">Jeux</h4>
           <div class="list" id="gameListAdmin"></div>
+
+          <div class="hint">
+            Si tu utilises le picker, la cover devient une data URL (base64) et ira dans data.json.
+          </div>
         </div>
 
         <div class="panel" style="grid-column: 1 / -1;">
@@ -575,9 +592,6 @@
           <div class="field">
             <label for="jsonPreview">data.json généré</label>
             <textarea id="jsonPreview" readonly></textarea>
-          </div>
-          <div class="hint">
-            “Download data.json” te sort le fichier exact à upload/commit sur GitHub Pages.
           </div>
         </div>
       </div>
@@ -590,18 +604,11 @@
 
   <script>
     const ADMIN_PASSWORD = "141592";
-    const LOCAL_KEY = "crackuzu:localDraft:v1"; // local draft so you can work before publishing
+    const LOCAL_KEY = "crackuzu:localDraft:v1";
 
     const DEFAULT_DATA = {
       categories: ["ALL", "ONLINE", "HORROR", "ACTION", "CAR RACE"],
-      games: [
-        { name:"Spider-Man 2", cat:"ACTION", magnet:"magnet:?xt=urn:btih:TON_HASH_1&dn=Spider-Man+2", cover:"images/spiderman2.jpg" },
-        { name:"Assassin's Creed Mirage", cat:"ACTION", magnet:"magnet:?xt=urn:btih:TON_HASH_2&dn=AC+Mirage", cover:"images/acmirage.jpg" },
-        { name:"NFS Heat", cat:"CAR RACE", magnet:"magnet:?xt=urn:btih:TON_HASH_3&dn=NFS+Heat", cover:"images/nfsheat.jpg" },
-        { name:"Fast Food Simulator", cat:"ONLINE", magnet:"magnet:?xt=urn:btih:TON_HASH_4&dn=Fast+Food+Simulator", cover:"images/fastfood.jpg" },
-        { name:"Detroit Become Human", cat:"ACTION", magnet:"magnet:?xt=urn:btih:TON_HASH_5&dn=Detroit+Become+Human", cover:"images/detroit.jpg" },
-        { name:"Horizon Complete Edition", cat:"ACTION", magnet:"magnet:?xt=urn:btih:TON_HASH_6&dn=Horizon+Complete+Edition", cover:"images/horizon.jpg" }
-      ]
+      games: []
     };
 
     const el = (id) => document.getElementById(id);
@@ -623,6 +630,7 @@
     const gameName = el("gameName");
     const gameCat = el("gameCat");
     const gameMagnet = el("gameMagnet");
+    const gameCoverFile = el("gameCoverFile");
     const gameCover = el("gameCover");
     const addGameBtn = el("addGameBtn");
     const gameListAdmin = el("gameListAdmin");
@@ -671,7 +679,7 @@
         .map(g => ({
           name: norm(g?.name),
           cat: upper(g?.cat),
-          magnet: norm(g?.magnet),
+          magnet: norm(g?.magnet).replaceAll("&amp;", "&"),
           cover: norm(g?.cover)
         }))
         .filter(g => g.name && g.cat && g.magnet && g.cover);
@@ -680,12 +688,10 @@
     }
 
     async function loadDataFromRepo(){
-      // Try data.json from GitHub Pages (or same folder).
-      // fetch() + response.json() [web:168][web:205]
       try{
-        const res = await fetch("./data.json", { cache: "no-store" });
+        const res = await fetch("./data.json", { cache: "no-store" }); // fetch JSON [web:168]
         if(!res.ok) throw new Error("no data.json");
-        const json = await res.json();
+        const json = await res.json(); // parse JSON [web:205]
         return sanitizeData(json);
       }catch{
         return null;
@@ -703,7 +709,6 @@
     }
 
     function saveLocalDraft(){
-      // Save working draft locally (optional)
       localStorage.setItem(LOCAL_KEY, JSON.stringify(state.data));
       refreshPreview();
     }
@@ -739,7 +744,6 @@
         catlist.appendChild(b);
       });
 
-      // Admin select
       gameCat.innerHTML = "";
       cats.filter(c => c !== "ALL").forEach(c => {
         const opt = document.createElement("option");
@@ -786,7 +790,6 @@
     }
 
     function renderAdminLists(){
-      // Categories list
       catListAdmin.innerHTML = "";
       state.data.categories
         .filter(c => c !== "ALL")
@@ -803,7 +806,6 @@
           del.type = "button";
           del.textContent = "Suppr";
           del.addEventListener("click", () => {
-            // remove category + games in it
             const ok = confirm(`Supprimer la catégorie "${c}" et ses jeux ?`);
             if(!ok) return;
             state.data.categories = state.data.categories.filter(x => x !== c);
@@ -821,7 +823,6 @@
           catListAdmin.appendChild(row);
         });
 
-      // Games list
       gameListAdmin.innerHTML = "";
       state.data.games.forEach((g, idx) => {
         const row = document.createElement("div");
@@ -829,7 +830,7 @@
 
         const left = document.createElement("div");
         left.className = "left";
-        left.innerHTML = `<div class="name">${g.name}</div><div class="meta">${upper(g.cat)} • ${g.cover}</div>`;
+        left.innerHTML = `<div class="name">${g.name}</div><div class="meta">${upper(g.cat)} • cover:${g.cover.startsWith("data:") ? "data-url" : g.cover}</div>`;
 
         const del = document.createElement("button");
         del.className = "iconBtn danger";
@@ -895,24 +896,37 @@
       toastMsg("Catégorie ajoutée");
     });
 
+    // File picker -> convert image to data URL (base64) [web:308]
+    gameCoverFile.addEventListener("change", () => {
+      const file = gameCoverFile.files?.[0];
+      if(!file) return;
+
+      const reader = new FileReader();
+      reader.addEventListener("load", () => {
+        gameCover.value = String(reader.result || "");
+        toastMsg("Cover convertie");
+      });
+      reader.readAsDataURL(file);
+    });
+
     addGameBtn.addEventListener("click", () => {
       const name = norm(gameName.value);
       const cat = upper(gameCat.value);
-      const magnet = norm(gameMagnet.value);
+      const magnet = norm(gameMagnet.value).replaceAll("&amp;", "&");
       const cover = norm(gameCover.value);
 
       if(!name) return toastMsg("Nom manquant");
       if(!cat || cat === "ALL") return toastMsg("Catégorie invalide");
       if(!magnet.startsWith("magnet:")) return toastMsg("Magnet invalide");
-      if(!cover) return toastMsg("Cover manquante");
+      if(!cover) return toastMsg("Cover manquante (choisis un fichier)");
 
-      // Ensure category exists
       if(!state.data.categories.includes(cat)) state.data.categories.push(cat);
 
       state.data.games.unshift({ name, cat, magnet, cover });
       gameName.value = "";
       gameMagnet.value = "";
       gameCover.value = "";
+      gameCoverFile.value = "";
       saveLocalDraft();
       renderGames();
       renderCategories();
@@ -922,8 +936,8 @@
 
     function downloadDataJson(){
       const json = JSON.stringify(state.data, null, 2);
-      const blob = new Blob([json], { type: "application/json" }); // Blob object [web:199]
-      const url = URL.createObjectURL(blob); // createObjectURL [web:194]
+      const blob = new Blob([json], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
       a.download = "data.json";
@@ -939,11 +953,11 @@
     });
 
     resetBtn.addEventListener("click", () => {
-      const ok = confirm("Reset local: revenir aux données du repo/default ?");
+      const ok = confirm("Reset local: revenir aux données du repo ?");
       if(!ok) return;
       localStorage.removeItem(LOCAL_KEY);
       toastMsg("Draft local supprimé");
-      init(); // reload from repo/default
+      init();
       closeAdminModal();
     });
 
@@ -972,7 +986,6 @@
       const repoData = await loadDataFromRepo();
       const localDraft = loadLocalDraft();
 
-      // Priority: local draft (your edits) > repo data.json > default
       if(localDraft){
         state.data = localDraft;
         setStateMessage("");
@@ -997,5 +1010,3 @@
   </script>
 </body>
 </html>
-
-
