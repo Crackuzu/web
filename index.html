@@ -697,9 +697,9 @@
   <script>
     // ========== GITHUB CONFIG ==========
     const GITHUB_CONFIG = {
-      token: "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",
-      owner: "Crackuzu",
-      repo: "web",
+      token: "YOUR_GITHUB_TOKEN_HERE",
+      owner: "YOUR_USERNAME",
+      repo: "YOUR_REPO",
       branch: "main",
       path: "data.json"
     };
@@ -842,7 +842,9 @@
             const getData = await getResp.json();
             sha = getData.sha;
           }
-        }catch{}
+        }catch(e){
+          console.log("Fichier n'existe pas encore, création...", e);
+        }
 
         // 2) Prepare content
         const jsonContent = JSON.stringify(state.data, null, 2);
@@ -869,13 +871,17 @@
 
         if(!putResp.ok){
           const errData = await putResp.json();
+          console.error("Erreur GitHub:", errData);
+          if(putResp.status === 401 || putResp.status === 403){
+            throw new Error("❌ Bad credentials! Vérifie ton token GitHub.");
+          }
           throw new Error(errData.message || "Upload failed");
         }
 
         toastMsg("✅ Upload GitHub réussi!");
       }catch(err){
         console.error(err);
-        toastMsg("❌ Erreur: " + err.message);
+        toastMsg(err.message || "❌ Erreur upload");
       }
     }
 
@@ -1294,5 +1300,3 @@
   </script>
 </body>
 </html>
-
-
