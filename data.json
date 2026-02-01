@@ -4,7 +4,8 @@
     "ONLINE",
     "HORROR",
     "ACTION",
-    "CAR RACE"
+    "CAR RACE",
+    "RESIDENT EVIL"
   ],
   "games": [
     {
@@ -39,4 +40,3 @@
     }
   ]
 }
-
