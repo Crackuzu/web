@@ -808,12 +808,28 @@
     // ========== LOAD FROM REPO ==========
     async function loadDataFromRepo(){
       try{
+        // Si le config n'est pas rempli, ne pas essayer de charger
+        if(GITHUB_CONFIG.owner === "YOUR_USERNAME" || GITHUB_CONFIG.repo === "YOUR_REPO"){
+          console.log("GITHUB_CONFIG pas encore configuré, skip load from repo");
+          return null;
+        }
+
         const url = `https://raw.githubusercontent.com/${GITHUB_CONFIG.owner}/${GITHUB_CONFIG.repo}/${GITHUB_CONFIG.branch}/${GITHUB_CONFIG.path}`;
+        console.log("Chargement data.json depuis:", url);
+        
         const resp = await fetch(url);
-        if(!resp.ok) return null;
+        console.log("Load repo status:", resp.status);
+        
+        if(!resp.ok){
+          console.log("data.json pas trouvé sur GitHub (normal si premier lancement)");
+          return null;
+        }
+        
         const json = await resp.json();
+        console.log("data.json chargé depuis GitHub:", json);
         return sanitizeData(json);
-      }catch{
+      }catch(e){
+        console.log("Erreur load repo:", e);
         return null;
       }
     }
@@ -1308,17 +1324,24 @@
 
     async function init(){
       setStateMessage("Chargement…");
+      console.log("=== INIT START ===");
 
       const repoData = await loadDataFromRepo();
       const localDraft = loadLocalDraft();
 
+      console.log("Local draft exists:", !!localDraft);
+      console.log("Repo data exists:", !!repoData);
+
       if(localDraft){
+        console.log("Using local draft");
         state.data = localDraft;
         setStateMessage("");
       }else if(repoData){
+        console.log("Using repo data");
         state.data = repoData;
         setStateMessage("");
       }else{
+        console.log("Using DEFAULT_DATA");
         state.data = structuredClone(DEFAULT_DATA);
         setStateMessage("data.json introuvable (mode local).");
       }
@@ -1334,6 +1357,9 @@
       renderCategories();
       renderGames();
       renderAdminLists();
+      
+      console.log("=== INIT END ===");
+      console.log("State data:", state.data);
     }
 
     init();
