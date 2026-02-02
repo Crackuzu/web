@@ -621,6 +621,18 @@
 
       <!-- ADD CATEGORY -->
       <div class="adminSect">
+        <h3>Configuration GitHub</h3>
+        <div class="formRow">
+          <input type="password" id="githubToken" placeholder="GitHub Token (ghp_...)" value="" />
+          <button class="iconBtn" id="saveTokenBtn">💾 Sauvegarder</button>
+        </div>
+        <div style="font-size: 12px; color: rgba(255,255,255,.55); margin-top: 8px;">
+          Le token est stocké localement dans ton navigateur (jamais dans le code).
+        </div>
+      </div>
+
+      <!-- ADD CATEGORY -->
+      <div class="adminSect">
         <h3>Ajouter une catégorie</h3>
         <div class="formRow">
           <input type="text" id="catName" placeholder="NOM EN MAJUSCULE" />
@@ -698,12 +710,26 @@
   <script>
     // ========== GITHUB CONFIG ==========
     const GITHUB_CONFIG = {
-      token: "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",
+      token: "", // Sera stocké dans localStorage
       owner: "Crackuzu",
       repo: "web",
       branch: "main",
       path: "data.json"
     };
+
+    // Charger le token depuis localStorage
+    function loadGithubToken(){
+      return localStorage.getItem("github_token") || "";
+    }
+
+    // Sauvegarder le token dans localStorage
+    function saveGithubToken(token){
+      localStorage.setItem("github_token", token);
+      GITHUB_CONFIG.token = token;
+    }
+
+    // Initialiser le token au chargement
+    GITHUB_CONFIG.token = loadGithubToken();
 
     const ADMIN_PASSWORD = "141592";
     const LOCAL_KEY = "crackuzu_local_draft";
@@ -732,6 +758,9 @@
     const closeAdmin = document.getElementById("closeAdmin");
     const adminPill = document.getElementById("adminPill");
     const adminEntry = document.getElementById("adminEntry");
+
+    const githubToken = document.getElementById("githubToken");
+    const saveTokenBtn = document.getElementById("saveTokenBtn");
 
     const catName = document.getElementById("catName");
     const addCatBtn = document.getElementById("addCatBtn");
@@ -809,7 +838,7 @@
     async function loadDataFromRepo(){
       try{
         // Si le config n'est pas rempli, ne pas essayer de charger
-        if(GITHUB_CONFIG.owner === "YOUR_USERNAME" || GITHUB_CONFIG.repo === "YOUR_REPO"){
+        if(!GITHUB_CONFIG.owner || GITHUB_CONFIG.owner === "YOUR_USERNAME" || !GITHUB_CONFIG.repo || GITHUB_CONFIG.repo === "YOUR_REPO"){
           console.log("GITHUB_CONFIG pas encore configuré, skip load from repo");
           return null;
         }
@@ -838,8 +867,13 @@
     async function uploadToGithub(){
       const { token, owner, repo, branch, path } = GITHUB_CONFIG;
 
-      if(token === "YOUR_GITHUB_TOKEN_HERE" || owner === "YOUR_USERNAME" || repo === "YOUR_REPO"){
-        toastMsg("⚠️ Configure GITHUB_CONFIG d'abord!");
+      if(!token){
+        toastMsg("⚠️ Configure ton GitHub token d'abord!");
+        return;
+      }
+
+      if(owner === "YOUR_USERNAME" || repo === "YOUR_REPO"){
+        toastMsg("⚠️ Configure owner/repo dans GITHUB_CONFIG!");
         return;
       }
 
@@ -1194,11 +1228,28 @@
       adminModal.setAttribute("aria-hidden", "false");
       refreshPreview();
       renderAdminLists();
+      // Pré-remplir le token si existant
+      githubToken.value = loadGithubToken();
     }
     function closeAdminModal(){
       adminModal.classList.remove("open");
       adminModal.setAttribute("aria-hidden", "true");
     }
+
+    // Sauvegarder le token GitHub
+    saveTokenBtn.addEventListener("click", () => {
+      const token = githubToken.value.trim();
+      if(!token){
+        toastMsg("⚠️ Token vide");
+        return;
+      }
+      if(!token.startsWith("ghp_") && !token.startsWith("github_pat_")){
+        const confirm = window.confirm("Le token ne commence pas par ghp_ ou github_pat_. Continuer ?");
+        if(!confirm) return;
+      }
+      saveGithubToken(token);
+      toastMsg("✅ Token sauvegardé localement");
+    });
 
     adminEntry.addEventListener("click", () => {
       const pwd = prompt("Admin password:");
@@ -1366,6 +1417,3 @@
   </script>
 </body>
 </html>
-
-
-
