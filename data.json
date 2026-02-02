@@ -6,9 +6,34 @@
     "CAR RACE",
     "RESIDENT EVIL",
     "SURVIVAL",
-    "SOLO"
+    "SOLO",
+    "SIMULATOR"
   ],
   "games": [
+    {
+      "name": "Flight simulator",
+      "cat": "SIMULATOR",
+      "magnet": "magnet:?xt=urn:btih:4ea4c146c98a57f5eb2d71d42ba36d170ae85e72&dn=Microsoft%20Flight%20Simulator&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337",
+      "cover": "https://media.senscritique.com/media/000020888297/0/microsoft_flight_simulator.jpg"
+    },
+    {
+      "name": "RE 4",
+      "cat": "RESIDENT EVIL",
+      "magnet": "magnet:?xt=urn:btih:a4349a511dafaa704c33a25065c34ab980803707&dn=Resident.Evil.4-EMPRESS&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2F9.rarbg.com%3A2710%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=http%3A%2F%2Ftracker.openbittorrent.com%3A80%2Fannounce&tr=udp%3A%2F%2Fopentracker.i2p.rocks%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.internetwarriors.net%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fcoppersurfer.tk%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.zer0day.to%3A1337%2Fannounce",
+      "cover": "https://upload.wikimedia.org/wikipedia/en/thumb/d/df/Resident_Evil_4_remake_cover_art.jpg/250px-Resident_Evil_4_remake_cover_art.jpg"
+    },
+    {
+      "name": "RE 3",
+      "cat": "RESIDENT EVIL",
+      "magnet": "magnet:?xt=urn:btih:MENDTS3XS7J4U37AMUFF3FUWHJHI2BUP&dn=Resident%20Evil%203%20%5BFitGirl%20Repack%5D&tr=udp%3A%2F%2Fopentor.org%3A2710",
+      "cover": "https://cdn.discordapp.com/attachments/955550573309071370/1467722749752377470/image.png?ex=69816ad4&is=69801954&hm=fd74a2868aebee03110b8d345a73bb860e232a813d3dfb2b1ddc7b70d9e39e08&"
+    },
+    {
+      "name": "RE 1",
+      "cat": "RESIDENT EVIL",
+      "magnet": "magnet:?xt=urn:btih:NLLEJADVO5UNQK2QK665XF7NMRACOSEJ&dn=Resident%20Evil%20HD%20REMASTER%20(1996-2015)&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce",
+      "cover": "https://upload.wikimedia.org/wikipedia/en/a/ab/Resident_Evil_2002_cover.jpg"
+    },
     {
       "name": "RE 0",
       "cat": "RESIDENT EVIL",
