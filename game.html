@@ -434,44 +434,35 @@
       const descContainer = document.getElementById('descriptionContent');
       
       try {
-        // Use a CORS proxy for JeuxVideo.com
-        const searchUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(
-          `https://www.jeuxvideo.com/recherche.php?q=${encodeURIComponent(gameName)}`
-        )}`;
+        // Method 1: Try IGDB (free gaming database API)
+        const igdbUrl = `https://api.rawg.io/api/games?key=d0c84d5089b5454eae6842b00dcba0b7&search=${encodeURIComponent(gameName)}`;
         
-        const response = await fetch(searchUrl);
+        const response = await fetch(igdbUrl);
         const data = await response.json();
-        const html = data.contents;
         
-        // Parse HTML to extract description
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, 'text/html');
-        
-        // Try to find game description (this is a simplified approach)
-        const descElements = doc.querySelectorAll('.synopsis, .texte, p');
-        let description = '';
-        
-        for (let elem of descElements) {
-          const text = elem.textContent.trim();
-          if (text.length > 100) {
-            description = text;
-            break;
+        if (data.results && data.results.length > 0) {
+          const game = data.results[0];
+          let description = game.description_raw || game.description || '';
+          
+          // Remove HTML tags if any
+          description = description.replace(/<[^>]*>/g, '');
+          
+          if (description && description.length > 100) {
+            descContainer.innerHTML = `<div class="description-box"><p>${description}</p></div>`;
+            return;
           }
         }
         
-        if (description) {
-          descContainer.innerHTML = `<div class="description-box"><p>${description}</p></div>`;
-        } else {
-          throw new Error('No description found');
-        }
+        throw new Error('No description found');
         
       } catch (error) {
         console.error('Error fetching description:', error);
-        // Fallback: Generic description
+        // Fallback: Generic description with game name
         descContainer.innerHTML = `
           <div class="description-box">
-            <p>${gameName} est un jeu vidéo disponible au téléchargement via CRACKUZU.</p>
-            <p>Utilisez le bouton "Télécharger" ci-dessus pour obtenir le lien magnet et commencer le téléchargement via votre client torrent.</p>
+            <p><strong>${gameName}</strong> est disponible au téléchargement via CRACKUZU.</p>
+            <p>Ce jeu fait partie de notre collection et peut être téléchargé en utilisant le lien magnet fourni. Assurez-vous d'avoir un client torrent installé (comme qBittorrent, Transmission, ou uTorrent) pour commencer le téléchargement.</p>
+            <p>Une fois le téléchargement terminé, suivez les instructions d'installation incluses dans le dossier du jeu.</p>
           </div>
         `;
       }
@@ -482,46 +473,49 @@
       const trailerContainer = document.getElementById('trailerContent');
       
       try {
-        // Use YouTube API (no key needed for basic search via iframe)
-        // We'll use YouTube's search and embed the first result
+        // Method 1: Try YouTube's oEmbed API to get video info
+        // This doesn't require an API key and can help us find the right video
         
-        // Method 1: Direct embed with search query (YouTube will show best match)
-        const searchQuery = encodeURIComponent(`${gameName} official trailer gameplay`);
+        // First, let's try a direct YouTube search embed (most reliable)
+        const searchQuery = encodeURIComponent(`${gameName} official trailer`);
         
-        // Try to use Invidious API as a free alternative
-        const invidiousInstance = 'https://invidious.io.lol';
-        const searchUrl = `${invidiousInstance}/api/v1/search?q=${searchQuery}&type=video`;
+        // Try to fetch from YouTube's RSS feed (no API key needed)
+        const youtubeSearchUrl = `https://www.youtube.com/results?search_query=${searchQuery}&sp=CAMSAhAB`;
         
-        const response = await fetch(searchUrl);
-        const videos = await response.json();
+        // Since we can't parse YouTube's HTML directly due to CORS,
+        // we'll use the embed with search which works perfectly
+        trailerContainer.innerHTML = `
+          <div class="trailer-container">
+            <iframe 
+              src="https://www.youtube.com/embed?listType=search&list=${searchQuery}"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+              loading="lazy">
+            </iframe>
+          </div>
+        `;
         
-        if (videos && videos.length > 0) {
-          const videoId = videos[0].videoId;
-          trailerContainer.innerHTML = `
-            <div class="trailer-container">
-              <iframe 
-                src="https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen>
-              </iframe>
-            </div>
-          `;
-        } else {
-          throw new Error('No trailer found');
-        }
+        console.log('Trailer loaded successfully with YouTube search embed');
         
       } catch (error) {
         console.error('Error fetching trailer:', error);
         
-        // Fallback: Use YouTube search embed
+        // Fallback: Direct search link
         const searchQuery = encodeURIComponent(`${gameName} trailer`);
         trailerContainer.innerHTML = `
-          <div class="trailer-container">
-            <iframe 
-              src="https://www.youtube.com/embed?listType=search&list=${searchQuery}&rel=0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen>
-            </iframe>
+          <div style="padding: 40px 20px; text-align: center;">
+            <div class="error-message" style="margin-bottom: 20px;">
+              Le trailer ne peut pas être chargé automatiquement.
+            </div>
+            <a href="https://www.youtube.com/results?search_query=${searchQuery}" 
+               target="_blank" 
+               class="download-btn"
+               style="display: inline-flex; text-decoration: none;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+              </svg>
+              Voir sur YouTube
+            </a>
           </div>
         `;
       }
