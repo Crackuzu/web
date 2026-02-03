@@ -429,92 +429,177 @@
       }
     }
 
-    // Fetch description from JeuxVideo.com (via search)
+    // Fetch description from Wikipedia API (free, no key, very reliable)
     async function fetchDescription(gameName) {
       const descContainer = document.getElementById('descriptionContent');
       
       try {
-        // Method 1: Try IGDB (free gaming database API)
-        const igdbUrl = `https://api.rawg.io/api/games?key=d0c84d5089b5454eae6842b00dcba0b7&search=${encodeURIComponent(gameName)}`;
+        // Try Wikipedia API
+        const wikiSearchUrl = `https://en.wikipedia.org/w/api.php?action=opensearch&search=${encodeURIComponent(gameName + ' video game')}&limit=1&namespace=0&format=json&origin=*`;
         
-        const response = await fetch(igdbUrl);
-        const data = await response.json();
+        const wikiResponse = await fetch(wikiSearchUrl);
+        const wikiData = await wikiResponse.json();
         
-        if (data.results && data.results.length > 0) {
-          const game = data.results[0];
-          let description = game.description_raw || game.description || '';
+        if (wikiData[1] && wikiData[1].length > 0) {
+          const pageTitle = wikiData[1][0];
           
-          // Remove HTML tags if any
-          description = description.replace(/<[^>]*>/g, '');
+          // Get the page extract
+          const extractUrl = `https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exintro&explaintext&titles=${encodeURIComponent(pageTitle)}&format=json&origin=*`;
           
-          if (description && description.length > 100) {
-            descContainer.innerHTML = `<div class="description-box"><p>${description}</p></div>`;
+          const extractResponse = await fetch(extractUrl);
+          const extractData = await extractResponse.json();
+          
+          const pages = extractData.query.pages;
+          const pageId = Object.keys(pages)[0];
+          
+          if (pageId !== '-1' && pages[pageId].extract) {
+            let description = pages[pageId].extract;
+            
+            // Take first 2-3 paragraphs (limit to ~600 chars)
+            const sentences = description.split('. ');
+            const limitedSentences = [];
+            let charCount = 0;
+            
+            for (const sentence of sentences) {
+              if (charCount + sentence.length > 600) break;
+              limitedSentences.push(sentence);
+              charCount += sentence.length;
+            }
+            
+            description = limitedSentences.join('. ') + (limitedSentences.length < sentences.length ? '...' : '');
+            
+            descContainer.innerHTML = `
+              <div class="description-box">
+                <p>${description}</p>
+                <p style="margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.08); font-size: 12px; opacity: 0.7;">
+                  <em>Source: Wikipedia</em>
+                </p>
+              </div>
+            `;
             return;
           }
         }
         
-        throw new Error('No description found');
+        throw new Error('Wikipedia not found');
         
       } catch (error) {
         console.error('Error fetching description:', error);
-        // Fallback: Generic description with game name
+        
+        // Fallback: Generic but informative description
         descContainer.innerHTML = `
           <div class="description-box">
             <p><strong>${gameName}</strong> est disponible au téléchargement via CRACKUZU.</p>
-            <p>Ce jeu fait partie de notre collection et peut être téléchargé en utilisant le lien magnet fourni. Assurez-vous d'avoir un client torrent installé (comme qBittorrent, Transmission, ou uTorrent) pour commencer le téléchargement.</p>
-            <p>Une fois le téléchargement terminé, suivez les instructions d'installation incluses dans le dossier du jeu.</p>
+            <p>Ce titre fait partie de notre collection de jeux. Pour télécharger ce jeu, cliquez sur le bouton "Télécharger" ci-dessus pour obtenir le lien magnet.</p>
+            <p><strong>Comment télécharger :</strong></p>
+            <p>1. Assurez-vous d'avoir un client torrent installé (qBittorrent recommandé)<br>
+            2. Cliquez sur le bouton de téléchargement<br>
+            3. Votre client torrent s'ouvrira automatiquement<br>
+            4. Une fois le téléchargement terminé, suivez les instructions d'installation incluses</p>
           </div>
         `;
       }
     }
 
-    // Fetch trailer from YouTube
+    // Fetch trailer from YouTube using Invidious instances
     async function fetchTrailer(gameName) {
       const trailerContainer = document.getElementById('trailerContent');
       
-      try {
-        // Method 1: Try YouTube's oEmbed API to get video info
-        // This doesn't require an API key and can help us find the right video
-        
-        // First, let's try a direct YouTube search embed (most reliable)
-        const searchQuery = encodeURIComponent(`${gameName} official trailer`);
-        
-        // Try to fetch from YouTube's RSS feed (no API key needed)
-        const youtubeSearchUrl = `https://www.youtube.com/results?search_query=${searchQuery}&sp=CAMSAhAB`;
-        
-        // Since we can't parse YouTube's HTML directly due to CORS,
-        // we'll use the embed with search which works perfectly
+      // List of public Invidious instances (YouTube front-ends)
+      const invidiousInstances = [
+        'https://inv.nadeko.net',
+        'https://invidious.privacyredirect.com',
+        'https://yt.artemislena.eu',
+        'https://inv.us.projectsegfau.lt',
+        'https://invidious.fdn.fr'
+      ];
+      
+      const searchQuery = `${gameName} official trailer`;
+      let videoId = null;
+      
+      // Try each instance until one works
+      for (const instance of invidiousInstances) {
+        try {
+          console.log(`Trying Invidious instance: ${instance}`);
+          const apiUrl = `${instance}/api/v1/search?q=${encodeURIComponent(searchQuery)}&type=video`;
+          
+          const controller = new AbortController();
+          const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 second timeout
+          
+          const response = await fetch(apiUrl, { 
+            signal: controller.signal,
+            headers: { 'Accept': 'application/json' }
+          });
+          
+          clearTimeout(timeoutId);
+          
+          if (response.ok) {
+            const data = await response.json();
+            
+            if (data && data.length > 0) {
+              videoId = data[0].videoId;
+              console.log(`Found video ID: ${videoId} from ${instance}`);
+              break;
+            }
+          }
+        } catch (instanceError) {
+          console.log(`Instance ${instance} failed:`, instanceError.message);
+          continue;
+        }
+      }
+      
+      // If we found a video ID, embed it
+      if (videoId) {
         trailerContainer.innerHTML = `
           <div class="trailer-container">
             <iframe 
-              src="https://www.youtube.com/embed?listType=search&list=${searchQuery}"
+              src="https://www.youtube-nocookie.com/embed/${videoId}?rel=0&modestbranding=1"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowfullscreen
               loading="lazy">
             </iframe>
           </div>
         `;
-        
-        console.log('Trailer loaded successfully with YouTube search embed');
-        
-      } catch (error) {
-        console.error('Error fetching trailer:', error);
-        
-        // Fallback: Direct search link
-        const searchQuery = encodeURIComponent(`${gameName} trailer`);
+      } else {
+        // Fallback: Create a nice button to search on YouTube
+        const searchQuery2 = encodeURIComponent(`${gameName} trailer`);
         trailerContainer.innerHTML = `
-          <div style="padding: 40px 20px; text-align: center;">
-            <div class="error-message" style="margin-bottom: 20px;">
-              Le trailer ne peut pas être chargé automatiquement.
-            </div>
-            <a href="https://www.youtube.com/results?search_query=${searchQuery}" 
+          <div style="
+            padding: 60px 30px; 
+            text-align: center;
+            border-radius: var(--r-md);
+            border: 1px solid var(--stroke);
+            background: rgba(255,255,255,.04);
+          ">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="rgba(255,100,100,.6)" style="margin-bottom: 20px;">
+              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+            <p style="color: var(--muted); margin-bottom: 24px; font-size: 14px;">
+              Le trailer n'a pas pu être chargé automatiquement.<br>
+              Cliquez ci-dessous pour le voir sur YouTube.
+            </p>
+            <a href="https://www.youtube.com/results?search_query=${searchQuery2}" 
                target="_blank" 
-               class="download-btn"
-               style="display: inline-flex; text-decoration: none;">
+               style="
+                 display: inline-flex;
+                 align-items: center;
+                 gap: 10px;
+                 padding: 14px 28px;
+                 border-radius: 999px;
+                 border: 1px solid rgba(100,200,255,.3);
+                 background: linear-gradient(135deg, rgba(100,180,255,.18), rgba(150,100,255,.12));
+                 color: var(--text);
+                 text-decoration: none;
+                 font-size: 15px;
+                 font-weight: 520;
+                 letter-spacing: .5px;
+                 transition: all .2s ease;
+               "
+               onmouseover="this.style.background='linear-gradient(135deg, rgba(100,180,255,.28), rgba(150,100,255,.22))'; this.style.transform='translateY(-2px)'"
+               onmouseout="this.style.background='linear-gradient(135deg, rgba(100,180,255,.18), rgba(150,100,255,.12))'; this.style.transform='translateY(0)'">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
               </svg>
-              Voir sur YouTube
+              Voir le trailer sur YouTube
             </a>
           </div>
         `;
