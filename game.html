@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title id="pageTitle">CRACKUZU</title>
+
+  <style>
+    :root{
+      --bg0:#0b0e12;
+      --bg1:#10151b;
+
+      --glass: rgba(255,255,255,.065);
+      --glass2: rgba(255,255,255,.045);
+      --stroke: rgba(255,255,255,.11);
+      --stroke2: rgba(255,255,255,.16);
+
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.62);
+
+      --outer: clamp(14px, 2.2vw, 26px);
+      --gap:   clamp(12px, 1.2vw, 18px);
+      --pad:   clamp(14px, 1.6vw, 20px);
+
+      --r-xl:  clamp(18px, 2vw, 26px);
+      --r-md:  clamp(14px, 1.5vw, 18px);
+
+      --shadow: 0 28px 90px rgba(0,0,0,.58);
+      --shadow2: 0 18px 46px rgba(0,0,0,.45);
+    }
+
+    *{ box-sizing:border-box; }
+    html, body{ 
+      height:100%; 
+      margin:0;
+      overflow:hidden;
+    }
+    body{
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(1100px 700px at 15% 0%, rgba(255,255,255,.09), transparent 55%),
+        radial-gradient(950px 600px at 90% 20%, rgba(255,255,255,.07), transparent 60%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+    }
+
+    .glass{
+      background: linear-gradient(180deg, var(--glass), var(--glass2));
+      border: 1px solid var(--stroke);
+      box-shadow: var(--shadow2);
+    }
+    @supports ((-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px))){
+      .glass{
+        -webkit-backdrop-filter: blur(14px);
+        backdrop-filter: blur(14px);
+      }
+    }
+
+    .page-container{
+      height: 100vh;
+      height: 100dvh;
+      padding: var(--outer);
+      overflow: hidden;
+    }
+
+    .detail-wrapper{
+      height: calc(100dvh - (2 * var(--outer)));
+      border-radius: var(--r-xl);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header */
+    .detail-header{
+      padding: var(--pad);
+      border-bottom: 1px solid var(--stroke);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--gap);
+      min-height: clamp(70px, 8vh, 90px);
+      z-index: 10;
+    }
+
+    .back-btn{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: 1px solid var(--stroke2);
+      background: rgba(255,255,255,.085);
+      color: var(--text);
+      text-decoration: none;
+      font-size: clamp(13px, 1.1vw, 14px);
+      transition: all .2s ease;
+      cursor: pointer;
+    }
+    .back-btn:hover{
+      background: rgba(255,255,255,.14);
+      border-color: rgba(255,255,255,.25);
+      transform: translateX(-2px);
+    }
+
+    .game-title-header{
+      font-size: clamp(20px, 2.5vw, 32px);
+      font-weight: 300;
+      letter-spacing: 1px;
+      margin: 0;
+    }
+
+    .download-btn{
+      padding: 12px 24px;
+      border-radius: 999px;
+      border: 1px solid rgba(100,200,255,.3);
+      background: linear-gradient(135deg, rgba(100,180,255,.18), rgba(150,100,255,.12));
+      color: var(--text);
+      text-decoration: none;
+      font-size: clamp(13px, 1.1vw, 15px);
+      font-weight: 520;
+      letter-spacing: .5px;
+      transition: all .2s ease;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .download-btn:hover{
+      background: linear-gradient(135deg, rgba(100,180,255,.28), rgba(150,100,255,.22));
+      border-color: rgba(100,200,255,.5);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(100,180,255,.3);
+    }
+
+    /* Main Content */
+    .detail-content{
+      flex: 1;
+      overflow-y: auto;
+      padding: var(--pad);
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: clamp(24px, 3vw, 48px);
+      align-items: start;
+    }
+
+    /* Left: Cover & Info */
+    .cover-section{
+      position: sticky;
+      top: 0;
+    }
+
+    .game-cover{
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      border-radius: var(--r-md);
+      overflow: hidden;
+      border: 1px solid var(--stroke2);
+      box-shadow: var(--shadow);
+      margin-bottom: clamp(16px, 2vw, 24px);
+      position: relative;
+    }
+    .game-cover img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .game-cover::before{
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,.4));
+      pointer-events: none;
+    }
+
+    .info-card{
+      border-radius: var(--r-md);
+      padding: clamp(16px, 2vw, 22px);
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.06);
+    }
+    .info-card h3{
+      margin: 0 0 12px;
+      font-size: clamp(16px, 1.6vw, 20px);
+      font-weight: 520;
+      letter-spacing: .8px;
+      color: rgba(255,255,255,.86);
+    }
+    .info-item{
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+    .info-item:last-child{ border-bottom: none; }
+    .info-label{
+      color: var(--muted);
+      font-size: clamp(12px, 1.05vw, 14px);
+      letter-spacing: .5px;
+    }
+    .info-value{
+      color: var(--text);
+      font-size: clamp(13px, 1.1vw, 15px);
+      font-weight: 500;
+    }
+
+    /* Right: Description & Trailer */
+    .content-section h2{
+      margin: 0 0 clamp(14px, 1.8vw, 20px);
+      font-size: clamp(22px, 2.2vw, 28px);
+      font-weight: 300;
+      letter-spacing: 1.2px;
+      color: rgba(255,255,255,.88);
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--stroke);
+    }
+
+    .description-box{
+      border-radius: var(--r-md);
+      padding: clamp(18px, 2.2vw, 26px);
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.05);
+      margin-bottom: clamp(24px, 3vw, 36px);
+      line-height: 1.7;
+      font-size: clamp(13px, 1.15vw, 15px);
+      color: rgba(255,255,255,.82);
+    }
+    .description-box p{
+      margin: 0 0 12px;
+    }
+    .description-box p:last-child{
+      margin-bottom: 0;
+    }
+
+    .loading-state{
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .trailer-container{
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%; /* 16:9 */
+      border-radius: var(--r-md);
+      overflow: hidden;
+      border: 1px solid var(--stroke2);
+      box-shadow: var(--shadow);
+      background: rgba(0,0,0,.3);
+    }
+    .trailer-container iframe{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .error-message{
+      padding: 20px;
+      border-radius: var(--r-md);
+      background: rgba(255,100,100,.1);
+      border: 1px solid rgba(255,100,100,.3);
+      color: rgba(255,150,150,.9);
+      text-align: center;
+      font-size: clamp(13px, 1.1vw, 14px);
+    }
+
+    /* Responsive */
+    @media (max-width: 1200px) {
+      .detail-content{
+        grid-template-columns: 1fr;
+      }
+      .cover-section{
+        position: static;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--gap);
+      }
+      .game-cover{
+        margin-bottom: 0;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .detail-header{
+        flex-wrap: wrap;
+      }
+      .game-title-header{
+        width: 100%;
+        order: -1;
+        margin-bottom: 8px;
+      }
+      .cover-section{
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Scrollbar styling */
+    .detail-content::-webkit-scrollbar{
+      width: 10px;
+    }
+    .detail-content::-webkit-scrollbar-track{
+      background: rgba(255,255,255,.03);
+      border-radius: 10px;
+    }
+    .detail-content::-webkit-scrollbar-thumb{
+      background: rgba(255,255,255,.15);
+      border-radius: 10px;
+    }
+    .detail-content::-webkit-scrollbar-thumb:hover{
+      background: rgba(255,255,255,.22);
+    }
+  </style>
+</head>
+<body>
+  <div class="page-container">
+    <div class="detail-wrapper glass">
+      <!-- Header -->
+      <div class="detail-header">
+        <a href="index.html" class="back-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+          </svg>
+          Retour
+        </a>
+        <h1 class="game-title-header" id="gameTitle">Chargement...</h1>
+        <a href="#" class="download-btn" id="downloadBtn" style="display:none;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+          </svg>
+          Télécharger
+        </a>
+      </div>
+
+      <!-- Main Content -->
+      <div class="detail-content">
+        <!-- Left: Cover & Info -->
+        <div class="cover-section">
+          <div class="game-cover">
+            <img id="gameCover" src="" alt="Game Cover">
+          </div>
+          
+          <div class="info-card">
+            <h3>Informations</h3>
+            <div class="info-item">
+              <span class="info-label">Catégorie</span>
+              <span class="info-value" id="gameCategory">-</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Source</span>
+              <span class="info-value">CRACKUZU</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Format</span>
+              <span class="info-value">Torrent Magnet</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Description & Trailer -->
+        <div class="content-section">
+          <h2>Description</h2>
+          <div id="descriptionContent" class="loading-state">
+            Chargement de la description...
+          </div>
+
+          <h2>Bande-annonce</h2>
+          <div id="trailerContent" class="loading-state">
+            Recherche du trailer...
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Get game name from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const gameName = urlParams.get('game');
+
+    if (!gameName) {
+      window.location.href = 'index.html';
+    }
+
+    let currentGame = null;
+
+    // Load game data
+    async function loadGameData() {
+      try {
+        const response = await fetch('data.json');
+        const data = await response.json();
+        
+        currentGame = data.games.find(g => 
+          g.name.toLowerCase() === gameName.toLowerCase()
+        );
+
+        if (!currentGame) {
+          throw new Error('Game not found');
+        }
+
+        // Update page
+        document.getElementById('pageTitle').textContent = `${currentGame.name} - CRACKUZU`;
+        document.getElementById('gameTitle').textContent = currentGame.name;
+        document.getElementById('gameCover').src = currentGame.cover;
+        document.getElementById('gameCover').alt = currentGame.name;
+        document.getElementById('gameCategory').textContent = currentGame.cat.toUpperCase();
+        
+        const downloadBtn = document.getElementById('downloadBtn');
+        downloadBtn.href = currentGame.magnet;
+        downloadBtn.style.display = 'flex';
+
+        // Fetch description and trailer
+        fetchDescription(currentGame.name);
+        fetchTrailer(currentGame.name);
+
+      } catch (error) {
+        console.error('Error loading game data:', error);
+        document.getElementById('gameTitle').textContent = 'Erreur';
+        document.getElementById('descriptionContent').innerHTML = 
+          '<div class="error-message">Impossible de charger les données du jeu.</div>';
+      }
+    }
+
+    // Fetch description from JeuxVideo.com (via search)
+    async function fetchDescription(gameName) {
+      const descContainer = document.getElementById('descriptionContent');
+      
+      try {
+        // Use a CORS proxy for JeuxVideo.com
+        const searchUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(
+          `https://www.jeuxvideo.com/recherche.php?q=${encodeURIComponent(gameName)}`
+        )}`;
+        
+        const response = await fetch(searchUrl);
+        const data = await response.json();
+        const html = data.contents;
+        
+        // Parse HTML to extract description
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        
+        // Try to find game description (this is a simplified approach)
+        const descElements = doc.querySelectorAll('.synopsis, .texte, p');
+        let description = '';
+        
+        for (let elem of descElements) {
+          const text = elem.textContent.trim();
+          if (text.length > 100) {
+            description = text;
+            break;
+          }
+        }
+        
+        if (description) {
+          descContainer.innerHTML = `<div class="description-box"><p>${description}</p></div>`;
+        } else {
+          throw new Error('No description found');
+        }
+        
+      } catch (error) {
+        console.error('Error fetching description:', error);
+        // Fallback: Generic description
+        descContainer.innerHTML = `
+          <div class="description-box">
+            <p>${gameName} est un jeu vidéo disponible au téléchargement via CRACKUZU.</p>
+            <p>Utilisez le bouton "Télécharger" ci-dessus pour obtenir le lien magnet et commencer le téléchargement via votre client torrent.</p>
+          </div>
+        `;
+      }
+    }
+
+    // Fetch trailer from YouTube
+    async function fetchTrailer(gameName) {
+      const trailerContainer = document.getElementById('trailerContent');
+      
+      try {
+        // Use YouTube API (no key needed for basic search via iframe)
+        // We'll use YouTube's search and embed the first result
+        
+        // Method 1: Direct embed with search query (YouTube will show best match)
+        const searchQuery = encodeURIComponent(`${gameName} official trailer gameplay`);
+        
+        // Try to use Invidious API as a free alternative
+        const invidiousInstance = 'https://invidious.io.lol';
+        const searchUrl = `${invidiousInstance}/api/v1/search?q=${searchQuery}&type=video`;
+        
+        const response = await fetch(searchUrl);
+        const videos = await response.json();
+        
+        if (videos && videos.length > 0) {
+          const videoId = videos[0].videoId;
+          trailerContainer.innerHTML = `
+            <div class="trailer-container">
+              <iframe 
+                src="https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+              </iframe>
+            </div>
+          `;
+        } else {
+          throw new Error('No trailer found');
+        }
+        
+      } catch (error) {
+        console.error('Error fetching trailer:', error);
+        
+        // Fallback: Use YouTube search embed
+        const searchQuery = encodeURIComponent(`${gameName} trailer`);
+        trailerContainer.innerHTML = `
+          <div class="trailer-container">
+            <iframe 
+              src="https://www.youtube.com/embed?listType=search&list=${searchQuery}&rel=0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen>
+            </iframe>
+          </div>
+        `;
+      }
+    }
+
+    // Initialize
+    loadGameData();
+  </script>
+</body>
+</html>
