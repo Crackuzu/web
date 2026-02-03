@@ -11,6 +11,12 @@
   ],
   "games": [
     {
+      "name": "PAYDAY 3",
+      "cat": "ONLINE",
+      "magnet": "magnet:?xt=urn:btih:599895a9672d62ca8658b0fa30d664031d3f23a1&dn=PAYDAY%203&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337",
+      "cover": "https://i.ibb.co/1tKGyhvC/fad08f561552.png"
+    },
+    {
       "name": "PALWORLD",
       "cat": "ONLINE",
       "magnet": "magnet:?xt=urn:btih:HHRADFR72CKMN463V56OBCQVG7NYSY5U&dn=Palworld&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce",
