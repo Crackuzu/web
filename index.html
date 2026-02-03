@@ -707,39 +707,6 @@
   <!-- TOAST -->
   <div class="toast" id="toast"></div>
 
-  <!-- GAME DETAILS MODAL -->
-  <div class="modal" id="gameModal" aria-hidden="true">
-    <div class="modalBox" style="max-width: 800px;">
-      <div class="modalHeader">
-        <h2 id="gameModalTitle">Détails du jeu</h2>
-        <button class="closeBtn" id="closeGameModal" aria-label="Close">×</button>
-      </div>
-
-      <div class="adminSect">
-        <div id="gameModalCover" style="text-align: center; margin-bottom: 20px;">
-          <img id="gameModalCoverImg" style="max-width: 300px; max-height: 450px; border-radius: 12px; border: 1px solid rgba(255,255,255,.16);" />
-        </div>
-
-        <div id="gameModalDescription" style="color: rgba(255,255,255,.82); line-height: 1.6; margin-bottom: 24px; font-size: clamp(13px, 1.1vw, 14px);">
-          <p style="text-align: center; color: rgba(255,255,255,.55);">Chargement de la description...</p>
-        </div>
-
-        <div id="gameModalTrailer" style="margin-bottom: 20px;">
-          <h3 style="margin: 0 0 12px; font-size: clamp(16px, 1.6vw, 18px); color: rgba(255,255,255,.82);">Bande-annonce</h3>
-          <div id="gameModalTrailerContent" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; background: rgba(0,0,0,.3);">
-            <p style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: rgba(255,255,255,.55); text-align: center;">Recherche du trailer...</p>
-          </div>
-        </div>
-
-        <div style="text-align: center;">
-          <a id="gameModalMagnetLink" class="bigBtn" style="display: inline-flex; text-decoration: none;">
-            🧲 Télécharger via Magnet
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <script>
     // ========== GITHUB CONFIG ==========
     const GITHUB_CONFIG = {
@@ -827,171 +794,6 @@
     const gameListAdmin = document.getElementById("gameListAdmin");
 
     const toast = document.getElementById("toast");
-
-    const gameModal = document.getElementById("gameModal");
-    const closeGameModal = document.getElementById("closeGameModal");
-    const gameModalTitle = document.getElementById("gameModalTitle");
-    const gameModalCoverImg = document.getElementById("gameModalCoverImg");
-    const gameModalDescription = document.getElementById("gameModalDescription");
-    const gameModalTrailerContent = document.getElementById("gameModalTrailerContent");
-    const gameModalMagnetLink = document.getElementById("gameModalMagnetLink");
-
-    // ========== GAME DETAILS MODAL ==========
-    
-    // Générer une description du jeu avec web search
-    async function generateGameDescription(gameName){
-      try{
-        const response = await fetch("https://api.anthropic.com/v1/messages", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            model: "claude-sonnet-4-20250514",
-            max_tokens: 2000,
-            tools: [
-              {
-                "type": "web_search_20250305",
-                "name": "web_search"
-              }
-            ],
-            messages: [
-              { 
-                role: "user", 
-                content: `Recherche "${gameName} jeu vidéo" sur Google et trouve-moi la description officielle du jeu (souvent dans la section "À propos" des résultats Google). Donne-moi cette description en français, en 3-4 phrases maximum, sans spoilers.`
-              }
-            ],
-          })
-        });
-
-        if(!response.ok){
-          throw new Error("Erreur API");
-        }
-
-        const data = await response.json();
-        
-        // Extraire le texte de la réponse (peut contenir des tool_use)
-        let description = "";
-        for(const block of data.content){
-          if(block.type === "text"){
-            description += block.text;
-          }
-        }
-        
-        return description || `${gameName} - Un jeu vidéo passionnant. Consultez le trailer pour en savoir plus !`;
-      }catch(err){
-        console.error("Erreur génération description:", err);
-        return `${gameName} - Un jeu vidéo passionnant. Consultez le trailer pour en savoir plus !`;
-      }
-    }
-
-    // Trouver le trailer YouTube avec web search
-    async function findYoutubeTrailer(gameName){
-      try{
-        const response = await fetch("https://api.anthropic.com/v1/messages", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            model: "claude-sonnet-4-20250514",
-            max_tokens: 2000,
-            tools: [
-              {
-                "type": "web_search_20250305",
-                "name": "web_search"
-              }
-            ],
-            messages: [
-              { 
-                role: "user", 
-                content: `Recherche le trailer officiel du jeu "${gameName}" sur YouTube (de préférence en VF ou français, sinon VO). Donne-moi UNIQUEMENT l'ID de la vidéo YouTube (les 11 caractères après "v=" dans l'URL). Si tu trouves une URL comme "youtube.com/watch?v=ABC12345678", réponds uniquement "ABC12345678". Ne donne aucune explication, juste l'ID.`
-              }
-            ],
-          })
-        });
-
-        if(!response.ok){
-          return null;
-        }
-
-        const data = await response.json();
-        
-        // Extraire le texte de la réponse
-        let videoId = "";
-        for(const block of data.content){
-          if(block.type === "text"){
-            videoId += block.text.trim();
-          }
-        }
-        
-        // Nettoyer et valider l'ID (11 caractères alphanumériques + tirets/underscores)
-        videoId = videoId.replace(/[^a-zA-Z0-9_-]/g, '').substring(0, 11);
-        
-        if(videoId.length === 11){
-          return videoId;
-        }
-        
-        return null;
-      }catch(err){
-        console.error("Erreur recherche trailer:", err);
-        return null;
-      }
-    }
-
-    // Ouvrir le modal avec les détails du jeu
-    async function openGameDetails(game){
-      gameModal.classList.add("open");
-      gameModal.setAttribute("aria-hidden", "false");
-      
-      // Remplir les infos de base
-      gameModalTitle.textContent = game.name;
-      gameModalCoverImg.src = game.cover;
-      gameModalMagnetLink.href = game.magnet;
-      
-      // Reset le contenu
-      gameModalDescription.innerHTML = '<p style="text-align: center; color: rgba(255,255,255,.55);">🔍 Recherche de la description...</p>';
-      gameModalTrailerContent.innerHTML = '<p style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: rgba(255,255,255,.55); text-align: center;">🔍 Recherche du trailer...</p>';
-      
-      // Charger la description (asynchrone)
-      generateGameDescription(game.name).then(description => {
-        gameModalDescription.innerHTML = `<p style="text-align: justify;">${description}</p>`;
-      });
-      
-      // Charger le trailer (asynchrone)
-      findYoutubeTrailer(game.name).then(videoId => {
-        if(videoId){
-          gameModalTrailerContent.innerHTML = `
-            <iframe 
-              style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" 
-              src="https://www.youtube.com/embed/${videoId}?rel=0" 
-              frameborder="0" 
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-              allowfullscreen>
-            </iframe>
-          `;
-        }else{
-          // Fallback: lien de recherche YouTube
-          const searchQuery = encodeURIComponent(`${game.name} trailer`);
-          gameModalTrailerContent.innerHTML = `
-            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; width: 80%;">
-              <p style="color: rgba(255,255,255,.65); margin-bottom: 12px;">Trailer non trouvé automatiquement</p>
-              <a href="https://www.youtube.com/results?search_query=${searchQuery}" target="_blank" class="bigBtn" style="display: inline-flex; text-decoration: none;">
-                🔍 Rechercher sur YouTube
-              </a>
-            </div>
-          `;
-        }
-      });
-    }
-
-    function closeGameDetailsModal(){
-      gameModal.classList.remove("open");
-      gameModal.setAttribute("aria-hidden", "true");
-    }
-
-    closeGameModal.addEventListener("click", closeGameDetailsModal);
-    gameModal.addEventListener("click", (e) => { if(e.target === gameModal) closeGameDetailsModal(); });
 
     // ========== HELPERS ==========
     function norm(s){ return (s || "").trim(); }
@@ -1292,7 +1094,6 @@
       filtered.forEach(g => {
         const card = document.createElement("div");
         card.className = "card";
-        card.style.cursor = "pointer";
 
         const img = document.createElement("img");
         img.src = g.cover;
@@ -1303,14 +1104,13 @@
         info.className = "cinfo";
         info.innerHTML = `<div class="gname">${g.name}</div><span class="catpill">${upper(g.cat)}</span>`;
 
-        // Au clic, ouvrir le modal au lieu du lien magnet
-        card.addEventListener("click", (e) => {
-          e.preventDefault();
-          openGameDetails(g);
-        });
+        const link = document.createElement("a");
+        link.href = g.magnet;
+        link.setAttribute("aria-label", `Télécharger ${g.name}`);
 
         card.appendChild(img);
         card.appendChild(info);
+        card.appendChild(link);
         grid.appendChild(card);
       });
     }
@@ -1465,12 +1265,7 @@
 
     closeAdmin.addEventListener("click", closeAdminModal);
     adminModal.addEventListener("click", (e) => { if(e.target === adminModal) closeAdminModal(); });
-    window.addEventListener("keydown", (e) => { 
-      if(e.key === "Escape"){
-        closeAdminModal();
-        closeGameDetailsModal();
-      }
-    });
+    window.addEventListener("keydown", (e) => { if(e.key === "Escape") closeAdminModal(); });
 
     q.addEventListener("input", () => {
       state.query = q.value || "";
