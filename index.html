@@ -655,15 +655,11 @@
 
         <div class="coverGroup">
           <div class="coverLine">
-            <label><input type="radio" name="coverMode" id="coverModeUpload" value="upload" checked /> Upload image</label>
-            <label><input type="radio" name="coverMode" id="coverModeLink" value="link" /> Lien URL</label>
+            <label>Cover URL (ou Ctrl+V pour coller une image)</label>
           </div>
 
-          <div class="coverInputWrap active" id="uploadWrap">
-            <input type="file" id="gameCoverFile" accept="image/*" />
-          </div>
-          <div class="coverInputWrap" id="linkWrap">
-            <input type="text" id="gameCoverLink" placeholder="https://...image.jpg" />
+          <div class="coverInputWrap active" id="linkWrap">
+            <input type="text" id="gameCoverLink" placeholder="https://...image.jpg ou Ctrl+V pour uploader" />
           </div>
         </div>
 
@@ -977,34 +973,108 @@
 
     downloadBtn.addEventListener("click", downloadDataJson);
 
-    // ========== COVER MODE ==========
-    function setCoverMode(mode){
-      if(mode === "upload"){
-        uploadWrap.classList.add("active");
-        linkWrap.classList.remove("active");
-      }else{
-        linkWrap.classList.add("active");
-        uploadWrap.classList.remove("active");
-      }
-    }
-
-    coverModeUpload.addEventListener("change", () => { setCoverMode("upload"); refreshPreview(); });
-    coverModeLink.addEventListener("change", () => { setCoverMode("link"); refreshPreview(); });
-
-    gameCoverFile.addEventListener("change", async () => {
-      const f = gameCoverFile.files?.[0];
-      if(!f){ gameCover.value = ""; refreshPreview(); return; }
-      const reader = new FileReader();
-      reader.onload = () => {
-        gameCover.value = reader.result;
-        refreshPreview();
-      };
-      reader.readAsDataURL(f);
-    });
-
+    // ========== COVER INPUT ==========
     gameCoverLink.addEventListener("input", () => {
       gameCover.value = norm(gameCoverLink.value);
       refreshPreview();
+    });
+
+    // ========== CTRL+V IMAGE UPLOAD ==========
+    // ⚠️ IMPORTANT : Remplace la clé ci-dessous par la tienne !
+    // Pour obtenir ta clé GRATUITE ImgBB (2 minutes) :
+    // 1. Va sur : https://api.imgbb.com/
+    // 2. Clique sur "Get API Key"
+    // 3. Connecte-toi avec Google/Twitter/Email
+    // 4. Copie ta clé et colle-la ci-dessous entre les guillemets
+    const IMGBB_API_KEY = "32298e3ee3a1a9386260bced620ff59b"; // ⬅️ REMPLACE PAR TA CLÉ
+    
+    // Fonction pour uploader une image vers imgbb.com
+    async function uploadImageToImgBB(file) {
+      try {
+        // Vérifier si la clé a été remplacée
+        if (IMGBB_API_KEY === "COLLE_TA_CLE_ICI") {
+          toastMsg("⚠️ Configure ta clé API ImgBB d'abord ! (voir ligne ~980 du code)");
+          return null;
+        }
+        
+        toastMsg("📤 Upload de l'image en cours...");
+        
+        // Convertir le fichier en base64
+        const reader = new FileReader();
+        const base64Promise = new Promise((resolve, reject) => {
+          reader.onload = () => {
+            // Enlever le préfixe "data:image/...;base64,"
+            const base64 = reader.result.split(',')[1];
+            resolve(base64);
+          };
+          reader.onerror = reject;
+        });
+        reader.readAsDataURL(file);
+        
+        const base64 = await base64Promise;
+        
+        // Créer le FormData
+        const formData = new FormData();
+        formData.append('key', IMGBB_API_KEY);
+        formData.append('image', base64);
+        
+        const response = await fetch('https://api.imgbb.com/1/upload', {
+          method: 'POST',
+          body: formData
+        });
+
+        if (!response.ok) {
+          const errorText = await response.text();
+          throw new Error(`HTTP ${response.status}: ${errorText}`);
+        }
+
+        const result = await response.json();
+        
+        // imgbb retourne l'URL dans result.data.url
+        if (result && result.data && result.data.url) {
+          return result.data.url;
+        } else {
+          throw new Error('URL non trouvée dans la réponse');
+        }
+      } catch (error) {
+        console.error('Erreur upload imgbb:', error);
+        toastMsg("❌ Erreur d'upload: " + error.message);
+        return null;
+      }
+    }
+
+    // Gestionnaire de paste global pour Ctrl+V
+    document.addEventListener('paste', async (e) => {
+      // Vérifier si on est en mode admin et dans le modal
+      if (!state.adminUnlocked || !adminModal.classList.contains('open')) {
+        return;
+      }
+
+      const items = e.clipboardData?.items;
+      if (!items) return;
+
+      // Chercher une image dans le clipboard
+      for (let i = 0; i < items.length; i++) {
+        if (items[i].type.indexOf('image') !== -1) {
+          e.preventDefault();
+          
+          const file = items[i].getAsFile();
+          if (!file) continue;
+
+          // Upload l'image vers imgbb.com
+          const imageUrl = await uploadImageToImgBB(file);
+          
+          if (imageUrl) {
+            // Mettre l'URL dans le champ
+            gameCoverLink.value = imageUrl;
+            gameCover.value = imageUrl;
+            refreshPreview();
+            toastMsg("✅ Image uploadée avec succès!");
+          }
+          
+          break;
+        }
+      }
     });
 
     function refreshPreview(){
@@ -1029,10 +1099,7 @@
       gameName.value = "";
       gameMagnet.value = "";
       gameCover.value = "";
-      gameCoverFile.value = "";
       gameCoverLink.value = "";
-      coverModeUpload.checked = true;
-      setCoverMode("upload");
       refreshPreview();
     }
     cancelEditBtn.addEventListener("click", () => {
@@ -1161,7 +1228,7 @@
 
         const left = document.createElement("div");
         left.className = "left";
-        left.innerHTML = `<div class="name">${g.name}</div><div class="meta">${upper(g.cat)} • cover:${(g.cover || "").startsWith("data:") ? "data-url" : g.cover}</div>`;
+        left.innerHTML = `<div class="name">${g.name}</div><div class="meta">${upper(g.cat)} • ${g.cover || "no cover"}</div>`;
 
         const edit = document.createElement("button");
         edit.className = "iconBtn";
@@ -1184,18 +1251,9 @@
           renderCategories();
           gameCat.value = cat;
 
-          // Cover prefill
-          if((g.cover || "").startsWith("data:")){
-            coverModeUpload.checked = true;
-            setCoverMode("upload");
-            gameCover.value = g.cover;
-            gameCoverFile.value = "";
-            gameCoverLink.value = "";
-          }else{
-            coverModeLink.checked = true;
-            gameCoverLink.value = g.cover;
-            setCoverMode("link");
-          }
+          // Cover prefill - always use link mode now
+          gameCoverLink.value = g.cover || "";
+          gameCover.value = g.cover || "";
 
           refreshPreview();
           toastMsg("Mode modification");
