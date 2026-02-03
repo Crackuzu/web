@@ -11,6 +11,12 @@
   ],
   "games": [
     {
+      "name": "INAZUMA ELEVEN: Victory Road",
+      "cat": "ONLINE",
+      "magnet": "magnet:?xt=urn:btih:ddf249c293aef48c3322e0b6ede3151ac541a617&dn=INAZUMA%20ELEVEN%20Victory%20Road&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337",
+      "cover": "https://i.ibb.co/Qjv4sbxf/a99796bd1777.png"
+    },
+    {
       "name": "PAYDAY 3",
       "cat": "ONLINE",
       "magnet": "magnet:?xt=urn:btih:599895a9672d62ca8658b0fa30d664031d3f23a1&dn=PAYDAY%203&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337",
