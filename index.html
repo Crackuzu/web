@@ -838,7 +838,7 @@
 
     // ========== GAME DETAILS MODAL ==========
     
-    // Générer une description du jeu avec Claude API
+    // Générer une description du jeu avec web search
     async function generateGameDescription(gameName){
       try{
         const response = await fetch("https://api.anthropic.com/v1/messages", {
@@ -848,11 +848,17 @@
           },
           body: JSON.stringify({
             model: "claude-sonnet-4-20250514",
-            max_tokens: 1000,
+            max_tokens: 2000,
+            tools: [
+              {
+                "type": "web_search_20250305",
+                "name": "web_search"
+              }
+            ],
             messages: [
               { 
                 role: "user", 
-                content: `Donne-moi une description courte (3-4 phrases maximum) du jeu vidéo "${gameName}" sans spoilers. Décris l'ambiance, le gameplay de base et pourquoi les joueurs l'aiment. Réponds en français, de manière engageante et directe.`
+                content: `Recherche "${gameName} jeu vidéo" sur Google et trouve-moi la description officielle du jeu (souvent dans la section "À propos" des résultats Google). Donne-moi cette description en français, en 3-4 phrases maximum, sans spoilers.`
               }
             ],
           })
@@ -863,23 +869,25 @@
         }
 
         const data = await response.json();
-        return data.content[0].text;
+        
+        // Extraire le texte de la réponse (peut contenir des tool_use)
+        let description = "";
+        for(const block of data.content){
+          if(block.type === "text"){
+            description += block.text;
+          }
+        }
+        
+        return description || `${gameName} - Un jeu vidéo passionnant. Consultez le trailer pour en savoir plus !`;
       }catch(err){
         console.error("Erreur génération description:", err);
-        return `${gameName} - Un jeu passionnant qui mérite d'être découvert. Lance le trailer ci-dessous pour en savoir plus !`;
+        return `${gameName} - Un jeu vidéo passionnant. Consultez le trailer pour en savoir plus !`;
       }
     }
 
-    // Trouver le trailer YouTube
+    // Trouver le trailer YouTube avec web search
     async function findYoutubeTrailer(gameName){
       try{
-        // Utiliser l'API YouTube Data v3 via une requête simple
-        // Note: Pour un vrai usage, il faudrait une clé API YouTube
-        // Ici on fait une recherche directe via l'embed
-        const searchQuery = encodeURIComponent(`${gameName} trailer vf`);
-        const searchUrl = `https://www.youtube.com/results?search_query=${searchQuery}`;
-        
-        // Alternative: chercher via l'API Claude pour obtenir un ID de vidéo populaire
         const response = await fetch("https://api.anthropic.com/v1/messages", {
           method: "POST",
           headers: {
@@ -887,26 +895,43 @@
           },
           body: JSON.stringify({
             model: "claude-sonnet-4-20250514",
-            max_tokens: 100,
+            max_tokens: 2000,
+            tools: [
+              {
+                "type": "web_search_20250305",
+                "name": "web_search"
+              }
+            ],
             messages: [
               { 
                 role: "user", 
-                content: `Donne-moi UNIQUEMENT l'ID de vidéo YouTube (les 11 caractères après v=) du trailer VF ou VO du jeu "${gameName}". Si tu ne connais pas l'ID exact, réponds "SEARCH". Réponds UNIQUEMENT avec l'ID ou SEARCH, rien d'autre.`
+                content: `Recherche le trailer officiel du jeu "${gameName}" sur YouTube (de préférence en VF ou français, sinon VO). Donne-moi UNIQUEMENT l'ID de la vidéo YouTube (les 11 caractères après "v=" dans l'URL). Si tu trouves une URL comme "youtube.com/watch?v=ABC12345678", réponds uniquement "ABC12345678". Ne donne aucune explication, juste l'ID.`
               }
             ],
           })
         });
 
-        if(response.ok){
-          const data = await response.json();
-          const videoId = data.content[0].text.trim();
-          
-          if(videoId !== "SEARCH" && videoId.length === 11){
-            return videoId;
+        if(!response.ok){
+          return null;
+        }
+
+        const data = await response.json();
+        
+        // Extraire le texte de la réponse
+        let videoId = "";
+        for(const block of data.content){
+          if(block.type === "text"){
+            videoId += block.text.trim();
           }
         }
         
-        // Fallback: utiliser une recherche YouTube directe
+        // Nettoyer et valider l'ID (11 caractères alphanumériques + tirets/underscores)
+        videoId = videoId.replace(/[^a-zA-Z0-9_-]/g, '').substring(0, 11);
+        
+        if(videoId.length === 11){
+          return videoId;
+        }
+        
         return null;
       }catch(err){
         console.error("Erreur recherche trailer:", err);
@@ -925,12 +950,12 @@
       gameModalMagnetLink.href = game.magnet;
       
       // Reset le contenu
-      gameModalDescription.innerHTML = '<p style="text-align: center; color: rgba(255,255,255,.55);">Chargement de la description...</p>';
-      gameModalTrailerContent.innerHTML = '<p style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: rgba(255,255,255,.55); text-align: center;">Recherche du trailer...</p>';
+      gameModalDescription.innerHTML = '<p style="text-align: center; color: rgba(255,255,255,.55);">🔍 Recherche de la description...</p>';
+      gameModalTrailerContent.innerHTML = '<p style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: rgba(255,255,255,.55); text-align: center;">🔍 Recherche du trailer...</p>';
       
       // Charger la description (asynchrone)
       generateGameDescription(game.name).then(description => {
-        gameModalDescription.innerHTML = `<p>${description}</p>`;
+        gameModalDescription.innerHTML = `<p style="text-align: justify;">${description}</p>`;
       });
       
       // Charger le trailer (asynchrone)
