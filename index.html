@@ -329,10 +329,41 @@
       letter-spacing: .8px;
     }
 
-    .card a{
+    /* Download button */
+    .dlBtn{
       position:absolute;
-      inset:0;
-      z-index:2;
+      top: clamp(8px, 1vw, 12px);
+      right: clamp(8px, 1vw, 12px);
+      width: clamp(36px, 4vw, 42px);
+      height: clamp(36px, 4vw, 42px);
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(100,180,255,.85), rgba(150,100,255,.75));
+      border: 1.5px solid rgba(255,255,255,.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transform: scale(0.8) translateY(-4px);
+      transition: all .22s ease;
+      pointer-events: auto;
+      z-index: 10;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,.4);
+    }
+    .card:hover .dlBtn{
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+    .dlBtn:hover{
+      background: linear-gradient(135deg, rgba(120,200,255,.95), rgba(170,120,255,.85));
+      transform: scale(1.1) translateY(-2px);
+      box-shadow: 0 6px 20px rgba(100,180,255,.5);
+    }
+    .dlBtn svg{
+      width: clamp(18px, 2vw, 22px);
+      height: clamp(18px, 2vw, 22px);
+      color: #fff;
+      filter: drop-shadow(0 1px 2px rgba(0,0,0,.3));
     }
 
     .stateMsg{
@@ -1151,6 +1182,14 @@
       filtered.forEach(g => {
         const card = document.createElement("div");
         card.className = "card";
+        card.style.cursor = "pointer";
+        
+        // Add click event to navigate to game detail page
+        card.addEventListener("click", (e) => {
+          // Don't navigate if clicking the download button
+          if(e.target.closest('.dlBtn')) return;
+          window.location.href = `game.html?game=${encodeURIComponent(g.name)}`;
+        });
 
         const img = document.createElement("img");
         img.src = g.cover;
@@ -1161,13 +1200,26 @@
         info.className = "cinfo";
         info.innerHTML = `<div class="gname">${g.name}</div><span class="catpill">${upper(g.cat)}</span>`;
 
-        const link = document.createElement("a");
-        link.href = g.magnet;
-        link.setAttribute("aria-label", `Télécharger ${g.name}`);
+        // Create download button
+        const dlBtn = document.createElement("a");
+        dlBtn.className = "dlBtn";
+        dlBtn.href = g.magnet;
+        dlBtn.setAttribute("aria-label", `Télécharger ${g.name}`);
+        dlBtn.innerHTML = `
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+        `;
+        // Prevent card click when clicking download button
+        dlBtn.addEventListener("click", (e) => {
+          e.stopPropagation();
+        });
 
         card.appendChild(img);
         card.appendChild(info);
-        card.appendChild(link);
+        card.appendChild(dlBtn);
         grid.appendChild(card);
       });
     }
