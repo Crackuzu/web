@@ -1,340 +1,420 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRACKUZU - Détails du jeu</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .back-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            padding: 12px 24px;
-            border-radius: 25px;
-            text-decoration: none;
-            margin-bottom: 30px;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-            font-weight: 500;
-        }
-
-        .back-button:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateX(-5px);
-        }
-
-        .game-detail {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-
-        .game-header {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 1 / 1;
-            max-height: 500px;
-            overflow: hidden;
-        }
-
-        .game-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center center;
-        }
-
-        .game-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
-            padding: 30px;
-            color: white;
-        }
-
-        .game-title {
-            font-size: 2.5em;
-            font-weight: bold;
-            margin-bottom: 15px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-
-        .game-meta {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .meta-item {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.9em;
-            backdrop-filter: blur(10px);
-        }
-
-        .game-content {
-            padding: 40px;
-        }
-
-        .section {
-            margin-bottom: 40px;
-        }
-
-        .section-title {
-            font-size: 1.8em;
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .game-description {
-            color: #555;
-            line-height: 1.8;
-            font-size: 1.1em;
-            margin-bottom: 25px;
-        }
-
-        .download-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 18px 40px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-size: 1.2em;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-        }
-
-        .download-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
-        }
-
-        .video-container {
-            position: relative;
-            width: 100%;
-            padding-bottom: 56.25%;
-            background: #000;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-        }
-
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .synopsis-text {
-            color: #555;
-            line-height: 1.8;
-            font-size: 1.05em;
-        }
-
-        .loading {
-            text-align: center;
-            padding: 60px 20px;
-            color: white;
-            font-size: 1.5em;
-        }
-
-        .error {
-            background: rgba(255, 0, 0, 0.1);
-            border: 2px solid rgba(255, 0, 0, 0.3);
-            color: #cc0000;
-            padding: 20px;
-            border-radius: 10px;
-            margin: 20px 0;
-            text-align: center;
-        }
-
-        @media (max-width: 768px) {
-            .game-title {
-                font-size: 2em;
-            }
-
-            .game-content {
-                padding: 30px 20px;
-            }
-
-            .section-title {
-                font-size: 1.5em;
-            }
-
-            .download-button {
-                width: 100%;
-                justify-content: center;
-            }
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title id="pageTitle">CRACKUZU</title>
+  <style>
+    :root {
+      --bg0: #00b0e12;
+      --bg1: #10151b;
+      --glass: rgba(255,255,255,.065);
+      --glass2: rgba(255,255,255,.045);
+      --stroke: rgba(255,255,255,.11);
+      --stroke2: rgba(255,255,255,.16);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.62);
+      --outer: clamp(14px, 2.2vw, 26px);
+      --gap: clamp(12px, 1.2vw, 18px);
+      --pad: clamp(14px, 1.6vw, 20px);
+      --r-xl: clamp(18px, 2vw, 26px);
+      --r-md: clamp(14px, 1.5vw, 18px);
+      --shadow: 0 28px 90px rgba(0,0,0,.58);
+      --shadow2: 0 18px 46px rgba(0,0,0,.45);
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; overflow: hidden; }
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+      color: var(--text);
+      background: radial-gradient(1100px 700px at 15% 0%, rgba(255,255,255,.09), transparent 55%),
+                  radial-gradient(950px 600px at 90% 20%, rgba(255,255,255,.07), transparent 60%),
+                  linear-gradient(180deg, var(--bg0), var(--bg1));
+    }
+    .glass {
+      background: linear-gradient(180deg, var(--glass), var(--glass2));
+      border: 1px solid var(--stroke);
+      box-shadow: var(--shadow2);
+    }
+    @supports (-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px)) {
+      .glass { -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
+    }
+    .page-container { height: 100vh; height: 100dvh; padding: var(--outer); overflow: hidden; }
+    .detail-wrapper {
+      height: calc(100dvh - 2 * var(--outer));
+      border-radius: var(--r-xl);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+    .detail-header {
+      padding: var(--pad);
+      border-bottom: 1px solid var(--stroke);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--gap);
+      min-height: clamp(70px, 8vh, 90px);
+      z-index: 10;
+    }
+    .back-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: 1px solid var(--stroke2);
+      background: rgba(255,255,255,.085);
+      color: var(--text);
+      text-decoration: none;
+      font-size: clamp(13px, 1.1vw, 14px);
+      transition: all .2s ease;
+      cursor: pointer;
+    }
+    .back-btn:hover {
+      background: rgba(255,255,255,.14);
+      border-color: rgba(255,255,255,.25);
+      transform: translateX(-2px);
+    }
+    .game-title-header {
+      font-size: clamp(20px, 2.5vw, 32px);
+      font-weight: 300;
+      letter-spacing: 1px;
+      margin: 0;
+    }
+    .download-btn {
+      padding: 12px 24px;
+      border-radius: 999px;
+      border: 1px solid rgba(100,200,255,.3);
+      background: linear-gradient(135deg, rgba(100,180,255,.18), rgba(150,100,255,.12));
+      color: var(--text);
+      text-decoration: none;
+      font-size: clamp(13px, 1.1vw, 15px);
+      font-weight: 520;
+      letter-spacing: .5px;
+      transition: all .2s ease;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .download-btn:hover {
+      background: linear-gradient(135deg, rgba(100,180,255,.28), rgba(150,100,255,.22));
+      border-color: rgba(100,200,255,.5);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(100,180,255,.3);
+    }
+    .detail-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: var(--pad);
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: clamp(24px, 3vw, 48px);
+      align-items: start;
+    }
+    .cover-section { position: sticky; top: 0; }
+    .game-cover {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      border-radius: var(--r-md);
+      overflow: hidden;
+      border: 1px solid var(--stroke2);
+      box-shadow: var(--shadow);
+      margin-bottom: clamp(16px, 2vw, 24px);
+      position: relative;
+    }
+    .game-cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .game-cover::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,.4));
+      pointer-events: none;
+    }
+    .info-card {
+      border-radius: var(--r-md);
+      padding: clamp(16px, 2vw, 22px);
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.06);
+    }
+    .info-card h3 {
+      margin: 0 0 12px;
+      font-size: clamp(16px, 1.6vw, 20px);
+      font-weight: 520;
+      letter-spacing: .8px;
+      color: rgba(255,255,255,.86);
+    }
+    .info-item {
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+    .info-item:last-child { border-bottom: none; }
+    .info-label { color: var(--muted); font-size: clamp(12px, 1.05vw, 14px); letter-spacing: .5px; }
+    .info-value { color: var(--text); font-size: clamp(13px, 1.1vw, 15px); font-weight: 500; }
+    .content-section h2 {
+      margin: 0 0 clamp(14px, 1.8vw, 20px);
+      font-size: clamp(22px, 2.2vw, 28px);
+      font-weight: 300;
+      letter-spacing: 1.2px;
+      color: rgba(255,255,255,.88);
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--stroke);
+    }
+    .description-box {
+      border-radius: var(--r-md);
+      padding: clamp(18px, 2.2vw, 26px);
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.05);
+      margin-bottom: clamp(24px, 3vw, 36px);
+      line-height: 1.7;
+      font-size: clamp(13px, 1.15vw, 15px);
+      color: rgba(255,255,255,.82);
+    }
+    .description-box p { margin: 0 0 12px; }
+    .description-box p:last-child { margin-bottom: 0; }
+    .loading-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--muted);
+      font-style: italic;
+    }
+    .trailer-container {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      border-radius: var(--r-md);
+      overflow: hidden;
+      border: 1px solid var(--stroke2);
+      box-shadow: var(--shadow);
+      background: rgba(0,0,0,.3);
+    }
+    .trailer-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+    .error-message {
+      padding: 20px;
+      border-radius: var(--r-md);
+      background: rgba(255,100,100,.1);
+      border: 1px solid rgba(255,100,100,.3);
+      color: rgba(255,150,150,.9);
+      text-align: center;
+      font-size: clamp(13px, 1.1vw, 14px);
+    }
+    @media (max-width: 1200px) {
+      .detail-content { grid-template-columns: 1fr; }
+      .cover-section {
+        position: static;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--gap);
+      }
+      .game-cover { margin-bottom: 0; }
+    }
+    @media (max-width: 768px) {
+      .detail-header { flex-wrap: wrap; }
+      .game-title-header { width: 100%; order: -1; margin-bottom: 8px; }
+      .cover-section { grid-template-columns: 1fr; }
+    }
+    .detail-content::-webkit-scrollbar { width: 10px; }
+    .detail-content::-webkit-scrollbar-track { background: rgba(255,255,255,.03); border-radius: 10px; }
+    .detail-content::-webkit-scrollbar-thumb { background: rgba(255,255,255,.15); border-radius: 10px; }
+    .detail-content::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,.22); }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <a href="index.html" class="back-button">
-            <span>←</span>
-            <span>Retour à la liste</span>
+  <div class="page-container">
+    <div class="detail-wrapper glass">
+      <div class="detail-header">
+        <a href="index.html" class="back-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+          </svg>
+          Retour
         </a>
-
-        <div id="gameContainer">
-            <div class="loading">Chargement des détails du jeu...</div>
+        <h1 class="game-title-header" id="gameTitle">Chargement...</h1>
+        <a href="#" class="download-btn" id="downloadBtn" style="display:none;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+          </svg>
+          Télécharger
+        </a>
+      </div>
+      <div class="detail-content">
+        <div class="cover-section">
+          <div class="game-cover">
+            <img id="gameCover" src="" alt="Game Cover">
+          </div>
+          <div class="info-card">
+            <h3>Informations</h3>
+            <div class="info-item">
+              <span class="info-label">Catégorie</span>
+              <span class="info-value" id="gameCategory">-</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Source</span>
+              <span class="info-value">CRACKUZU</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Format</span>
+              <span class="info-value">Torrent Magnet</span>
+            </div>
+          </div>
         </div>
+        <div class="content-section">
+          <h2>Description</h2>
+          <div id="descriptionContent" class="loading-state">Chargement de la description...</div>
+          <h2>Bande-annonce</h2>
+          <div id="trailerContent" class="loading-state">Recherche du trailer...</div>
+        </div>
+      </div>
     </div>
+  </div>
 
-    <script>
-        const API_URL = 'https://crackuzu-api.onrender.com';
-        const CLOUDFLARE_WORKER_URL = 'https://crackuzu-worker.crackuzu.workers.dev';
+  <script>
+    // ⚠️ CONFIGURE TON WORKER ICI
+    const WORKER_URL = 'https://crackuzu-api.crackuzu.workers.dev';
 
-        const urlParams = new URLSearchParams(window.location.search);
-        const gameId = urlParams.get('id');
+    const urlParams = new URLSearchParams(window.location.search);
+    const gameName = urlParams.get('game');
+    if (!gameName) window.location.href = 'index.html';
 
-        if (!gameId) {
-            document.getElementById('gameContainer').innerHTML = `
-                <div class="game-detail">
-                    <div class="error">❌ Aucun jeu spécifié</div>
-                </div>
-            `;
-        } else {
-            loadGameDetails(gameId);
+    let currentGame = null;
+
+    // Traduction gratuite Google Translate
+    async function translateText(text, targetLang = 'fr') {
+      try {
+        const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=${targetLang}&dt=t&q=${encodeURIComponent(text)}`;
+        const response = await fetch(url);
+        const data = await response.json();
+        if (data && data[0]) return data[0].map(item => item[0]).join('');
+        return text;
+      } catch (error) {
+        console.error('Translation error:', error);
+        return text;
+      }
+    }
+
+    async function loadGameData() {
+      try {
+        const response = await fetch('data.json');
+        const data = await response.json();
+        currentGame = data.games.find(g => g.name.toLowerCase() === gameName.toLowerCase());
+        if (!currentGame) throw new Error('Game not found');
+
+        document.getElementById('pageTitle').textContent = `${currentGame.name} - CRACKUZU`;
+        document.getElementById('gameTitle').textContent = currentGame.name;
+        document.getElementById('gameCover').src = currentGame.cover;
+        document.getElementById('gameCover').alt = currentGame.name;
+        document.getElementById('gameCategory').textContent = currentGame.cat.toUpperCase();
+
+        const downloadBtn = document.getElementById('downloadBtn');
+        downloadBtn.href = currentGame.magnet;
+        downloadBtn.style.display = 'flex';
+
+        fetchSynopsis(currentGame.name);
+        fetchTrailer(currentGame.name);
+      } catch (error) {
+        console.error('Error loading game data:', error);
+        document.getElementById('gameTitle').textContent = 'Erreur';
+        document.getElementById('descriptionContent').innerHTML = 
+          '<div class="error-message">Impossible de charger les données du jeu.</div>';
+      }
+    }
+
+    async function fetchSynopsis(gameName) {
+      const descContainer = document.getElementById('descriptionContent');
+      try {
+        const response = await fetch(`${WORKER_URL}/api/synopsis?game=${encodeURIComponent(gameName)}`);
+        if (!response.ok) throw new Error('Worker request failed');
+
+        const data = await response.json();
+        if (data.synopsis) {
+          descContainer.innerHTML = '<div class="loading-state">Traduction en cours...</div>';
+          const synopsisFR = await translateText(data.synopsis, 'fr');
+          
+          let extraInfo = '';
+          if (data.rating || data.released || data.genres) {
+            extraInfo = '<p style="margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.08);">';
+            if (data.released) extraInfo += `<strong>📅 Sortie :</strong> ${data.released}<br>`;
+            if (data.rating) extraInfo += `<strong>⭐ Note :</strong> ${data.rating}/5<br>`;
+            if (data.genres) extraInfo += `<strong>🎮 Genres :</strong> ${data.genres}`;
+            extraInfo += '</p>';
+          }
+
+          descContainer.innerHTML = `
+            <div class="description-box">
+              <p>${synopsisFR}</p>
+              ${extraInfo}
+              <p style="margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.08); font-size: 12px; opacity: 0.7;">
+                <em>Source: <a href="${data.url}" target="_blank" style="color: rgba(100,180,255,.8); text-decoration: none;">${data.source}</a></em>
+              </p>
+            </div>
+          `;
+          return;
         }
+        throw new Error('No synopsis found');
+      } catch (error) {
+        console.error('Error fetching synopsis:', error);
+        descContainer.innerHTML = `
+          <div class="description-box">
+            <p><strong>${gameName}</strong> est disponible au téléchargement via CRACKUZU.</p>
+            <p>Pour télécharger ce jeu, cliquez sur le bouton "Télécharger" ci-dessus.</p>
+          </div>
+        `;
+      }
+    }
 
-        async function loadGameDetails(gameId) {
-            try {
-                const response = await fetch(`${API_URL}/api/game/${gameId}`);
-                
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                
-                const game = await response.json();
-                
-                let youtubeVideoId = null;
-                try {
-                    const ytResponse = await fetch(`${CLOUDFLARE_WORKER_URL}/api/youtube?q=${encodeURIComponent(game.title + ' gameplay')}`);
-                    if (ytResponse.ok) {
-                        const ytData = await ytResponse.json();
-                        youtubeVideoId = ytData.videoId;
-                    }
-                } catch (error) {
-                    console.error('YouTube fetch error:', error);
-                }
+    async function fetchTrailer(gameName) {
+      const trailerContainer = document.getElementById('trailerContent');
+      try {
+        const searchQuery = `${gameName} game trailer`;
+        const response = await fetch(`${WORKER_URL}/api/youtube?q=${encodeURIComponent(searchQuery)}`);
+        
+        if (!response.ok) throw new Error('Worker request failed');
 
-                let synopsis = null;
-                try {
-                    const synopsisResponse = await fetch(`${CLOUDFLARE_WORKER_URL}/api/synopsis?game=${encodeURIComponent(game.title)}`);
-                    if (synopsisResponse.ok) {
-                        const synopsisData = await synopsisResponse.json();
-                        synopsis = synopsisData.synopsis;
-                    }
-                } catch (error) {
-                    console.error('Synopsis fetch error:', error);
-                }
-
-                displayGame(game, youtubeVideoId, synopsis);
-                
-            } catch (error) {
-                console.error('Error loading game:', error);
-                document.getElementById('gameContainer').innerHTML = `
-                    <div class="game-detail">
-                        <div class="error">
-                            ❌ Erreur lors du chargement du jeu<br>
-                            <small>${error.message}</small>
-                        </div>
-                    </div>
-                `;
-            }
+        const data = await response.json();
+        if (data.videoId) {
+          trailerContainer.innerHTML = `
+            <div class="trailer-container">
+              <iframe 
+                src="https://www.youtube-nocookie.com/embed/${data.videoId}?rel=0&modestbranding=1"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+                loading="lazy">
+              </iframe>
+            </div>
+          `;
+          return;
         }
+        throw new Error('No video found');
+      } catch (error) {
+        console.error('Error fetching trailer:', error);
+        const searchQuery2 = encodeURIComponent(`${gameName} game trailer`);
+        trailerContainer.innerHTML = `
+          <div style="padding: 60px 30px; text-align: center; border-radius: var(--r-md); border: 1px solid var(--stroke); background: rgba(255,255,255,.04);">
+            <p style="color: var(--muted); margin-bottom: 24px;">Trailer non disponible</p>
+            <a href="https://www.youtube.com/results?search_query=${searchQuery2}" target="_blank" 
+               style="color: rgba(100,180,255,.8); text-decoration: none; font-size: 14px;">
+              🔍 Voir sur YouTube
+            </a>
+          </div>
+        `;
+      }
+    }
 
-        function displayGame(game, youtubeVideoId, synopsis) {
-            const container = document.getElementById('gameContainer');
-            
-            container.innerHTML = `
-                <div class="game-detail">
-                    <div class="game-header">
-                        <img 
-                            src="${game.image || 'https://via.placeholder.com/800x800/667eea/ffffff?text=No+Image'}" 
-                            alt="${game.title}"
-                            class="game-image"
-                        >
-                        <div class="game-overlay">
-                            <h1 class="game-title">${game.title}</h1>
-                            <div class="game-meta">
-                                ${game.size ? `<div class="meta-item">📦 ${game.size}</div>` : ''}
-                                ${game.year ? `<div class="meta-item">📅 ${game.year}</div>` : ''}
-                                ${game.genre ? `<div class="meta-item">🎮 ${game.genre}</div>` : ''}
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="game-content">
-                        ${game.description ? `
-                            <div class="section">
-                                <h2 class="section-title">📝 Description</h2>
-                                <div class="game-description">${game.description}</div>
-                                <a href="${game.downloadLink}" class="download-button" target="_blank">
-                                    <span>⬇️</span>
-                                    <span>Télécharger ${game.title}</span>
-                                </a>
-                            </div>
-                        ` : ''}
-
-                        ${youtubeVideoId ? `
-                            <div class="section">
-                                <h2 class="section-title">🎬 Vidéo Gameplay</h2>
-                                <div class="video-container">
-                                    <iframe 
-                                        src="https://www.youtube.com/embed/${youtubeVideoId}?rel=0"
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                        allowfullscreen
-                                    ></iframe>
-                                </div>
-                            </div>
-                        ` : ''}
-
-                        ${synopsis ? `
-                            <div class="section">
-                                <h2 class="section-title">📖 Synopsis</h2>
-                                <div class="synopsis-text">${synopsis}</div>
-                            </div>
-                        ` : ''}
-                    </div>
-                </div>
-            `;
-        }
-    </script>
+    loadGameData();
+  </script>
 </body>
 </html>
