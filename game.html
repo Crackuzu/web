@@ -1,42 +1,33 @@
 <!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title id="pageTitle">CRACKUZU</title>
-
   <style>
-    :root{
-      --bg0:#0b0e12;
-      --bg1:#10151b;
-
+    :root {
+      --bg0: #00b0e12;
+      --bg1: #10151b;
       --glass: rgba(255,255,255,.065);
       --glass2: rgba(255,255,255,.045);
       --stroke: rgba(255,255,255,.11);
       --stroke2: rgba(255,255,255,.16);
-
       --text: rgba(255,255,255,.92);
       --muted: rgba(255,255,255,.62);
-
       --outer: clamp(14px, 2.2vw, 26px);
-      --gap:   clamp(12px, 1.2vw, 18px);
-      --pad:   clamp(14px, 1.6vw, 20px);
-
-      --r-xl:  clamp(18px, 2vw, 26px);
-      --r-md:  clamp(14px, 1.5vw, 18px);
-
+      --gap: clamp(12px, 1.2vw, 18px);
+      --pad: clamp(14px, 1.6vw, 20px);
+      --r-xl: clamp(18px, 2vw, 26px);
+      --r-md: clamp(14px, 1.5vw, 18px);
       --shadow: 0 28px 90px rgba(0,0,0,.58);
       --shadow2: 0 18px 46px rgba(0,0,0,.45);
     }
 
-    *{ box-sizing:border-box; }
-    html, body{ 
-      height:100%; 
-      margin:0;
-      overflow:hidden;
-    }
-    body{
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; overflow: hidden; }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
       color: var(--text);
       background:
         radial-gradient(1100px 700px at 15% 0%, rgba(255,255,255,.09), transparent 55%),
@@ -44,27 +35,28 @@
         linear-gradient(180deg, var(--bg0), var(--bg1));
     }
 
-    .glass{
+    .glass {
       background: linear-gradient(180deg, var(--glass), var(--glass2));
       border: 1px solid var(--stroke);
       box-shadow: var(--shadow2);
     }
-    @supports ((-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px))){
-      .glass{
+
+    @supports (-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px)) {
+      .glass {
         -webkit-backdrop-filter: blur(14px);
         backdrop-filter: blur(14px);
       }
     }
 
-    .page-container{
+    .page-container {
       height: 100vh;
       height: 100dvh;
       padding: var(--outer);
       overflow: hidden;
     }
 
-    .detail-wrapper{
-      height: calc(100dvh - (2 * var(--outer)));
+    .detail-wrapper {
+      height: calc(100dvh - 2 * var(--outer));
       border-radius: var(--r-xl);
       box-shadow: var(--shadow);
       overflow: hidden;
@@ -74,7 +66,7 @@
     }
 
     /* Header */
-    .detail-header{
+    .detail-header {
       padding: var(--pad);
       border-bottom: 1px solid var(--stroke);
       display: flex;
@@ -85,7 +77,7 @@
       z-index: 10;
     }
 
-    .back-btn{
+    .back-btn {
       display: flex;
       align-items: center;
       gap: 10px;
@@ -99,20 +91,21 @@
       transition: all .2s ease;
       cursor: pointer;
     }
-    .back-btn:hover{
+
+    .back-btn:hover {
       background: rgba(255,255,255,.14);
       border-color: rgba(255,255,255,.25);
       transform: translateX(-2px);
     }
 
-    .game-title-header{
+    .game-title-header {
       font-size: clamp(20px, 2.5vw, 32px);
       font-weight: 300;
       letter-spacing: 1px;
       margin: 0;
     }
 
-    .download-btn{
+    .download-btn {
       padding: 12px 24px;
       border-radius: 999px;
       border: 1px solid rgba(100,200,255,.3);
@@ -128,7 +121,8 @@
       align-items: center;
       gap: 8px;
     }
-    .download-btn:hover{
+
+    .download-btn:hover {
       background: linear-gradient(135deg, rgba(100,180,255,.28), rgba(150,100,255,.22));
       border-color: rgba(100,200,255,.5);
       transform: translateY(-1px);
@@ -136,7 +130,7 @@
     }
 
     /* Main Content */
-    .detail-content{
+    .detail-content {
       flex: 1;
       overflow-y: auto;
       padding: var(--pad);
@@ -147,12 +141,12 @@
     }
 
     /* Left: Cover & Info */
-    .cover-section{
+    .cover-section {
       position: sticky;
       top: 0;
     }
 
-    .game-cover{
+    .game-cover {
       width: 100%;
       aspect-ratio: 3 / 4;
       border-radius: var(--r-md);
@@ -162,34 +156,38 @@
       margin-bottom: clamp(16px, 2vw, 24px);
       position: relative;
     }
-    .game-cover img{
+
+    .game-cover img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
     }
-    .game-cover::before{
-      content: "";
+
+    .game-cover::before {
+      content: '';
       position: absolute;
       inset: 0;
       background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,.4));
       pointer-events: none;
     }
 
-    .info-card{
+    .info-card {
       border-radius: var(--r-md);
       padding: clamp(16px, 2vw, 22px);
       border: 1px solid var(--stroke);
       background: rgba(255,255,255,.06);
     }
-    .info-card h3{
+
+    .info-card h3 {
       margin: 0 0 12px;
       font-size: clamp(16px, 1.6vw, 20px);
       font-weight: 520;
       letter-spacing: .8px;
       color: rgba(255,255,255,.86);
     }
-    .info-item{
+
+    .info-item {
       padding: 10px 0;
       border-bottom: 1px solid rgba(255,255,255,.06);
       display: flex;
@@ -197,20 +195,25 @@
       align-items: center;
       gap: 12px;
     }
-    .info-item:last-child{ border-bottom: none; }
-    .info-label{
+
+    .info-item:last-child {
+      border-bottom: none;
+    }
+
+    .info-label {
       color: var(--muted);
       font-size: clamp(12px, 1.05vw, 14px);
       letter-spacing: .5px;
     }
-    .info-value{
+
+    .info-value {
       color: var(--text);
       font-size: clamp(13px, 1.1vw, 15px);
       font-weight: 500;
     }
 
     /* Right: Description & Trailer */
-    .content-section h2{
+    .content-section h2 {
       margin: 0 0 clamp(14px, 1.8vw, 20px);
       font-size: clamp(22px, 2.2vw, 28px);
       font-weight: 300;
@@ -220,7 +223,7 @@
       border-bottom: 1px solid var(--stroke);
     }
 
-    .description-box{
+    .description-box {
       border-radius: var(--r-md);
       padding: clamp(18px, 2.2vw, 26px);
       border: 1px solid var(--stroke);
@@ -230,21 +233,23 @@
       font-size: clamp(13px, 1.15vw, 15px);
       color: rgba(255,255,255,.82);
     }
-    .description-box p{
+
+    .description-box p {
       margin: 0 0 12px;
     }
-    .description-box p:last-child{
+
+    .description-box p:last-child {
       margin-bottom: 0;
     }
 
-    .loading-state{
+    .loading-state {
       text-align: center;
       padding: 40px 20px;
       color: var(--muted);
       font-style: italic;
     }
 
-    .trailer-container{
+    .trailer-container {
       position: relative;
       width: 100%;
       padding-bottom: 56.25%; /* 16:9 */
@@ -254,7 +259,8 @@
       box-shadow: var(--shadow);
       background: rgba(0,0,0,.3);
     }
-    .trailer-container iframe{
+
+    .trailer-container iframe {
       position: absolute;
       top: 0;
       left: 0;
@@ -263,7 +269,7 @@
       border: 0;
     }
 
-    .error-message{
+    .error-message {
       padding: 20px;
       border-radius: var(--r-md);
       background: rgba(255,100,100,.1);
@@ -275,47 +281,54 @@
 
     /* Responsive */
     @media (max-width: 1200px) {
-      .detail-content{
+      .detail-content {
         grid-template-columns: 1fr;
       }
-      .cover-section{
+
+      .cover-section {
         position: static;
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: var(--gap);
       }
-      .game-cover{
+
+      .game-cover {
         margin-bottom: 0;
       }
     }
 
     @media (max-width: 768px) {
-      .detail-header{
+      .detail-header {
         flex-wrap: wrap;
       }
-      .game-title-header{
+
+      .game-title-header {
         width: 100%;
         order: -1;
         margin-bottom: 8px;
       }
-      .cover-section{
+
+      .cover-section {
         grid-template-columns: 1fr;
       }
     }
 
     /* Scrollbar styling */
-    .detail-content::-webkit-scrollbar{
+    .detail-content::-webkit-scrollbar {
       width: 10px;
     }
-    .detail-content::-webkit-scrollbar-track{
+
+    .detail-content::-webkit-scrollbar-track {
       background: rgba(255,255,255,.03);
       border-radius: 10px;
     }
-    .detail-content::-webkit-scrollbar-thumb{
+
+    .detail-content::-webkit-scrollbar-thumb {
       background: rgba(255,255,255,.15);
       border-radius: 10px;
     }
-    .detail-content::-webkit-scrollbar-thumb:hover{
+
+    .detail-content::-webkit-scrollbar-thumb:hover {
       background: rgba(255,255,255,.22);
     }
   </style>
@@ -347,7 +360,6 @@
           <div class="game-cover">
             <img id="gameCover" src="" alt="Game Cover">
           </div>
-          
           <div class="info-card">
             <h3>Informations</h3>
             <div class="info-item">
@@ -401,10 +413,8 @@
       try {
         const response = await fetch('data.json');
         const data = await response.json();
-        
-        currentGame = data.games.find(g => 
-          g.name.toLowerCase() === gameName.toLowerCase()
-        );
+
+        currentGame = data.games.find(g => g.name.toLowerCase() === gameName.toLowerCase());
 
         if (!currentGame) {
           throw new Error('Game not found');
@@ -416,7 +426,7 @@
         document.getElementById('gameCover').src = currentGame.cover;
         document.getElementById('gameCover').alt = currentGame.name;
         document.getElementById('gameCategory').textContent = currentGame.cat.toUpperCase();
-        
+
         const downloadBtn = document.getElementById('downloadBtn');
         downloadBtn.href = currentGame.magnet;
         downloadBtn.style.display = 'flex';
@@ -433,70 +443,88 @@
       }
     }
 
-    // Fetch synopsis from jeuxvideo.com via Cloudflare Worker
+    // Fetch synopsis from RAWG API via Cloudflare Worker
     async function fetchSynopsis(gameName) {
       const descContainer = document.getElementById('descriptionContent');
-      
+
       try {
         const response = await fetch(`${WORKER_URL}/api/synopsis?game=${encodeURIComponent(gameName)}`);
-        
+
         if (!response.ok) {
           throw new Error('Worker request failed');
         }
 
         const data = await response.json();
-        
+
         if (data.synopsis) {
+          let extraInfo = '';
+          
+          // Ajouter les infos supplémentaires si disponibles
+          if (data.rating || data.released || data.genres) {
+            extraInfo = '<p style="margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.08);">';
+            if (data.released) extraInfo += `<strong>📅 Sortie :</strong> ${data.released}<br>`;
+            if (data.rating) extraInfo += `<strong>⭐ Note :</strong> ${data.rating}/5<br>`;
+            if (data.genres) extraInfo += `<strong>🎮 Genres :</strong> ${data.genres}`;
+            extraInfo += '</p>';
+          }
+
           descContainer.innerHTML = `
             <div class="description-box">
               <p>${data.synopsis}</p>
+              ${extraInfo}
               <p style="margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.08); font-size: 12px; opacity: 0.7;">
-                <em>Source: <a href="${data.url}" target="_blank" style="color: rgba(100,180,255,.8); text-decoration: none;">jeuxvideo.com</a></em>
+                <em>Source: <a href="${data.url}" target="_blank" style="color: rgba(100,180,255,.8); text-decoration: none;">${data.source}</a></em>
               </p>
             </div>
           `;
           return;
         }
-        
+
         throw new Error('No synopsis found');
-        
+
       } catch (error) {
         console.error('Error fetching synopsis:', error);
-        
+
         // Fallback: Generic description
         descContainer.innerHTML = `
           <div class="description-box">
             <p><strong>${gameName}</strong> est disponible au téléchargement via CRACKUZU.</p>
             <p>Ce titre fait partie de notre collection de jeux. Pour télécharger ce jeu, cliquez sur le bouton "Télécharger" ci-dessus pour obtenir le lien magnet.</p>
+            
             <p><strong>Comment télécharger :</strong></p>
-            <p>1. Assurez-vous d'avoir un client torrent installé (qBittorrent recommandé)<br>
-            2. Cliquez sur le bouton de téléchargement<br>
-            3. Votre client torrent s'ouvrira automatiquement<br>
-            4. Une fois le téléchargement terminé, suivez les instructions d'installation incluses</p>
+            <p>
+              1. Assurez-vous d'avoir un client torrent installé (qBittorrent recommandé)<br>
+              2. Cliquez sur le bouton de téléchargement<br>
+              3. Votre client torrent s'ouvrira automatiquement<br>
+              4. Une fois le téléchargement terminé, suivez les instructions d'installation incluses
+            </p>
+            
             <p style="margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.08); font-size: 12px; opacity: 0.7;">
-              <em>Synopsis non disponible. Recherchez <a href="https://www.jeuxvideo.com/recherche.php?q=${encodeURIComponent(gameName)}" target="_blank" style="color: rgba(100,180,255,.8); text-decoration: none;">sur jeuxvideo.com</a></em>
+              <em>Synopsis non disponible.</em>
             </p>
           </div>
         `;
       }
     }
 
-    // Fetch trailer from YouTube via Cloudflare Worker
+    // 🔥 MODIFIÉ: Fetch trailer from YouTube via Cloudflare Worker (JEUX UNIQUEMENT)
     async function fetchTrailer(gameName) {
       const trailerContainer = document.getElementById('trailerContent');
-      
+
       try {
-        const searchQuery = `${gameName} official trailer`;
-        const response = await fetch(`${WORKER_URL}/api/youtube?q=${encodeURIComponent(searchQuery)}`);
+        // 🎮 AJOUT DE "game gameplay trailer" pour éviter les films
+        const searchQuery = `${gameName} game gameplay trailer`;
         
+        const response = await fetch(`${WORKER_URL}/api/youtube?q=${encodeURIComponent(searchQuery)}`);
+
         if (!response.ok) {
           throw new Error('Worker request failed');
         }
 
         const data = await response.json();
-        
+
         if (data.videoId) {
-          console.log(`Found video ID: ${data.videoId}`);
+          console.log('Found video ID:', data.videoId);
           trailerContainer.innerHTML = `
             <div class="trailer-container">
               <iframe 
@@ -509,22 +537,16 @@
           `;
           return;
         }
-        
+
         throw new Error('No video found');
-        
+
       } catch (error) {
         console.error('Error fetching trailer:', error);
-        
+
         // Fallback: YouTube search button
-        const searchQuery2 = encodeURIComponent(`${gameName} trailer`);
+        const searchQuery2 = encodeURIComponent(`${gameName} game trailer`);
         trailerContainer.innerHTML = `
-          <div style="
-            padding: 60px 30px; 
-            text-align: center;
-            border-radius: var(--r-md);
-            border: 1px solid var(--stroke);
-            background: rgba(255,255,255,.04);
-          ">
+          <div style="padding: 60px 30px; text-align: center; border-radius: var(--r-md); border: 1px solid var(--stroke); background: rgba(255,255,255,.04);">
             <svg width="64" height="64" viewBox="0 0 24 24" fill="rgba(255,100,100,.6)" style="margin-bottom: 20px;">
               <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
             </svg>
@@ -533,7 +555,7 @@
               Cliquez ci-dessous pour le voir sur YouTube.
             </p>
             <a href="https://www.youtube.com/results?search_query=${searchQuery2}" 
-               target="_blank" 
+               target="_blank"
                style="
                  display: inline-flex;
                  align-items: center;
@@ -549,8 +571,8 @@
                  letter-spacing: .5px;
                  transition: all .2s ease;
                "
-               onmouseover="this.style.background='linear-gradient(135deg, rgba(100,180,255,.28), rgba(150,100,255,.22))'; this.style.transform='translateY(-2px)'"
-               onmouseout="this.style.background='linear-gradient(135deg, rgba(100,180,255,.18), rgba(150,100,255,.12))'; this.style.transform='translateY(0)'">
+               onmouseover="this.style.background='linear-gradient(135deg, rgba(100,180,255,.28), rgba(150,100,255,.22))'; this.style.transform='translateY(-2px)';"
+               onmouseout="this.style.background='linear-gradient(135deg, rgba(100,180,255,.18), rgba(150,100,255,.12))'; this.style.transform='translateY(0)';">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
               </svg>
