@@ -5,16 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title id="pageTitle">CRACKUZU</title>
   
-  <!-- 🔥 Google Translate Widget (GRATUIT et SANS LIMITE) -->
-  <script type="text/javascript">
-    function googleTranslateElementInit() {
-      // Ne rien faire - on utilise juste l'API de traduction
-    }
-  </script>
   <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
   <style>
-    /* ... TON CSS EXISTANT ICI ... */
     :root {
       --bg0: #00b0e12;
       --bg1: #10151b;
@@ -32,8 +25,10 @@
       --shadow: 0 28px 90px rgba(0,0,0,.58);
       --shadow2: 0 18px 46px rgba(0,0,0,.45);
     }
+
     * { box-sizing: border-box; }
     html, body { height: 100%; margin: 0; overflow: hidden; }
+
     body {
       font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
       color: var(--text);
@@ -42,15 +37,27 @@
         radial-gradient(950px 600px at 90% 20%, rgba(255,255,255,.07), transparent 60%),
         linear-gradient(180deg, var(--bg0), var(--bg1));
     }
+
     .glass {
       background: linear-gradient(180deg, var(--glass), var(--glass2));
       border: 1px solid var(--stroke);
       box-shadow: var(--shadow2);
     }
+
     @supports (-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px)) {
-      .glass { -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
+      .glass {
+        -webkit-backdrop-filter: blur(14px);
+        backdrop-filter: blur(14px);
+      }
     }
-    .page-container { height: 100vh; height: 100dvh; padding: var(--outer); overflow: hidden; }
+
+    .page-container {
+      height: 100vh;
+      height: 100dvh;
+      padding: var(--outer);
+      overflow: hidden;
+    }
+
     .detail-wrapper {
       height: calc(100dvh - 2 * var(--outer));
       border-radius: var(--r-xl);
@@ -60,6 +67,7 @@
       display: flex;
       flex-direction: column;
     }
+
     .detail-header {
       padding: var(--pad);
       border-bottom: 1px solid var(--stroke);
@@ -70,6 +78,7 @@
       min-height: clamp(70px, 8vh, 90px);
       z-index: 10;
     }
+
     .back-btn {
       display: flex;
       align-items: center;
@@ -84,17 +93,20 @@
       transition: all .2s ease;
       cursor: pointer;
     }
+
     .back-btn:hover {
       background: rgba(255,255,255,.14);
       border-color: rgba(255,255,255,.25);
       transform: translateX(-2px);
     }
+
     .game-title-header {
       font-size: clamp(20px, 2.5vw, 32px);
       font-weight: 300;
       letter-spacing: 1px;
       margin: 0;
     }
+
     .download-btn {
       padding: 12px 24px;
       border-radius: 999px;
@@ -111,12 +123,14 @@
       align-items: center;
       gap: 8px;
     }
+
     .download-btn:hover {
       background: linear-gradient(135deg, rgba(100,180,255,.28), rgba(150,100,255,.22));
       border-color: rgba(100,200,255,.5);
       transform: translateY(-1px);
       box-shadow: 0 8px 24px rgba(100,180,255,.3);
     }
+
     .detail-content {
       flex: 1;
       overflow-y: auto;
@@ -126,7 +140,12 @@
       gap: clamp(24px, 3vw, 48px);
       align-items: start;
     }
-    .cover-section { position: sticky; top: 0; }
+
+    .cover-section {
+      position: sticky;
+      top: 0;
+    }
+
     .game-cover {
       width: 100%;
       aspect-ratio: 3 / 4;
@@ -137,7 +156,14 @@
       margin-bottom: clamp(16px, 2vw, 24px);
       position: relative;
     }
-    .game-cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    .game-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
     .game-cover::before {
       content: '';
       position: absolute;
@@ -145,12 +171,14 @@
       background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,.4));
       pointer-events: none;
     }
+
     .info-card {
       border-radius: var(--r-md);
       padding: clamp(16px, 2vw, 22px);
       border: 1px solid var(--stroke);
       background: rgba(255,255,255,.06);
     }
+
     .info-card h3 {
       margin: 0 0 12px;
       font-size: clamp(16px, 1.6vw, 20px);
@@ -158,6 +186,7 @@
       letter-spacing: .8px;
       color: rgba(255,255,255,.86);
     }
+
     .info-item {
       padding: 10px 0;
       border-bottom: 1px solid rgba(255,255,255,.06);
@@ -166,17 +195,23 @@
       align-items: center;
       gap: 12px;
     }
-    .info-item:last-child { border-bottom: none; }
+
+    .info-item:last-child {
+      border-bottom: none;
+    }
+
     .info-label {
       color: var(--muted);
       font-size: clamp(12px, 1.05vw, 14px);
       letter-spacing: .5px;
     }
+
     .info-value {
       color: var(--text);
       font-size: clamp(13px, 1.1vw, 15px);
       font-weight: 500;
     }
+
     .content-section h2 {
       margin: 0 0 clamp(14px, 1.8vw, 20px);
       font-size: clamp(22px, 2.2vw, 28px);
@@ -186,6 +221,7 @@
       padding-bottom: 10px;
       border-bottom: 1px solid var(--stroke);
     }
+
     .description-box {
       border-radius: var(--r-md);
       padding: clamp(18px, 2.2vw, 26px);
@@ -196,14 +232,22 @@
       font-size: clamp(13px, 1.15vw, 15px);
       color: rgba(255,255,255,.82);
     }
-    .description-box p { margin: 0 0 12px; }
-    .description-box p:last-child { margin-bottom: 0; }
+
+    .description-box p {
+      margin: 0 0 12px;
+    }
+
+    .description-box p:last-child {
+      margin-bottom: 0;
+    }
+
     .loading-state {
       text-align: center;
       padding: 40px 20px;
       color: var(--muted);
       font-style: italic;
     }
+
     .trailer-container {
       position: relative;
       width: 100%;
@@ -214,6 +258,7 @@
       box-shadow: var(--shadow);
       background: rgba(0,0,0,.3);
     }
+
     .trailer-container iframe {
       position: absolute;
       top: 0;
@@ -222,6 +267,7 @@
       height: 100%;
       border: 0;
     }
+
     .error-message {
       padding: 20px;
       border-radius: var(--r-md);
@@ -231,35 +277,58 @@
       text-align: center;
       font-size: clamp(13px, 1.1vw, 14px);
     }
+
     @media (max-width: 1200px) {
-      .detail-content { grid-template-columns: 1fr; }
+      .detail-content {
+        grid-template-columns: 1fr;
+      }
+
       .cover-section {
         position: static;
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: var(--gap);
       }
-      .game-cover { margin-bottom: 0; }
+
+      .game-cover {
+        margin-bottom: 0;
+      }
     }
+
     @media (max-width: 768px) {
-      .detail-header { flex-wrap: wrap; }
-      .game-title-header { width: 100%; order: -1; margin-bottom: 8px; }
-      .cover-section { grid-template-columns: 1fr; }
+      .detail-header {
+        flex-wrap: wrap;
+      }
+
+      .game-title-header {
+        width: 100%;
+        order: -1;
+        margin-bottom: 8px;
+      }
+
+      .cover-section {
+        grid-template-columns: 1fr;
+      }
     }
-    .detail-content::-webkit-scrollbar { width: 10px; }
+
+    .detail-content::-webkit-scrollbar {
+      width: 10px;
+    }
+
     .detail-content::-webkit-scrollbar-track {
       background: rgba(255,255,255,.03);
       border-radius: 10px;
     }
+
     .detail-content::-webkit-scrollbar-thumb {
       background: rgba(255,255,255,.15);
       border-radius: 10px;
     }
+
     .detail-content::-webkit-scrollbar-thumb:hover {
       background: rgba(255,255,255,.22);
     }
     
-    /* Cacher le widget Google Translate */
     .goog-te-banner-frame, .goog-te-gadget { display: none !important; }
     body { top: 0 !important; }
   </style>
@@ -321,6 +390,7 @@
   </div>
 
   <script>
+    // ⚠️ IMPORTANT: Remplace par l'URL de ton Cloudflare Worker
     const WORKER_URL = 'https://crackuzu-api.crackuzu.workers.dev';
 
     const urlParams = new URLSearchParams(window.location.search);
@@ -332,21 +402,20 @@
 
     let currentGame = null;
 
-    // 🔥 FONCTION DE TRADUCTION Google Translate (GRATUIT, SANS LIMITE)
+    // 🔥 Traduction Google Translate
     async function translateText(text, targetLang = 'fr') {
       try {
         const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=${targetLang}&dt=t&q=${encodeURIComponent(text)}`;
         const response = await fetch(url);
         const data = await response.json();
         
-        // Extraire le texte traduit
         if (data && data[0]) {
           return data[0].map(item => item[0]).join('');
         }
         return text;
       } catch (error) {
         console.error('Translation error:', error);
-        return text; // Retourne le texte original si erreur
+        return text;
       }
     }
 
@@ -382,7 +451,7 @@
       }
     }
 
-    // 🔥 Fetch synopsis + TRADUCTION AUTOMATIQUE
+    // Synopsis avec traduction
     async function fetchSynopsis(gameName) {
       const descContainer = document.getElementById('descriptionContent');
 
@@ -430,17 +499,30 @@
         descContainer.innerHTML = `
           <div class="description-box">
             <p><strong>${gameName}</strong> est disponible au téléchargement via CRACKUZU.</p>
-            <p>Ce titre fait partie de notre collection de jeux. Pour télécharger ce jeu, cliquez sur le bouton "Télécharger" ci-dessus.</p>
+            <p>Ce titre fait partie de notre collection de jeux. Pour télécharger ce jeu, cliquez sur le bouton "Télécharger" ci-dessus pour obtenir le lien magnet.</p>
+            
+            <p><strong>Comment télécharger :</strong></p>
+            <p>
+              1. Assurez-vous d'avoir un client torrent installé (qBittorrent recommandé)<br>
+              2. Cliquez sur le bouton de téléchargement<br>
+              3. Votre client torrent s'ouvrira automatiquement<br>
+              4. Une fois le téléchargement terminé, suivez les instructions d'installation incluses
+            </p>
+            
+            <p style="margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.08); font-size: 12px; opacity: 0.7;">
+              <em>Synopsis non disponible.</em>
+            </p>
           </div>
         `;
       }
     }
 
+    // 🔥 CODE YOUTUBE ORIGINAL (qui fonctionnait)
     async function fetchTrailer(gameName) {
       const trailerContainer = document.getElementById('trailerContent');
 
       try {
-        const searchQuery = `${gameName} game gameplay trailer`;
+        const searchQuery = `${gameName} game trailer`; // ← RETOUR À L'ORIGINAL
         
         const response = await fetch(`${WORKER_URL}/api/youtube?q=${encodeURIComponent(searchQuery)}`);
 
@@ -451,6 +533,7 @@
         const data = await response.json();
 
         if (data.videoId) {
+          console.log('Found video ID:', data.videoId);
           trailerContainer.innerHTML = `
             <div class="trailer-container">
               <iframe 
@@ -472,9 +555,36 @@
         const searchQuery2 = encodeURIComponent(`${gameName} game trailer`);
         trailerContainer.innerHTML = `
           <div style="padding: 60px 30px; text-align: center; border-radius: var(--r-md); border: 1px solid var(--stroke); background: rgba(255,255,255,.04);">
-            <p style="color: var(--muted); margin-bottom: 24px;">Trailer non disponible</p>
-            <a href="https://www.youtube.com/results?search_query=${searchQuery2}" target="_blank" style="color: rgba(100,180,255,.8);">
-              Voir sur YouTube
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="rgba(255,100,100,.6)" style="margin-bottom: 20px;">
+              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+            <p style="color: var(--muted); margin-bottom: 24px; font-size: 14px;">
+              Le trailer n'a pas pu être chargé automatiquement.<br>
+              Cliquez ci-dessous pour le voir sur YouTube.
+            </p>
+            <a href="https://www.youtube.com/results?search_query=${searchQuery2}" 
+               target="_blank"
+               style="
+                 display: inline-flex;
+                 align-items: center;
+                 gap: 10px;
+                 padding: 14px 28px;
+                 border-radius: 999px;
+                 border: 1px solid rgba(100,200,255,.3);
+                 background: linear-gradient(135deg, rgba(100,180,255,.18), rgba(150,100,255,.12));
+                 color: var(--text);
+                 text-decoration: none;
+                 font-size: 15px;
+                 font-weight: 520;
+                 letter-spacing: .5px;
+                 transition: all .2s ease;
+               "
+               onmouseover="this.style.background='linear-gradient(135deg, rgba(100,180,255,.28), rgba(150,100,255,.22))'; this.style.transform='translateY(-2px)';"
+               onmouseout="this.style.background='linear-gradient(135deg, rgba(100,180,255,.18), rgba(150,100,255,.12))'; this.style.transform='translateY(0)';">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+              </svg>
+              Voir le trailer sur YouTube
             </a>
           </div>
         `;
