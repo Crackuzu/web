@@ -6,7 +6,7 @@
   <title id="pageTitle">CRACKUZU</title>
   <style>
     :root {
-      --bg0: #0b0e12;  /* ✅ CORRIGÉ : noir profond */
+      --bg0: #0b0e12;
       --bg1: #10151b;
       --glass: rgba(255,255,255,.065);
       --glass2: rgba(255,255,255,.045);
@@ -78,33 +78,14 @@
       border-color: rgba(255,255,255,.25);
       transform: translateX(-2px);
     }
+    /* ✅ CORRIGÉ : Titre centré */
     .game-title-header {
       font-size: clamp(20px, 2.5vw, 32px);
       font-weight: 300;
       letter-spacing: 1px;
       margin: 0;
-    }
-    .download-btn {
-      padding: 12px 24px;
-      border-radius: 999px;
-      border: 1px solid rgba(100,200,255,.3);
-      background: linear-gradient(135deg, rgba(100,180,255,.18), rgba(150,100,255,.12));
-      color: var(--text);
-      text-decoration: none;
-      font-size: clamp(13px, 1.1vw, 15px);
-      font-weight: 520;
-      letter-spacing: .5px;
-      transition: all .2s ease;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .download-btn:hover {
-      background: linear-gradient(135deg, rgba(100,180,255,.28), rgba(150,100,255,.22));
-      border-color: rgba(100,200,255,.5);
-      transform: translateY(-1px);
-      box-shadow: 0 8px 24px rgba(100,180,255,.3);
+      text-align: center;
+      flex: 1;
     }
     .detail-content {
       flex: 1;
@@ -118,15 +99,26 @@
     .cover-section { position: sticky; top: 0; }
     .game-cover {
       width: 100%;
-      aspect-ratio: 16 / 9;  /* ✅ CHANGÉ : format 16:9 */
+      aspect-ratio: 16 / 9;
       border-radius: var(--r-md);
       overflow: hidden;
       border: 1px solid var(--stroke2);
       box-shadow: var(--shadow);
       margin-bottom: clamp(16px, 2vw, 24px);
       position: relative;
+      background: linear-gradient(135deg, rgba(20,25,35,.8), rgba(10,15,25,.9));
     }
-    .game-cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .game-cover img { 
+      width: 100%; 
+      height: 100%; 
+      object-fit: cover; 
+      display: block;
+      transition: opacity 0.3s ease;
+    }
+    .game-cover.loading img {
+      opacity: 0.5;
+      filter: blur(4px);
+    }
     .game-cover::before {
       content: '';
       position: absolute;
@@ -213,7 +205,7 @@
       font-size: clamp(13px, 1.1vw, 14px);
     }
     
-    /* ✅ NOUVEAU : Section téléchargement sous l'image */
+    /* ✅ Section téléchargement */
     .download-section {
       margin-top: 24px;
       text-align: center;
@@ -257,6 +249,24 @@
       letter-spacing: .3px;
     }
     
+    /* ✅ Loading spinner pour cover */
+    .cover-loading {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 40px;
+      height: 40px;
+      border: 3px solid rgba(255,255,255,.1);
+      border-top-color: rgba(100,180,255,.8);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+      to { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+    
     @media (max-width: 1200px) {
       .detail-content { grid-template-columns: 1fr; }
       .cover-section {
@@ -268,8 +278,16 @@
       .game-cover { margin-bottom: 0; }
     }
     @media (max-width: 768px) {
-      .detail-header { flex-wrap: wrap; }
-      .game-title-header { width: 100%; order: -1; margin-bottom: 8px; }
+      .detail-header { 
+        flex-wrap: wrap; 
+        justify-content: center; 
+      }
+      .back-btn { order: 1; }
+      .game-title-header { 
+        width: 100%; 
+        order: 2; 
+        margin: 12px 0; 
+      }
       .cover-section { grid-template-columns: 1fr; }
     }
     .detail-content::-webkit-scrollbar { width: 10px; }
@@ -289,15 +307,16 @@
           Retour
         </a>
         <h1 class="game-title-header" id="gameTitle">Chargement...</h1>
-        <!-- ❌ BOUTON TÉLÉCHARGEMENT RETIRÉ DU HEADER -->
+        <!-- Espace vide pour équilibrer -->
+        <div style="width: 100px; visibility: hidden;"></div>
       </div>
       <div class="detail-content">
         <div class="cover-section">
-          <div class="game-cover">
-            <img id="gameCover" src="" alt="Game Cover">
+          <div class="game-cover" id="gameCoverContainer">
+            <div class="cover-loading" id="coverLoading"></div>
+            <img id="gameCoverImg" src="" alt="Game Cover">
           </div>
           
-          <!-- ✅ NOUVEAU : Bouton téléchargement sous l'image -->
           <div class="download-section">
             <a href="#" class="big-download-btn" id="gameDownloadBtn" style="display:none;">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -362,6 +381,55 @@
       }
     }
 
+    // ✅ NOUVELLE FONCTION : Fetch cover 16:9
+    async function fetchGameCover(gameName) {
+      const coverContainer = document.getElementById('gameCoverContainer');
+      const coverImg = document.getElementById('gameCoverImg');
+      const coverLoading = document.getElementById('coverLoading');
+      
+      // Afficher le loading
+      coverContainer.classList.add('loading');
+      coverLoading.style.display = 'block';
+      
+      try {
+        // Essaie d'abord l'API worker pour une cover 16:9
+        const response = await fetch(`${WORKER_URL}/api/cover?game=${encodeURIComponent(gameName)}`);
+        
+        if (response.ok) {
+          const data = await response.json();
+          
+          if (data.coverUrl) {
+            // Utilise la cover 16:9 de l'API
+            coverImg.src = data.coverUrl;
+            coverImg.onload = () => {
+              coverContainer.classList.remove('loading');
+              coverLoading.style.display = 'none';
+            };
+            coverImg.onerror = () => {
+              // Fallback sur l'image de data.json si l'API échoue
+              loadFallbackCover();
+            };
+            return;
+          }
+        }
+        
+        // Fallback sur l'image de data.json
+        loadFallbackCover();
+        
+      } catch (error) {
+        console.error('Error fetching cover:', error);
+        loadFallbackCover();
+      }
+      
+      function loadFallbackCover() {
+        if (currentGame && currentGame.cover) {
+          coverImg.src = currentGame.cover;
+          coverContainer.classList.remove('loading');
+          coverLoading.style.display = 'none';
+        }
+      }
+    }
+
     async function loadGameData() {
       try {
         const response = await fetch('data.json');
@@ -371,11 +439,12 @@
 
         document.getElementById('pageTitle').textContent = `${currentGame.name} - CRACKUZU`;
         document.getElementById('gameTitle').textContent = currentGame.name;
-        document.getElementById('gameCover').src = currentGame.cover;
-        document.getElementById('gameCover').alt = currentGame.name;
         document.getElementById('gameCategory').textContent = currentGame.cat.toUpperCase();
 
-        // ✅ CHANGÉ : Utilise le nouveau bouton sous l'image
+        // ✅ Fetch cover 16:9 via API
+        fetchGameCover(currentGame.name);
+
+        // Bouton téléchargement
         const downloadBtn = document.getElementById('gameDownloadBtn');
         downloadBtn.href = currentGame.magnet;
         downloadBtn.style.display = 'inline-flex';
