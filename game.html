@@ -6,7 +6,7 @@
   <title id="pageTitle">CRACKUZU</title>
   <style>
     :root {
-      --bg0: #00b0e12;
+      --bg0: #0b0e12;  /* ✅ CORRIGÉ : noir profond */
       --bg1: #10151b;
       --glass: rgba(255,255,255,.065);
       --glass2: rgba(255,255,255,.045);
@@ -118,7 +118,7 @@
     .cover-section { position: sticky; top: 0; }
     .game-cover {
       width: 100%;
-      aspect-ratio: 3 / 4;
+      aspect-ratio: 16 / 9;  /* ✅ CHANGÉ : format 16:9 */
       border-radius: var(--r-md);
       overflow: hidden;
       border: 1px solid var(--stroke2);
@@ -212,6 +212,51 @@
       text-align: center;
       font-size: clamp(13px, 1.1vw, 14px);
     }
+    
+    /* ✅ NOUVEAU : Section téléchargement sous l'image */
+    .download-section {
+      margin-top: 24px;
+      text-align: center;
+    }
+    
+    .big-download-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      width: 100%;
+      padding: 18px 24px;
+      border-radius: var(--r-md);
+      border: 1px solid rgba(100,200,255,.3);
+      background: linear-gradient(135deg, rgba(100,180,255,.15), rgba(150,100,255,.10));
+      color: white;
+      text-decoration: none;
+      font-size: clamp(16px, 1.4vw, 18px);
+      font-weight: 600;
+      letter-spacing: .5px;
+      transition: all 0.25s ease;
+      box-shadow: 0 8px 32px rgba(0,0,0,.3);
+    }
+    
+    .big-download-btn:hover {
+      background: linear-gradient(135deg, rgba(100,180,255,.25), rgba(150,100,255,.20));
+      border-color: rgba(100,200,255,.5);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(100,180,255,.4);
+    }
+    
+    .big-download-btn svg {
+      width: 24px;
+      height: 24px;
+    }
+    
+    .magnet-info {
+      margin-top: 10px;
+      color: rgba(255,255,255,.5);
+      font-size: 12px;
+      letter-spacing: .3px;
+    }
+    
     @media (max-width: 1200px) {
       .detail-content { grid-template-columns: 1fr; }
       .cover-section {
@@ -244,18 +289,29 @@
           Retour
         </a>
         <h1 class="game-title-header" id="gameTitle">Chargement...</h1>
-        <a href="#" class="download-btn" id="downloadBtn" style="display:none;">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
-          </svg>
-          Télécharger
-        </a>
+        <!-- ❌ BOUTON TÉLÉCHARGEMENT RETIRÉ DU HEADER -->
       </div>
       <div class="detail-content">
         <div class="cover-section">
           <div class="game-cover">
             <img id="gameCover" src="" alt="Game Cover">
           </div>
+          
+          <!-- ✅ NOUVEAU : Bouton téléchargement sous l'image -->
+          <div class="download-section">
+            <a href="#" class="big-download-btn" id="gameDownloadBtn" style="display:none;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              <span>Télécharger via Torrent</span>
+            </a>
+            <div class="magnet-info">
+              <small>Format: Magnet Link • Utilise un client torrent</small>
+            </div>
+          </div>
+          
           <div class="info-card">
             <h3>Informations</h3>
             <div class="info-item">
@@ -319,9 +375,10 @@
         document.getElementById('gameCover').alt = currentGame.name;
         document.getElementById('gameCategory').textContent = currentGame.cat.toUpperCase();
 
-        const downloadBtn = document.getElementById('downloadBtn');
+        // ✅ CHANGÉ : Utilise le nouveau bouton sous l'image
+        const downloadBtn = document.getElementById('gameDownloadBtn');
         downloadBtn.href = currentGame.magnet;
-        downloadBtn.style.display = 'flex';
+        downloadBtn.style.display = 'inline-flex';
 
         fetchSynopsis(currentGame.name);
         fetchTrailer(currentGame.name);
@@ -370,7 +427,7 @@
         descContainer.innerHTML = `
           <div class="description-box">
             <p><strong>${gameName}</strong> est disponible au téléchargement via CRACKUZU.</p>
-            <p>Pour télécharger ce jeu, cliquez sur le bouton "Télécharger" ci-dessus.</p>
+            <p>Pour télécharger ce jeu, cliquez sur le bouton "Télécharger via Torrent" ci-dessus.</p>
           </div>
         `;
       }
