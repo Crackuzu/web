@@ -502,87 +502,87 @@
       }
     }
 
-async function fetchTrailer(gameName) {
-  const trailerContainer = document.getElementById('trailerContent');
-  
-  try {
-    const searchQuery = `${gameName} game`;
-    console.log('Fetching trailer for:', gameName);
-    
-    const response = await fetch(`${WORKER_URL}/api/youtube?q=${encodeURIComponent(searchQuery)}`);
-    const responseText = await response.text();
-    
-    console.log('Trailer API response status:', response.status);
-    console.log('Trailer API response:', responseText.substring(0, 200));
-    
-    if (!response.ok) {
-      throw new Error(`Worker returned ${response.status}`);
+    async function fetchTrailer(gameName) {
+      const trailerContainer = document.getElementById('trailerContent');
+      
+      try {
+        const searchQuery = `${gameName} game`;
+        console.log('Fetching trailer for:', gameName);
+        
+        const response = await fetch(`${WORKER_URL}/api/youtube?q=${encodeURIComponent(searchQuery)}`);
+        const responseText = await response.text();
+        
+        console.log('Trailer API response status:', response.status);
+        console.log('Trailer API response:', responseText.substring(0, 200));
+        
+        if (!response.ok) {
+          throw new Error(`Worker returned ${response.status}`);
+        }
+
+        const data = JSON.parse(responseText);
+        
+        if (data.videoId) {
+          trailerContainer.innerHTML = `
+            <div class="trailer-container">
+              <iframe 
+                src="https://www.youtube-nocookie.com/embed/${data.videoId}?rel=0&modestbranding=1&autoplay=0"
+                title="Trailer ${gameName}"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+                loading="lazy">
+              </iframe>
+            </div>
+            <div style="margin-top: 12px; text-align: center; color: rgba(255,255,255,.6); font-size: 13px;">
+              <a href="https://www.youtube.com/watch?v=${data.videoId}" target="_blank" 
+                 style="color: rgba(100,180,255,.8); text-decoration: none;">
+                📺 Ouvrir sur YouTube
+              </a>
+            </div>
+          `;
+          return;
+        }
+        
+        // Si pas de videoId, afficher le fallback amélioré
+        showTrailerFallback(gameName);
+        
+      } catch (error) {
+        console.error('Error fetching trailer:', error);
+        showTrailerFallback(gameName);
+      }
     }
 
-    const data = JSON.parse(responseText);
-    
-    if (data.videoId) {
+    function showTrailerFallback(gameName) {
+      const trailerContainer = document.getElementById('trailerContent');
+      const searchQuery2 = encodeURIComponent(`${gameName} game trailer official`);
+      
       trailerContainer.innerHTML = `
-        <div class="trailer-container">
-          <iframe 
-            src="https://www.youtube-nocookie.com/embed/${data.videoId}?rel=0&modestbranding=1&autoplay=0"
-            title="Trailer ${gameName}"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
-            loading="lazy">
-          </iframe>
-        </div>
-        <div style="margin-top: 12px; text-align: center; color: rgba(255,255,255,.6); font-size: 13px;">
-          <a href="https://www.youtube.com/watch?v=${data.videoId}" target="_blank" 
-             style="color: rgba(100,180,255,.8); text-decoration: none;">
-            📺 Ouvrir sur YouTube
+        <div style="padding: 40px 20px; text-align: center; border-radius: var(--r-md); border: 1px solid var(--stroke); background: rgba(255,255,255,.04);">
+          <div style="margin-bottom: 20px;">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.3)" stroke-width="1.5">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+              <polygon points="10 8 16 12 10 16 10 8"></polygon>
+            </svg>
+          </div>
+          <p style="color: var(--muted); margin-bottom: 16px; font-size: 15px;">
+            Trailer non disponible directement
+          </p>
+          <p style="color: rgba(255,255,255,.5); margin-bottom: 24px; font-size: 13px;">
+            Recherchez manuellement sur YouTube
+          </p>
+          <a href="https://www.youtube.com/results?search_query=${searchQuery2}" target="_blank" 
+             class="big-download-btn" style="display: inline-flex; padding: 12px 24px; font-size: 14px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 8px;">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polygon points="10 8 16 12 10 16 10 8"></polygon>
+            </svg>
+            🔍 Rechercher sur YouTube
           </a>
+          <div style="margin-top: 16px; color: rgba(255,255,255,.4); font-size: 12px;">
+            API YouTube limitée • Essayez manuellement
+          </div>
         </div>
       `;
-      return;
     }
-    
-    // Si pas de videoId, afficher le fallback amélioré
-    showTrailerFallback(gameName);
-    
-  } catch (error) {
-    console.error('Error fetching trailer:', error);
-    showTrailerFallback(gameName);
-  }
-}
-
-function showTrailerFallback(gameName) {
-  const trailerContainer = document.getElementById('trailerContent');
-  const searchQuery2 = encodeURIComponent(`${gameName} game trailer official`);
-  
-  trailerContainer.innerHTML = `
-    <div style="padding: 40px 20px; text-align: center; border-radius: var(--r-md); border: 1px solid var(--stroke); background: rgba(255,255,255,.04);">
-      <div style="margin-bottom: 20px;">
-        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.3)" stroke-width="1.5">
-          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-          <polygon points="10 8 16 12 10 16 10 8"></polygon>
-        </svg>
-      </div>
-      <p style="color: var(--muted); margin-bottom: 16px; font-size: 15px;">
-        Trailer non disponible directement
-      </p>
-      <p style="color: rgba(255,255,255,.5); margin-bottom: 24px; font-size: 13px;">
-        Recherchez manuellement sur YouTube
-      </p>
-      <a href="https://www.youtube.com/results?search_query=${searchQuery2}" target="_blank" 
-         class="big-download-btn" style="display: inline-flex; padding: 12px 24px; font-size: 14px;">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 8px;">
-          <circle cx="12" cy="12" r="10"></circle>
-          <polygon points="10 8 16 12 10 16 10 8"></polygon>
-        </svg>
-        🔍 Rechercher sur YouTube
-      </a>
-      <div style="margin-top: 16px; color: rgba(255,255,255,.4); font-size: 12px;">
-        API YouTube limitée • Essayez manuellement
-      </div>
-    </div>
-  `;
-}
 
     loadGameData();
   </script>
