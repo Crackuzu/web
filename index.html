@@ -863,8 +863,8 @@
 
   <script>
     const ADMIN_PASSWORD = "admin123";
-    const REPO_OWNER = "yourusername";
-    const REPO_NAME = "yourrepo";
+    const REPO_OWNER = "Crackuzu";
+    const REPO_NAME = "web";
     const REPO_BRANCH = "main";
     const REPO_PATH = "data.json";
     const LOCAL_KEY = "crackuzu_draft_v3";
@@ -1217,6 +1217,18 @@
     }
 
     async function loadDataFromRepo(){
+      // Essayer de charger depuis le fichier local d'abord
+      try{
+        const res = await fetch('data.json');
+        if(res.ok){
+          const json = await res.json();
+          return sanitizeData(json);
+        }
+      }catch(e){
+        console.log("Fetch local failed, trying GitHub...", e);
+      }
+      
+      // Sinon essayer GitHub
       const url = `https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/${REPO_BRANCH}/${REPO_PATH}`;
       try{
         const res = await fetch(url);
