@@ -29,6 +29,8 @@
       --shadow2: 0 18px 46px rgba(0,0,0,.45);
 
       --side: clamp(250px, 20vw, 330px);
+
+      /* Cards: fixed-ish size -> more columns when window wider */
       --cardW: clamp(140px, 10.5vw, 185px);
     }
 
@@ -315,32 +317,23 @@
       font-size: clamp(13px, 1.1vw, 14px);
       color: rgba(255,255,255,.95);
     }
-    .cinfo .catpill{
+    
+    /* ✅ MODIFIÉ : Affichage multi-catégories */
+    .catpills{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 4px;
+      margin-top: 2px;
+    }
+    .catpill{
       display:inline-flex;
       align-self:flex-start;
       background: rgba(255,255,255,.16);
       border: 1px solid rgba(255,255,255,.30);
-      padding: clamp(3px, .4vw, 4px) clamp(7px, .8vw, 9px);
+      padding: clamp(2px, .3vw, 3px) clamp(5px, .6vw, 7px);
       border-radius: 999px;
-      font-size: clamp(10px, .92vw, 11px);
+      font-size: clamp(9px, .8vw, 10px);
       color: rgba(255,255,255,.85);
-      letter-spacing: .8px;
-    }
-
-    /* Multi-categories tags */
-    .catTags{
-      display: flex;
-      flex-wrap: wrap;
-      gap: 4px;
-      margin-top: 6px;
-    }
-    .catTags .miniPill{
-      background: rgba(100,180,255,.20);
-      border: 1px solid rgba(100,180,255,.35);
-      padding: 2px 6px;
-      border-radius: 999px;
-      font-size: 9px;
-      color: rgba(200,220,255,.90);
       letter-spacing: .5px;
     }
 
@@ -614,36 +607,6 @@
     }
     .toast.show{ opacity:1; }
 
-    /* Catégories auto */
-    .autoCatSection{
-      margin-top: 16px;
-      padding: 16px;
-      background: rgba(100,180,255,.08);
-      border: 1px solid rgba(100,180,255,.15);
-      border-radius: 12px;
-    }
-    .autoCatTags{
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 12px;
-    }
-    .autoCatTag{
-      background: rgba(100,180,255,.15);
-      border: 1px solid rgba(100,180,255,.30);
-      padding: 6px 12px;
-      border-radius: 999px;
-      font-size: 13px;
-      color: rgba(200,220,255,.95);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .autoCatTag.new{
-      background: rgba(100,255,150,.15);
-      border-color: rgba(100,255,150,.30);
-    }
-
     @media(max-width: 900px){
       .main{ grid-template-columns: 1fr; }
       aside{ display:none; }
@@ -691,64 +654,36 @@
   <div class="modal" id="adminModal" aria-hidden="true">
     <div class="modalBox">
       <div class="modalHeader">
-        <h2>ADMIN PANEL - Catégories Automatiques</h2>
+        <h2>ADMIN PANEL</h2>
         <button class="closeBtn" id="closeAdmin" aria-label="Close">×</button>
       </div>
 
-      <!-- ADD CATEGORY (manuel) -->
-      <div class="adminSect">
-        <h3>Configuration GitHub</h3>
-        <div class="formRow">
-          <input type="password" id="githubToken" placeholder="GitHub Token (ghp_...)" value="" />
-          <button class="iconBtn" id="saveTokenBtn">💾 Sauvegarder</button>
-        </div>
-        <div style="font-size: 12px; color: rgba(255,255,255,.55); margin-top: 8px;">
-          Le token est stocké localement dans ton navigateur (jamais dans le code).
-        </div>
-      </div>
-
-      <!-- ADD CATEGORY (manuel) -->
+      <!-- ADD CATEGORY (optionnel maintenant) -->
       <div class="adminSect">
         <h3>Ajouter une catégorie manuellement</h3>
         <div class="formRow">
-          <input type="text" id="catName" placeholder="NOM EN MAJUSCULE" />
+          <input type="text" id="catName" placeholder="NOM EN MAJUSCULE (optionnel)" />
           <button class="iconBtn" id="addCatBtn">Ajouter</button>
+        </div>
+        <div style="font-size: 12px; color: rgba(255,255,255,.55); margin-top: 4px;">
+          Les catégories se créent automatiquement via RAWG
         </div>
       </div>
 
-      <!-- ADD GAME - NOUVELLE VERSION -->
+      <!-- ADD GAME -->
       <div class="adminSect">
-        <h3 id="gameFormTitle">Ajouter un jeu (Catégories Automatiques)</h3>
+        <h3 id="gameFormTitle">Ajouter un jeu (Auto-catégorisation)</h3>
         <div class="formRow">
-          <input type="text" id="gameName" placeholder="Nom exact du jeu (ex: 'Dying Light')" />
-          <button class="iconBtn" id="searchGameBtn">🔍 Rechercher catégories</button>
+          <input type="text" id="gameName" placeholder="Nom exact du jeu" />
         </div>
-        
-        <!-- Résultat de recherche catégories -->
-        <div id="rawgResult" style="display:none;">
-          <div class="autoCatSection">
-            <h4 style="margin:0 0 8px; font-size:15px; color:rgba(255,255,255,.9);">Catégories détectées:</h4>
-            
-            <div id="rawgTitle" style="font-weight:600; color:rgba(255,255,255,.95); margin-bottom:8px;"></div>
-            
-            <h5 style="margin:12px 0 8px; font-size:14px; color:rgba(255,255,255,.9);">Catégories qui seront ajoutées:</h5>
-            <div class="autoCatTags" id="autoCatTags"></div>
-            
-            <div style="margin-top:12px; font-size:12px; color:rgba(255,255,255,.6);">
-              <em>Les catégories en vert seront créées automatiquement</em>
-            </div>
-          </div>
-        </div>
-        
         <div class="formRow">
-          <textarea id="gameMagnet" rows="3" placeholder="magnet:?xt=... (obligatoire)"></textarea>
+          <textarea id="gameMagnet" rows="3" placeholder="magnet:?xt=..."></textarea>
         </div>
 
         <div class="coverGroup">
           <div class="coverLine">
-            <label>Cover URL (ou Ctrl+V pour coller une image)</label>
+            <label>Cover URL (Ctrl+V pour uploader)</label>
           </div>
-
           <div class="coverInputWrap active" id="linkWrap">
             <input type="text" id="gameCoverLink" placeholder="https://...image.jpg ou Ctrl+V pour uploader" />
           </div>
@@ -760,21 +695,14 @@
 
         <input type="hidden" id="gameCover" />
 
-        <!-- Section pour catégories manuelles additionnelles -->
-        <div class="adminSect" style="margin-top:24px;">
-          <h4>Ajouter des catégories manuellement (optionnel)</h4>
-          <div class="formRow" style="align-items:center;">
-            <select id="additionalCatSelect" style="flex:1;">
-              <option value="">Sélectionner une catégorie existante</option>
-            </select>
-            <button class="iconBtn" id="addAdditionalCatBtn">+ Ajouter</button>
-          </div>
-          <div id="manualCatTags" class="autoCatTags" style="margin-top:12px;"></div>
-          <input type="hidden" id="additionalCategories" value="" />
+        <!-- ✅ NOUVEAU : Affichage catégories détectées -->
+        <div id="detectedCats" style="margin-top: 16px; display:none;">
+          <h4 style="margin: 0 0 8px; font-size: 14px; color: rgba(255,255,255,.7);">Catégories détectées :</h4>
+          <div id="catTags" style="display:flex; flex-wrap:wrap; gap: 6px;"></div>
         </div>
 
         <div class="formRow" style="margin-top:18px;">
-          <button class="bigBtn" id="addGameBtn">Ajouter le jeu</button>
+          <button class="bigBtn" id="addGameBtn">🚀 Ajouter avec auto-catégorisation</button>
           <button class="bigBtn" id="saveEditBtn" style="display:none;">Sauvegarder modif</button>
           <button class="iconBtn" id="cancelEditBtn" style="display:none;">Annuler</button>
         </div>
@@ -808,10 +736,7 @@
   <div class="toast" id="toast"></div>
 
   <script>
-    // ========== CONFIGURATION ==========
-    const CATEGORIES_WORKER_URL = 'https://crackuzu-categories.crackuzu.workers.dev';
-    const WORKER_URL = 'https://crackuzu-api.crackuzu.workers.dev'; // Pour le reste
-    
+    // ========== GITHUB CONFIG ==========
     const GITHUB_CONFIG = {
       token: "",
       owner: "Crackuzu",
@@ -819,13 +744,15 @@
       branch: "main",
       path: "data.json"
     };
-    
+
+    // ⚠️ CONFIGURE TON WORKER ICI
+    const WORKER_URL = 'https://crackuzu-api.crackuzu.workers.dev';
+
     const ADMIN_PASSWORD = "141592";
     const LOCAL_KEY = "crackuzu_local_draft";
 
-    // Structure par défaut AVEC multi-catégories
     const DEFAULT_DATA = {
-      categories: ["ONLINE", "HORROR", "ACTION", "CAR RACE", "RESIDENT EVIL", "SURVIVAL", "SOLO", "SIMULATOR"],
+      categories: ["ONLINE", "HORROR", "ACTION", "CAR RACE"],
       games: []
     };
 
@@ -833,14 +760,12 @@
       data: structuredClone(DEFAULT_DATA),
       adminUnlocked: false,
       activeCat: "ALL",
-      query: "",
-      rawgGameData: null, // Stocke les données RAWG pendant l'ajout
-      additionalCategories: [] // Catégories manuelles additionnelles
+      query: ""
     };
 
     let editIndex = null;
+    let detectedCategories = [];
 
-    // ========== ÉLÉMENTS DOM ==========
     const q = document.getElementById("q");
     const catlist = document.getElementById("catlist");
     const catCount = document.getElementById("catCount");
@@ -852,9 +777,6 @@
     const adminPill = document.getElementById("adminPill");
     const adminEntry = document.getElementById("adminEntry");
 
-    const githubToken = document.getElementById("githubToken");
-    const saveTokenBtn = document.getElementById("saveTokenBtn");
-
     const catName = document.getElementById("catName");
     const addCatBtn = document.getElementById("addCatBtn");
 
@@ -863,16 +785,6 @@
     const gameMagnet = document.getElementById("gameMagnet");
     const gameCover = document.getElementById("gameCover");
     const gameCoverLink = document.getElementById("gameCoverLink");
-    const searchGameBtn = document.getElementById("searchGameBtn");
-
-    const rawgResult = document.getElementById("rawgResult");
-    const rawgTitle = document.getElementById("rawgTitle");
-    const autoCatTags = document.getElementById("autoCatTags");
-
-    const additionalCatSelect = document.getElementById("additionalCatSelect");
-    const addAdditionalCatBtn = document.getElementById("addAdditionalCatBtn");
-    const manualCatTags = document.getElementById("manualCatTags");
-    const additionalCategoriesInput = document.getElementById("additionalCategories");
 
     const previewWrap = document.getElementById("previewWrap");
     const previewImg = document.getElementById("previewImg");
@@ -892,58 +804,24 @@
 
     const toast = document.getElementById("toast");
 
+    const detectedCatsDiv = document.getElementById("detectedCats");
+    const catTagsDiv = document.getElementById("catTags");
+
     // ========== HELPERS ==========
     function norm(s){ return (s || "").trim(); }
     function upper(s){ return (s || "").toUpperCase().trim(); }
     
-    // CORRECTION CRITIQUE: Fonction de sanitization qui gère l'ancien format 'cat' et le nouveau 'categories'
     function sanitizeData(obj){
-      const result = {
-        categories: Array.isArray(obj.categories) ? obj.categories.map(upper).filter(Boolean) : [],
-        games: []
+      return {
+        categories: Array.isArray(obj.categories) ? obj.categories.map(upper).filter(Boolean).filter(c => c !== "ALL") : [],
+        games: Array.isArray(obj.games) ? obj.games.map(g => ({
+          name: norm(g.name) || "",
+          cat: upper(g.cat) || "",
+          magnet: norm(g.magnet) || "",
+          cover: norm(g.cover) || "",
+          autoCat: g.autoCat || false
+        })) : []
       };
-      
-      // Traiter chaque jeu
-      if (Array.isArray(obj.games)) {
-        result.games = obj.games.map(g => {
-          // Déterminer les catégories (support ancien format 'cat' et nouveau 'categories')
-          let categories = [];
-          
-          if (Array.isArray(g.categories)) {
-            // Nouveau format: categories est un array
-            categories = g.categories.map(upper).filter(Boolean);
-          } else if (g.cat) {
-            // Ancien format: cat est une string
-            categories = [upper(g.cat)].filter(Boolean);
-          }
-          
-          // S'assurer qu'il y a au moins une catégorie
-          if (categories.length === 0) {
-            categories = ['ACTION']; // Catégorie par défaut
-          }
-          
-          return {
-            name: norm(g.name) || "",
-            categories: categories,
-            magnet: norm(g.magnet) || "",
-            cover: norm(g.cover) || ""
-          };
-        });
-      }
-      
-      // S'assurer que toutes les catégories des jeux sont dans la liste globale
-      result.games.forEach(game => {
-        game.categories.forEach(cat => {
-          if (!result.categories.includes(cat)) {
-            result.categories.push(cat);
-          }
-        });
-      });
-      
-      // Trier et dédupliquer les catégories
-      result.categories = [...new Set(result.categories)].sort();
-      
-      return result;
     }
 
     function toastMsg(msg){
@@ -970,109 +848,111 @@
       }catch{ return null; }
     }
 
-    // ========== GITHUB TOKEN ==========
-    function loadGithubToken(){
-      return localStorage.getItem("github_token") || "";
-    }
-    function saveGithubToken(token){
-      localStorage.setItem("github_token", token);
-      GITHUB_CONFIG.token = token;
-    }
-    GITHUB_CONFIG.token = loadGithubToken();
-
-    // ========== RECHERCHE CATÉGORIES ==========
-    async function searchGameCategories(gameName){
+    // ========== AUTO-CATEGORIZATION ==========
+    async function autoCategorizeGame(gameName) {
       try {
-        toastMsg("🔍 Recherche des catégories...");
+        toastMsg("🔍 Analyse des genres RAWG...");
         
-        const response = await fetch(`${CATEGORIES_WORKER_URL}/api/categories?game=${encodeURIComponent(gameName)}`);
+        const response = await fetch(`${WORKER_URL}/api/categorize?game=${encodeURIComponent(gameName)}`);
         
         if (!response.ok) {
-          throw new Error(`API responded with ${response.status}`);
+          throw new Error('Categorization API failed');
         }
-        
+
         const data = await response.json();
         
-        // Stocker les données de catégories
-        state.rawgGameData = data;
-        
-        // Afficher les résultats
-        rawgResult.style.display = "block";
-        rawgTitle.textContent = data.rawgName || gameName;
-        
-        // Afficher les catégories détectées
-        autoCatTags.innerHTML = "";
         if (data.categories && data.categories.length > 0) {
+          detectedCategories = data.categories;
+          
+          // Afficher les catégories détectées
+          detectedCatsDiv.style.display = 'block';
+          catTagsDiv.innerHTML = '';
+          
           data.categories.forEach(cat => {
-            const isNew = !state.data.categories.includes(cat);
-            const tag = document.createElement("div");
-            tag.className = `autoCatTag ${isNew ? 'new' : ''}`;
-            tag.innerHTML = `${cat} ${isNew ? '<span style="font-size:10px;">(NEW)</span>' : ''}`;
-            autoCatTags.appendChild(tag);
+            const tag = document.createElement('span');
+            tag.className = 'catpill';
+            tag.textContent = cat;
+            catTagsDiv.appendChild(tag);
+            
+            // Ajouter la catégorie si elle n'existe pas
+            if (!state.data.categories.includes(cat) && cat !== "ALL") {
+              state.data.categories.push(cat);
+            }
           });
-        } else {
-          autoCatTags.innerHTML = '<div style="color:rgba(255,255,255,.6); font-style:italic;">Aucune catégorie détectée</div>';
+          
+          // Mettre à jour l'affichage des catégories
+          renderCategories();
+          renderAdminLists();
+          
+          return data.categories;
         }
-        
-        toastMsg(`✅ ${data.categories ? data.categories.length : 0} catégorie(s) détectée(s)!`);
-        
       } catch (error) {
-        console.error('Categories search error:', error);
-        toastMsg(`❌ Erreur: ${error.message}`);
-        state.rawgGameData = null;
-        rawgResult.style.display = "none";
+        console.error('Auto-categorization failed:', error);
+        // Fallback: utiliser des catégories basées sur le nom
+        const fallbackCats = getFallbackCategories(gameName);
+        detectedCategories = fallbackCats;
+        showDetectedCategories(fallbackCats);
+        return fallbackCats;
       }
+      return [];
     }
 
-    // ========== GESTION CATÉGORIES ADDITIONNELLES ==========
-    function updateAdditionalCatSelect() {
-      additionalCatSelect.innerHTML = '<option value="">Sélectionner une catégorie existante</option>';
-      state.data.categories.forEach(cat => {
-        const opt = document.createElement("option");
-        opt.value = cat;
-        opt.textContent = cat;
-        additionalCatSelect.appendChild(opt);
-      });
-    }
-
-    function addManualCategory(cat) {
-      const catUpper = upper(cat);
-      if (!catUpper || state.additionalCategories.includes(catUpper)) return;
+    function getFallbackCategories(gameName) {
+      const nameLower = gameName.toLowerCase();
+      const cats = [];
       
-      state.additionalCategories.push(catUpper);
-      updateManualCatTags();
-      additionalCategoriesInput.value = state.additionalCategories.join(',');
+      if (nameLower.includes('resident evil') || nameLower.includes('outlast') || 
+          nameLower.includes('horror') || nameLower.includes('phasmo')) {
+        cats.push('HORROR');
+      }
+      
+      if (nameLower.includes('racing') || nameLower.includes('race') || 
+          nameLower.includes('forza') || nameLower.includes('nfs')) {
+        cats.push('CAR RACE');
+      }
+      
+      if (nameLower.includes('simulator') || nameLower.includes('sim') || 
+          nameLower.includes('train') || nameLower.includes('flight')) {
+        cats.push('SIMULATOR');
+      }
+      
+      if (nameLower.includes('spider') || nameLower.includes('assassin') || 
+          nameLower.includes('far cry') || nameLower.includes('action') || 
+          nameLower.includes('elden') || nameLower.includes('payday')) {
+        cats.push('ACTION');
+      }
+      
+      if (nameLower.includes('online') || nameLower.includes('multiplayer') || 
+          nameLower.includes('palworld') || nameLower.includes('payday')) {
+        cats.push('ONLINE');
+      }
+      
+      if (cats.length === 0) {
+        cats.push('GENERAL');
+      }
+      
+      return cats;
     }
 
-    function removeManualCategory(cat) {
-      state.additionalCategories = state.additionalCategories.filter(c => c !== cat);
-      updateManualCatTags();
-      additionalCategoriesInput.value = state.additionalCategories.join(',');
-    }
-
-    function updateManualCatTags() {
-      manualCatTags.innerHTML = "";
-      state.additionalCategories.forEach(cat => {
-        const tag = document.createElement("div");
-        tag.className = "autoCatTag";
-        tag.innerHTML = `${cat} <span style="cursor:pointer; font-size:12px;" onclick="removeManualCategory('${cat}')">×</span>`;
-        manualCatTags.appendChild(tag);
+    function showDetectedCategories(categories) {
+      detectedCatsDiv.style.display = 'block';
+      catTagsDiv.innerHTML = '';
+      
+      categories.forEach(cat => {
+        const tag = document.createElement('span');
+        tag.className = 'catpill';
+        tag.textContent = cat;
+        catTagsDiv.appendChild(tag);
       });
     }
 
-    // ========== COVER INPUT ==========
-    gameCoverLink.addEventListener("input", () => {
-      gameCover.value = norm(gameCoverLink.value);
-      refreshPreview();
-    });
-
-    // ========== CTRL+V IMAGE UPLOAD ==========
+    // ========== CLOUDINARY UPLOAD ==========
     const CLOUDINARY_CLOUD_NAME = "dkcui82mx";
     const CLOUDINARY_UPLOAD_PRESET = "crackuzu";
 
     async function uploadImageToCloudinary(file) {
       try {
-        toastMsg("📤 Upload de l'image en cours...");
+        toastMsg("📤 Upload de l'image...");
         
         const formData = new FormData();
         formData.append('file', file);
@@ -1083,47 +963,37 @@
           { method: 'POST', body: formData }
         );
 
-        if (!response.ok) {
-          const errorData = await response.json();
-          throw new Error(errorData.error?.message || `HTTP ${response.status}`);
-        }
+        if (!response.ok) throw new Error('Upload failed');
 
         const result = await response.json();
-        
-        if (result && result.secure_url) {
-          return result.secure_url;
-        } else {
-          throw new Error('URL non trouvée dans la réponse');
-        }
+        return result.secure_url;
       } catch (error) {
-        console.error('Erreur upload cloudinary:', error);
-        toastMsg("❌ Erreur d'upload: " + error.message);
+        console.error('Cloudinary error:', error);
+        toastMsg("❌ Erreur upload image");
         return null;
       }
     }
 
+    // Gestionnaire Ctrl+V
     document.addEventListener('paste', async (e) => {
       if (!state.adminUnlocked || !adminModal.classList.contains('open')) return;
-      
+
       const items = e.clipboardData?.items;
       if (!items) return;
 
       for (let i = 0; i < items.length; i++) {
         if (items[i].type.indexOf('image') !== -1) {
           e.preventDefault();
-          
           const file = items[i].getAsFile();
           if (!file) continue;
 
           const imageUrl = await uploadImageToCloudinary(file);
-          
           if (imageUrl) {
             gameCoverLink.value = imageUrl;
             gameCover.value = imageUrl;
             refreshPreview();
-            toastMsg("✅ Image uploadée avec succès!");
+            toastMsg("✅ Image uploadée!");
           }
-          
           break;
         }
       }
@@ -1143,30 +1013,27 @@
     // ========== EDIT MODE ==========
     function exitEditMode(){
       editIndex = null;
-      gameFormTitle.textContent = "Ajouter un jeu (Catégories Automatiques)";
+      gameFormTitle.textContent = "Ajouter un jeu (Auto-catégorisation)";
       addGameBtn.style.display = "";
       saveEditBtn.style.display = "none";
       cancelEditBtn.style.display = "none";
+      detectedCatsDiv.style.display = "none";
 
       gameName.value = "";
       gameMagnet.value = "";
       gameCover.value = "";
       gameCoverLink.value = "";
-      
-      state.rawgGameData = null;
-      state.additionalCategories = [];
-      rawgResult.style.display = "none";
-      additionalCategoriesInput.value = "";
-      updateManualCatTags();
-      
+      detectedCategories = [];
       refreshPreview();
     }
+    cancelEditBtn.addEventListener("click", () => {
+      exitEditMode();
+      toastMsg("Annulé");
+    });
 
     // ========== RENDER ==========
     function renderCategories(){
       catlist.innerHTML = "";
-      
-      // Bouton ALL
       const all = document.createElement("div");
       all.className = "catbtn" + (state.activeCat === "ALL" ? " active" : "");
       all.textContent = "ALL";
@@ -1177,8 +1044,10 @@
       });
       catlist.appendChild(all);
 
-      // Catégories existantes
-      state.data.categories.forEach(c => {
+      // Trier les catégories alphabétiquement
+      const sortedCats = [...state.data.categories].sort();
+      
+      sortedCats.forEach(c => {
         const btn = document.createElement("div");
         btn.className = "catbtn" + (state.activeCat === c ? " active" : "");
         btn.textContent = c;
@@ -1189,34 +1058,26 @@
         });
         catlist.appendChild(btn);
       });
-      
-      updateAdditionalCatSelect();
     }
 
-    // CORRECTION CRITIQUE: Fonction renderGames qui fonctionne avec l'ancien et le nouveau format
     function renderGames(){
       const q = norm(state.query).toLowerCase();
-      
       const filtered = state.data.games.filter(g => {
-        // CORRECTION: Vérifier si le jeu a la catégorie active
-        const hasCategory = state.activeCat === "ALL" || 
-                           (g.categories && g.categories.includes(state.activeCat));
+        // ✅ MODIFIÉ : Support multi-catégories séparées par |
+        const gameCats = g.cat.split('|').map(c => c.trim().toUpperCase());
         
-        // Vérifier la recherche
-        const searchMatch = !q || g.name.toLowerCase().includes(q);
-        
-        return hasCategory && searchMatch;
+        const match = state.activeCat === "ALL" || gameCats.includes(state.activeCat);
+        const search = !q || g.name.toLowerCase().includes(q);
+        return match && search;
       });
 
       catCount.textContent = `${filtered.length} JEUX`;
 
       grid.innerHTML = "";
-      
       if(filtered.length === 0){
-        setStateMessage(state.activeCat === "ALL" ? "Aucun jeu trouvé." : `Aucun jeu dans la catégorie "${state.activeCat}".`);
+        setStateMessage("Aucun jeu trouvé.");
         return;
       }
-      
       setStateMessage("");
 
       filtered.forEach(g => {
@@ -1237,41 +1098,15 @@
         const info = document.createElement("div");
         info.className = "cinfo";
         
-        // Nom du jeu
-        const nameDiv = document.createElement("div");
-        nameDiv.className = "gname";
-        nameDiv.textContent = g.name;
-        
-        // Catégories
-        const categories = g.categories || [];
-        if (categories.length > 0) {
-          const mainCat = document.createElement("span");
-          mainCat.className = "catpill";
-          mainCat.textContent = categories[0];
-          mainCat.style.marginTop = "6px";
-          
-          // Mini-tags pour les catégories additionnelles
-          const catTags = document.createElement("div");
-          catTags.className = "catTags";
-          if (categories.length > 1) {
-            categories.slice(1).forEach(cat => {
-              const mini = document.createElement("span");
-              mini.className = "miniPill";
-              mini.textContent = cat;
-              catTags.appendChild(mini);
-            });
-          }
-          
-          info.appendChild(nameDiv);
-          info.appendChild(mainCat);
-          if (categories.length > 1) {
-            info.appendChild(catTags);
-          }
-        } else {
-          info.innerHTML = `<div class="gname">${g.name}</div>`;
-        }
+        // ✅ MODIFIÉ : Afficher toutes les catégories
+        const categories = g.cat.split('|').map(c => c.trim());
+        info.innerHTML = `
+          <div class="gname">${g.name}</div>
+          <div class="catpills">
+            ${categories.map(cat => `<span class="catpill">${cat}</span>`).join('')}
+          </div>
+        `;
 
-        // Bouton téléchargement
         const dlBtn = document.createElement("a");
         dlBtn.className = "dlBtn";
         dlBtn.href = g.magnet;
@@ -1295,9 +1130,12 @@
     }
 
     function renderAdminLists(){
-      // Catégories
       catListAdmin.innerHTML = "";
-      state.data.categories.forEach(c => {
+      
+      // Trier les catégories
+      const sortedCats = [...state.data.categories].sort();
+      
+      sortedCats.forEach(c => {
         const row = document.createElement("div");
         row.className = "row";
 
@@ -1314,57 +1152,48 @@
 
         // Compter les jeux dans cette catégorie
         const gameCount = state.data.games.filter(g => 
-          g.categories && g.categories.includes(c)
+          g.cat.split('|').map(cat => cat.trim().toUpperCase()).includes(c)
         ).length;
-        
-        const count = document.createElement("div");
-        count.className = "meta";
-        count.textContent = `${gameCount} jeu${gameCount !== 1 ? 'x' : ''}`;
+
+        const countSpan = document.createElement("span");
+        countSpan.className = "meta";
+        countSpan.textContent = `${gameCount} jeu${gameCount > 1 ? 'x' : ''}`;
+        left.appendChild(countSpan);
 
         const del = document.createElement("button");
         del.className = "iconBtn danger";
         del.type = "button";
         del.textContent = "Suppr";
         del.addEventListener("click", () => {
-          const ok = confirm(`Supprimer la catégorie "${c}" ?\n\nLes jeux ne seront PAS supprimés, seulement cette catégorie sera retirée.`);
+          const ok = confirm(`Supprimer la catégorie "${c}" ? (Les jeux garderont cette catégorie)`);
           if(!ok) return;
           
-          // Retirer la catégorie de la liste
           state.data.categories = state.data.categories.filter(x => x !== c);
-          
-          // Retirer la catégorie de tous les jeux
-          state.data.games.forEach(game => {
-            if (game.categories) {
-              game.categories = game.categories.filter(cat => cat !== c);
-            }
-          });
-          
-          if(state.activeCat === c) state.activeCat = "ALL";
           saveLocalDraft();
           renderCategories();
           renderGames();
           renderAdminLists();
-          toastMsg("Catégorie supprimée");
+          toastMsg("Catégorie supprimée (jeux non affectés)");
         });
 
-        left.appendChild(count);
         row.appendChild(left);
         row.appendChild(del);
         catListAdmin.appendChild(row);
       });
 
-      // Jeux
       gameListAdmin.innerHTML = "";
       state.data.games.forEach((g, idx) => {
         const row = document.createElement("div");
         row.className = "row";
 
+        const categories = g.cat.split('|').map(c => c.trim());
+        
         const left = document.createElement("div");
         left.className = "left";
-        
-        const categories = g.categories || [];
-        const catText = categories.length > 0 ? categories.join(', ') : 'Aucune';
-        left.innerHTML = `<div class="name">${g.name}</div><div class="meta">${catText} • ${g.cover ? 'avec cover' : 'sans cover'}</div>`;
+        left.innerHTML = `
+          <div class="name">${g.name}</div>
+          <div class="meta">${categories.join(' • ')}</div>
+        `;
 
         const edit = document.createElement("button");
         edit.className = "iconBtn";
@@ -1382,15 +1211,10 @@
           gameMagnet.value = g.magnet;
           gameCoverLink.value = g.cover || "";
           gameCover.value = g.cover || "";
-
-          // Catégories existantes
-          state.additionalCategories = [...(g.categories || [])];
-          additionalCategoriesInput.value = state.additionalCategories.join(',');
-          updateManualCatTags();
-
-          // Cacher la recherche RAWG pour l'édition
-          state.rawgGameData = null;
-          rawgResult.style.display = "none";
+          
+          // Afficher les catégories actuelles
+          detectedCategories = categories;
+          showDetectedCategories(categories);
 
           refreshPreview();
           toastMsg("Mode modification");
@@ -1418,119 +1242,20 @@
       });
     }
 
-    // ========== UPLOAD TO GITHUB ==========
-    async function uploadToGithub(){
-      const { token, owner, repo, branch, path } = GITHUB_CONFIG;
-
-      if(!token){
-        toastMsg("⚠️ Configure ton GitHub token d'abord!");
-        return;
-      }
-
-      if(owner === "YOUR_USERNAME" || repo === "YOUR_REPO"){
-        toastMsg("⚠️ Configure owner/repo dans GITHUB_CONFIG!");
-        return;
-      }
-
-      try{
-        toastMsg("📤 Upload en cours...");
-        
-        const headers = {
-          "Authorization": `token ${token}`,
-          "Accept": "application/vnd.github.v3+json",
-          "User-Agent": "CRACKUZU-App"
-        };
-
-        // 1) Get current file SHA
-        const getUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
-        let sha = null;
-        try{
-          const getResp = await fetch(getUrl, { headers });
-          if(getResp.ok){
-            const getData = await getResp.json();
-            sha = getData.sha;
-          }
-        }catch(e){}
-
-        // 2) Prepare content
-        const jsonContent = JSON.stringify(state.data, null, 2);
-        const base64Content = btoa(unescape(encodeURIComponent(jsonContent)));
-
-        // 3) Upload/update file
-        const putUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
-        const body = {
-          message: `Update ${path} via admin panel - Catégories Automatiques`,
-          content: base64Content,
-          branch: branch
-        };
-        if(sha) body.sha = sha;
-
-        const putResp = await fetch(putUrl, {
-          method: "PUT",
-          headers: { ...headers, "Content-Type": "application/json" },
-          body: JSON.stringify(body)
-        });
-
-        if(!putResp.ok){
-          const errText = await putResp.text();
-          let errData;
-          try { errData = JSON.parse(errText); } catch { errData = { message: errText }; }
-          throw new Error(`GitHub Error (${putResp.status}): ${errData.message || errText}`);
-        }
-
-        const successData = await putResp.json();
-        console.log("Upload réussi:", successData);
-        toastMsg("✅ Upload GitHub réussi! (Attends 1-2min pour GitHub Pages)");
-        
-        localStorage.removeItem(LOCAL_KEY);
-      }catch(err){
-        console.error("Erreur complète:", err);
-        toastMsg(err.message || "❌ Erreur upload");
-      }
+    function openAdmin(){
+      adminModal.classList.add("open");
+      adminModal.setAttribute("aria-hidden", "false");
+      refreshPreview();
+      renderAdminLists();
     }
-
-    function downloadDataJson(){
-      const json = JSON.stringify(state.data, null, 2);
-      const blob = new Blob([json], { type: "application/json" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "data.json";
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      URL.revokeObjectURL(url);
-      toastMsg("📥 data.json téléchargé");
+    
+    function closeAdminModal(){
+      adminModal.classList.remove("open");
+      adminModal.setAttribute("aria-hidden", "true");
+      exitEditMode();
     }
 
     // ========== EVENT LISTENERS ==========
-    searchGameBtn.addEventListener("click", () => {
-      const name = norm(gameName.value);
-      if (!name) return toastMsg("Entrez un nom de jeu d'abord!");
-      searchGameCategories(name);
-    });
-
-    addAdditionalCatBtn.addEventListener("click", () => {
-      const cat = additionalCatSelect.value;
-      if (!cat) return toastMsg("Sélectionnez une catégorie!");
-      addManualCategory(cat);
-      additionalCatSelect.value = "";
-    });
-
-    saveTokenBtn.addEventListener("click", () => {
-      const token = githubToken.value.trim();
-      if(!token){
-        toastMsg("⚠️ Token vide");
-        return;
-      }
-      if(!token.startsWith("ghp_") && !token.startsWith("github_pat_")){
-        const confirm = window.confirm("Le token ne commence pas par ghp_ ou github_pat_. Continuer ?");
-        if(!confirm) return;
-      }
-      saveGithubToken(token);
-      toastMsg("✅ Token sauvegardé localement");
-    });
-
     adminEntry.addEventListener("click", () => {
       const pwd = prompt("Admin password:");
       if(pwd === ADMIN_PASSWORD){
@@ -1563,12 +1288,24 @@
       saveLocalDraft();
       renderCategories();
       renderAdminLists();
-      updateAdditionalCatSelect();
-      toastMsg("Catégorie ajoutée");
+      toastMsg("Catégorie ajoutée manuellement");
     });
 
+    // ✅ MODIFIÉ : Auto-catégorisation lors de la saisie du nom
+    gameName.addEventListener("input", async () => {
+      const name = norm(gameName.value);
+      if(name.length > 3 && name.split(' ').length >= 1) {
+        // Déclencher l'auto-catégorisation après un délai
+        clearTimeout(window.categorizeTimeout);
+        window.categorizeTimeout = setTimeout(async () => {
+          await autoCategorizeGame(name);
+        }, 800);
+      }
+    });
+
+    // ✅ MODIFIÉ : Ajout avec auto-catégorisation
     addGameBtn.addEventListener("click", async () => {
-      if(editIndex !== null) return toastMsg("Tu es en mode modif (annule ou sauvegarde).");
+      if(editIndex !== null) return toastMsg("Tu es en mode modif");
 
       const name = norm(gameName.value);
       const magnet = norm(gameMagnet.value).replaceAll("&amp;", "&");
@@ -1578,85 +1315,50 @@
       if(!magnet.startsWith("magnet:")) return toastMsg("Magnet invalide");
       if(!cover) return toastMsg("Cover manquante");
 
-      // Déterminer les catégories
-      let categories = [];
+      // Utiliser les catégories détectées ou en détecter de nouvelles
+      let categories = detectedCategories.length > 0 ? detectedCategories : await autoCategorizeGame(name);
       
-      // 1. Catégories de RAWG si disponibles
-      if (state.rawgGameData && state.rawgGameData.categories) {
-        categories = [...state.rawgGameData.categories];
+      // Fallback si toujours aucune catégorie
+      if(categories.length === 0) {
+        categories = ['GENERAL'];
+        toastMsg("⚠️ Catégorie par défaut utilisée");
       }
-      
-      // 2. Ajouter les catégories manuelles
-      state.additionalCategories.forEach(cat => {
-        if (!categories.includes(cat)) {
-          categories.push(cat);
-        }
-      });
-      
-      // 3. Ajouter des catégories basées sur le nom
-      const nameUpper = name.toUpperCase();
-      if (nameUpper.includes('RESIDENT EVIL') || nameUpper.includes('BIOHAZARD')) {
-        if (!categories.includes('RESIDENT EVIL')) categories.push('RESIDENT EVIL');
-        if (!categories.includes('HORROR')) categories.push('HORROR');
-      }
-      if (nameUpper.includes('FORZA') || nameUpper.includes('NFS') || nameUpper.includes('RACE') || nameUpper.includes('DRIVING')) {
-        if (!categories.includes('CAR RACE')) categories.push('CAR RACE');
-      }
-      if (nameUpper.includes('FLIGHT') || nameUpper.includes('TRAIN') || nameUpper.includes('SIMULATOR')) {
-        if (!categories.includes('SIMULATOR')) categories.push('SIMULATOR');
-      }
-      if (nameUpper.includes('ONLINE') || nameUpper.includes('MULTIPLAYER')) {
-        if (!categories.includes('ONLINE')) categories.push('ONLINE');
-      }
-      if (nameUpper.includes('SURVIVAL')) {
-        if (!categories.includes('SURVIVAL')) categories.push('SURVIVAL');
-      }
-      
-      // 4. Assurer au moins une catégorie
-      if (categories.length === 0) {
-        categories.push('ACTION');
-      }
-      
-      // 5. Normaliser et dédupliquer
-      categories = categories.map(upper).filter(cat => cat && cat !== 'ALL');
-      categories = [...new Set(categories)];
-      
-      // 6. Ajouter les nouvelles catégories à la liste globale
+
+      // S'assurer que toutes les catégories existent
       categories.forEach(cat => {
-        if (!state.data.categories.includes(cat)) {
+        if(!state.data.categories.includes(cat) && cat !== "ALL") {
           state.data.categories.push(cat);
         }
       });
 
-      // Créer le jeu
-      const newGame = {
-        name,
-        categories,
-        magnet,
-        cover
+      // Créer le jeu avec toutes ses catégories
+      const gameEntry = {
+        name, 
+        cat: categories.join('|'), // Stocker en format "ACTION|RPG|HORROR"
+        magnet, 
+        cover,
+        autoCat: true
       };
 
-      state.data.games.unshift(newGame);
+      state.data.games.unshift(gameEntry);
 
-      // Réinitialiser le formulaire
+      // Reset form
       gameName.value = "";
       gameMagnet.value = "";
       gameCover.value = "";
       gameCoverLink.value = "";
-      state.rawgGameData = null;
-      state.additionalCategories = [];
-      rawgResult.style.display = "none";
-      additionalCategoriesInput.value = "";
-      updateManualCatTags();
+      detectedCatsDiv.style.display = "none";
+      detectedCategories = [];
 
       saveLocalDraft();
       renderGames();
       renderCategories();
       renderAdminLists();
-      toastMsg("Jeu ajouté avec " + categories.length + " catégorie(s)!");
+      toastMsg(`✅ Jeu ajouté dans ${categories.length} catégorie(s): ${categories.join(', ')}`);
     });
 
-    saveEditBtn.addEventListener("click", () => {
+    // ✅ MODIFIÉ : Sauvegarde modification
+    saveEditBtn.addEventListener("click", async () => {
       if(editIndex === null) return;
 
       const name = norm(gameName.value);
@@ -1667,24 +1369,22 @@
       if(!magnet.startsWith("magnet:")) return toastMsg("Magnet invalide");
       if(!cover) return toastMsg("Cover manquante");
 
-      // Utiliser les catégories manuelles pour l'édition
-      const categories = [...state.additionalCategories];
-      
-      // Normaliser
-      const normalizedCats = categories.map(upper).filter(cat => cat && cat !== 'ALL');
-      
-      // Ajouter les nouvelles catégories à la liste globale
-      normalizedCats.forEach(cat => {
-        if (!state.data.categories.includes(cat)) {
-          state.data.categories.push(cat);
-        }
-      });
+      // Utiliser les catégories détectées ou actuelles
+      let categories = detectedCategories.length > 0 ? detectedCategories : 
+                       state.data.games[editIndex].cat.split('|');
 
+      if(categories.length === 0) {
+        categories = await autoCategorizeGame(name);
+        if(categories.length === 0) categories = ['GENERAL'];
+      }
+
+      // Mettre à jour le jeu
       state.data.games[editIndex] = { 
         name, 
-        categories: [...new Set(normalizedCats)], 
+        cat: categories.join('|'), 
         magnet, 
-        cover 
+        cover,
+        autoCat: true 
       };
 
       saveLocalDraft();
@@ -1695,12 +1395,83 @@
       toastMsg("Modif sauvegardée");
     });
 
-    cancelEditBtn.addEventListener("click", () => {
-      exitEditMode();
-      toastMsg("Annulé");
-    });
+    // ========== GITHUB FUNCTIONS ==========
+    async function uploadToGithub(){
+      const { token, owner, repo, branch, path } = GITHUB_CONFIG;
+
+      if(!token){
+        toastMsg("⚠️ Configure ton GitHub token d'abord!");
+        return;
+      }
+
+      try{
+        toastMsg("📤 Upload en cours...");
+        
+        const headers = {
+          "Authorization": `token ${token}`,
+          "Accept": "application/vnd.github.v3+json",
+          "User-Agent": "CRACKUZU-App"
+        };
+
+        // Get current SHA
+        const getUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
+        let sha = null;
+        try{
+          const getResp = await fetch(getUrl, { headers });
+          if(getResp.ok){
+            const getData = await getResp.json();
+            sha = getData.sha;
+          }
+        }catch{}
+
+        // Prepare content
+        const jsonContent = JSON.stringify(state.data, null, 2);
+        const base64Content = btoa(unescape(encodeURIComponent(jsonContent)));
+
+        // Upload
+        const putUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
+        const body = {
+          message: `Update ${path} - Auto-categorized`,
+          content: base64Content,
+          branch: branch
+        };
+        if(sha) body.sha = sha;
+
+        const putResp = await fetch(putUrl, {
+          method: "PUT",
+          headers: { ...headers, "Content-Type": "application/json" },
+          body: JSON.stringify(body)
+        });
+
+        if(!putResp.ok){
+          const errText = await putResp.text();
+          throw new Error(`GitHub Error: ${errText}`);
+        }
+
+        toastMsg("✅ Upload GitHub réussi!");
+        localStorage.removeItem(LOCAL_KEY);
+      }catch(err){
+        console.error("Upload error:", err);
+        toastMsg(err.message || "❌ Erreur upload");
+      }
+    }
 
     publishBtn.addEventListener("click", uploadToGithub);
+
+    function downloadDataJson(){
+      const json = JSON.stringify(state.data, null, 2);
+      const blob = new Blob([json], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "data.json";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+      toastMsg("📥 data.json téléchargé");
+    }
+
     downloadBtn.addEventListener("click", downloadDataJson);
 
     resetBtn.addEventListener("click", () => {
@@ -1732,69 +1503,50 @@
       }
     });
 
-    // ========== LOAD FROM REPO ==========
-    async function loadDataFromRepo(){
-      try{
-        if(!GITHUB_CONFIG.owner || GITHUB_CONFIG.owner === "YOUR_USERNAME" || !GITHUB_CONFIG.repo || GITHUB_CONFIG.repo === "YOUR_REPO"){
-          return null;
-        }
+    // ========== INIT ==========
+    async function init(){
+      setStateMessage("Chargement…");
 
+      try {
         const timestamp = new Date().getTime();
         const url = `https://raw.githubusercontent.com/${GITHUB_CONFIG.owner}/${GITHUB_CONFIG.repo}/${GITHUB_CONFIG.branch}/${GITHUB_CONFIG.path}?t=${timestamp}`;
         
         const resp = await fetch(url, { cache: 'no-store' });
         
-        if(!resp.ok){
-          return null;
+        if(resp.ok){
+          const json = await resp.json();
+          state.data = sanitizeData(json);
+          setStateMessage("☁️ Données GitHub chargées");
+          setTimeout(() => setStateMessage(""), 3000);
+        }else{
+          const localDraft = loadLocalDraft();
+          if(localDraft){
+            state.data = localDraft;
+            setStateMessage("📦 Données locales chargées");
+            setTimeout(() => setStateMessage(""), 3000);
+          }else{
+            state.data = structuredClone(DEFAULT_DATA);
+            setStateMessage("data.json introuvable (mode local).");
+          }
         }
-        
-        const json = await resp.json();
-        return sanitizeData(json);
       }catch(e){
-        return null;
-      }
-    }
-
-    // ========== INITIALISATION ==========
-    async function init(){
-      setStateMessage("Chargement…");
-
-      const repoData = await loadDataFromRepo();
-      const localDraft = loadLocalDraft();
-
-      if(localDraft){
-        state.data = localDraft;
-        setStateMessage("📦 Données locales chargées (pas encore publiées)");
-        setTimeout(() => setStateMessage(""), 3000);
-      }else if(repoData){
-        state.data = repoData;
-        setStateMessage("☁️ Données GitHub chargées");
-        setTimeout(() => setStateMessage(""), 3000);
-      }else{
-        state.data = structuredClone(DEFAULT_DATA);
-        setStateMessage("data.json introuvable (mode local).");
+        console.error("Init error:", e);
+        const localDraft = loadLocalDraft();
+        if(localDraft){
+          state.data = localDraft;
+          setStateMessage("📦 Données locales (erreur chargement)");
+        }
       }
 
       state.activeCat = "ALL";
       state.query = "";
       q.value = "";
 
-      editIndex = null;
       exitEditMode();
-
-      // Pré-remplir le token
-      githubToken.value = loadGithubToken();
-
-      refreshPreview();
       renderCategories();
       renderGames();
       renderAdminLists();
-      
-      console.log("Données chargées:", state.data);
     }
-
-    // Exposer la fonction pour les mini-tags
-    window.removeManualCategory = removeManualCategory;
 
     init();
   </script>
