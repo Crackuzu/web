@@ -1403,13 +1403,67 @@
       }
     });
 
-    autoDetectBtn.addEventListener("click", () => {
+    autoDetectBtn.addEventListener("click", async () => {
       const name = norm(gameName.value);
       if(!name){
         toastMsg("Entre d'abord un nom de jeu");
         return;
       }
 
+      toastMsg("🔍 Détection IGDB en cours...");
+      
+      try {
+        const workerUrl = loadWorkerUrl();
+        const response = await fetch(`${workerUrl}/api/categories?game=${encodeURIComponent(name)}`);
+        
+        if (!response.ok) {
+          throw new Error(`API error: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        
+        if (data.categories && data.categories.length > 0) {
+          // Filtrer les catégories pour ne garder que celles qui existent dans notre liste
+          const validCategories = data.categories.filter(cat => 
+            state.data.categories.includes(cat)
+          );
+          
+          // Ajouter les nouvelles catégories détectées qui n'existent pas encore
+          data.categories.forEach(cat => {
+            if (!state.data.categories.includes(cat)) {
+              state.data.categories.push(cat);
+            }
+          });
+          
+          state.selectedCategories = data.categories;
+          renderCategories();
+          saveLocalDraft();
+          
+          console.log('✅ IGDB Detection:', {
+            gameName: data.gameName,
+            source: data.source,
+            detected: data.categories,
+            rawGenres: data.rawGenres,
+            rawThemes: data.rawThemes
+          });
+          
+          toastMsg(`✅ Catégories IGDB: ${data.categories.join(", ")}`);
+        } else {
+          // Fallback sur keywords si IGDB ne trouve rien
+          console.warn('⚠️ IGDB returned no categories, falling back to keywords');
+          fallbackKeywordDetection(name);
+        }
+      } catch (error) {
+        console.error('❌ Auto-detect error:', error);
+        toastMsg("⚠️ IGDB indisponible, utilisation des keywords");
+        
+        // Fallback sur keywords en cas d'erreur
+        fallbackKeywordDetection(name);
+      }
+    });
+    
+    // Fonction de fallback avec keywords (ancienne méthode)
+    function fallbackKeywordDetection(name) {
       const detected = [];
       const nameLower = name.toLowerCase();
 
@@ -1417,7 +1471,7 @@
         ACTION: ["action", "shooter", "combat", "fight", "warfare", "battlefield", "call of duty", "assassin", "doom", "halo"],
         RPG: ["rpg", "role", "fantasy", "witcher", "elder scrolls", "dragon", "quest", "final fantasy", "persona", "divinity"],
         STRATEGY: ["strategy", "civilization", "age of empires", "starcraft", "total war", "xcom", "tactical"],
-        SIMULATION: ["simulator", "simulation", "farming", "truck", "flight", "sim", "euro truck", "flight sim"],
+        SIMULATOR: ["simulator", "simulation", "farming", "truck", "flight", "sim", "euro truck", "flight sim"],
         SPORTS: ["fifa", "nba", "nfl", "sport", "football", "basketball", "racing", "formula", "2k", "madden", "soccer"],
         HORROR: ["horror", "scary", "fear", "evil", "resident evil", "silent hill", "outlast", "amnesia", "layers of fear"],
         SURVIVAL: ["survival", "survive", "crafting", "rust", "ark", "forest", "dayz"],
@@ -1429,11 +1483,6 @@
         "STORY RICH": ["story", "narrative", "plot", "tale"],
         "CAR RACE": ["racing", "race", "car", "need for speed", "forza", "gran turismo", "nfs"],
         ARCADE: ["arcade", "retro"],
-        ZOMBIES: ["zombie", "undead", "left 4 dead", "dying light"],
-        ATMOSPHERIC: ["atmospheric", "ambient", "immersive"],
-        "FIRST PERSON": ["first person", "fps", "first-person"],
-        "THIRD PERSON": ["third person", "third-person", "tps"],
-        CASUAL: ["casual", "relaxing", "chill"],
         "RESIDENT EVIL": ["resident evil", "re2", "re3", "re4", "re5", "re6", "re7", "re8"]
       };
 
@@ -1449,8 +1498,8 @@
 
       state.selectedCategories = detected;
       renderCategories();
-      toastMsg(`Catégories détectées: ${detected.join(", ")}`);
-    });
+      toastMsg(`Catégories (keywords): ${detected.join(", ")}`);
+    }
 
     function refreshPreview(){
       const url = gameCover.value.trim();
