@@ -310,9 +310,8 @@
     {
       "name": "Finding Bigfoot",
       "categories": [
-        "ADVENTURE",
-        "SINGLEPLAYER",
         "ONLINE",
+        "ADVENTURE",
         "SURVIVAL"
       ],
       "magnet": "magnet:?xt=urn:btih:LE3MIFBWPX5WKSPNES7NFG723PWB6OEG&dn=BIGFOOT&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce",
