@@ -721,24 +721,15 @@
         <h3 id="gameFormTitle">Ajouter un jeu (Catégories Automatiques)</h3>
         <div class="formRow">
           <input type="text" id="gameName" placeholder="Nom exact du jeu (ex: 'Dying Light')" />
-          <button class="iconBtn" id="searchGameBtn">🔍 Rechercher sur RAWG</button>
+          <button class="iconBtn" id="searchGameBtn">🔍 Rechercher catégories</button>
         </div>
         
-        <!-- Résultat de recherche RAWG -->
+        <!-- Résultat de recherche catégories -->
         <div id="rawgResult" style="display:none;">
           <div class="autoCatSection">
-            <h4 style="margin:0 0 8px; font-size:15px; color:rgba(255,255,255,.9);">Résultat RAWG trouvé:</h4>
-            <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
-              <img id="rawgCover" src="" alt="" style="width:60px; height:60px; border-radius:8px; object-fit:cover;">
-              <div>
-                <div id="rawgTitle" style="font-weight:600; color:rgba(255,255,255,.95);"></div>
-                <div id="rawgRelease" style="font-size:12px; color:rgba(255,255,255,.6);"></div>
-              </div>
-            </div>
+            <h4 style="margin:0 0 8px; font-size:15px; color:rgba(255,255,255,.9);">Catégories détectées:</h4>
             
-            <div style="font-size:14px; color:rgba(255,255,255,.8); margin-bottom:8px;">
-              Genres détectés: <span id="rawgGenres"></span>
-            </div>
+            <div id="rawgTitle" style="font-weight:600; color:rgba(255,255,255,.95); margin-bottom:8px;"></div>
             
             <h5 style="margin:12px 0 8px; font-size:14px; color:rgba(255,255,255,.9);">Catégories qui seront ajoutées:</h5>
             <div class="autoCatTags" id="autoCatTags"></div>
@@ -818,7 +809,9 @@
 
   <script>
     // ========== CONFIGURATION ==========
-    const WORKER_URL = 'https://crackuzu-api.crackuzu.workers.dev';
+    const CATEGORIES_WORKER_URL = 'https://crackuzu-categories.crackuzu.workers.dev';
+    const WORKER_URL = 'https://crackuzu-api.crackuzu.workers.dev'; // Pour le reste
+    
     const GITHUB_CONFIG = {
       token: "",
       owner: "Crackuzu",
@@ -826,6 +819,7 @@
       branch: "main",
       path: "data.json"
     };
+    
     const ADMIN_PASSWORD = "141592";
     const LOCAL_KEY = "crackuzu_local_draft";
 
@@ -872,10 +866,7 @@
     const searchGameBtn = document.getElementById("searchGameBtn");
 
     const rawgResult = document.getElementById("rawgResult");
-    const rawgCover = document.getElementById("rawgCover");
     const rawgTitle = document.getElementById("rawgTitle");
-    const rawgRelease = document.getElementById("rawgRelease");
-    const rawgGenres = document.getElementById("rawgGenres");
     const autoCatTags = document.getElementById("autoCatTags");
 
     const additionalCatSelect = document.getElementById("additionalCatSelect");
@@ -905,18 +896,54 @@
     function norm(s){ return (s || "").trim(); }
     function upper(s){ return (s || "").toUpperCase().trim(); }
     
+    // CORRECTION CRITIQUE: Fonction de sanitization qui gère l'ancien format 'cat' et le nouveau 'categories'
     function sanitizeData(obj){
-      // Nouvelle fonction qui supporte les multi-catégories
-      return {
+      const result = {
         categories: Array.isArray(obj.categories) ? obj.categories.map(upper).filter(Boolean) : [],
-        games: Array.isArray(obj.games) ? obj.games.map(g => ({
-          name: norm(g.name) || "",
-          categories: Array.isArray(g.categories) ? g.categories.map(upper).filter(Boolean) : 
-                    g.cat ? [upper(g.cat)].filter(Boolean) : [], // Support ancien format
-          magnet: norm(g.magnet) || "",
-          cover: norm(g.cover) || ""
-        })) : []
+        games: []
       };
+      
+      // Traiter chaque jeu
+      if (Array.isArray(obj.games)) {
+        result.games = obj.games.map(g => {
+          // Déterminer les catégories (support ancien format 'cat' et nouveau 'categories')
+          let categories = [];
+          
+          if (Array.isArray(g.categories)) {
+            // Nouveau format: categories est un array
+            categories = g.categories.map(upper).filter(Boolean);
+          } else if (g.cat) {
+            // Ancien format: cat est une string
+            categories = [upper(g.cat)].filter(Boolean);
+          }
+          
+          // S'assurer qu'il y a au moins une catégorie
+          if (categories.length === 0) {
+            categories = ['ACTION']; // Catégorie par défaut
+          }
+          
+          return {
+            name: norm(g.name) || "",
+            categories: categories,
+            magnet: norm(g.magnet) || "",
+            cover: norm(g.cover) || ""
+          };
+        });
+      }
+      
+      // S'assurer que toutes les catégories des jeux sont dans la liste globale
+      result.games.forEach(game => {
+        game.categories.forEach(cat => {
+          if (!result.categories.includes(cat)) {
+            result.categories.push(cat);
+          }
+        });
+      });
+      
+      // Trier et dédupliquer les catégories
+      result.categories = [...new Set(result.categories)].sort();
+      
+      return result;
     }
 
     function toastMsg(msg){
@@ -953,12 +980,12 @@
     }
     GITHUB_CONFIG.token = loadGithubToken();
 
-    // ========== RECHERCHE RAWG ==========
-    async function searchGameOnRawg(gameName){
+    // ========== RECHERCHE CATÉGORIES ==========
+    async function searchGameCategories(gameName){
       try {
-        toastMsg("🔍 Recherche sur RAWG...");
+        toastMsg("🔍 Recherche des catégories...");
         
-        const response = await fetch(`${WORKER_URL}/api/gameinfo?game=${encodeURIComponent(gameName)}`);
+        const response = await fetch(`${CATEGORIES_WORKER_URL}/api/categories?game=${encodeURIComponent(gameName)}`);
         
         if (!response.ok) {
           throw new Error(`API responded with ${response.status}`);
@@ -966,25 +993,12 @@
         
         const data = await response.json();
         
-        if (!data.success) {
-          throw new Error(data.error || 'Game not found');
-        }
-        
-        // Stocker les données RAWG
+        // Stocker les données de catégories
         state.rawgGameData = data;
         
         // Afficher les résultats
         rawgResult.style.display = "block";
-        rawgTitle.textContent = data.name;
-        rawgRelease.textContent = data.released ? `Sortie: ${data.released}` : 'Date inconnue';
-        rawgGenres.textContent = data.genres || 'Non spécifié';
-        
-        if (data.coverUrl) {
-          rawgCover.src = data.coverUrl;
-          gameCoverLink.value = data.coverUrl;
-          gameCover.value = data.coverUrl;
-          refreshPreview();
-        }
+        rawgTitle.textContent = data.rawgName || gameName;
         
         // Afficher les catégories détectées
         autoCatTags.innerHTML = "";
@@ -1000,10 +1014,10 @@
           autoCatTags.innerHTML = '<div style="color:rgba(255,255,255,.6); font-style:italic;">Aucune catégorie détectée</div>';
         }
         
-        toastMsg("✅ Données RAWG récupérées!");
+        toastMsg(`✅ ${data.categories ? data.categories.length : 0} catégorie(s) détectée(s)!`);
         
       } catch (error) {
-        console.error('RAWG search error:', error);
+        console.error('Categories search error:', error);
         toastMsg(`❌ Erreur: ${error.message}`);
         state.rawgGameData = null;
         rawgResult.style.display = "none";
@@ -1179,22 +1193,30 @@
       updateAdditionalCatSelect();
     }
 
+    // CORRECTION CRITIQUE: Fonction renderGames qui fonctionne avec l'ancien et le nouveau format
     function renderGames(){
       const q = norm(state.query).toLowerCase();
+      
       const filtered = state.data.games.filter(g => {
-        const match = state.activeCat === "ALL" || 
-                     (g.categories && g.categories.includes(state.activeCat));
-        const search = !q || g.name.toLowerCase().includes(q);
-        return match && search;
+        // CORRECTION: Vérifier si le jeu a la catégorie active
+        const hasCategory = state.activeCat === "ALL" || 
+                           (g.categories && g.categories.includes(state.activeCat));
+        
+        // Vérifier la recherche
+        const searchMatch = !q || g.name.toLowerCase().includes(q);
+        
+        return hasCategory && searchMatch;
       });
 
       catCount.textContent = `${filtered.length} JEUX`;
 
       grid.innerHTML = "";
+      
       if(filtered.length === 0){
-        setStateMessage("Aucun jeu trouvé.");
+        setStateMessage(state.activeCat === "ALL" ? "Aucun jeu trouvé." : `Aucun jeu dans la catégorie "${state.activeCat}".`);
         return;
       }
+      
       setStateMessage("");
 
       filtered.forEach(g => {
@@ -1220,7 +1242,7 @@
         nameDiv.className = "gname";
         nameDiv.textContent = g.name;
         
-        // Catégories (première catégorie en gros, les autres en mini)
+        // Catégories
         const categories = g.categories || [];
         if (categories.length > 0) {
           const mainCat = document.createElement("span");
@@ -1485,7 +1507,7 @@
     searchGameBtn.addEventListener("click", () => {
       const name = norm(gameName.value);
       if (!name) return toastMsg("Entrez un nom de jeu d'abord!");
-      searchGameOnRawg(name);
+      searchGameCategories(name);
     });
 
     addAdditionalCatBtn.addEventListener("click", () => {
@@ -1585,6 +1607,9 @@
       }
       if (nameUpper.includes('ONLINE') || nameUpper.includes('MULTIPLAYER')) {
         if (!categories.includes('ONLINE')) categories.push('ONLINE');
+      }
+      if (nameUpper.includes('SURVIVAL')) {
+        if (!categories.includes('SURVIVAL')) categories.push('SURVIVAL');
       }
       
       // 4. Assurer au moins une catégorie
@@ -1764,6 +1789,8 @@
       renderCategories();
       renderGames();
       renderAdminLists();
+      
+      console.log("Données chargées:", state.data);
     }
 
     // Exposer la fonction pour les mini-tags
