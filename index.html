@@ -134,15 +134,17 @@
     .search svg{ width: 18px; height: 18px; opacity:.78; }
     .search input{
       width:100%;
-      border:0;
-      outline:0;
+      border:0 !important;
+      outline:0 !important;
+      box-shadow:none !important;
       background:transparent;
       color: var(--text);
       font-size: clamp(13px, 1.1vw, 14px);
     }
     .search input:focus{
-      outline:none;
-      border:none;
+      outline:none !important;
+      border:none !important;
+      box-shadow:none !important;
     }
     .search input::placeholder{ color: rgba(255,255,255,.55); }
 
@@ -873,6 +875,10 @@
     const REPO_PATH = "data.json";
     const LOCAL_KEY = "crackuzu_draft_v3";
 
+    // Cloudinary config
+    const CLOUDINARY_CLOUD_NAME = "dkcui82mx";
+    const CLOUDINARY_UPLOAD_PRESET = "crackuzu";
+
     const DEFAULT_DATA = {
       categories: ["ACTION", "RPG", "STRATEGY", "SIMULATION", "SPORT"],
       games: []
@@ -1316,6 +1322,72 @@
       if(url && url.startsWith("http")){
         gameCover.value = url;
         refreshPreview();
+      }
+    });
+
+    // ========== CTRL+V IMAGE UPLOAD TO CLOUDINARY ==========
+    async function uploadImageToCloudinary(file) {
+      try {
+        toastMsg("📤 Upload de l'image en cours...");
+        
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+        
+        const response = await fetch(
+          `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`,
+          {
+            method: 'POST',
+            body: formData
+          }
+        );
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          console.error('Cloudinary error:', errorData);
+          throw new Error(errorData.error?.message || `HTTP ${response.status}`);
+        }
+
+        const result = await response.json();
+        
+        if (result && result.secure_url) {
+          return result.secure_url;
+        } else {
+          throw new Error('URL non trouvée dans la réponse');
+        }
+      } catch (error) {
+        console.error('Erreur upload cloudinary:', error);
+        toastMsg("❌ Erreur d'upload: " + error.message);
+        return null;
+      }
+    }
+
+    document.addEventListener('paste', async (e) => {
+      if (!state.adminUnlocked || !adminModal.classList.contains('open')) {
+        return;
+      }
+
+      const items = e.clipboardData?.items;
+      if (!items) return;
+
+      for (let i = 0; i < items.length; i++) {
+        if (items[i].type.indexOf('image') !== -1) {
+          e.preventDefault();
+          
+          const file = items[i].getAsFile();
+          if (!file) continue;
+
+          const imageUrl = await uploadImageToCloudinary(file);
+          
+          if (imageUrl) {
+            gameCoverLink.value = imageUrl;
+            gameCover.value = imageUrl;
+            refreshPreview();
+            toastMsg("✅ Image uploadée avec succès!");
+          }
+
+          break;
+        }
       }
     });
 
