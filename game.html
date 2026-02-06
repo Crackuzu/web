@@ -78,6 +78,7 @@
       border-color: rgba(255,255,255,.25);
       transform: translateX(-2px);
     }
+    /* ✅ CORRIGÉ : Titre centré */
     .game-title-header {
       font-size: clamp(20px, 2.5vw, 32px);
       font-weight: 300;
@@ -86,25 +87,6 @@
       text-align: center;
       flex: 1;
     }
-    
-    /* ✨ NOUVEAU: Catégories multiples dans le header */
-    .game-categories-header {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      justify-content: center;
-      margin-top: 6px;
-    }
-    .game-cat-pill {
-      font-size: clamp(10px, 0.9vw, 12px);
-      padding: 4px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.25);
-      background: rgba(255,255,255,.12);
-      color: rgba(255,255,255,.80);
-      letter-spacing: .8px;
-    }
-    
     .detail-content {
       flex: 1;
       overflow-y: auto;
@@ -143,14 +125,6 @@
       inset: 0;
       background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,.4));
       pointer-events: none;
-    }
-    .loading-indicator {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: rgba(255,255,255,.6);
-      font-size: 14px;
     }
     .info-card {
       border-radius: var(--r-md);
@@ -231,6 +205,7 @@
       font-size: clamp(13px, 1.1vw, 14px);
     }
     
+    /* ✅ Section téléchargement */
     .download-section {
       margin-top: 24px;
       text-align: center;
@@ -256,20 +231,69 @@
     }
     
     .big-download-btn:hover {
-      background: linear-gradient(135deg, rgba(100,180,255,.25), rgba(150,100,255,.18));
+      background: linear-gradient(135deg, rgba(100,180,255,.25), rgba(150,100,255,.20));
       border-color: rgba(100,200,255,.5);
       transform: translateY(-2px);
-      box-shadow: 0 12px 40px rgba(100,180,255,.2);
+      box-shadow: 0 12px 40px rgba(100,180,255,.4);
     }
     
-    @media (max-width: 900px) {
-      .detail-content {
-        grid-template-columns: 1fr;
-      }
+    .big-download-btn svg {
+      width: 24px;
+      height: 24px;
+    }
+    
+    .magnet-info {
+      margin-top: 10px;
+      color: rgba(255,255,255,.5);
+      font-size: 12px;
+      letter-spacing: .3px;
+    }
+    
+    /* ✅ Loading spinner pour cover */
+    .cover-loading {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 40px;
+      height: 40px;
+      border: 3px solid rgba(255,255,255,.1);
+      border-top-color: rgba(100,180,255,.8);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+      to { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+    
+    @media (max-width: 1200px) {
+      .detail-content { grid-template-columns: 1fr; }
       .cover-section {
         position: static;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--gap);
       }
+      .game-cover { margin-bottom: 0; }
     }
+    @media (max-width: 768px) {
+      .detail-header { 
+        flex-wrap: wrap; 
+        justify-content: center; 
+      }
+      .back-btn { order: 1; }
+      .game-title-header { 
+        width: 100%; 
+        order: 2; 
+        margin: 12px 0; 
+      }
+      .cover-section { grid-template-columns: 1fr; }
+    }
+    .detail-content::-webkit-scrollbar { width: 10px; }
+    .detail-content::-webkit-scrollbar-track { background: rgba(255,255,255,.03); border-radius: 10px; }
+    .detail-content::-webkit-scrollbar-thumb { background: rgba(255,255,255,.15); border-radius: 10px; }
+    .detail-content::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,.22); }
   </style>
 </head>
 <body>
@@ -277,64 +301,64 @@
     <div class="detail-wrapper glass">
       <div class="detail-header">
         <a href="index.html" class="back-btn">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M19 12H5M12 19l-7-7 7-7"/>
           </svg>
           Retour
         </a>
-        <div style="flex: 1; text-align: center;">
-          <h1 class="game-title-header" id="gameTitle">Chargement...</h1>
-          <!-- ✨ NOUVEAU: Conteneur pour les catégories multiples -->
-          <div class="game-categories-header" id="gameCategories"></div>
-        </div>
-        <div style="width: 100px;"></div>
+        <h1 class="game-title-header" id="gameTitle">Chargement...</h1>
+        <!-- Espace vide pour équilibrer -->
+        <div style="width: 100px; visibility: hidden;"></div>
       </div>
-
       <div class="detail-content">
         <div class="cover-section">
           <div class="game-cover" id="gameCoverContainer">
-            <img id="gameCoverImg" src="" alt="Game Cover" />
-            <div class="loading-indicator" id="coverLoading" style="display: none;">
-              Chargement...
-            </div>
+            <div class="cover-loading" id="coverLoading"></div>
+            <img id="gameCoverImg" src="" alt="Game Cover">
           </div>
-
-          <div class="info-card">
-            <h3>Informations</h3>
-            <div class="info-item">
-              <span class="info-label">Statut</span>
-              <span class="info-value">Disponible</span>
-            </div>
-          </div>
-
+          
           <div class="download-section">
-            <a href="#" id="gameDownloadBtn" class="big-download-btn" style="display: none;">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <a href="#" class="big-download-btn" id="gameDownloadBtn" style="display:none;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                 <polyline points="7 10 12 15 17 10"></polyline>
                 <line x1="12" y1="15" x2="12" y2="3"></line>
               </svg>
-              Télécharger via Torrent
+              <span>Télécharger via Torrent</span>
             </a>
+            <div class="magnet-info">
+              <small>Format: Magnet Link • Utilise un client torrent</small>
+            </div>
+          </div>
+          
+          <div class="info-card">
+            <h3>Informations</h3>
+            <div class="info-item">
+              <span class="info-label">Catégorie</span>
+              <span class="info-value" id="gameCategory">-</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Source</span>
+              <span class="info-value">CRACKUZU</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Format</span>
+              <span class="info-value">Torrent Magnet</span>
+            </div>
           </div>
         </div>
-
         <div class="content-section">
           <h2>Description</h2>
-          <div id="descriptionContent">
-            <div class="loading-state">Chargement de la description...</div>
-          </div>
-
-          <h2>Trailer</h2>
-          <div id="trailerContent">
-            <div class="loading-state">Chargement du trailer...</div>
-          </div>
+          <div id="descriptionContent" class="loading-state">Chargement de la description...</div>
+          <h2>Bande-annonce</h2>
+          <div id="trailerContent" class="loading-state">Recherche du trailer...</div>
         </div>
       </div>
     </div>
   </div>
 
   <script>
+    // ⚠️ CONFIGURE TON WORKER ICI
     const WORKER_URL = 'https://crackuzu-api.crackuzu.workers.dev';
 
     const urlParams = new URLSearchParams(window.location.search);
@@ -343,6 +367,7 @@
 
     let currentGame = null;
 
+    // Traduction gratuite Google Translate
     async function translateText(text, targetLang = 'fr') {
       try {
         const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=${targetLang}&dt=t&q=${encodeURIComponent(text)}`;
@@ -356,33 +381,39 @@
       }
     }
 
+    // ✅ NOUVELLE FONCTION : Fetch cover 16:9
     async function fetchGameCover(gameName) {
       const coverContainer = document.getElementById('gameCoverContainer');
       const coverImg = document.getElementById('gameCoverImg');
       const coverLoading = document.getElementById('coverLoading');
       
+      // Afficher le loading
       coverContainer.classList.add('loading');
       coverLoading.style.display = 'block';
       
       try {
+        // Essaie d'abord l'API worker pour une cover 16:9
         const response = await fetch(`${WORKER_URL}/api/cover?game=${encodeURIComponent(gameName)}`);
         
         if (response.ok) {
           const data = await response.json();
           
           if (data.coverUrl) {
+            // Utilise la cover 16:9 de l'API
             coverImg.src = data.coverUrl;
             coverImg.onload = () => {
               coverContainer.classList.remove('loading');
               coverLoading.style.display = 'none';
             };
             coverImg.onerror = () => {
+              // Fallback sur l'image de data.json si l'API échoue
               loadFallbackCover();
             };
             return;
           }
         }
         
+        // Fallback sur l'image de data.json
         loadFallbackCover();
         
       } catch (error) {
@@ -399,46 +430,21 @@
       }
     }
 
-    // ✨ NOUVEAU: Fonction de migration pour supporter l'ancien format
-    function migrateGameData(game) {
-      if (Array.isArray(game.categories)) {
-        return game;
-      }
-      
-      const migrated = { ...game };
-      if (game.cat) {
-        migrated.categories = [game.cat.toUpperCase()];
-      } else {
-        migrated.categories = ['ACTION'];
-      }
-      
-      return migrated;
-    }
-
     async function loadGameData() {
       try {
         const response = await fetch('data.json');
         const data = await response.json();
-        
-        let foundGame = data.games.find(g => g.name.toLowerCase() === gameName.toLowerCase());
-        if (!foundGame) throw new Error('Game not found');
-
-        // ✨ MIGRATION: Convertir l'ancien format vers le nouveau
-        currentGame = migrateGameData(foundGame);
+        currentGame = data.games.find(g => g.name.toLowerCase() === gameName.toLowerCase());
+        if (!currentGame) throw new Error('Game not found');
 
         document.getElementById('pageTitle').textContent = `${currentGame.name} - CRACKUZU`;
         document.getElementById('gameTitle').textContent = currentGame.name;
-        
-        // ✨ NOUVEAU: Afficher toutes les catégories
-        const categoriesContainer = document.getElementById('gameCategories');
-        const categories = Array.isArray(currentGame.categories) ? currentGame.categories : [];
-        
-        categoriesContainer.innerHTML = categories.map(cat => 
-          `<span class="game-cat-pill">${cat.toUpperCase()}</span>`
-        ).join('');
+        document.getElementById('gameCategory').textContent = currentGame.cat.toUpperCase();
 
+        // ✅ Fetch cover 16:9 via API
         fetchGameCover(currentGame.name);
 
+        // Bouton téléchargement
         const downloadBtn = document.getElementById('gameDownloadBtn');
         downloadBtn.href = currentGame.magnet;
         downloadBtn.style.display = 'inline-flex';
@@ -495,88 +501,83 @@
         `;
       }
     }
-
-    async function fetchTrailer(gameName) {
-      const trailerContainer = document.getElementById('trailerContent');
-      
-      try {
-        const searchQuery = `${gameName}`;
-        console.log('Fetching trailer for:', gameName);
-        
-        const response = await fetch(`${WORKER_URL}/api/youtube?q=${encodeURIComponent(searchQuery)}`);
-        
-        if (!response.ok) {
-          throw new Error(`Worker returned ${response.status}`);
-        }
-
-        const data = await response.json();
-        
-        if (data.videoId) {
-          trailerContainer.innerHTML = `
-            <div class="trailer-container">
-              <iframe 
-                src="https://www.youtube-nocookie.com/embed/${data.videoId}?rel=0&modestbranding=1&autoplay=0"
-                title="Trailer ${gameName}"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen
-                loading="lazy">
-              </iframe>
-            </div>
-            <div style="margin-top: 12px; text-align: center; color: rgba(255,255,255,.6); font-size: 13px;">
-              <a href="https://www.youtube.com/watch?v=${data.videoId}" target="_blank" 
-                 style="color: rgba(100,180,255,.8); text-decoration: none;">
-                📺 Ouvrir sur YouTube
-              </a>
-            </div>
-          `;
-          return;
-        }
-        
-        if (data.searchUrl) {
-          showTrailerFallbackWithLink(gameName, data.searchUrl);
-        } else {
-          showTrailerFallback(gameName);
-        }
-        
-      } catch (error) {
-        console.error('Error fetching trailer:', error);
-        showTrailerFallback(gameName);
-      }
+async function fetchTrailer(gameName) {
+  const trailerContainer = document.getElementById('trailerContent');
+  
+  try {
+    const searchQuery = `${gameName}`;
+    console.log('Fetching trailer for:', gameName);
+    
+    const response = await fetch(`${WORKER_URL}/api/youtube?q=${encodeURIComponent(searchQuery)}`);
+    
+    if (!response.ok) {
+      throw new Error(`Worker returned ${response.status}`);
     }
 
-    function showTrailerFallbackWithLink(gameName, searchUrl) {
-      const trailerContainer = document.getElementById('trailerContent');
-      
+    const data = await response.json();
+    
+    if (data.videoId) {
       trailerContainer.innerHTML = `
-        <div style="padding: 40px 20px; text-align: center; border-radius: var(--r-md); border: 1px solid var(--stroke); background: rgba(255,255,255,.04);">
-          <div style="margin-bottom: 20px;">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.3)" stroke-width="1.5">
-              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-              <polygon points="10 8 16 12 10 16 10 8"></polygon>
-            </svg>
-          </div>
-          <p style="color: var(--muted); margin-bottom: 16px; font-size: 15px;">
-            Recherchez le trailer sur YouTube
-          </p>
-          <a href="${searchUrl}" target="_blank" 
-             class="big-download-btn" style="display: inline-flex; padding: 12px 24px; font-size: 14px;">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 8px;">
-              <circle cx="12" cy="12" r="10"></circle>
-              <polygon points="10 8 16 12 10 16 10 8"></polygon>
-            </svg>
-            🔍 Rechercher "${gameName}" sur YouTube
+        <div class="trailer-container">
+          <iframe 
+            src="https://www.youtube-nocookie.com/embed/${data.videoId}?rel=0&modestbranding=1&autoplay=0"
+            title="Trailer ${gameName}"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+            loading="lazy">
+          </iframe>
+        </div>
+        <div style="margin-top: 12px; text-align: center; color: rgba(255,255,255,.6); font-size: 13px;">
+          <a href="https://www.youtube.com/watch?v=${data.videoId}" target="_blank" 
+             style="color: rgba(100,180,255,.8); text-decoration: none;">
+            📺 Ouvrir sur YouTube
           </a>
-          <div style="margin-top: 16px; color: rgba(255,255,255,.4); font-size: 12px;">
-            Cliquez pour rechercher manuellement
-          </div>
         </div>
       `;
+      return;
     }
+    
+    // Si pas de videoId, utiliser le searchUrl si disponible
+    if (data.searchUrl) {
+      showTrailerFallbackWithLink(gameName, data.searchUrl);
+    } else {
+      showTrailerFallback(gameName);
+    }
+    
+  } catch (error) {
+    console.error('Error fetching trailer:', error);
+    showTrailerFallback(gameName);
+  }
+}
 
-    function showTrailerFallback(gameName) {
-      const searchUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(gameName + " official game trailer")}`;
-      showTrailerFallbackWithLink(gameName, searchUrl);
-    }
+function showTrailerFallbackWithLink(gameName, searchUrl) {
+  const trailerContainer = document.getElementById('trailerContent');
+  
+  trailerContainer.innerHTML = `
+    <div style="padding: 40px 20px; text-align: center; border-radius: var(--r-md); border: 1px solid var(--stroke); background: rgba(255,255,255,.04);">
+      <div style="margin-bottom: 20px;">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.3)" stroke-width="1.5">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+          <polygon points="10 8 16 12 10 16 10 8"></polygon>
+        </svg>
+      </div>
+      <p style="color: var(--muted); margin-bottom: 16px; font-size: 15px;">
+        Recherchez le trailer sur YouTube
+      </p>
+      <a href="${searchUrl}" target="_blank" 
+         class="big-download-btn" style="display: inline-flex; padding: 12px 24px; font-size: 14px;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 8px;">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polygon points="10 8 16 12 10 16 10 8"></polygon>
+        </svg>
+        🔍 Rechercher "${gameName}" sur YouTube
+      </a>
+      <div style="margin-top: 16px; color: rgba(255,255,255,.4); font-size: 12px;">
+        Cliquez pour rechercher manuellement
+      </div>
+    </div>
+  `;
+}
 
     loadGameData();
   </script>
