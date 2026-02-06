@@ -1183,7 +1183,7 @@
     function saveGithubToken(token){ localStorage.setItem("gh_token", token); }
     function loadGithubToken(){ return localStorage.getItem("gh_token") || ""; }
     function saveWorkerUrl(url){ localStorage.setItem("worker_url", url); }
-    function loadWorkerUrl(){ return localStorage.getItem("worker_url") || ""; }
+    function loadWorkerUrl(){ return localStorage.getItem("worker_url") || "https://crackuzu-api.crackuzu.workers.dev"; }
 
     function saveLocalDraft(){ localStorage.setItem(LOCAL_KEY, JSON.stringify(state.data)); }
     function loadLocalDraft(){
