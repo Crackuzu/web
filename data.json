@@ -15,7 +15,8 @@
     "ADVENTURE",
     "INDIE",
     "ARCADE",
-    "STRATEGY"
+    "STRATEGY",
+    "CASUAL"
   ],
   "games": [
     {
@@ -30,7 +31,11 @@
     {
       "name": "Cyberpunk 2077",
       "categories": [
-        "ACTION"
+        "ACTION",
+        "RPG",
+        "ADVENTURE",
+        "OPEN WORLD",
+        "SINGLEPLAYER"
       ],
       "magnet": "magnet:?xt=urn:btih:ac6db3097f4e86c865936ae4d3d4f8f81fad6d3a&dn=Cyberpunk.2077.v2.2.ALL.DLC.zip&tr=udp://tracker.torrent.eu.org:451/announce&tr=udp://exodus.desync.com:6969/announce&tr=udp://tracker.moeking.me:6969/announce&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.stealth.si:80/announce&tr=udp://tracker.theoks.net:6969/announce&tr=udp://movies.zsw.ca:6969/announce&tr=udp://tracker.tiny-vps.com:6969/announce&tr=udp://tracker-udp.gbitt.info:80/announce&tr=http://tracker.gbitt.info:80/announce&tr=https://tracker.gbitt.info:443/announce&tr=http://tracker.ccp.ovh:6969/announce&tr=udp://tracker.ccp.ovh:6969/announce&tr=udp://tracker.dler.com:6969/announce&tr=http://tracker.bt4g.com:2095/announce",
       "cover": "https://res.cloudinary.com/dkcui82mx/image/upload/v1770358995/jmjtyre6nkivofwx9jga.png"
@@ -136,11 +141,12 @@
     {
       "name": "Resident Evil",
       "categories": [
-        "ACTION",
+        "CASUAL",
+        "ADVENTURE",
+        "HORROR",
+        "SURVIVAL",
         "SINGLEPLAYER",
-        "RESIDENT EVIL",
-        "STORY RICH",
-        "HORROR"
+        "RESIDENT EVIL"
       ],
       "magnet": "magnet:?xt=urn:btih:NLLEJADVO5UNQK2QK665XF7NMRACOSEJ&dn=Resident%20Evil%20HD%20REMASTER%20(1996-2015)&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce",
       "cover": "https://res.cloudinary.com/dkcui82mx/image/upload/v1770154107/ze9mf8kxminbilpwwlj4.png"
@@ -171,6 +177,7 @@
     {
       "name": "PICO PARK",
       "categories": [
+        "CASUAL",
         "INDIE",
         "ONLINE"
       ],
@@ -221,11 +228,14 @@
       "name": "ARK Survival Evolved",
       "categories": [
         "ACTION",
-        "ADVENTURE",
         "RPG",
+        "SIMULATOR",
+        "ADVENTURE",
         "INDIE",
+        "SURVIVAL",
+        "OPEN WORLD",
         "SINGLEPLAYER",
-        "SURVIVAL"
+        "ONLINE"
       ],
       "magnet": "magnet:?xt=urn:btih:e7416cc3b214d4e8aba9156426d00dd7d1258607&dn=ARK.%20Survival%20Evolved%20%282017%29",
       "cover": "https://res.cloudinary.com/dkcui82mx/image/upload/v1770154000/iampkigajk5s25by8y1c.png"
@@ -418,7 +428,6 @@
       "name": "NFS Heat",
       "categories": [
         "CAR RACE",
-        "ARCADE",
         "SINGLEPLAYER",
         "ONLINE"
       ],
@@ -428,10 +437,9 @@
     {
       "name": "Detroit Become Human",
       "categories": [
-        "ACTION",
         "ADVENTURE",
-        "SINGLEPLAYER",
-        "STORY RICH"
+        "ACTION",
+        "SINGLEPLAYER"
       ],
       "magnet": "magnet:?xt=urn:btih:C6H7OTUOTABXADE3GTT6LT6AS372KYYA&dn=Detroit.%20Become%20Human%20(2018-2019)&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80%2Fannounce",
       "cover": "https://res.cloudinary.com/dkcui82mx/image/upload/v1770153683/dpebog7knajw2pkjqcrb.png"
@@ -439,12 +447,11 @@
     {
       "name": "Horizon Forbidden west Complete Edition",
       "categories": [
-        "ACTION",
-        "ADVENTURE",
         "RPG",
-        "SINGLEPLAYER",
-        "ONLINE",
-        "OPEN WORLD"
+        "ADVENTURE",
+        "ACTION",
+        "OPEN WORLD",
+        "SINGLEPLAYER"
       ],
       "magnet": "magnet:?xt=urn:btih:8cc53599d123220e3fb79459bf3db1c12cffc545&dn=Horizon%20Forbidden%20West%20Complete%20Edition-InsaneRamZes&tr=http%3A%2F%2Ftr.ysagin.top%3A2710%2Fannounce&tr=http%3A%2F%2Ftr2.ysagin.top%3A2715%2Fannounce&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80%2Fannounce&tr=udp%3A%2F%2Fopentor.org%3A2710",
       "cover": "https://res.cloudinary.com/dkcui82mx/image/upload/v1770153667/grchg2yuuit5rjq33nod.png"
