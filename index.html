@@ -818,7 +818,8 @@
 
   <script>
     // ========== CONFIGURATION ==========
-    const WORKER_URL = 'https://crackuzu-api.crackuzu.workers.dev';
+   const CATEGORIES_WORKER_URL = 'https://crackuzu-categories.crackuzu.workers.dev';
+    const WORKER_URL = 'https://crackuzu-api.crackuzu.workers.dev'; // Garder l'ancien pour le reste
     const GITHUB_CONFIG = {
       token: "",
       owner: "Crackuzu",
@@ -954,61 +955,52 @@
     GITHUB_CONFIG.token = loadGithubToken();
 
     // ========== RECHERCHE RAWG ==========
-    async function searchGameOnRawg(gameName){
-      try {
-        toastMsg("🔍 Recherche sur RAWG...");
-        
-        const response = await fetch(`${WORKER_URL}/api/gameinfo?game=${encodeURIComponent(gameName)}`);
-        
-        if (!response.ok) {
-          throw new Error(`API responded with ${response.status}`);
-        }
-        
-        const data = await response.json();
-        
-        if (!data.success) {
-          throw new Error(data.error || 'Game not found');
-        }
-        
-        // Stocker les données RAWG
-        state.rawgGameData = data;
-        
-        // Afficher les résultats
-        rawgResult.style.display = "block";
-        rawgTitle.textContent = data.name;
-        rawgRelease.textContent = data.released ? `Sortie: ${data.released}` : 'Date inconnue';
-        rawgGenres.textContent = data.genres || 'Non spécifié';
-        
-        if (data.coverUrl) {
-          rawgCover.src = data.coverUrl;
-          gameCoverLink.value = data.coverUrl;
-          gameCover.value = data.coverUrl;
-          refreshPreview();
-        }
-        
-        // Afficher les catégories détectées
-        autoCatTags.innerHTML = "";
-        if (data.categories && data.categories.length > 0) {
-          data.categories.forEach(cat => {
-            const isNew = !state.data.categories.includes(cat);
-            const tag = document.createElement("div");
-            tag.className = `autoCatTag ${isNew ? 'new' : ''}`;
-            tag.innerHTML = `${cat} ${isNew ? '<span style="font-size:10px;">(NEW)</span>' : ''}`;
-            autoCatTags.appendChild(tag);
-          });
-        } else {
-          autoCatTags.innerHTML = '<div style="color:rgba(255,255,255,.6); font-style:italic;">Aucune catégorie détectée</div>';
-        }
-        
-        toastMsg("✅ Données RAWG récupérées!");
-        
-      } catch (error) {
-        console.error('RAWG search error:', error);
-        toastMsg(`❌ Erreur: ${error.message}`);
-        state.rawgGameData = null;
-        rawgResult.style.display = "none";
-      }
+// REMPLACER TOUTE la fonction searchGameOnRawg (lignes ~130-180)
+async function searchGameOnRawg(gameName){
+  try {
+    toastMsg("🔍 Recherche des catégories...");
+    
+    // Appeler le NOUVEAU worker dédié aux catégories
+    const response = await fetch(`${CATEGORIES_WORKER_URL}/api/categories?game=${encodeURIComponent(gameName)}`);
+    
+    if (!response.ok) {
+      throw new Error(`API responded with ${response.status}`);
     }
+    
+    const data = await response.json();
+    
+    // Stocker les données de catégories
+    state.rawgGameData = data;
+    
+    // Afficher les résultats
+    rawgResult.style.display = "block";
+    rawgTitle.textContent = data.rawgName || gameName;
+    rawgRelease.textContent = data.genres ? `Genres: ${data.genres.join(', ')}` : 'Genres non spécifiés';
+    rawgGenres.textContent = data.genres ? data.genres.join(', ') : 'Non spécifié';
+    
+    // Afficher les catégories détectées
+    autoCatTags.innerHTML = "";
+    if (data.categories && data.categories.length > 0) {
+      data.categories.forEach(cat => {
+        const isNew = !state.data.categories.includes(cat);
+        const tag = document.createElement("div");
+        tag.className = `autoCatTag ${isNew ? 'new' : ''}`;
+        tag.innerHTML = `${cat} ${isNew ? '<span style="font-size:10px;">(NEW)</span>' : ''}`;
+        autoCatTags.appendChild(tag);
+      });
+    } else {
+      autoCatTags.innerHTML = '<div style="color:rgba(255,255,255,.6); font-style:italic;">Aucune catégorie détectée</div>';
+    }
+    
+    toastMsg(`✅ ${data.categories.length} catégorie(s) détectée(s)!`);
+    
+  } catch (error) {
+    console.error('Categories search error:', error);
+    toastMsg(`❌ Erreur: ${error.message}`);
+    state.rawgGameData = null;
+    rawgResult.style.display = "none";
+  }
+}
 
     // ========== GESTION CATÉGORIES ADDITIONNELLES ==========
     function updateAdditionalCatSelect() {
