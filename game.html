@@ -335,7 +335,7 @@
   <script>
     const urlParams = new URLSearchParams(window.location.search);
     const gameName = urlParams.get('name');
-    const WORKER_URL = localStorage.getItem('worker_url') || '';
+    const WORKER_URL = localStorage.getItem('worker_url') || 'https://crackuzu-api.crackuzu.workers.dev';
     let currentGame = null;
 
     if (!gameName) {
