@@ -378,13 +378,16 @@
       coverLoading.style.display = 'block';
       
       try {
-        const response = await fetch(`${WORKER_URL}/api/cover?game=${encodeURIComponent(gameName)}`);
+        // NOUVEAU: Utiliser /api/screenshot pour du 16:9 HD (RAWG)
+        // Au lieu de /api/cover qui donne du 3:4 basse qualité (IGDB)
+        const response = await fetch(`${WORKER_URL}/api/screenshot?game=${encodeURIComponent(gameName)}`);
         
         if (response.ok) {
           const data = await response.json();
           
-          if (data.coverUrl) {
-            coverImg.src = data.coverUrl;
+          if (data.screenshotUrl) {
+            console.log('✅ Screenshot loaded from:', data.source, '- Format:', data.format);
+            coverImg.src = data.screenshotUrl;
             coverImg.onload = () => {
               coverContainer.classList.remove('loading');
               coverLoading.style.display = 'none';
@@ -399,7 +402,7 @@
         loadFallbackCover();
         
       } catch (error) {
-        console.error('Error fetching cover:', error);
+        console.error('Error fetching screenshot:', error);
         loadFallbackCover();
       }
       
