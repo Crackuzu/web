@@ -25,6 +25,14 @@
   ],
   "games": [
     {
+      "name": "Cyberpunk 2077",
+      "categories": [
+        "ACTION"
+      ],
+      "magnet": "magnet:?xt=urn:btih:ac6db3097f4e86c865936ae4d3d4f8f81fad6d3a&dn=Cyberpunk.2077.v2.2.ALL.DLC.zip&tr=udp://tracker.torrent.eu.org:451/announce&tr=udp://exodus.desync.com:6969/announce&tr=udp://tracker.moeking.me:6969/announce&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.stealth.si:80/announce&tr=udp://tracker.theoks.net:6969/announce&tr=udp://movies.zsw.ca:6969/announce&tr=udp://tracker.tiny-vps.com:6969/announce&tr=udp://tracker-udp.gbitt.info:80/announce&tr=http://tracker.gbitt.info:80/announce&tr=https://tracker.gbitt.info:443/announce&tr=http://tracker.ccp.ovh:6969/announce&tr=udp://tracker.ccp.ovh:6969/announce&tr=udp://tracker.dler.com:6969/announce&tr=http://tracker.bt4g.com:2095/announce",
+      "cover": "https://res.cloudinary.com/dkcui82mx/image/upload/v1770358995/jmjtyre6nkivofwx9jga.png"
+    },
+    {
       "name": "Dying Light",
       "categories": [
         "ACTION",
