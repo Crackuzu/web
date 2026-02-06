@@ -6,6 +6,7 @@
     "CAR RACE",
     "RESIDENT EVIL",
     "SURVIVAL",
+    "SOLO",
     "SIMULATOR",
     "RPG",
     "SINGLEPLAYER",
@@ -187,7 +188,7 @@
       "cover": "https://res.cloudinary.com/dkcui82mx/image/upload/v1770154041/ij91sgwvqwwoivxpn7hg.png"
     },
     {
-      "name": "Miles Morales spider",
+      "name": "Miles Morales",
       "categories": [
         "ACTION",
         "SINGLEPLAYER",
