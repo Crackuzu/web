@@ -140,6 +140,10 @@
       color: var(--text);
       font-size: clamp(13px, 1.1vw, 14px);
     }
+    .search input:focus{
+      outline:none;
+      border:none;
+    }
     .search input::placeholder{ color: rgba(255,255,255,.55); }
 
     .main{
@@ -862,7 +866,7 @@
   <div class="toast" id="toast"></div>
 
   <script>
-    const ADMIN_PASSWORD = "admin123";
+    const ADMIN_PASSWORD = "141592";
     const REPO_OWNER = "Crackuzu";
     const REPO_NAME = "web";
     const REPO_BRANCH = "main";
