@@ -10,18 +10,14 @@
     "SIMULATOR",
     "RPG",
     "SINGLEPLAYER",
-    "ATMOSPHERIC",
     "OPEN WORLD",
     "SPORTS",
     "STORY RICH",
     "ADVENTURE",
     "INDIE",
-    "THIRD PERSON",
     "ARCADE",
     "ZOMBIES",
-    "STRATEGY",
-    "CASUAL",
-    "FIRST PERSON"
+    "STRATEGY"
   ],
   "games": [
     {
@@ -38,8 +34,7 @@
         "ACTION",
         "RPG",
         "SINGLEPLAYER",
-        "ONLINE",
-        "ATMOSPHERIC"
+        "ONLINE"
       ],
       "magnet": "magnet:?xt=urn:btih:REV2VJUGJNTSLR3U72AHMZBDCZWKKPWZ&dn=Dying%20Light&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce",
       "cover": "https://res.cloudinary.com/dkcui82mx/image/upload/v1770334437/nf1xzr4pgczpecu19sck.png"
@@ -166,7 +161,6 @@
     {
       "name": "PICO PARK",
       "categories": [
-        "CASUAL",
         "INDIE",
         "ONLINE"
       ],
@@ -188,7 +182,6 @@
         "RPG",
         "SINGLEPLAYER",
         "STORY RICH",
-        "THIRD PERSON",
         "ACTION"
       ],
       "magnet": "magnet:?xt=urn:btih:d992a85403e2ce5347ed7f6b48be2bd4857a7682&dn=Clair%20Obscur.%20Expedition%2033%20(2025)&tr=udp%3A%2F%2Ftracker.dler.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fopen.demonoid.ch%3A6969%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Fexplodie.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=udp%3A%2F%2Fwepzone.net%3A6969%2Fannounce&tr=udp%3A%2F%2Fttk2.nbaonlineservice.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker2.dler.org%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker1.myporn.club%3A9337%2Fannounce&tr=udp%3A%2F%2Ftracker.tryhackx.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.torrust-demo.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.srv00.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.qu.ax%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.gmi.gd%3A6969%2Fannounce",
@@ -233,8 +226,7 @@
         "ACTION",
         "ADVENTURE",
         "SINGLEPLAYER",
-        "HORROR",
-        "CASUAL"
+        "HORROR"
       ],
       "magnet": "magnet:?xt=urn:btih:f65707990b5f39df56d80d2ba70f3548fae07e33&dn=Hello%20Neighbor%202%20(2022)&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80%2Fannounce&tr=http%3A%2F%2Ftracker.dler.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fopentracker.i2p.rocks%3A6969%2Fannounce&tr=udp%3A%2F%2Fopen.tracker.cl%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.openbittorrent.com%3A80%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Fexplodie.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker1.bt.moack.co.kr%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.tiny-vps.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker-udp.gbitt.info%3A80%2Fannounce&tr=https%3A%2F%2Ftracker.gbitt.info%3A443%2Fannounce",
       "cover": "https://res.cloudinary.com/dkcui82mx/image/upload/v1770153988/t3n0tdq8ayxbchjisqog.png"
@@ -278,7 +270,6 @@
       "categories": [
         "INDIE",
         "SINGLEPLAYER",
-        "FIRST PERSON",
         "HORROR"
       ],
       "magnet": "magnet:?xt=urn:btih:87933ab29514c63ebacbed00f64df8d4b0ec8b75&dn=Outlast_1.0a_(47147)_win_gog&tr=http%3A%2F%2Fbt.t-ru.org%2Fann",
