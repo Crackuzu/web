@@ -137,13 +137,10 @@
       "name": "Resident Evil",
       "categories": [
         "ACTION",
-        "SINGLEPLAYER",
-        "RESIDENT EVIL",
-        "STORY RICH",
-        "HORROR"
+        "ADVENTURE"
       ],
       "magnet": "magnet:?xt=urn:btih:NLLEJADVO5UNQK2QK665XF7NMRACOSEJ&dn=Resident%20Evil%20HD%20REMASTER%20(1996-2015)&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce",
-      "cover": "https://res.cloudinary.com/dkcui82mx/image/upload/v1770154107/ze9mf8kxminbilpwwlj4.png"
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1taw.jpg"
     },
     {
       "name": "RESIDENT EVIL 0",
