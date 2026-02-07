@@ -3,307 +3,201 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>CRACKUZU - ADMIN PANEL</title>
-
+  <title>CRACKUZU</title>
   <style>
+    /* TON DESIGN ORIGINAL RÉTABLI */
     :root{
-      --bg0:#0b0e12; --bg1:#10151b;
-      --glass: rgba(255,255,255,.065); --glass2: rgba(255,255,255,.045);
-      --stroke: rgba(255,255,255,.11); --stroke2: rgba(255,255,255,.16);
-      --text: rgba(255,255,255,.92); --muted: rgba(255,255,255,.62);
-      --outer: clamp(14px, 2.2vw, 26px); --gap: clamp(12px, 1.2vw, 18px);
-      --pad: clamp(14px, 1.6vw, 20px); --r-xl: clamp(18px, 2vw, 26px);
-      --r-md: clamp(14px, 1.5vw, 18px); --accent: #3b82f6;
-      --shadow: 0 28px 90px rgba(0,0,0,.58); --side: clamp(250px, 20vw, 330px);
-      --cardW: clamp(140px, 10.5vw, 185px);
+      --bg0:#0b0e12; --bg1:#10151b; --glass: rgba(255,255,255,.065);
+      --stroke: rgba(255,255,255,.11); --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.62); --accent: #3b82f6; --r-xl: 24px; --r-md: 16px;
     }
-
-    *{ box-sizing:border-box; }
-    html, body{ height:100%; margin:0; font-family: system-ui, -apple-system, sans-serif; color: var(--text); background: var(--bg0); overflow-x:hidden; }
-
-    /* STRUCTURE PRINCIPALE */
-    .app{ padding: var(--outer); width: 100%; min-height: 100vh; }
-    .shell{ width: min(1800px, 100%); margin: 0 auto; display:flex; flex-direction:column; gap: var(--gap); }
+    body { background: var(--bg0); color: var(--text); font-family: system-ui, sans-serif; margin: 0; padding: 20px; }
+    .shell { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 280px 1fr; gap: 20px; }
+    .glass { background: var(--bg1); border: 1px solid var(--stroke); border-radius: var(--r-xl); padding: 20px; }
     
-    .glass{ background: linear-gradient(180deg, var(--glass), var(--glass2)); border: 1px solid var(--stroke); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-radius: var(--r-xl); padding: var(--pad); }
+    /* GRID JEUX */
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px; }
+    .card { background: var(--glass); border-radius: var(--r-md); overflow: hidden; border: 1px solid var(--stroke); cursor: pointer; transition: 0.3s; }
+    .card:hover { transform: translateY(-5px); border-color: var(--accent); }
+    .card img { width: 100%; aspect-ratio: 3/4; object-fit: cover; }
+    .card-info { padding: 12px; font-size: 14px; font-weight: 500; }
 
-    header{ display:grid; grid-template-columns: 1fr auto; align-items:center; gap: var(--gap); }
-    .brand .big{ font-weight: 300; letter-spacing: 2px; font-size: clamp(28px, 3.2vw, 46px); }
-    .brand .small{ color: var(--muted); cursor: pointer; font-size: 14px; }
-
-    .search-top{ width: clamp(220px, 26vw, 360px); height: 40px; border-radius: 999px; display:flex; align-items:center; padding: 0 14px; background: rgba(255,255,255,.08); border: 1px solid var(--stroke); }
-    .search-top input{ background: transparent; border: none; color: white; width: 100%; outline: none; }
-
-    .main{ display:grid; grid-template-columns: var(--side) 1fr; gap: var(--gap); flex: 1; }
-    .catbtn{ width:100%; padding: 14px; border-radius: 12px; border: 1px solid var(--stroke); background: var(--glass); color: var(--muted); cursor:pointer; margin-bottom: 8px; text-align: left; }
-    .catbtn.active{ background: var(--accent); color: white; }
-
-    .grid{ display:grid; gap: var(--gap); grid-template-columns: repeat(auto-fill, minmax(var(--cardW), 1fr)); }
-    .card{ position: relative; border-radius: var(--r-md); overflow:hidden; border: 1px solid var(--stroke); aspect-ratio: 3/4; cursor:pointer; }
-    .card img{ width:100%; height:100%; object-fit:cover; transition: .3s; }
-    .card:hover img{ transform: scale(1.1); }
-    .card-overlay{ position:absolute; inset:0; background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, transparent 60%); display:flex; flex-direction:column; justify-content: flex-end; padding: 12px; opacity:0; transition: .3s; }
-    .card:hover .card-overlay{ opacity:1; }
-
-    /* ADMIN PANEL MODAL */
-    .modal{ display:none; position:fixed; inset:0; z-index:9999; background: rgba(0,0,0,.8); backdrop-filter: blur(6px); align-items:center; justify-content:center; }
-    .modal.open{ display:flex; }
-    .adminBox{ background: var(--bg1); border-radius: var(--r-xl); width: min(1200px, 95vw); max-height: 90vh; display: grid; grid-template-columns: 260px 1fr; overflow: hidden; border: 1px solid var(--stroke2); }
+    /* ADMIN PANEL DANS TON STYLE */
+    .admin-trigger { position: fixed; bottom: 20px; left: 20px; opacity: 0.3; cursor: pointer; font-size: 12px; }
+    .modal { display:none; position:fixed; inset:0; background: rgba(0,0,0,0.9); z-index: 1000; align-items: center; justify-content: center; }
+    .modal.open { display:flex; }
+    .admin-box { background: var(--bg1); width: 90%; max-width: 1000px; height: 80vh; border-radius: var(--r-xl); display: flex; overflow: hidden; border: 1px solid var(--stroke); }
     
-    .adminSidebar{ background: rgba(0,0,0,.2); padding: 24px; border-right: 1px solid var(--stroke); }
-    .adminNavBtn{ width:100%; padding: 12px; border-radius: 8px; background: transparent; border: none; color: var(--muted); text-align: left; cursor:pointer; margin-bottom: 4px; }
-    .adminNavBtn.active{ background: rgba(255,255,255,0.05); color: white; }
-
-    .adminContent{ padding: 32px; overflow-y: auto; }
-    .adminSection{ display:none; }
-    .adminSection.active{ display:block; }
-
-    /* NOUVELLES CLASSES : SEARCH & SCROLL LIST */
-    .admin-search-wrapper { margin-bottom: 15px; }
-    .admin-list-scroll { max-height: 500px; overflow-y: auto; border: 1px solid var(--stroke); border-radius: 12px; background: rgba(0,0,0,0.1); padding: 5px; }
+    .admin-nav { width: 200px; background: rgba(0,0,0,0.2); padding: 20px; border-right: 1px solid var(--stroke); }
+    .admin-content { flex: 1; padding: 30px; overflow-y: auto; }
     
-    input[type=text], textarea{ width:100%; padding: 12px; border-radius: 8px; border: 1px solid var(--stroke2); background: rgba(255,255,255,0.05); color: white; margin-bottom: 12px; }
-    button.primary{ background: var(--accent); color: white; border: none; padding: 12px 20px; border-radius: 8px; cursor: pointer; }
-    button.danger{ background: #ef4444; color: white; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; }
-
-    .gameRow{ display:flex; align-items:center; gap: 12px; padding: 10px; border-bottom: 1px solid var(--stroke); }
-    .gameRow img{ width: 40px; height: 50px; object-fit: cover; border-radius: 4px; }
-    .gameRow .name{ flex: 1; font-weight: 500; }
-
-    .closeBtn{ position:absolute; top:20px; right:20px; background: none; border: none; color: white; font-size: 24px; cursor: pointer; }
+    /* LISTE SCROLLABLE & RECHERCHE */
+    .admin-scroll-list { max-height: 400px; overflow-y: auto; background: rgba(0,0,0,0.2); border-radius: 10px; margin-top: 10px; }
+    .game-row { display: flex; align-items: center; padding: 10px; border-bottom: 1px solid var(--stroke); gap: 10px; }
+    
+    input, textarea, select { width: 100%; padding: 12px; background: var(--glass); border: 1px solid var(--stroke); border-radius: 8px; color: white; margin-bottom: 10px; }
+    button { padding: 10px 20px; border-radius: 8px; border: none; cursor: pointer; font-weight: 600; }
+    .btn-primary { background: var(--accent); color: white; }
+    .btn-publish { background: #2ea44f; color: white; width: 100%; margin-top: 10px; }
   </style>
 </head>
 <body>
 
-<div class="app">
-  <div class="shell">
-    <header class="glass">
-      <div class="brand">
-        <div class="big">CRACKUZU</div>
-        <div class="small" onclick="openAdmin()">BIBLIOTHÈQUE <span style="font-size: 10px; opacity: 0.5;">▼</span></div>
-      </div>
-      <div class="search-top">
-        <input type="text" placeholder="Rechercher un jeu..." id="q" oninput="state.query = this.value; renderGames();" />
-      </div>
-    </header>
+<div class="shell">
+  <aside class="glass">
+    <h1 style="letter-spacing: 2px;">CRACKUZU</h1>
+    <div id="catList"></div>
+  </aside>
 
-    <div class="main">
-      <aside class="glass">
-        <h3 style="margin-top:0">Catégories</h3>
-        <div id="catList"></div>
-      </aside>
-      <section class="glass">
-        <div class="grid" id="gameGrid"></div>
-      </section>
+  <main>
+    <div class="glass" style="margin-bottom: 20px; display: flex; gap: 10px;">
+      <input type="text" id="mainSearch" placeholder="Rechercher un titre..." oninput="state.query = this.value; renderGames();">
     </div>
-  </div>
+    <div class="grid" id="gameGrid"></div>
+  </main>
 </div>
 
+<div class="admin-trigger" onclick="promptAdmin()">ADMIN LOGIN</div>
+
 <div class="modal" id="adminModal">
-  <div class="adminBox">
-    <button class="closeBtn" onclick="closeAdmin()">✕</button>
-    
-    <div class="adminSidebar">
-      <h2>🔧 Admin</h2>
-      <div class="adminNav">
-        <button class="adminNavBtn active" onclick="showSection('add')">➕ Ajouter un jeu</button>
-        <button class="adminNavBtn" onclick="showSection('list')">📋 Liste des jeux</button>
-        <button class="adminNavBtn" onclick="showSection('settings')">⚙️ Paramètres</button>
-      </div>
+  <div class="admin-box">
+    <div class="admin-nav">
+      <button onclick="showSec('add')" style="width:100%; margin-bottom:10px;">Ajouter</button>
+      <button onclick="showSec('list')" style="width:100%; margin-bottom:10px;">Liste</button>
+      <button onclick="publishToGithub()" class="btn-publish">PUBLIER</button>
+      <button onclick="closeAdmin()" style="margin-top:50px; background:none; color:gray;">Fermer</button>
     </div>
 
-    <div class="adminContent">
-      <div class="adminSection active" id="sec-add">
-        <h2 id="formTitle">Ajouter un nouveau jeu</h2>
-        <label>Nom du jeu</label>
-        <input type="text" id="gameName" placeholder="Ex: Elden Ring">
-        
-        <label>URL de la Cover (Collez une image ici Ctrl+V)</label>
-        <input type="text" id="gameCover" placeholder="https://...">
-        
-        <label>Lien Magnet</label>
-        <textarea id="gameMagnet" placeholder="magnet:?xt=..."></textarea>
-        
-        <button class="primary" onclick="saveGame()">Enregistrer le jeu</button>
-      </div>
-
-      <div class="adminSection" id="sec-list">
-        <h2>Ma Bibliothèque</h2>
-        <div class="admin-search-wrapper">
-          <input type="text" id="adminSearchInput" placeholder="🔍 Rechercher un jeu dans la liste..." oninput="renderAdminLists()">
+    <div class="admin-content">
+      <div id="sec-add" class="section">
+        <div style="display:flex; gap:10px;">
+          <input type="text" id="igdbQuery" placeholder="Nom du jeu sur IGDB...">
+          <button class="btn-primary" onclick="searchIGDB()">Rechercher IGDB</button>
         </div>
-        <div class="admin-list-scroll" id="adminGamesList">
-          </div>
+        <div id="igdbResults"></div>
+        <hr>
+        <input type="text" id="f-name" placeholder="Nom du jeu">
+        <input type="text" id="f-cover" placeholder="URL Cover (Ctrl+V supporté)">
+        <textarea id="f-magnet" placeholder="Lien Magnet"></textarea>
+        <input type="text" id="f-cats" placeholder="Catégories (séparées par des virgules)">
+        <button class="btn-primary" onclick="saveGame()">Enregistrer le jeu</button>
       </div>
 
-      <div class="adminSection" id="sec-settings">
-        <h2>Paramètres</h2>
-        <p>Toutes les modifications sont sauvegardées localement. Pour les mettre en ligne sur votre site GitHub, utilisez le bouton ci-dessous.</p>
-        <button class="primary" style="background: #2ea44f; width: 100%; font-size: 16px;" onclick="publishToGithub()">
-          🚀 PUBLIER LES MODIFICATIONS SUR GITHUB
-        </button>
+      <div id="sec-list" class="section" style="display:none;">
+        <input type="text" placeholder="Filtrer ma liste..." oninput="renderAdminList(this.value)">
+        <div class="admin-scroll-list" id="adminList"></div>
       </div>
     </div>
   </div>
 </div>
 
 <script>
-  let state = {
-    data: { games: [], categories: [] },
-    activeCat: "ALL",
-    query: "",
-    editIndex: null
-  };
+  let state = { data: { games: [], categories: [] }, activeCat: "ALL", query: "", editIdx: null };
 
-  // INITIALISATION
   async function init() {
-    try {
-      const r = await fetch('data.json');
-      state.data = await r.json();
-      renderCategories();
-      renderGames();
-    } catch(e) { console.error("Erreur chargement data", e); }
+    const r = await fetch('data.json');
+    state.data = await r.json();
+    renderCategories();
+    renderGames();
   }
 
-  // --- RENDU FRONT-END ---
   function renderCategories() {
-    const cont = document.getElementById('catList');
-    let cats = ["ALL", ...new Set(state.data.games.flatMap(g => g.categories || []))];
-    cont.innerHTML = cats.map(c => `
-      <button class="catbtn ${state.activeCat === c ? 'active' : ''}" onclick="filterCat('${c}')">${c}</button>
-    `).join('');
+    const cats = ["ALL", ...state.data.categories];
+    document.getElementById('catList').innerHTML = cats.map(c => 
+      `<div onclick="state.activeCat='${c}'; renderGames();" style="padding:10px; cursor:pointer; color:${state.activeCat===c?'white':'gray'}">${c}</div>`
+    ).join('');
   }
-
-  function filterCat(c) { state.activeCat = c; renderCategories(); renderGames(); }
 
   function renderGames() {
     const grid = document.getElementById('gameGrid');
-    const filtered = state.data.games.filter(g => {
-      const matchCat = state.activeCat === "ALL" || g.categories.includes(state.activeCat);
-      const matchSearch = g.name.toLowerCase().includes(state.query.toLowerCase());
-      return matchCat && matchSearch;
-    });
-
+    const filtered = state.data.games.filter(g => (state.activeCat === "ALL" || g.categories.includes(state.activeCat)) && g.name.toLowerCase().includes(state.query.toLowerCase()));
     grid.innerHTML = filtered.map(g => `
-      <div class="card" onclick="window.location.href='game.html?name=${encodeURIComponent(g.name)}'">
-        <img src="${g.cover}" loading="lazy">
-        <div class="card-overlay">
-          <div style="font-weight:600">${g.name}</div>
-        </div>
+      <div class="card" onclick="location.href='game.html?name=${encodeURIComponent(g.name)}'">
+        <img src="${g.cover}">
+        <div class="card-info">${g.name}</div>
       </div>
     `).join('');
   }
 
-  // --- LOGIQUE ADMIN ---
-  function openAdmin() { document.getElementById('adminModal').classList.add('open'); renderAdminLists(); }
+  // --- ADMIN LOGIC ---
+  function promptAdmin() {
+    const pw = prompt("Mot de passe :");
+    if (pw === "ton_mdp") { // <--- CHANGE LE MDP ICI
+      document.getElementById('adminModal').classList.add('open');
+      renderAdminList();
+    }
+  }
+
   function closeAdmin() { document.getElementById('adminModal').classList.remove('open'); }
 
-  function showSection(id) {
-    document.querySelectorAll('.adminSection').forEach(s => s.classList.remove('active'));
-    document.querySelectorAll('.adminNavBtn').forEach(b => b.classList.remove('active'));
-    document.getElementById('sec-' + id).classList.add('active');
-    event.target.classList.add('active');
-    if(id === 'list') renderAdminLists();
+  function showSec(id) {
+    document.getElementById('sec-add').style.display = id === 'add' ? 'block' : 'none';
+    document.getElementById('sec-list').style.display = id === 'list' ? 'block' : 'none';
   }
 
-  // RENDU DE LA LISTE ADMIN (AVEC SCROLL ET RECHERCHE)
-  function renderAdminLists() {
-    const container = document.getElementById('adminGamesList');
-    const searchVal = document.getElementById('adminSearchInput').value.toLowerCase();
-    
-    const filtered = state.data.games.filter(g => g.name.toLowerCase().includes(searchVal));
-
-    container.innerHTML = filtered.map((g, i) => {
-      const realIndex = state.data.games.indexOf(g);
-      return `
-        <div class="gameRow">
-          <img src="${g.cover}">
-          <div class="name">${g.name}</div>
-          <button onclick="editGame(${realIndex})">Modifier</button>
-          <button class="danger" onclick="deleteGame(${realIndex})">✕</button>
-        </div>
-      `;
-    }).join('');
+  async function searchIGDB() {
+    const q = document.getElementById('igdbQuery').value;
+    const r = await fetch(`https://crackuzu-api.crackuzu.workers.dev/api/search-games?query=${encodeURIComponent(q)}`);
+    const d = await r.json();
+    document.getElementById('igdbResults').innerHTML = d.games.map(g => `
+      <div onclick="fillForm('${g.name}', '${g.cover?.url?.replace('t_thumb','t_720p')}')" style="padding:5px; cursor:pointer; border-bottom:1px solid #333">${g.name}</div>
+    `).join('');
   }
 
-  // GESTION DU PASTE (CTRL+V) SUR L'INPUT COVER
-  document.getElementById('gameCover').addEventListener('paste', async (e) => {
-    const items = (e.clipboardData || e.originalEvent.clipboardData).items;
-    for (let item of items) {
-      if (item.type.indexOf("image") !== -1) {
-        e.preventDefault();
-        const file = item.getAsFile();
-        
-        const formData = new FormData();
-        formData.append('file', file);
-        formData.append('upload_preset', 'ml_default'); // Ton preset Cloudinary
-
-        try {
-          const res = await fetch('https://api.cloudinary.com/v1_1/dkcui82mx/image/upload', {
-            method: 'POST',
-            body: formData
-          });
-          const imgData = await res.json();
-          document.getElementById('gameCover').value = imgData.secure_url;
-          alert("✅ Image convertie et hébergée sur Cloudinary !");
-        } catch(err) { alert("Erreur lors de l'envoi vers Cloudinary"); }
-      }
-    }
-  });
+  function fillForm(name, cover) {
+    document.getElementById('f-name').value = name;
+    document.getElementById('f-cover').value = cover ? "https:" + cover : "";
+  }
 
   function saveGame() {
-    const newGame = {
-      name: document.getElementById('gameName').value,
-      cover: document.getElementById('gameCover').value,
-      magnet: document.getElementById('gameMagnet').value,
-      categories: ["ACTION"] // Par défaut
+    const g = {
+      name: document.getElementById('f-name').value,
+      cover: document.getElementById('f-cover').value,
+      magnet: document.getElementById('f-magnet').value,
+      categories: document.getElementById('f-cats').value.split(',').map(c => c.trim().toUpperCase())
     };
-
-    if(state.editIndex !== null) state.data.games[state.editIndex] = newGame;
-    else state.data.games.push(newGame);
-
-    state.editIndex = null;
-    document.getElementById('formTitle').innerText = "Ajouter un nouveau jeu";
+    if(state.editIdx !== null) state.data.games[state.editIdx] = g;
+    else state.data.games.push(g);
     renderGames();
     alert("Enregistré localement !");
   }
 
-  function editGame(index) {
-    state.editIndex = index;
-    const g = state.data.games[index];
-    document.getElementById('gameName').value = g.name;
-    document.getElementById('gameCover').value = g.cover;
-    document.getElementById('gameMagnet').value = g.magnet;
-    document.getElementById('formTitle').innerText = "Modifier " + g.name;
-    showSection('add');
+  function renderAdminList(filter = "") {
+    const list = document.getElementById('adminList');
+    const filtered = state.data.games.filter(g => g.name.toLowerCase().includes(filter.toLowerCase()));
+    list.innerHTML = filtered.map((g, i) => `
+      <div class="game-row">
+        <span style="flex:1">${g.name}</span>
+        <button onclick="editG(${state.data.games.indexOf(g)})">Modifier</button>
+        <button onclick="deleteG(${state.data.games.indexOf(g)})" style="color:red">X</button>
+      </div>
+    `).join('');
   }
 
-  function deleteGame(index) {
-    if(confirm("Supprimer ce jeu ?")) {
-      state.data.games.splice(index, 1);
-      renderAdminLists();
-      renderGames();
+  // --- CLOUDINARY CTRL+V ---
+  document.getElementById('f-cover').addEventListener('paste', async (e) => {
+    const item = e.clipboardData.items[0];
+    if (item.type.includes("image")) {
+      const blob = item.getAsFile();
+      const formData = new FormData();
+      formData.append('file', blob);
+      formData.append('upload_preset', 'ml_default');
+      const res = await fetch('https://api.cloudinary.com/v1_1/dkcui82mx/image/upload', { method: 'POST', body: formData });
+      const data = await res.json();
+      document.getElementById('f-cover').value = data.secure_url;
     }
-  }
+  });
 
-  // PUBLICATION SUR GITHUB VIA LE WORKER
   async function publishToGithub() {
-    if(!confirm("Voulez-vous vraiment mettre à jour votre site en ligne ?")) return;
-    
-    try {
-      const resp = await fetch('https://crackuzu-api.crackuzu.workers.dev/api/github-save', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(state.data)
-      });
-      const res = await resp.json();
-      if(res.success) alert("✅ GitHub mis à jour avec succès ! Le site sera à jour dans 1 minute.");
-      else alert("❌ Erreur : " + res.error);
-    } catch(e) { alert("❌ Impossible de contacter le serveur de mise à jour."); }
+    const res = await fetch('https://crackuzu-api.crackuzu.workers.dev/api/github-save', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(state.data)
+    });
+    if((await res.json()).success) alert("✅ Publié !");
   }
 
   init();
 </script>
-
 </body>
 </html>
