@@ -1291,7 +1291,7 @@
 
     function saveLocalDraft(){ localStorage.setItem(LOCAL_KEY, JSON.stringify(state.data)); }
     function loadLocalDraft(){
-      const raw = localStorage.getItem(LOCAL_KEY); // CORRIGÉ: getItem au lieu de setItem
+      const raw = localStorage.setItem(LOCAL_KEY);
       if(!raw) return null;
       try{
         return sanitizeData(JSON.parse(raw));
@@ -1320,31 +1320,46 @@
       return obj;
     }
 
-    // FONCTION CORRIGÉE pour charger les données
     async function loadDataFromRepo(){
-      console.log("🔍 Tentative de chargement depuis data.json...");
+      console.log("📡 loadDataFromRepo: START");
       
-      try {
-        // Essayer de charger depuis le fichier local data.json
-        const res = await fetch('data.json?v=' + Date.now()); // Cache buster
-        console.log("📄 Statut de la requête data.json:", res.status);
+      // Essayer local d'abord
+      try{
+        console.log("📡 Trying fetch('data.json')...");
+        const res = await fetch('data.json');
+        console.log("📡 Response status:", res.status, res.statusText);
         
         if(res.ok){
           const json = await res.json();
-          console.log("✅ data.json chargé avec succès !");
-          console.log("🎮 Nombre de jeux trouvés:", json.games?.length || 0);
-          
-          if (!json.games || json.games.length === 0) {
-            console.warn("⚠️ data.json contient 0 jeux");
-          }
-          
-          return sanitizeData(json);
-        } else {
-          console.error("❌ data.json non trouvé, statut:", res.status);
+          console.log("📡 JSON parsed, games:", json.games?.length);
+          const sanitized = sanitizeData(json);
+          console.log("✅ loadDataFromRepo: SUCCESS (local)");
+          return sanitized;
+        }
+      }catch(e){
+        console.log("⚠️ Fetch local failed:", e.message);
+      }
+      
+      // Essayer GitHub
+      const url = `https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/${REPO_BRANCH}/${REPO_PATH}`;
+      console.log("📡 Trying GitHub:", url);
+      
+      try{
+        const res = await fetch(url);
+        console.log("📡 GitHub response status:", res.status, res.statusText);
+        
+        if(!res.ok) {
+          console.log("❌ GitHub fetch failed");
           return null;
         }
-      } catch(e){
-        console.error("❌ Erreur lors du chargement de data.json:", e);
+        
+        const json = await res.json();
+        console.log("📡 GitHub JSON parsed, games:", json.games?.length);
+        const sanitized = sanitizeData(json);
+        console.log("✅ loadDataFromRepo: SUCCESS (GitHub)");
+        return sanitized;
+      }catch(e){
+        console.log("❌ GitHub fetch error:", e.message);
         return null;
       }
     }
@@ -1363,10 +1378,8 @@
 
     // Render functions
     function renderCategories(){
-      console.log("🔄 Rendu des catégories...");
       const all = ["ALL", ...state.data.categories];
       catList.innerHTML = "";
-      
       all.forEach(cat => {
         const btn = document.createElement("div");
         btn.className = "catbtn";
@@ -1379,14 +1392,9 @@
         });
         catList.appendChild(btn);
       });
-      
-      console.log("✅ Catégories rendues:", state.data.categories.length);
     }
 
     function renderGames(){
-      console.log("🔄 Rendu des jeux...");
-      console.log("🎮 Jeux dans state:", state.data.games.length);
-      
       let filtered = state.data.games;
 
       if(state.activeCat !== "ALL"){
@@ -1394,30 +1402,21 @@
           const cats = Array.isArray(g.categories) ? g.categories : [];
           return cats.includes(state.activeCat);
         });
-        console.log("🎯 Filtrage par catégorie:", state.activeCat, "->", filtered.length, "jeux");
       }
 
       if(state.query){
         const lq = state.query.toLowerCase();
         filtered = filtered.filter(g => g.name.toLowerCase().includes(lq));
-        console.log("🔍 Filtrage par recherche:", state.query, "->", filtered.length, "jeux");
       }
 
       gameGrid.innerHTML = "";
-      
       if(filtered.length === 0){
         noGames.style.display = "block";
-        noGames.textContent = state.data.games.length === 0 ? 
-          "Aucun jeu dans la bibliothèque. Ajoutez-en via le panneau admin." : 
-          "Aucun jeu trouvé pour les filtres sélectionnés.";
-        console.log("⚠️ Aucun jeu à afficher");
         return;
       }
 
       noGames.style.display = "none";
-      console.log("🖼️ Affichage de", filtered.length, "jeux");
-      
-      filtered.forEach((g, index) => {
+      filtered.forEach(g => {
         const card = document.createElement("div");
         card.className = "card";
 
@@ -1427,10 +1426,6 @@
         img.src = g.cover || "";
         img.alt = g.name;
         img.loading = "lazy";
-        img.onerror = function() {
-          console.warn("❌ Image non chargée pour:", g.name);
-          this.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='533' viewBox='0 0 400 533'%3E%3Crect width='400' height='533' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' font-family='Arial' font-size='20' fill='white' text-anchor='middle' dominant-baseline='middle'%3E" + g.name.substring(0, 20) + "%3C/text%3E%3C/svg%3E";
-        };
         bg.appendChild(img);
 
         const overlay = document.createElement("div");
@@ -1443,7 +1438,6 @@
         const downloadLink = document.createElement("a");
         downloadLink.className = "card-download";
         downloadLink.href = g.magnet;
-        downloadLink.target = "_blank";
         downloadLink.innerHTML = `
           <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
@@ -1463,14 +1457,7 @@
         });
 
         gameGrid.appendChild(card);
-        
-        // Log pour les premiers jeux
-        if (index < 3) {
-          console.log(`🎮 Jeu ${index + 1}: "${g.name}" | Categories: ${g.categories?.join(', ') || 'Aucune'} | Cover: ${g.cover ? 'Oui' : 'Non'}`);
-        }
       });
-      
-      console.log("✅ Rendu des jeux terminé");
     }
 
     function renderAdminLists(){
@@ -2247,39 +2234,40 @@
     adminModal.addEventListener("click", (e) => { if(e.target === adminModal) closeAdminModal(); });
     window.addEventListener("keydown", (e) => { if(e.key === "Escape") closeAdminModal(); });
 
-    // FONCTION INIT CORRIGÉE ET SIMPLIFIÉE
     async function init(){
-      console.log("🎮 CRACKUZU - Initialisation...");
-      setStateMessage("Chargement des jeux...");
+      console.log("🚀 === INIT START ===");
+      console.log("📍 Protocol:", window.location.protocol);
+      console.log("📍 URL:", window.location.href);
+      
+      setStateMessage("Chargement…");
 
-      // 1. Essayer de charger depuis data.json
-      try {
-        const data = await loadDataFromRepo();
-        
-        if (data && data.games && data.games.length > 0) {
-          console.log(`✅ ${data.games.length} jeux chargés depuis data.json`);
-          state.data = data;
-          setStateMessage(`✅ ${data.games.length} jeux chargés`);
-          setTimeout(() => setStateMessage(""), 2000);
-        } else {
-          // Vérifier s'il y a un draft local
-          const localDraft = loadLocalDraft();
-          if (localDraft && localDraft.games && localDraft.games.length > 0) {
-            console.log(`📦 ${localDraft.games.length} jeux chargés depuis le draft local`);
-            state.data = localDraft;
-            setStateMessage(`📦 ${localDraft.games.length} jeux (draft local)`);
-            setTimeout(() => setStateMessage(""), 2000);
-          } else {
-            console.warn("⚠️ Aucun jeu trouvé. La bibliothèque est vide.");
-            setStateMessage("📭 Aucun jeu trouvé. Ajoutez-en via le panneau admin.");
-          }
-        }
-      } catch (error) {
-        console.error("❌ Erreur lors du chargement:", error);
-        setStateMessage("❌ Erreur de chargement. Vérifiez la console.");
+      console.log("🔍 Calling loadDataFromRepo()...");
+      const repoData = await loadDataFromRepo();
+      console.log("📊 repoData:", repoData ? `${repoData.games.length} games` : "NULL");
+      
+      console.log("🔍 Calling loadLocalDraft()...");
+      const localDraft = loadLocalDraft();
+      console.log("📊 localDraft:", localDraft ? `${localDraft.games.length} games` : "NULL");
+
+      if(localDraft){
+        console.log("✅ Using LOCAL DRAFT");
+        state.data = localDraft;
+        setStateMessage("📦 Données locales");
+        setTimeout(() => setStateMessage(""), 3000);
+      }else if(repoData){
+        console.log("✅ Using REPO DATA");
+        state.data = repoData;
+        setStateMessage("☁️ Données GitHub");
+        setTimeout(() => setStateMessage(""), 3000);
+      }else{
+        console.log("⚠️ Using DEFAULT_DATA (EMPTY!)");
+        state.data = structuredClone(DEFAULT_DATA);
+        setStateMessage("Mode local");
       }
 
-      // 2. Initialiser l'interface
+      console.log("📚 Final state.data.games.length:", state.data.games.length);
+      console.log("📚 Final state.data.categories.length:", state.data.categories.length);
+
       state.activeCat = "ALL";
       state.query = "";
       q.value = "";
@@ -2287,15 +2275,19 @@
       editIndex = null;
       exitEditMode();
 
-      // 3. Rendre l'interface
+      console.log("🎨 Calling renderCategories()...");
       renderCategories();
+      
+      console.log("🎮 Calling renderGames()...");
       renderGames();
+      
+      console.log("📋 Calling renderAdminLists()...");
       renderAdminLists();
       
-      console.log("✅ Initialisation terminée");
+      console.log("✅ === INIT COMPLETE ===");
+      console.log("State:", state.data);
     }
 
-    // Démarrer l'application
     init();
   </script>
 </body>
