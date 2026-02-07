@@ -999,17 +999,6 @@
       flex-wrap: wrap;
       gap: 4px;
     }
-    /* Admin Games List Scroll */
-    #gameListAdmin {
-        max-height: 500px !important;
-        overflow-y: auto !important;
-        padding-right: 10px;
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-    }
-    #gameListAdmin::-webkit-scrollbar { width: 5px; }
-    #gameListAdmin::-webkit-scrollbar-thumb { background: var(--stroke2); border-radius: 10px; }
   </style>
 </head>
 <body>
@@ -1136,11 +1125,6 @@
         <!-- SECTION: Liste des jeux -->
         <div class="adminSection" id="sectionList">
           <h2>📋 Liste des jeux</h2>
-          <input type="text" 
-                 id="adminSearchBar"
-                 placeholder="🔍 Filtrer mes jeux..." 
-                 style="width: 100%; background: var(--glass2); border: 1px solid var(--stroke); border-radius: var(--r-md); padding: 15px; color: white; margin-bottom: 20px; outline: none;" 
-                 oninput="renderAdminLists(this.value)">
           <div id="gameListAdmin"></div>
         </div>
 
@@ -1180,7 +1164,7 @@
             </div>
           </div>
           <div class="btnGroup">
-            <button onclick="publishToGithub()" class="primary" style="background: #2ea44f; width: 100%;">🚀 PUBLIER SUR GITHUB</button>
+            <button id="publishBtn" class="primary">📤 Publier sur GitHub</button>
             <button id="exportBtn">💾 Exporter JSON</button>
             <button id="importBtn">📥 Importer JSON</button>
             <button id="resetBtn" class="danger">🔄 Reset local</button>
@@ -1489,7 +1473,7 @@
       console.log("✅ Rendu des jeux terminé");
     }
 
-    function renderAdminLists(filter = ""){
+    function renderAdminLists(){
       catListAdmin.innerHTML = "";
       state.data.categories.forEach((cat, idx) => {
         const row = document.createElement("div");
@@ -1526,16 +1510,8 @@
         catListAdmin.appendChild(row);
       });
 
-      // Filter games based on search input
-      const gamesToDisplay = state.data.games.filter(g => 
-        g.name.toLowerCase().includes(filter.toLowerCase())
-      );
-
       gameListAdmin.innerHTML = "";
-      gamesToDisplay.forEach((g) => {
-        // Get the real index in the original array so edit/delete buttons work correctly
-        const idx = state.data.games.indexOf(g);
-        
+      state.data.games.forEach((g, idx) => {
         const row = document.createElement("div");
         row.className = "gameRow";
 
@@ -2317,65 +2293,6 @@
       renderAdminLists();
       
       console.log("✅ Initialisation terminée");
-    }
-
-    // GitHub Publish Function
-    async function publishToGithub() {
-      if(!confirm("Voulez-vous mettre à jour le site en ligne ?")) return;
-      
-      toastMsg("⏳ Envoi vers GitHub...");
-
-      try {
-        const workerUrl = localStorage.getItem('workerUrl') || 'https://crackuzu-api.crackuzu.workers.dev';
-        const response = await fetch(`${workerUrl}/api/github-save`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(state.data)
-        });
-        
-        const res = await response.json();
-        if(res.success) {
-          toastMsg("✅ Site mis à jour !");
-        } else {
-          toastMsg("❌ Erreur : " + res.error);
-        }
-      } catch (e) {
-        toastMsg("❌ Erreur de connexion au Worker.");
-        console.error(e);
-      }
-    }
-
-    // Paste handler for cover image
-    const coverInput = document.querySelector('input[placeholder*="URL de la cover"]') || 
-                       document.querySelector('input[placeholder*="url de la cover"]') ||
-                       gameCover;
-    
-    if(coverInput) {
-      coverInput.addEventListener('paste', async (e) => {
-        const item = e.clipboardData.items[0];
-        if (item && item.type.includes("image")) {
-          e.preventDefault();
-          const file = item.getAsFile();
-          const formData = new FormData();
-          formData.append('file', file);
-          formData.append('upload_preset', 'ml_default');
-
-          try {
-            toastMsg("📤 Upload de l'image...");
-            const res = await fetch('https://api.cloudinary.com/v1_1/dkcui82mx/image/upload', {
-              method: 'POST',
-              body: formData
-            });
-            const data = await res.json();
-            coverInput.value = data.secure_url;
-            gameCover.value = data.secure_url;
-            toastMsg("✅ Image uploadée !");
-          } catch(err) {
-            console.error("Erreur Cloudinary:", err);
-            toastMsg("❌ Erreur d'upload");
-          }
-        }
-      });
     }
 
     // Démarrer l'application
