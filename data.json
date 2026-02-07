@@ -1,17 +1,11 @@
 {
   "categories": [
-    "ONLINE",
-    "HORROR",
     "ACTION",
     "CAR RACE",
-    "RESIDENT EVIL",
     "SURVIVAL",
     "SIMULATOR",
-    "RPG",
     "SINGLEPLAYER",
-    "OPEN WORLD",
     "SPORTS",
-    "STORY RICH",
     "ADVENTURE",
     "INDIE",
     "ARCADE",
@@ -187,8 +181,7 @@
       "name": "Miles Morales",
       "categories": [
         "ACTION",
-        "SINGLEPLAYER",
-        "STORY RICH"
+        "SINGLEPLAYER"
       ],
       "magnet": "magnet:?xt=urn:btih:ab68fa685b1315aae0f36f218732ada8342c1db1&dn=Marvels%20Spider-Man%20Miles%20Morales%20v.3.617.1.0%20%282022%29",
       "cover": "https://res.cloudinary.com/dkcui82mx/image/upload/v1770154024/q17lgylhs0lxerwpajli.png"
@@ -316,16 +309,14 @@
       "cover": "https://res.cloudinary.com/dkcui82mx/image/upload/v1770153846/kg0w99ppiib1uargvd1h.png"
     },
     {
-      "name": "RESIDENT EVIL 7",
+      "name": "Resident Evil 7: Biohazard",
       "categories": [
         "ACTION",
-        "ADVENTURE",
-        "SINGLEPLAYER",
-        "RESIDENT EVIL",
-        "HORROR"
+        "PUZZLE",
+        "ADVENTURE"
       ],
       "magnet": "magnet:?xt=urn:btih:P6G6BOOONCIHTSMSA2AZFVIDMSX5JAPE&dn=Resident%20Evil%207%20Biohazard%20(2017)&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80%2Fannounce",
-      "cover": "https://res.cloudinary.com/dkcui82mx/image/upload/v1770153831/k5xepix8ibtmbtsxqdxk.png"
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/cob0ry.jpg"
     },
     {
       "name": "Resident Evil 6",
