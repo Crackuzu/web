@@ -1046,6 +1046,75 @@
       background: linear-gradient(135deg, rgba(46, 204, 113, 0.3), rgba(39, 174, 96, 0.25));
       border-color: rgba(46, 204, 113, 0.5);
     }
+
+    /* BOUTON COLLER IMAGE */
+    .paste-image-btn {
+      background: linear-gradient(135deg, rgba(155, 89, 182, 0.22), rgba(142, 68, 173, 0.18));
+      border-color: rgba(155, 89, 182, 0.35);
+    }
+    .paste-image-btn:hover {
+      background: linear-gradient(135deg, rgba(155, 89, 182, 0.3), rgba(142, 68, 173, 0.25));
+      border-color: rgba(155, 89, 182, 0.5);
+    }
+
+    /* PANNEAU UPLOAD SIMPLIFIÉ */
+    .uploadPanel {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .uploadActions {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .uploadStats {
+      background: rgba(255,255,255,.03);
+      border-radius: 12px;
+      padding: 20px;
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .uploadStats h3 {
+      margin: 0 0 16px;
+      font-size: 16px;
+      font-weight: 500;
+      color: rgba(255,255,255,.85);
+    }
+
+    .statItem {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+
+    .statLabel {
+      color: rgba(255,255,255,.7);
+    }
+
+    .statValue {
+      color: rgba(255,255,255,.9);
+      font-weight: 500;
+    }
+
+    .uploadProgress {
+      height: 6px;
+      background: rgba(255,255,255,.1);
+      border-radius: 3px;
+      overflow: hidden;
+      margin-top: 20px;
+    }
+
+    .uploadProgressBar {
+      height: 100%;
+      background: linear-gradient(90deg, rgba(46, 204, 113, 0.8), rgba(39, 174, 96, 0.8));
+      width: 0%;
+      transition: width 0.3s ease;
+    }
   </style>
 </head>
 <body>
@@ -1089,7 +1158,7 @@
     </div>
   </div>
 
-  <!-- ADMIN PANEL -->
+  <!-- ADMIN PANEL SIMPLIFIÉ -->
   <div class="modal" id="adminModal" aria-hidden="true">
     <div class="adminBox">
       <button class="closeBtn" id="closeAdmin" aria-label="Fermer">✕</button>
@@ -1162,14 +1231,11 @@
 
           <div class="formRow" style="margin-top:12px;">
             <div style="flex: 1;">
-              <label>URL de la Cover (collez une image ici)</label>
+              <label>URL de la Cover</label>
               <input type="text" id="gameCover" placeholder="https://images.igdb.com/..." />
-              <p style="font-size:11px; opacity:.7; margin-top:4px;">
-                💡 Vous pouvez coller directement une image (Ctrl+V) dans ce champ
-              </p>
             </div>
-            <div style="flex: 0; display: flex; align-items: flex-end;">
-              <button type="button" class="primary" id="pasteImageBtn" style="white-space: nowrap;">
+            <div style="flex: 0; display: flex; align-items: flex-end; gap: 8px;">
+              <button type="button" class="primary paste-image-btn" id="pasteImageBtn" style="white-space: nowrap;">
                 📋 Coller Image
               </button>
             </div>
@@ -1209,50 +1275,44 @@
           </div>
         </div>
 
-        <!-- SECTION: Upload to GitHub -->
+        <!-- SECTION: Upload to GitHub SIMPLIFIÉ -->
         <div class="adminSection" id="sectionUpload">
           <h2>🚀 Upload to GitHub</h2>
           
           <div class="stateMsg" id="uploadStateMsg" style="display:none;"></div>
           
-          <div class="formRow">
-            <div>
-              <label>GitHub Token</label>
-              <input type="password" id="githubToken" placeholder="ghp_..." />
-              <p style="font-size:11px; opacity:.7; margin-top:4px;">
-                Token nécessaire pour publier sur GitHub
-              </p>
-            </div>
-            <div style="flex:0; display:flex; align-items:flex-end;">
-              <button class="primary" id="saveTokenBtn">Sauvegarder</button>
-            </div>
-          </div>
-
-          <div class="formRow">
-            <div>
-              <label>Worker URL (API)</label>
-              <input type="url" id="workerUrl" placeholder="https://crackuzu-api.crackuzu.workers.dev" />
-              <p style="font-size:11px; opacity:.7; margin-top:4px;">
-                URL de votre Worker Cloudflare
-              </p>
-            </div>
-            <div style="flex:0; display:flex; align-items:flex-end;">
-              <button class="primary" id="saveWorkerBtn">Sauvegarder</button>
-            </div>
-          </div>
-
-          <div class="btnGroup">
-            <button id="publishBtn" class="primary upload-github-btn">🚀 Upload to GitHub</button>
-            <button id="exportBtn">💾 Exporter JSON</button>
-            <button id="importBtn">📥 Importer JSON</button>
-            <button id="resetBtn" class="danger">🔄 Reset local</button>
-          </div>
-
-          <div class="previewBox" style="margin-top:20px;">
-            <h3>📊 Statistiques</h3>
-            <p id="statsInfo" style="margin:0; color:rgba(255,255,255,.7);">
-              Chargement des statistiques...
+          <div class="uploadPanel">
+            <p style="color: rgba(255,255,255,.7); margin-bottom: 20px;">
+              Publiez vos modifications directement sur GitHub. Le token est déjà configuré dans le Worker.
             </p>
+            
+            <div class="uploadStats">
+              <h3>📊 Statistiques</h3>
+              <div class="statItem">
+                <span class="statLabel">🎮 Total jeux:</span>
+                <span class="statValue" id="statGames">0</span>
+              </div>
+              <div class="statItem">
+                <span class="statLabel">🏷️ Catégories:</span>
+                <span class="statValue" id="statCategories">0</span>
+              </div>
+              <div class="statItem">
+                <span class="statLabel">📁 Dernière modif:</span>
+                <span class="statValue" id="statLastModified">Jamais</span>
+              </div>
+            </div>
+            
+            <div class="uploadActions">
+              <button id="publishBtn" class="primary upload-github-btn" style="padding: 14px 24px; font-size: 16px;">
+                🚀 Publier sur GitHub
+              </button>
+              
+              <div style="display: flex; gap: 10px; margin-top: 10px;">
+                <button id="exportBtn" class="btn">💾 Exporter JSON</button>
+                <button id="importBtn" class="btn">📥 Importer JSON</button>
+                <button id="resetBtn" class="danger">🔄 Reset local</button>
+              </div>
+            </div>
           </div>
 
           <input type="file" id="filePick" accept=".json" style="display:none;" />
@@ -1282,10 +1342,6 @@
   <script>
     // Configuration
     const ADMIN_PASSWORD = "141592";
-    const REPO_OWNER = "Crackuzu";
-    const REPO_NAME = "web";
-    const REPO_BRANCH = "main";
-    const REPO_PATH = "data.json";
     const LOCAL_KEY = "crackuzu_draft_v3";
     const CLOUDINARY_CLOUD_NAME = "dkcui82mx";
     const CLOUDINARY_UPLOAD_PRESET = "crackuzu";
@@ -1301,7 +1357,8 @@
       query: "",
       adminUnlocked: false,
       selectedCategories: [],
-      adminSearchQuery: ""
+      adminSearchQuery: "",
+      lastModified: null
     };
 
     let editIndex = null;
@@ -1320,10 +1377,6 @@
     const adminModal = document.getElementById("adminModal");
     const closeAdmin = document.getElementById("closeAdmin");
 
-    const githubToken = document.getElementById("githubToken");
-    const workerUrl = document.getElementById("workerUrl");
-    const saveTokenBtn = document.getElementById("saveTokenBtn");
-    const saveWorkerBtn = document.getElementById("saveWorkerBtn");
     const publishBtn = document.getElementById("publishBtn");
     const exportBtn = document.getElementById("exportBtn");
     const importBtn = document.getElementById("importBtn");
@@ -1346,7 +1399,6 @@
     const catListAdmin = document.getElementById("catListAdmin");
     const catName = document.getElementById("catName");
     const addCatBtn = document.getElementById("addCatBtn");
-    const statsInfo = document.getElementById("statsInfo");
 
     const torrentDropZone = document.getElementById("torrentDropZone");
     const torrentFileInput = document.getElementById("torrentFileInput");
@@ -1354,6 +1406,11 @@
     const gameSelectorModal = document.getElementById("gameSelectorModal");
     const gameSelectorClose = document.getElementById("gameSelectorClose");
     const gameSelectorContent = document.getElementById("gameSelectorContent");
+
+    // Statistiques
+    const statGames = document.getElementById("statGames");
+    const statCategories = document.getElementById("statCategories");
+    const statLastModified = document.getElementById("statLastModified");
 
     // Utilitaires
     function norm(s){ return (s || "").trim(); }
@@ -1375,14 +1432,16 @@
       }
     }
 
-    function saveGithubToken(token){ localStorage.setItem("gh_token", token); }
-    function loadGithubToken(){ return localStorage.getItem("gh_token") || ""; }
-    function saveWorkerUrl(url){ localStorage.setItem("worker_url", url); }
-    function loadWorkerUrl(){ return localStorage.getItem("worker_url") || "https://crackuzu-api.crackuzu.workers.dev"; }
-
-    function saveLocalDraft(){ localStorage.setItem(LOCAL_KEY, JSON.stringify(state.data)); }
+    function saveLocalDraft(){ 
+      state.lastModified = new Date().toISOString();
+      localStorage.setItem(LOCAL_KEY, JSON.stringify(state.data));
+      localStorage.setItem(LOCAL_KEY + "_lastModified", state.lastModified);
+    }
+    
     function loadLocalDraft(){
       const raw = localStorage.getItem(LOCAL_KEY);
+      state.lastModified = localStorage.getItem(LOCAL_KEY + "_lastModified");
+      
       if(!raw) return null;
       try{
         return sanitizeData(JSON.parse(raw));
@@ -1461,31 +1520,19 @@
       const totalGames = state.data.games.length;
       const totalCategories = state.data.categories.length;
       
-      let gamesByCategory = {};
-      state.data.games.forEach(game => {
-        if (Array.isArray(game.categories)) {
-          game.categories.forEach(cat => {
-            gamesByCategory[cat] = (gamesByCategory[cat] || 0) + 1;
-          });
-        }
-      });
+      let formattedDate = "Jamais";
+      if (state.lastModified) {
+        const date = new Date(state.lastModified);
+        formattedDate = date.toLocaleDateString('fr-FR') + ' ' + date.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+      }
       
-      const topCategories = Object.entries(gamesByCategory)
-        .sort((a, b) => b[1] - a[1])
-        .slice(0, 3)
-        .map(([cat, count]) => `${cat}: ${count}`)
-        .join(', ');
-      
-      statsInfo.innerHTML = `
-        <strong>🎮 Jeux:</strong> ${totalGames}<br>
-        <strong>🏷️ Catégories:</strong> ${totalCategories}<br>
-        <strong>🏆 Top catégories:</strong> ${topCategories || 'Aucune'}
-      `;
+      statGames.textContent = totalGames;
+      statCategories.textContent = totalCategories;
+      statLastModified.textContent = formattedDate;
     }
 
     // Render functions
     function renderCategories(){
-      console.log("🔄 Rendu des catégories...");
       const all = ["ALL", ...state.data.categories];
       catList.innerHTML = "";
       
@@ -1501,14 +1548,9 @@
         });
         catList.appendChild(btn);
       });
-      
-      console.log("✅ Catégories rendues:", state.data.categories.length);
     }
 
     function renderGames(){
-      console.log("🔄 Rendu des jeux...");
-      console.log("🎮 Jeux dans state:", state.data.games.length);
-      
       let filtered = state.data.games;
 
       if(state.activeCat !== "ALL"){
@@ -1516,13 +1558,11 @@
           const cats = Array.isArray(g.categories) ? g.categories : [];
           return cats.includes(state.activeCat);
         });
-        console.log("🎯 Filtrage par catégorie:", state.activeCat, "->", filtered.length, "jeux");
       }
 
       if(state.query){
         const lq = state.query.toLowerCase();
         filtered = filtered.filter(g => g.name.toLowerCase().includes(lq));
-        console.log("🔍 Filtrage par recherche:", state.query, "->", filtered.length, "jeux");
       }
 
       gameGrid.innerHTML = "";
@@ -1532,14 +1572,12 @@
         noGames.textContent = state.data.games.length === 0 ? 
           "Aucun jeu dans la bibliothèque. Ajoutez-en via le panneau admin." : 
           "Aucun jeu trouvé pour les filtres sélectionnés.";
-        console.log("⚠️ Aucun jeu à afficher");
         return;
       }
 
       noGames.style.display = "none";
-      console.log("🖼️ Affichage de", filtered.length, "jeux");
       
-      filtered.forEach((g, index) => {
+      filtered.forEach((g) => {
         const card = document.createElement("div");
         card.className = "card";
 
@@ -1550,7 +1588,6 @@
         img.alt = g.name;
         img.loading = "lazy";
         img.onerror = function() {
-          console.warn("❌ Image non chargée pour:", g.name);
           this.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='533' viewBox='0 0 400 533'%3E%3Crect width='400' height='533' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' font-family='Arial' font-size='20' fill='white' text-anchor='middle' dominant-baseline='middle'%3E" + g.name.substring(0, 20) + "%3C/text%3E%3C/svg%3E";
         };
         bg.appendChild(img);
@@ -1585,13 +1622,7 @@
         });
 
         gameGrid.appendChild(card);
-        
-        if (index < 3) {
-          console.log(`🎮 Jeu ${index + 1}: "${g.name}" | Categories: ${g.categories?.join(', ') || 'Aucune'} | Cover: ${g.cover ? 'Oui' : 'Non'}`);
-        }
       });
-      
-      console.log("✅ Rendu des jeux terminé");
     }
 
     function renderAdminLists(){
@@ -1641,7 +1672,6 @@
       
       let filteredGames = state.data.games;
       
-      // Appliquer le filtre de recherche
       if (state.adminSearchQuery) {
         const searchTerm = state.adminSearchQuery.toLowerCase();
         filteredGames = filteredGames.filter(g => 
@@ -1713,7 +1743,6 @@
           renderCategories();
           toastMsg("Mode modification");
           
-          // Basculer vers l'onglet "Ajouter"
           document.querySelectorAll('.adminNavBtn').forEach(b => b.classList.remove('active'));
           document.querySelectorAll('.adminSection').forEach(s => s.classList.remove('active'));
           document.querySelector('[data-section="add"]').classList.add('active');
@@ -1782,8 +1811,7 @@
       `;
 
       try {
-        const workerURL = loadWorkerUrl();
-        const response = await fetch(`${workerURL}/api/search-games?query=${encodeURIComponent(name)}`);
+        const response = await fetch(`https://crackuzu-api.crackuzu.workers.dev/api/search-games?query=${encodeURIComponent(name)}`);
         
         if (!response.ok) {
           throw new Error('Erreur de recherche');
@@ -1849,8 +1877,7 @@
       toastMsg("📥 Récupération des détails...");
       
       try {
-        const workerURL = loadWorkerUrl();
-        const response = await fetch(`${workerURL}/api/game-details?id=${gameData.id}`);
+        const response = await fetch(`https://crackuzu-api.crackuzu.workers.dev/api/game-details?id=${gameData.id}`);
         
         if (!response.ok) {
           throw new Error('Erreur de récupération');
@@ -1930,178 +1957,6 @@
         await handleTorrentFile(e.target.files[0]);
       }
     });
-
-    async function handleTorrentFile(file) {
-      if (!file.name.endsWith(".torrent")) {
-        toastMsg("⚠️ Fichier .torrent requis");
-        return;
-      }
-
-      try {
-        const arrayBuffer = await file.arrayBuffer();
-        const magnetLink = await torrentToMagnet(arrayBuffer);
-        
-        if (magnetLink) {
-          gameMagnet.value = magnetLink;
-          toastMsg("✅ Torrent converti en magnet");
-        } else {
-          toastMsg("❌ Erreur conversion");
-        }
-      } catch (error) {
-        console.error("Torrent error:", error);
-        toastMsg("❌ Erreur lecture fichier");
-      }
-    }
-
-    async function torrentToMagnet(arrayBuffer) {
-      try {
-        const torrentData = parseBencode(new Uint8Array(arrayBuffer));
-        
-        if (!torrentData || !torrentData.info) {
-          throw new Error("Invalid torrent");
-        }
-
-        const infoHash = await calculateInfoHash(torrentData.info);
-        
-        const name = torrentData.info.name ? 
-          (typeof torrentData.info.name === 'string' ? torrentData.info.name : 
-           new TextDecoder().decode(torrentData.info.name)) : 
-          'unknown';
-
-        let trackers = [];
-        if (torrentData.announce) {
-          const announceUrl = typeof torrentData.announce === 'string' ? 
-            torrentData.announce : new TextDecoder().decode(torrentData.announce);
-          trackers.push(announceUrl);
-        }
-        if (torrentData['announce-list']) {
-          torrentData['announce-list'].forEach(tier => {
-            if (Array.isArray(tier)) {
-              tier.forEach(url => {
-                const urlStr = typeof url === 'string' ? url : new TextDecoder().decode(url);
-                if (!trackers.includes(urlStr)) {
-                  trackers.push(urlStr);
-                }
-              });
-            }
-          });
-        }
-
-        let magnetLink = `magnet:?xt=urn:btih:${infoHash}`;
-        magnetLink += `&dn=${encodeURIComponent(name)}`;
-        
-        trackers.forEach(tracker => {
-          magnetLink += `&tr=${encodeURIComponent(tracker)}`;
-        });
-
-        return magnetLink;
-      } catch (error) {
-        console.error("torrentToMagnet error:", error);
-        return null;
-      }
-    }
-
-    async function calculateInfoHash(info) {
-      const encoded = bencode(info);
-      const hashBuffer = await crypto.subtle.digest('SHA-1', encoded);
-      const hashArray = Array.from(new Uint8Array(hashBuffer));
-      return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-    }
-
-    function parseBencode(data) {
-      let index = 0;
-
-      function parse() {
-        const char = String.fromCharCode(data[index]);
-        if (char === 'd') return parseDict();
-        else if (char === 'l') return parseList();
-        else if (char === 'i') return parseInt();
-        else if (char >= '0' && char <= '9') return parseString();
-      }
-
-      function parseDict() {
-        index++;
-        const dict = {};
-        while (String.fromCharCode(data[index]) !== 'e') {
-          const key = parseString();
-          const keyStr = typeof key === 'string' ? key : new TextDecoder().decode(key);
-          const value = parse();
-          dict[keyStr] = value;
-        }
-        index++;
-        return dict;
-      }
-
-      function parseList() {
-        index++;
-        const list = [];
-        while (String.fromCharCode(data[index]) !== 'e') {
-          list.push(parse());
-        }
-        index++;
-        return list;
-      }
-
-      function parseInt() {
-        index++;
-        let numStr = '';
-        while (String.fromCharCode(data[index]) !== 'e') {
-          numStr += String.fromCharCode(data[index]);
-          index++;
-        }
-        index++;
-        return Number(numStr);
-      }
-
-      function parseString() {
-        let lenStr = '';
-        while (String.fromCharCode(data[index]) !== ':') {
-          lenStr += String.fromCharCode(data[index]);
-          index++;
-        }
-        index++;
-        const len = Number(lenStr);
-        const bytes = data.slice(index, index + len);
-        index += len;
-        try {
-          return new TextDecoder('utf-8', { fatal: true }).decode(bytes);
-        } catch {
-          return bytes;
-        }
-      }
-
-      return parse();
-    }
-
-    function bencode(obj) {
-      function encode(value) {
-        if (typeof value === 'number') {
-          return `i${value}e`;
-        } else if (typeof value === 'string') {
-          const bytes = new TextEncoder().encode(value);
-          return `${bytes.length}:${value}`;
-        } else if (value instanceof Uint8Array) {
-          return `${value.length}:` + Array.from(value).map(b => String.fromCharCode(b)).join('');
-        } else if (Array.isArray(value)) {
-          let result = 'l';
-          value.forEach(item => {
-            result += encode(item);
-          });
-          return result + 'e';
-        } else if (typeof value === 'object') {
-          let result = 'd';
-          const keys = Object.keys(value).sort();
-          keys.forEach(key => {
-            result += encode(key);
-            result += encode(value[key]);
-          });
-          return result + 'e';
-        }
-      }
-
-      const encoded = encode(obj);
-      return new TextEncoder().encode(encoded);
-    }
 
     // Cloudinary upload
     async function uploadImageToCloudinary(file) {
@@ -2225,6 +2080,7 @@
       renderGames();
       renderCategories();
       renderAdminLists();
+      updateStats();
       toastMsg("Jeu ajouté");
     });
 
@@ -2257,52 +2113,24 @@
       renderGames();
       renderCategories();
       renderAdminLists();
+      updateStats();
       exitEditMode();
       toastMsg("Modif sauvegardée");
     });
 
     cancelEditBtn.addEventListener("click", exitEditMode);
 
-    saveTokenBtn.addEventListener("click", () => {
-      const token = githubToken.value.trim();
-      if(!token){
-        toastMsg("⚠️ Token vide");
-        return;
-      }
-      saveGithubToken(token);
-      toastMsg("✅ Token sauvegardé");
-    });
-
-    saveWorkerBtn.addEventListener("click", () => {
-      const url = workerUrl.value.trim();
-      if(!url){
-        toastMsg("⚠️ URL vide");
-        return;
-      }
-      if(!url.startsWith("http")){
-        toastMsg("⚠️ URL invalide");
-        return;
-      }
-      saveWorkerUrl(url);
-      toastMsg("✅ Worker URL sauvegardée");
-    });
-
+    // UPLOAD TO GITHUB SIMPLIFIÉ
     publishBtn.addEventListener("click", async () => {
-      const token = loadGithubToken();
-      if(!token){
-        setStateMessage("❌ Token GitHub manquant", uploadStateMsg);
-        setTimeout(() => setStateMessage("", uploadStateMsg), 3000);
-        return;
-      }
-
       const ok = confirm("Publier sur GitHub ? Cette action écrasera le fichier data.json sur le dépôt.");
       if(!ok) return;
 
       setStateMessage("🚀 Publication en cours...", uploadStateMsg);
+      publishBtn.disabled = true;
+      publishBtn.textContent = "⏳ Publication...";
 
       try{
-        const workerURL = loadWorkerUrl();
-        const response = await fetch(`${workerURL}/api/github-save`, {
+        const response = await fetch('https://crackuzu-api.crackuzu.workers.dev/api/github-save', {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
@@ -2319,16 +2147,29 @@
         
         if(result.success){
           localStorage.removeItem(LOCAL_KEY);
+          localStorage.removeItem(LOCAL_KEY + "_lastModified");
+          state.lastModified = null;
+          
           setStateMessage("✅ Publié sur GitHub avec succès !", uploadStateMsg);
           toastMsg("Publication réussie !");
-          setTimeout(() => setStateMessage("", uploadStateMsg), 4000);
+          updateStats();
+          
+          setTimeout(() => {
+            setStateMessage("", uploadStateMsg);
+            publishBtn.disabled = false;
+            publishBtn.textContent = "🚀 Publier sur GitHub";
+          }, 4000);
         }else{
           throw new Error("Échec de la publication");
         }
       }catch(err){
-        console.error(err);
+        console.error("Upload error:", err);
         setStateMessage("❌ Erreur: " + err.message, uploadStateMsg);
         toastMsg("Erreur publication");
+        
+        publishBtn.disabled = false;
+        publishBtn.textContent = "🚀 Publier sur GitHub";
+        
         setTimeout(() => setStateMessage("", uploadStateMsg), 5000);
       }
     });
@@ -2356,8 +2197,8 @@
         renderCategories();
         renderGames();
         renderAdminLists();
-        exitEditMode();
         updateStats();
+        exitEditMode();
         toastMsg("Import OK");
       }catch{
         toastMsg("Import invalide");
@@ -2368,6 +2209,7 @@
       const ok = confirm("Reset local ? Toutes les modifications non publiées seront perdues.");
       if(!ok) return;
       localStorage.removeItem(LOCAL_KEY);
+      localStorage.removeItem(LOCAL_KEY + "_lastModified");
       toastMsg("Draft supprimé");
       init();
       closeAdminModal();
@@ -2389,8 +2231,6 @@
       adminModal.classList.add("open");
       adminModal.setAttribute("aria-hidden", "false");
       renderAdminLists();
-      githubToken.value = loadGithubToken();
-      workerUrl.value = loadWorkerUrl();
       updateStats();
     }
     
@@ -2399,6 +2239,8 @@
       adminModal.setAttribute("aria-hidden", "true");
       state.adminSearchQuery = "";
       gameSearchInput.value = "";
+      publishBtn.disabled = false;
+      publishBtn.textContent = "🚀 Publier sur GitHub";
     }
 
     closeAdmin.addEventListener("click", closeAdminModal);
