@@ -999,6 +999,19 @@
       flex-wrap: wrap;
       gap: 4px;
     }
+      .admin-games-list
+      #adminGamesList {
+    max-height: 500px !important; /* Déclenche le scroll après 500px */
+    overflow-y: auto !important;
+    padding-right: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+/* Pour une barre de scroll fine et esthétique */
+#adminGamesList::-webkit-scrollbar { width: 5px; }
+#adminGamesList::-webkit-scrollbar-thumb { background: var(--stroke2); border-radius: 10px; }
+    }
   </style>
 </head>
 <body>
