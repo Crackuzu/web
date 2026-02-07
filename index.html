@@ -4,95 +4,120 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>CRACKUZU</title>
-  <style>
-    /* TON DESIGN ORIGINAL RÉTABLI */
-    :root{
-      --bg0:#0b0e12; --bg1:#10151b; --glass: rgba(255,255,255,.065);
-      --stroke: rgba(255,255,255,.11); --text: rgba(255,255,255,.92);
-      --muted: rgba(255,255,255,.62); --accent: #3b82f6; --r-xl: 24px; --r-md: 16px;
-    }
-    body { background: var(--bg0); color: var(--text); font-family: system-ui, sans-serif; margin: 0; padding: 20px; }
-    .shell { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 280px 1fr; gap: 20px; }
-    .glass { background: var(--bg1); border: 1px solid var(--stroke); border-radius: var(--r-xl); padding: 20px; }
-    
-    /* GRID JEUX */
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px; }
-    .card { background: var(--glass); border-radius: var(--r-md); overflow: hidden; border: 1px solid var(--stroke); cursor: pointer; transition: 0.3s; }
-    .card:hover { transform: translateY(-5px); border-color: var(--accent); }
-    .card img { width: 100%; aspect-ratio: 3/4; object-fit: cover; }
-    .card-info { padding: 12px; font-size: 14px; font-weight: 500; }
 
-    /* ADMIN PANEL DANS TON STYLE */
-    .admin-trigger { position: fixed; bottom: 20px; left: 20px; opacity: 0.3; cursor: pointer; font-size: 12px; }
-    .modal { display:none; position:fixed; inset:0; background: rgba(0,0,0,0.9); z-index: 1000; align-items: center; justify-content: center; }
+  <style>
+    /* TON DESIGN ORIGINAL PRÉCIEUSEMENT CONSERVÉ */
+    :root{
+      --bg0:#0b0e12; --bg1:#10151b;
+      --glass: rgba(255,255,255,.065); --glass2: rgba(255,255,255,.045);
+      --stroke: rgba(255,255,255,.11); --stroke2: rgba(255,255,255,.16);
+      --text: rgba(255,255,255,.92); --muted: rgba(255,255,255,.62);
+      --outer: clamp(14px, 2.2vw, 26px); --gap: clamp(12px, 1.2vw, 18px);
+      --pad: clamp(14px, 1.6vw, 20px); --r-xl: clamp(18px, 2vw, 26px);
+      --r-md: clamp(14px, 1.5vw, 18px); --accent: #3b82f6;
+    }
+    *{ box-sizing: border-box; }
+    body { background: var(--bg0); color: var(--text); font-family: system-ui, sans-serif; margin: 0; padding: var(--outer); }
+    
+    .shell { width: min(1800px, 100%); margin: 0 auto; display: flex; flex-direction: column; gap: var(--gap); }
+    .glass { background: linear-gradient(180deg, var(--glass), var(--glass2)); border: 1px solid var(--stroke); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-radius: var(--r-xl); padding: var(--pad); }
+    
+    header { display: grid; grid-template-columns: 1fr auto; align-items: center; }
+    .main-layout { display: grid; grid-template-columns: clamp(240px, 18vw, 300px) 1fr; gap: var(--gap); }
+    
+    .grid { display: grid; gap: var(--gap); grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+    .card { background: var(--glass); border-radius: var(--r-md); overflow: hidden; border: 1px solid var(--stroke); cursor: pointer; transition: 0.3s; }
+    .card img { width: 100%; aspect-ratio: 3/4; object-fit: cover; }
+
+    /* AMÉLIORATIONS ADMIN (DANS TON STYLE) */
+    .admin-list-scroll { 
+      max-height: 400px; 
+      overflow-y: auto; 
+      border: 1px solid var(--stroke); 
+      border-radius: var(--r-md); 
+      background: rgba(0,0,0,0.2); 
+      margin-top: 10px;
+    }
+    .admin-item { 
+      display: flex; justify-content: space-between; align-items: center; 
+      padding: 12px; border-bottom: 1px solid var(--stroke);
+    }
+    
+    input, textarea { 
+      width: 100%; padding: 12px; background: var(--glass); border: 1px solid var(--stroke); 
+      border-radius: 8px; color: white; margin-bottom: 10px; 
+    }
+    .btn-action { background: var(--accent); color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; }
+    .btn-publish { background: #2ea44f !important; }
+
+    /* MODAL ADMIN */
+    .modal { display:none; position:fixed; inset:0; background: rgba(0,0,0,0.85); z-index: 1000; align-items:center; justify-content:center; backdrop-filter: blur(10px); }
     .modal.open { display:flex; }
-    .admin-box { background: var(--bg1); width: 90%; max-width: 1000px; height: 80vh; border-radius: var(--r-xl); display: flex; overflow: hidden; border: 1px solid var(--stroke); }
-    
-    .admin-nav { width: 200px; background: rgba(0,0,0,0.2); padding: 20px; border-right: 1px solid var(--stroke); }
-    .admin-content { flex: 1; padding: 30px; overflow-y: auto; }
-    
-    /* LISTE SCROLLABLE & RECHERCHE */
-    .admin-scroll-list { max-height: 400px; overflow-y: auto; background: rgba(0,0,0,0.2); border-radius: 10px; margin-top: 10px; }
-    .game-row { display: flex; align-items: center; padding: 10px; border-bottom: 1px solid var(--stroke); gap: 10px; }
-    
-    input, textarea, select { width: 100%; padding: 12px; background: var(--glass); border: 1px solid var(--stroke); border-radius: 8px; color: white; margin-bottom: 10px; }
-    button { padding: 10px 20px; border-radius: 8px; border: none; cursor: pointer; font-weight: 600; }
-    .btn-primary { background: var(--accent); color: white; }
-    .btn-publish { background: #2ea44f; color: white; width: 100%; margin-top: 10px; }
+    .admin-box { background: var(--bg1); border: 1px solid var(--stroke2); width: min(1100px, 95vw); height: 80vh; border-radius: var(--r-xl); display: grid; grid-template-columns: 240px 1fr; overflow: hidden; }
   </style>
 </head>
 <body>
 
 <div class="shell">
-  <aside class="glass">
-    <h1 style="letter-spacing: 2px;">CRACKUZU</h1>
-    <div id="catList"></div>
-  </aside>
-
-  <main>
-    <div class="glass" style="margin-bottom: 20px; display: flex; gap: 10px;">
-      <input type="text" id="mainSearch" placeholder="Rechercher un titre..." oninput="state.query = this.value; renderGames();">
+  <header class="glass">
+    <div class="brand">
+      <div style="font-size: 32px; font-weight: 200; letter-spacing: 4px;">CRACKUZU</div>
+      <div style="color: var(--muted); cursor: pointer; font-size: 13px;" onclick="openAdmin()">ADMINISTRATION ▼</div>
     </div>
-    <div class="grid" id="gameGrid"></div>
-  </main>
-</div>
+    <div class="search-box">
+      <input type="text" placeholder="Rechercher..." id="mainQ" style="width: 250px; border-radius: 99px;" oninput="state.query=this.value; renderGames();">
+    </div>
+  </header>
 
-<div class="admin-trigger" onclick="promptAdmin()">ADMIN LOGIN</div>
+  <div class="main-layout">
+    <aside class="glass">
+      <h3 style="margin-top:0">Catégories</h3>
+      <div id="catList"></div>
+    </aside>
+    <section class="glass">
+      <div class="grid" id="gameGrid"></div>
+    </section>
+  </div>
+</div>
 
 <div class="modal" id="adminModal">
   <div class="admin-box">
-    <div class="admin-nav">
-      <button onclick="showSec('add')" style="width:100%; margin-bottom:10px;">Ajouter</button>
-      <button onclick="showSec('list')" style="width:100%; margin-bottom:10px;">Liste</button>
-      <button onclick="publishToGithub()" class="btn-publish">PUBLIER</button>
-      <button onclick="closeAdmin()" style="margin-top:50px; background:none; color:gray;">Fermer</button>
+    <div style="background: rgba(0,0,0,0.2); padding: 20px; border-right: 1px solid var(--stroke);">
+      <button class="btn-action" onclick="setMode('add')" style="width:100%; margin-bottom:10px;">Ajouter</button>
+      <button class="btn-action" onclick="setMode('list')" style="width:100%; margin-bottom:10px;">Liste</button>
+      <div style="margin-top: 40px;">
+        <button class="btn-action btn-publish" onclick="publishToGithub()" style="width:100%;">🚀 PUBLIER</button>
+      </div>
+      <button onclick="closeAdmin()" style="margin-top: auto; background:none; border:none; color:gray; cursor:pointer; width:100%; text-align:left; padding-top:20px;">Fermer</button>
     </div>
 
-    <div class="admin-content">
-      <div id="sec-add" class="section">
-        <div style="display:flex; gap:10px;">
-          <input type="text" id="igdbQuery" placeholder="Nom du jeu sur IGDB...">
-          <button class="btn-primary" onclick="searchIGDB()">Rechercher IGDB</button>
+    <div style="padding: 40px; overflow-y: auto;">
+      <div id="mode-add">
+        <h2 id="modalTitle">Nouveau Jeu</h2>
+        <div style="display:flex; gap:10px; margin-bottom:20px;">
+          <input type="text" id="igdbQ" placeholder="Chercher sur IGDB..." style="margin-bottom:0">
+          <button class="btn-action" onclick="searchIGDB()">Trouver</button>
         </div>
-        <div id="igdbResults"></div>
-        <hr>
-        <input type="text" id="f-name" placeholder="Nom du jeu">
+        <div id="igdbResults" style="margin-bottom:20px;"></div>
+        
+        <input type="text" id="f-name" placeholder="Nom du titre">
         <input type="text" id="f-cover" placeholder="URL Cover (Ctrl+V supporté)">
         <textarea id="f-magnet" placeholder="Lien Magnet"></textarea>
-        <input type="text" id="f-cats" placeholder="Catégories (séparées par des virgules)">
-        <button class="btn-primary" onclick="saveGame()">Enregistrer le jeu</button>
+        <input type="text" id="f-cats" placeholder="Catégories (ex: ACTION, RPG)">
+        <button class="btn-action" style="width:100%" onclick="saveGame()">Enregistrer</button>
       </div>
 
-      <div id="sec-list" class="section" style="display:none;">
-        <input type="text" placeholder="Filtrer ma liste..." oninput="renderAdminList(this.value)">
-        <div class="admin-scroll-list" id="adminList"></div>
+      <div id="mode-list" style="display:none;">
+        <h2>Ma Bibliothèque</h2>
+        <input type="text" placeholder="🔍 Rechercher dans ma liste..." oninput="renderAdminList(this.value)">
+        <div class="admin-list-scroll" id="adminList"></div>
       </div>
     </div>
   </div>
 </div>
 
 <script>
-  let state = { data: { games: [], categories: [] }, activeCat: "ALL", query: "", editIdx: null };
+  let state = { data: { games: [], categories: [] }, query: "", activeCat: "ALL", editIdx: null };
 
   async function init() {
     const r = await fetch('data.json');
@@ -103,9 +128,9 @@
 
   function renderCategories() {
     const cats = ["ALL", ...state.data.categories];
-    document.getElementById('catList').innerHTML = cats.map(c => 
-      `<div onclick="state.activeCat='${c}'; renderGames();" style="padding:10px; cursor:pointer; color:${state.activeCat===c?'white':'gray'}">${c}</div>`
-    ).join('');
+    document.getElementById('catList').innerHTML = cats.map(c => `
+      <div onclick="state.activeCat='${c}'; renderGames();" style="padding:10px; cursor:pointer; border-radius:8px; margin-bottom:5px; background:${state.activeCat===c?'var(--accent)':'transparent'}">${c}</div>
+    `).join('');
   }
 
   function renderGames() {
@@ -114,40 +139,64 @@
     grid.innerHTML = filtered.map(g => `
       <div class="card" onclick="location.href='game.html?name=${encodeURIComponent(g.name)}'">
         <img src="${g.cover}">
-        <div class="card-info">${g.name}</div>
+        <div style="padding:10px; font-size:13px;">${g.name}</div>
       </div>
     `).join('');
   }
 
-  // --- ADMIN LOGIC ---
-  function promptAdmin() {
-    const pw = prompt("Mot de passe :");
-    if (pw === "ton_mdp") { // <--- CHANGE LE MDP ICI
-      document.getElementById('adminModal').classList.add('open');
-      renderAdminList();
-    }
+  // --- ADMIN ---
+  function openAdmin() {
+    const pw = prompt("Code :");
+    if(pw === "ton_mdp") document.getElementById('adminModal').classList.add('open');
   }
-
   function closeAdmin() { document.getElementById('adminModal').classList.remove('open'); }
-
-  function showSec(id) {
-    document.getElementById('sec-add').style.display = id === 'add' ? 'block' : 'none';
-    document.getElementById('sec-list').style.display = id === 'list' ? 'block' : 'none';
+  
+  function setMode(m) {
+    document.getElementById('mode-add').style.display = m==='add'?'block':'none';
+    document.getElementById('mode-list').style.display = m==='list'?'block':'none';
+    if(m==='list') renderAdminList();
   }
 
   async function searchIGDB() {
-    const q = document.getElementById('igdbQuery').value;
-    const r = await fetch(`https://crackuzu-api.crackuzu.workers.dev/api/search-games?query=${encodeURIComponent(q)}`);
-    const d = await r.json();
+    const q = document.getElementById('igdbQ').value;
+    const res = await fetch(`https://crackuzu-api.crackuzu.workers.dev/api/search-games?query=${encodeURIComponent(q)}`);
+    const d = await res.json();
     document.getElementById('igdbResults').innerHTML = d.games.map(g => `
-      <div onclick="fillForm('${g.name}', '${g.cover?.url?.replace('t_thumb','t_720p')}')" style="padding:5px; cursor:pointer; border-bottom:1px solid #333">${g.name}</div>
+      <div onclick="fillForm('${g.name}', '${g.cover?.url}')" style="padding:8px; background:var(--glass); margin-bottom:5px; cursor:pointer; border-radius:5px;">${g.name}</div>
     `).join('');
   }
 
-  function fillForm(name, cover) {
-    document.getElementById('f-name').value = name;
-    document.getElementById('f-cover').value = cover ? "https:" + cover : "";
+  function fillForm(n, c) {
+    document.getElementById('f-name').value = n;
+    document.getElementById('f-cover').value = c ? "https:" + c.replace('t_thumb','t_720p') : "";
   }
+
+  function renderAdminList(f = "") {
+    const list = document.getElementById('adminList');
+    const filtered = state.data.games.filter(g => g.name.toLowerCase().includes(f.toLowerCase()));
+    list.innerHTML = filtered.map((g, i) => `
+      <div class="admin-item">
+        <span>${g.name}</span>
+        <div>
+          <button onclick="editG(${state.data.games.indexOf(g)})">Modif</button>
+          <button onclick="deleteG(${state.data.games.indexOf(g)})" style="background:#ef4444; border:none; color:white; border-radius:4px; padding:4px 8px;">X</button>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  // CTRL+V POUR COVER
+  document.getElementById('f-cover').addEventListener('paste', async (e) => {
+    const item = e.clipboardData.items[0];
+    if (item.type.includes("image")) {
+      const formData = new FormData();
+      formData.append('file', item.getAsFile());
+      formData.append('upload_preset', 'ml_default');
+      const res = await fetch('https://api.cloudinary.com/v1_1/dkcui82mx/image/upload', { method: 'POST', body: formData });
+      const data = await res.json();
+      document.getElementById('f-cover').value = data.secure_url;
+    }
+  });
 
   function saveGame() {
     const g = {
@@ -159,42 +208,18 @@
     if(state.editIdx !== null) state.data.games[state.editIdx] = g;
     else state.data.games.push(g);
     renderGames();
-    alert("Enregistré localement !");
+    alert("Sauvegardé localement. N'oubliez pas de PUBLIER.");
   }
-
-  function renderAdminList(filter = "") {
-    const list = document.getElementById('adminList');
-    const filtered = state.data.games.filter(g => g.name.toLowerCase().includes(filter.toLowerCase()));
-    list.innerHTML = filtered.map((g, i) => `
-      <div class="game-row">
-        <span style="flex:1">${g.name}</span>
-        <button onclick="editG(${state.data.games.indexOf(g)})">Modifier</button>
-        <button onclick="deleteG(${state.data.games.indexOf(g)})" style="color:red">X</button>
-      </div>
-    `).join('');
-  }
-
-  // --- CLOUDINARY CTRL+V ---
-  document.getElementById('f-cover').addEventListener('paste', async (e) => {
-    const item = e.clipboardData.items[0];
-    if (item.type.includes("image")) {
-      const blob = item.getAsFile();
-      const formData = new FormData();
-      formData.append('file', blob);
-      formData.append('upload_preset', 'ml_default');
-      const res = await fetch('https://api.cloudinary.com/v1_1/dkcui82mx/image/upload', { method: 'POST', body: formData });
-      const data = await res.json();
-      document.getElementById('f-cover').value = data.secure_url;
-    }
-  });
 
   async function publishToGithub() {
+    if(!confirm("Mettre à jour le site ?")) return;
     const res = await fetch('https://crackuzu-api.crackuzu.workers.dev/api/github-save', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      method: 'POST', 
+      headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(state.data)
     });
-    if((await res.json()).success) alert("✅ Publié !");
+    const d = await res.json();
+    if(d.success) alert("✅ C'est en ligne !");
   }
 
   init();
