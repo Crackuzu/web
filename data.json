@@ -15,120 +15,113 @@
     "ADVENTURE",
     "INDIE",
     "ARCADE",
-    "STRATEGY"
+    "STRATEGY",
+    "ROLE-PLAYING (RPG)",
+    "HACK AND SLASH/BEAT 'EM UP",
+    "PUZZLE",
+    "POINT-AND-CLICK",
+    "TACTICAL"
   ],
   "games": [
     {
       "name": "Nioh 3",
       "categories": [
-        "ACTION",
-        "RPG"
+        "ROLE-PLAYING (RPG)",
+        "ADVENTURE"
       ],
       "magnet": "magnet:?xt=urn:btih:c9d60ad626456a6247caed30a057281869b177d6&dn=Nioh%203&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337",
-      "cover": "https://res.cloudinary.com/dkcui82mx/image/upload/v1770410186/udlwwkzv15irk6nzt1vv.png"
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/cobf3x.jpg"
     },
     {
       "name": "Cyberpunk 2077",
       "categories": [
-        "ACTION"
+        "ACTION",
+        "ROLE-PLAYING (RPG)",
+        "ADVENTURE"
       ],
       "magnet": "magnet:?xt=urn:btih:ac6db3097f4e86c865936ae4d3d4f8f81fad6d3a&dn=Cyberpunk.2077.v2.2.ALL.DLC.zip&tr=udp://tracker.torrent.eu.org:451/announce&tr=udp://exodus.desync.com:6969/announce&tr=udp://tracker.moeking.me:6969/announce&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.stealth.si:80/announce&tr=udp://tracker.theoks.net:6969/announce&tr=udp://movies.zsw.ca:6969/announce&tr=udp://tracker.tiny-vps.com:6969/announce&tr=udp://tracker-udp.gbitt.info:80/announce&tr=http://tracker.gbitt.info:80/announce&tr=https://tracker.gbitt.info:443/announce&tr=http://tracker.ccp.ovh:6969/announce&tr=udp://tracker.ccp.ovh:6969/announce&tr=udp://tracker.dler.com:6969/announce&tr=http://tracker.bt4g.com:2095/announce",
-      "cover": "https://res.cloudinary.com/dkcui82mx/image/upload/v1770358995/jmjtyre6nkivofwx9jga.png"
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/coaih8.jpg"
     },
     {
       "name": "Dying Light",
       "categories": [
         "ACTION",
-        "RPG",
-        "SINGLEPLAYER",
-        "ONLINE"
+        "ROLE-PLAYING (RPG)",
+        "ADVENTURE"
       ],
       "magnet": "magnet:?xt=urn:btih:REV2VJUGJNTSLR3U72AHMZBDCZWKKPWZ&dn=Dying%20Light&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce",
-      "cover": "https://res.cloudinary.com/dkcui82mx/image/upload/v1770334437/nf1xzr4pgczpecu19sck.png"
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co65yq.jpg"
     },
     {
-      "name": "Train sim world 6",
+      "name": "Train Sim World 6",
       "categories": [
-        "SIMULATOR"
+        "SIMULATOR",
+        "STRATEGY"
       ],
       "magnet": "magnet:?xt=urn:btih:bb7d0ec8b79d4349d5a89e4b13bcc5d032794ff5&dn=Train.Sim.World.6-RUNE&tr=udp://tracker.theoks.net:6969/announce&tr=http://tracker.bt4g.com:2095/announce&tr=http://tracker1.itzmx.com:8080/announce&tr=http://tracker.opentrackr.org:1337/announce&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://tracker.torrent.eu.org:451/announce&tr=udp://open.stealth.si:80/announce&tr=udp://tracker.filemail.com:6969/announce&tr=http://tracker.renfei.net:8080/announce&tr=udp://bittorrent-tracker.e-n-c-r-y-p-t.net:1337/announce&tr=http://bittorrent-tracker.e-n-c-r-y-p-t.net:1337/announce&tr=udp://opentracker.io:6969/announce&tr=http://tracker.qu.ax:6969/announce&tr=http://tracker.ipv6tracker.org:80/announce&tr=https://tracker.yemekyedim.com:443/announce&tr=udp://isk.richardsw.club:6969/announce&tr=udp://tracker.dump.cl:6969/announce&tr=udp://d40969.acod.regrucolo.ru:6969/announce&tr=udp://tracker.darkness.services:6969/announce&tr=udp://martin-gebhardt.eu:25/announce&tr=http://t.overflow.biz:6969/announce&tr=http://tracker.mywaifu.best:6969/announce&tr=https://tracker.pmman.tech:443/announce&tr=udp://ttk2.nbaonlineservice.com:6969/announce&tr=udp://exodus.desync.com:6969/announce&tr=udp://open.free-tracker.ga:6969/announce&tr=http://wepzone.net:6969/announce&tr=udp://tracker.qu.ax:6969/announce&tr=udp://tracker.tryhackx.org:6969/announce&tr=udp://explodie.org:6969/announce&tr=udp://retracker01-msk-virt.corbina.net:80/announce&tr=udp://tracker.bittor.pw:1337/announce&tr=udp://evan.im:6969/announce&tr=udp://tracker.srv00.com:6969/announce&tr=udp://p2p.publictracker.xyz:6969/announce&tr=https://tracker.gcrenwp.top:443/announce&tr=udp://tracker.fnix.net:6969/announce&tr=http://tracker.dler.org:6969/announce&tr=udp://p4p.arenabg.com:1337/announce&tr=udp://open.dstud.io:6969/announce&tr=http://tracker2.dler.org:80/announce&tr=udp://open.demonii.com:1337/announce&tr=udp://tracker2.dler.org:80/announce&tr=udp://tracker.dler.org:6969/announce&tr=http://1337.abcvg.info:80/announce&tr=udp://ipv4.rer.lol:2710/announce&tr=http://tr.kxmp.cf:80/announce&tr=http://tracker-zhuqiy.dgj055.icu:80/announce&tr=udp://tracker-udp.gbitt.info:80/announce",
-      "cover": "https://res.cloudinary.com/dkcui82mx/image/upload/v1770246478/hmrnxno1zjoogk74x32c.png"
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/coacli.jpg"
     },
     {
-      "name": "INAZUMA ELEVEN: Victory Road",
+      "name": "Inazuma Eleven: Victory Road",
       "categories": [
-        "SPORTS",
-        "ONLINE"
+        "ROLE-PLAYING (RPG)",
+        "SPORTS"
       ],
       "magnet": "magnet:?xt=urn:btih:ddf249c293aef48c3322e0b6ede3151ac541a617&dn=INAZUMA%20ELEVEN%20Victory%20Road&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337",
-      "cover": "https://res.cloudinary.com/dkcui82mx/image/upload/v1770153584/ypawg77otnxv0olcstb1.png"
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co9nsw.jpg"
     },
     {
-      "name": "PAYDAY 3",
+      "name": "Payday 3",
       "categories": [
-        "ACTION",
-        "ADVENTURE",
-        "RPG",
-        "SINGLEPLAYER",
-        "ONLINE"
+        "ACTION"
       ],
       "magnet": "magnet:?xt=urn:btih:599895a9672d62ca8658b0fa30d664031d3f23a1&dn=PAYDAY%203&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337",
-      "cover": "https://res.cloudinary.com/dkcui82mx/image/upload/v1770153615/q9qpxlewhcdnbcmb0gt3.png"
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co6m2i.jpg"
     },
     {
-      "name": "PALWORLD",
+      "name": "Palworld",
       "categories": [
         "ACTION",
+        "ROLE-PLAYING (RPG)",
+        "HACK AND SLASH/BEAT 'EM UP",
         "ADVENTURE",
-        "RPG",
-        "INDIE",
-        "SINGLEPLAYER",
-        "ONLINE",
-        "OPEN WORLD"
+        "INDIE"
       ],
       "magnet": "magnet:?xt=urn:btih:HHRADFR72CKMN463V56OBCQVG7NYSY5U&dn=Palworld&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce",
-      "cover": "https://res.cloudinary.com/dkcui82mx/image/upload/v1770153553/qqgc7pc2usvvoexmekvs.png"
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co7n02.jpg"
     },
     {
       "name": "Lies of P",
       "categories": [
-        "ACTION",
-        "RPG",
-        "SINGLEPLAYER",
-        "STORY RICH"
+        "ROLE-PLAYING (RPG)",
+        "ADVENTURE"
       ],
       "magnet": "magnet:?xt=urn:btih:33554350970772CE8DE6849C87FC3D14BFF25EA2&dn=Lies+of+P%3A+Overture+Bundle+%28v1.8.0.0+%2B+4+DLCs%2FBonuses+%2B+Windows+7+Fix%2C+MULTi12%29+%5BFitGirl+Repack%2C+Selective+Download+-+from+34.9+GB%5D&tr=udp%3A%2F%2Fopentor.net%3A6969&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Ftracker.theoks.net%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.ccp.ovh%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=http%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=https%3A%2F%2Ftracker.tamersunion.org%3A443%2Fannounce&tr=udp%3A%2F%2Fexplodie.org%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.bt4g.com%3A2095%2Fannounce&tr=udp%3A%2F%2Fbt2.archive.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fbt1.archive.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.filemail.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker1.bt.moack.co.kr%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=http%3A%2F%2Ftracker.openbittorrent.com%3A80%2Fannounce&tr=udp%3A%2F%2Fopentracker.i2p.rocks%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.internetwarriors.net%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fcoppersurfer.tk%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.zer0day.to%3A1337%2Fannounce",
       "cover": "https://res.cloudinary.com/dkcui82mx/image/upload/v1770154150/t3ncwad2cv14igjriwvb.png"
     },
     {
-      "name": "Microsoft Flight Simulator 2020",
+      "name": "Microsoft Flight Simulator",
       "categories": [
         "SIMULATOR"
       ],
       "magnet": "magnet:?xt=urn:btih:4ea4c146c98a57f5eb2d71d42ba36d170ae85e72&dn=Microsoft%20Flight%20Simulator&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337",
-      "cover": "https://res.cloudinary.com/dkcui82mx/image/upload/v1770154138/lqpujcmutcb7scryaoic.png"
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2dqk.jpg"
     },
     {
-      "name": "RESIDENT EVIL 4",
+      "name": "Resident Evil 4",
       "categories": [
         "ACTION",
-        "ADVENTURE",
-        "SINGLEPLAYER",
-        "STORY RICH",
-        "RESIDENT EVIL",
-        "HORROR"
+        "PUZZLE",
+        "ADVENTURE"
       ],
       "magnet": "magnet:?xt=urn:btih:a4349a511dafaa704c33a25065c34ab980803707&dn=Resident.Evil.4-EMPRESS&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2F9.rarbg.com%3A2710%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337&tr=http%3A%2F%2Ftracker.openbittorrent.com%3A80%2Fannounce&tr=udp%3A%2F%2Fopentracker.i2p.rocks%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.internetwarriors.net%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fcoppersurfer.tk%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.zer0day.to%3A1337%2Fannounce",
-      "cover": "https://res.cloudinary.com/dkcui82mx/image/upload/v1770154126/p1hmhiw7j76eurtwnwzk.png"
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co6bo0.jpg"
     },
     {
-      "name": "RESIDENT EVIL 3",
+      "name": "Resident Evil 3",
       "categories": [
         "ACTION",
-        "ADVENTURE",
-        "SINGLEPLAYER",
-        "RESIDENT EVIL",
-        "HORROR"
+        "ADVENTURE"
       ],
       "magnet": "magnet:?xt=urn:btih:MENDTS3XS7J4U37AMUFF3FUWHJHI2BUP&dn=Resident%20Evil%203%20%5BFitGirl%20Repack%5D&tr=udp%3A%2F%2Fopentor.org%3A2710",
       "cover": "https://res.cloudinary.com/dkcui82mx/image/upload/v1770154118/cdlrnpou5wlffee6ntfy.png"
@@ -143,56 +136,52 @@
       "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1taw.jpg"
     },
     {
-      "name": "RESIDENT EVIL 0",
+      "name": "Resident Evil 0",
       "categories": [
         "ACTION",
-        "ADVENTURE",
-        "SINGLEPLAYER",
-        "RESIDENT EVIL",
-        "HORROR"
+        "ADVENTURE"
       ],
       "magnet": "magnet:?xt=urn:btih:acc79533b2610fd31467576016c7acc013dc73ba&dn=rutor.info_Resident+Evil+0+%2F+biohazard+0+HD+REMASTER+%282016%29+PC+%7C+RePack+%D0%BE%D1%82+FitGirl&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce",
-      "cover": "https://res.cloudinary.com/dkcui82mx/image/upload/v1770154086/moquevrk8el6twr0zpbv.png"
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1z3p.jpg"
     },
     {
       "name": "Twelve Minutes",
       "categories": [
-        "ACTION",
+        "POINT-AND-CLICK",
+        "PUZZLE",
         "ADVENTURE",
-        "INDIE",
-        "SINGLEPLAYER"
+        "INDIE"
       ],
       "magnet": "magnet:?xt=urn:btih:a28b616c806c6733fa582e7b2c86a3338f19e99d&dn=Twelve.Minutes-CODEX&tr=udp%3A%2F%2Fopentor.net%3A6969&tr=http%3A%2F%2Fbt3.t-ru.org%2Fann%3Fpk%3D76971f8850d10e4113928845a0ebb504&tr=http%3A%2F%2Fretracker.local%2Fannounce&tr=http%3A%2F%2Ftracker.grepler.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.dler.com%3A6969%2Fannounce&tr=http%3A%2F%2Fh4.trakx.nibba.trade%3A80%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.bitsearch.to%3A1337%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce",
-      "cover": "https://res.cloudinary.com/dkcui82mx/image/upload/v1770154076/nrvsm4ixhvvdegiorpjn.png"
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co77xc.jpg"
     },
     {
-      "name": "PICO PARK",
+      "name": "Pico Park",
       "categories": [
-        "INDIE",
-        "ONLINE"
+        "PUZZLE",
+        "INDIE"
       ],
       "magnet": "magnet:?xt=urn:btih:02e791eaac267175383bc3b572966b5e548d9e0a&dn=PICO%20PARK&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A6969",
-      "cover": "https://res.cloudinary.com/dkcui82mx/image/upload/v1770154063/jircwdyfi5k7l00236b4.png"
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co8yks.jpg"
     },
     {
-      "name": "Far cry 5",
+      "name": "Far Cry 5",
       "categories": [
         "ACTION",
-        "SINGLEPLAYER"
+        "ADVENTURE"
       ],
       "magnet": "magnet:?xt=urn:btih:2739a1a6e35f252fb0c95fd6be170c2acc4dd6f5&dn=Far.Cry.5.Dead.Living.Zombies-CODEX&tr=http%3A%2F%2Fbt2.t-ru.org%2Fann",
-      "cover": "https://res.cloudinary.com/dkcui82mx/image/upload/v1770154053/hz9qxjpk2tcw5pc7vmjn.png"
+      "cover": "https://res.cloudinary.com/dkcui82mx/image/upload/v1770454699/fadg9gpzhyrujlhjln8q.png"
     },
     {
       "name": "Clair Obscur: Expedition 33",
       "categories": [
-        "RPG",
-        "SINGLEPLAYER",
-        "STORY RICH",
-        "ACTION"
+        "ROLE-PLAYING (RPG)",
+        "ADVENTURE",
+        "INDIE"
       ],
       "magnet": "magnet:?xt=urn:btih:d992a85403e2ce5347ed7f6b48be2bd4857a7682&dn=Clair%20Obscur.%20Expedition%2033%20(2025)&tr=udp%3A%2F%2Ftracker.dler.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fopen.demonoid.ch%3A6969%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Fexplodie.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=udp%3A%2F%2Fwepzone.net%3A6969%2Fannounce&tr=udp%3A%2F%2Fttk2.nbaonlineservice.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker2.dler.org%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker1.myporn.club%3A9337%2Fannounce&tr=udp%3A%2F%2Ftracker.tryhackx.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.torrust-demo.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.srv00.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.qu.ax%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.gmi.gd%3A6969%2Fannounce",
-      "cover": "https://res.cloudinary.com/dkcui82mx/image/upload/v1770154041/ij91sgwvqwwoivxpn7hg.png"
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co9gam.jpg"
     },
     {
       "name": "Miles Morales",
@@ -205,79 +194,68 @@
       "cover": "https://res.cloudinary.com/dkcui82mx/image/upload/v1770154024/q17lgylhs0lxerwpajli.png"
     },
     {
-      "name": "Ryse Son of Rome",
+      "name": "Ryse: Son of Rome",
       "categories": [
-        "ACTION",
-        "ADVENTURE",
-        "SINGLEPLAYER"
+        "HACK AND SLASH/BEAT 'EM UP",
+        "ADVENTURE"
       ],
       "magnet": "magnet:?xt=urn:btih:32da2b979ddec8cbfbceb9a2a0ca294e3859a340&dn=rutor.info_Ryse%3A+Son+of+Rome+%5BUpdate+3%5D+%282014%29+PC+%7C+RePack+%D0%BE%D1%82+FitGirl&tr=udp://opentor.org:2710&tr=udp://opentor.org:2710&tr=http://retracker.local/announce",
       "cover": "https://res.cloudinary.com/dkcui82mx/image/upload/v1770154011/uc3mlneiak8h9zqxusg7.png"
     },
     {
-      "name": "ARK Survival Evolved",
+      "name": "Ark: Survival Evolved",
       "categories": [
         "ACTION",
+        "ROLE-PLAYING (RPG)",
+        "SIMULATOR",
         "ADVENTURE",
-        "RPG",
-        "INDIE",
-        "SINGLEPLAYER",
-        "SURVIVAL"
+        "INDIE"
       ],
       "magnet": "magnet:?xt=urn:btih:e7416cc3b214d4e8aba9156426d00dd7d1258607&dn=ARK.%20Survival%20Evolved%20%282017%29",
-      "cover": "https://res.cloudinary.com/dkcui82mx/image/upload/v1770154000/iampkigajk5s25by8y1c.png"
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co493k.jpg"
     },
     {
       "name": "Hello Neighbor 2",
       "categories": [
-        "ACTION",
+        "PUZZLE",
+        "STRATEGY",
         "ADVENTURE",
-        "SINGLEPLAYER",
-        "HORROR"
+        "INDIE"
       ],
       "magnet": "magnet:?xt=urn:btih:f65707990b5f39df56d80d2ba70f3548fae07e33&dn=Hello%20Neighbor%202%20(2022)&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80%2Fannounce&tr=http%3A%2F%2Ftracker.dler.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fopentracker.i2p.rocks%3A6969%2Fannounce&tr=udp%3A%2F%2Fopen.tracker.cl%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.openbittorrent.com%3A80%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Fexplodie.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker1.bt.moack.co.kr%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.tiny-vps.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker-udp.gbitt.info%3A80%2Fannounce&tr=https%3A%2F%2Ftracker.gbitt.info%3A443%2Fannounce",
       "cover": "https://res.cloudinary.com/dkcui82mx/image/upload/v1770153988/t3n0tdq8ayxbchjisqog.png"
     },
     {
-      "name": "ELDEN RING NIGHTREIGN",
+      "name": "Elden Ring: Nightreign",
       "categories": [
-        "ACTION",
-        "RPG",
-        "SINGLEPLAYER",
-        "ONLINE"
+        "ROLE-PLAYING (RPG)"
       ],
       "magnet": "magnet:?xt=urn:btih:a9d4c3c5e8722a743f31bc9d22d9d81eaa2a0a80&dn=ELDEN%20RING%20NIGHTREIGN",
-      "cover": "https://res.cloudinary.com/dkcui82mx/image/upload/v1770153973/gxfbwz9adyc9unw1f3px.png"
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co95gk.jpg"
     },
     {
       "name": "Elden Ring",
       "categories": [
-        "ACTION",
-        "RPG",
-        "SINGLEPLAYER"
+        "ROLE-PLAYING (RPG)",
+        "ADVENTURE"
       ],
       "magnet": "magnet:?xt=urn:btih:QUT6XTKAZ3IQPC3L4DBU5LNSCEEIG76T&dn=Elden%20Ring&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce",
-      "cover": "https://res.cloudinary.com/dkcui82mx/image/upload/v1770153949/emc3gse9tlhciztjchg0.png"
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co4jni.jpg"
     },
     {
-      "name": "Outlast 2",
+      "name": "Outlast II",
       "categories": [
-        "ACTION",
         "ADVENTURE",
-        "INDIE",
-        "SINGLEPLAYER",
-        "STORY RICH",
-        "HORROR"
+        "INDIE"
       ],
       "magnet": "magnet:?xt=urn:btih:ff5255121545cb9407e9c92f831b220eeef4c961&dn=Outlast_2_gog-4_(19597)_win_gog&tr=",
-      "cover": "https://res.cloudinary.com/dkcui82mx/image/upload/v1770153933/dywjdfzaouqljgq1lucq.png"
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co20x8.jpg"
     },
     {
       "name": "Outlast",
       "categories": [
-        "INDIE",
-        "SINGLEPLAYER",
-        "HORROR"
+        "ADVENTURE",
+        "INDIE"
       ],
       "magnet": "magnet:?xt=urn:btih:87933ab29514c63ebacbed00f64df8d4b0ec8b75&dn=Outlast_1.0a_(47147)_win_gog&tr=http%3A%2F%2Fbt.t-ru.org%2Fann",
       "cover": "https://res.cloudinary.com/dkcui82mx/image/upload/v1770153918/numlolt924xrnemsyds6.png"
@@ -285,62 +263,54 @@
     {
       "name": "Phasmophobia",
       "categories": [
-        "ACTION",
-        "INDIE",
-        "SINGLEPLAYER",
-        "HORROR"
+        "PUZZLE",
+        "TACTICAL",
+        "INDIE"
       ],
       "magnet": "magnet:?xt=urn:btih:KO3RPQKSAMMXAKHH6B6BN2W4BVOQCHZK&dn=Phasmophobia&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce",
-      "cover": "https://res.cloudinary.com/dkcui82mx/image/upload/v1770153906/bxxtfm91orch6kz8u11z.png"
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/coamcz.jpg"
     },
     {
-      "name": "Forza 5",
+      "name": "Forza Horizon 5",
       "categories": [
-        "CAR RACE",
-        "SINGLEPLAYER"
+        "CAR RACE"
       ],
       "magnet": "magnet:?xt=urn:btih:YUBVVUCSIOH4LQWZZHQB7B2TZZAMEPZK&dn=Forza%20Horizon%205&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce",
-      "cover": "https://res.cloudinary.com/dkcui82mx/image/upload/v1770153894/ja8ugwvtan2mejlupi5d.png"
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co3ofx.jpg"
     },
     {
-      "name": "DISPATCH",
+      "name": "Dispatch",
       "categories": [
-        "ACTION",
-        "ADVENTURE",
         "STRATEGY",
-        "INDIE"
+        "ADVENTURE"
       ],
       "magnet": "magnet:?xt=urn:btih:4SDK67OH4PEQTGH7WLOHHV3GJ75EDJQQ&dn=Dispatch%20(2025)&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce",
       "cover": "https://res.cloudinary.com/dkcui82mx/image/upload/v1770153884/knwnvf9qwb7lf2xaa3qb.png"
     },
     {
-      "name": "Finding Bigfoot",
+      "name": "Bigfoot",
       "categories": [
-        "ONLINE",
+        "ACTION",
         "ADVENTURE",
-        "SURVIVAL"
+        "INDIE"
       ],
       "magnet": "magnet:?xt=urn:btih:LE3MIFBWPX5WKSPNES7NFG723PWB6OEG&dn=BIGFOOT&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce",
-      "cover": "https://res.cloudinary.com/dkcui82mx/image/upload/v1770153872/s3hui5l90ezwnnih7yy1.png"
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2lj4.jpg"
     },
     {
-      "name": "R.E.P.O",
+      "name": "R.E.P.O.",
       "categories": [
-        "ACTION",
-        "SINGLEPLAYER",
-        "ONLINE"
+        "STRATEGY",
+        "INDIE"
       ],
       "magnet": "magnet:?xt=urn:btih:HHNBQASZ62BHBOUJ5HPYJPGHR4XWLYCR&dn=R.E.P.O&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce",
-      "cover": "https://res.cloudinary.com/dkcui82mx/image/upload/v1770153856/rcjvmib7bbnhgex00zrv.png"
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co9lxz.jpg"
     },
     {
-      "name": "RESIDENT EVIL 8",
+      "name": "Resident Evil Village",
       "categories": [
         "ACTION",
-        "ADVENTURE",
-        "SINGLEPLAYER",
-        "RESIDENT EVIL",
-        "HORROR"
+        "ADVENTURE"
       ],
       "magnet": "magnet:?xt=urn:btih:80eb6d26209f19f10976f6917531e6e92769c427&dn=rutor.info_Resident+Evil+Village%3A+Gold+Edition+%5Bbuild+10415597+%2B+DLCs+%2B+Bonus%5D+%282021%29+PC+%7C+RePack+%D0%BE%D1%82+FitGirl&tr=udp://opentor.net:6969&tr=http://retracker.local/announce",
       "cover": "https://res.cloudinary.com/dkcui82mx/image/upload/v1770153846/kg0w99ppiib1uargvd1h.png"
@@ -358,93 +328,75 @@
       "cover": "https://res.cloudinary.com/dkcui82mx/image/upload/v1770153831/k5xepix8ibtmbtsxqdxk.png"
     },
     {
-      "name": "RESIDENT EVIL 6",
+      "name": "Resident Evil 6",
       "categories": [
         "ACTION",
-        "SINGLEPLAYER",
-        "RESIDENT EVIL",
-        "HORROR"
+        "ADVENTURE"
       ],
       "magnet": "magnet:?xt=urn:btih:12f37a82c901cc9934919347e3c3f66ecfeabfe0&dn=Resident.Evil.6-RELOADED&tr=http%3A%2F%2Ftracker.zamunda.net%2Fannounce.php%3Fpasskey%3D1dd378aa1981a86124c43f7f37ccf33c&tr=http%3A%2F%2Ftracker.zamunda.net%2Fannounce.php%3Fpasskey%3D65026b6738af8d174cb50abb45794a87&tr=http%3A%2F%2Ftracker.zamunda.net%2Fannounce.php%3Fpasskey%3D8818e6e060176e408b0ac80b68eea9e1&tr=http%3A%2F%2Ftracker.zamunda.net%2Fannounce.php%3Fpasskey%3D96af19942a6f4a2556cfb54733c3c311&tr=http%3A%2F%2Ftracker.zamunda.net%2Fannounce.php%3Fpasskey%3Deece2afc4df3f7777c6e6941b49cf712&tr=udp%3A%2F%2Fopen.demonii.com%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.istole.it%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80%2Fannounce",
-      "cover": "https://res.cloudinary.com/dkcui82mx/image/upload/v1770153816/b9bckgoyt0aufl1fv6gp.png"
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co3pyq.jpg"
     },
     {
-      "name": "RESIDENT EVIL 5",
+      "name": "Resident Evil 5",
       "categories": [
         "ACTION",
-        "SINGLEPLAYER",
-        "RESIDENT EVIL",
-        "HORROR"
+        "ADVENTURE"
       ],
       "magnet": "magnet:?xt=urn:btih:7f76363658bdcfbdeee7d0eb3dfb405e4df35f77&dn=Resident%20Evil%205&tr=http%3A%2F%2Fbt3.t-ru.org%2Fann",
-      "cover": "https://res.cloudinary.com/dkcui82mx/image/upload/v1770153802/hdrpf5edidd8vzlwekbh.png"
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2vzi.jpg"
     },
     {
-      "name": "RESIDENT EVIL 2",
+      "name": "Resident Evil 2",
       "categories": [
         "ACTION",
-        "ADVENTURE",
-        "HORROR",
-        "RESIDENT EVIL"
+        "ADVENTURE"
       ],
       "magnet": "magnet:?xt=urn:btih:2071f4fabb86dfab5502629ea91cdc453d911da3&dn=R.E.2.Deluxe.Edition.Steam.Rip-InsaneRamZes&tr=http%3A%2F%2Fbt.t-ru.org%2Fann",
       "cover": "https://res.cloudinary.com/dkcui82mx/image/upload/v1770153790/ofnuamsn3tfxobwc65xg.png"
     },
     {
-      "name": "Spider-Man 2",
+      "name": "Marvel's Spider-Man 2",
       "categories": [
-        "ACTION",
-        "ADVENTURE",
-        "SINGLEPLAYER"
+        "HACK AND SLASH/BEAT 'EM UP",
+        "ADVENTURE"
       ],
       "magnet": "magnet:?xt=urn:btih:9B6604CC80F7701721C0C23BF416748D78CCA06E&dn=Marvel%26%23039%3Bs+Spider-Man+2%3A+Digital+Deluxe+Edition+%28v1.130.1.0%2Fv1.131.0.0+%2B+2+DLCs+%2B+Unlocker+%2B+Bonus+Soundtrack%2C+MULTi26%29+%5BFitGirl+Repack%2C+Selective+Download+-+from+64.5+GB%5D&tr=udp%3A%2F%2Fopentor.net%3A6969&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Ftracker.theoks.net%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.ccp.ovh%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=http%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=https%3A%2F%2Ftracker.tamersunion.org%3A443%2Fannounce&tr=udp%3A%2F%2Fexplodie.org%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.bt4g.com%3A2095%2Fannounce&tr=udp%3A%2F%2Fbt2.archive.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fbt1.archive.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.filemail.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker1.bt.moack.co.kr%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=http%3A%2F%2Ftracker.openbittorrent.com%3A80%2Fannounce&tr=udp%3A%2F%2Fopentracker.i2p.rocks%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.internetwarriors.net%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fcoppersurfer.tk%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.zer0day.to%3A1337%2Fannounce",
-      "cover": "https://res.cloudinary.com/dkcui82mx/image/upload/v1770153779/ghoihfr5opc3vlyvcpi7.png"
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/cobb2j.jpg"
     },
     {
       "name": "Assassin's Creed Mirage",
       "categories": [
-        "ACTION",
-        "SINGLEPLAYER",
-        "STORY RICH",
-        "OPEN WORLD"
+        "ADVENTURE"
       ],
       "magnet": "magnet:?xt=urn:btih:3Z3Y7XBQH4PDQEQXFL4MJHUG5P52PJK7&dn=Assassin's%20Creed%20Mirage%20(2023)&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce",
-      "cover": "https://res.cloudinary.com/dkcui82mx/image/upload/v1770153762/cqyn8zlsrzyefd9gscxc.png"
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co57sj.jpg"
     },
     {
-      "name": "NFS Heat",
+      "name": "Need for Speed: Heat",
       "categories": [
         "CAR RACE",
-        "ARCADE",
-        "SINGLEPLAYER",
-        "ONLINE"
+        "SPORTS",
+        "ADVENTURE"
       ],
       "magnet": "magnet:?xt=urn:btih:66c751c4a91d8f5f977c0615db6522802750250f&dn=Need%20for%20Speed%20Heat%20(2019)&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.tracker.cl%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker1.bt.moack.co.kr%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.theoks.net%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker-udp.gbitt.info%3A80%2Fannounce&tr=udp%3A%2F%2Fexplodie.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker2.dler.org%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.tiny-vps.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.ccp.ovh%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.0x7c0.com%3A6969%2Fannounce",
-      "cover": "https://res.cloudinary.com/dkcui82mx/image/upload/v1770153732/yarmyzpjhd9izvriusz4.png"
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/coar0x.jpg"
     },
     {
-      "name": "Detroit Become Human",
+      "name": "Detroit: Become Human",
       "categories": [
-        "ACTION",
-        "ADVENTURE",
-        "SINGLEPLAYER",
-        "STORY RICH"
+        "ADVENTURE"
       ],
       "magnet": "magnet:?xt=urn:btih:C6H7OTUOTABXADE3GTT6LT6AS372KYYA&dn=Detroit.%20Become%20Human%20(2018-2019)&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80%2Fannounce",
       "cover": "https://res.cloudinary.com/dkcui82mx/image/upload/v1770153683/dpebog7knajw2pkjqcrb.png"
     },
     {
-      "name": "Horizon Forbidden west Complete Edition",
+      "name": "Horizon Forbidden West: Complete Edition",
       "categories": [
-        "ACTION",
-        "ADVENTURE",
-        "RPG",
-        "SINGLEPLAYER",
-        "ONLINE",
-        "OPEN WORLD"
+        "ROLE-PLAYING (RPG)",
+        "ADVENTURE"
       ],
       "magnet": "magnet:?xt=urn:btih:8cc53599d123220e3fb79459bf3db1c12cffc545&dn=Horizon%20Forbidden%20West%20Complete%20Edition-InsaneRamZes&tr=http%3A%2F%2Ftr.ysagin.top%3A2710%2Fannounce&tr=http%3A%2F%2Ftr2.ysagin.top%3A2715%2Fannounce&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80%2Fannounce&tr=udp%3A%2F%2Fopentor.org%3A2710",
-      "cover": "https://res.cloudinary.com/dkcui82mx/image/upload/v1770153667/grchg2yuuit5rjq33nod.png"
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co7580.jpg"
     }
   ]
 }
