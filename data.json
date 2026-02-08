@@ -13,9 +13,23 @@
     "PUZZLE",
     "POINT-AND-CLICK",
     "TACTICAL",
-    "PLATFORMER"
+    "PLATFORMER",
+    "RPG",
+    "TURN-BASED STRATEGY (TBS)"
   ],
   "games": [
+    {
+      "name": "Undertale",
+      "categories": [
+        "PUZZLE",
+        "RPG",
+        "TURN-BASED STRATEGY (TBS)",
+        "ADVENTURE",
+        "INDIE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:D5CC24581C29BF8050303A0976976247786AF56B&dn=Undertale.v1.08.GOG.rar&tr=udp%3a%2f%2ftracker.opentrackr.org%3a1337%2fannounce&tr=udp%3a%2f%2ftracker.leechers-paradise.org%3a6969%2fannounce&tr=udp%3a%2f%2ftracker.coppersurfer.tk%3a6969%2fannounce&tr=udp%3a%2f%2fp4p.arenabg.ch%3a1337%2fannounce&tr=udp%3a%2f%2feddie4.nl%3a6969%2fannounce&tr=udp%3a%2f%2ftracker.zer0day.to%3a1337%2fannounce&tr=udp%3a%2f%2fp4p.arenabg.com%3a1337%2fannounce&tr=udp%3a%2f%2ftracker.internetwarriors.net%3a1337%2fannounce&tr=udp%3a%2f%2f9.rarbg.me%3a2740%2fannounce&tr=udp%3a%2f%2f9.rarbg.to%3a2780%2fannounce&tr=http%3a%2f%2fnyaa.tracker.wf%3a7777%2fannounce&tr=http%3a%2f%2fsukebei.tracker.wf%3a8888%2fannounce&tr=http%3a%2f%2fanidex.moe%3a6969%2fannounce",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/cob1t2.jpg"
+    },
     {
       "name": "Fever Meme",
       "categories": [
