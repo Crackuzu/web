@@ -184,7 +184,7 @@
       transition: all 0.3s ease;
     }
 
-    /* BARRE DE RECHERCHE AMÉLIORÉE */
+    /* BARRE DE RECHERCHE AMÉLIORÉE - CORRIGÉE */
     .search {
       position: absolute;
       right: var(--pad);
@@ -266,13 +266,14 @@
       animation: iconShimmer 1.5s ease-in-out infinite;
     }
 
+    /* CORRECTION DU BUG : texte invisible */
     .search input {
       width: 100%;
       border: 0 !important;
       outline: 0 !important;
       box-shadow: none !important;
       background: transparent !important;
-      color: var(--text);
+      color: var(--text) !important;
       font-size: clamp(14px, 1.15vw, 15px);
       font-weight: 400;
       letter-spacing: 0.3px;
@@ -281,7 +282,7 @@
     }
 
     .search input:focus {
-      color: rgba(255, 255, 255, 0.98);
+      color: rgba(255, 255, 255, 0.98) !important;
     }
 
     .search input::placeholder {
@@ -292,15 +293,6 @@
 
     .search:focus-within input::placeholder {
       color: rgba(255, 255, 255, 0.3);
-    }
-
-    .search input:focus {
-      background: linear-gradient(90deg, 
-        rgba(255, 255, 255, 0.95), 
-        rgba(200, 220, 255, 0.9)) text;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
     }
 
     .search input::-webkit-search-cancel-button {
@@ -958,6 +950,67 @@
       color: rgba(200,220,255,.95);
     }
 
+    /* NOUVEAU STYLE POUR LES CATÉGORIES LISTE */
+    .categories-list-container {
+      margin-top: 12px;
+      padding: 16px;
+      border-radius: 10px;
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .categories-list-container h4 {
+      margin: 0 0 12px;
+      font-size: 14px;
+      font-weight: 500;
+      color: rgba(255,255,255,.8);
+    }
+
+    .categories-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    .category-item {
+      padding: 6px 10px;
+      border-radius: 6px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.1);
+      color: rgba(255,255,255,.7);
+      font-size: 11px;
+      cursor: pointer;
+      transition: all .2s ease;
+    }
+
+    .category-item:hover {
+      background: rgba(255,255,255,.08);
+      border-color: rgba(255,255,255,.2);
+    }
+
+    .category-item.selected {
+      background: rgba(100,140,255,.15);
+      border-color: rgba(100,140,255,.3);
+      color: rgba(200,220,255,.95);
+    }
+
+    .add-category-form {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .add-category-form input {
+      flex: 1;
+      padding: 8px 12px;
+      border-radius: 6px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1);
+      color: var(--text);
+      font-size: 12px;
+    }
+
     .torrent-drop-zone{
       margin-top:12px;
       padding:24px;
@@ -1302,14 +1355,14 @@
       </div>
 
       <div class="adminContent">
-        <!-- SECTION: Ajouter un jeu -->
+        <!-- SECTION: Ajouter un jeu - AMÉLIORÉE SELON VOTRE DESIGN -->
         <div class="adminSection active" id="sectionAdd">
           <h2>➕ Ajouter / Modifier un jeu</h2>
           
           <div class="formRow">
             <div style="flex: 1;">
               <label>Nom du jeu</label>
-              <input type="text" id="gameName" placeholder="Ex: Resident Evil" />
+              <input type="text" id="gameName" placeholder="Ex: Nioh 3" />
             </div>
             <div style="flex: 0; display: flex; align-items: flex-end;">
               <button type="button" class="primary" id="searchIGDBBtn" style="white-space: nowrap;">
@@ -1329,19 +1382,18 @@
             </div>
           </div>
 
-          <!-- SECTION: Catégories modifiables -->
-          <div class="formRow" style="margin-top: 12px;">
-            <div>
-              <label>Catégories (modifiables)</label>
-              <div class="categoryBadges" id="editableCategories">
-                <!-- Les badges seront générés ici -->
-              </div>
-              <div style="display: flex; gap: 8px; margin-top: 8px;">
-                <input type="text" id="addCustomCat" placeholder="Ajouter une catégorie..." 
-                       style="flex: 1; padding: 8px 12px;" />
-                <button type="button" id="addCatManualBtn" class="primary" 
-                        style="padding: 8px 12px; font-size: 12px;">Ajouter</button>
-              </div>
+          <!-- NOUVELLE SECTION CATÉGORIES LISTE -->
+          <div class="categories-list-container">
+            <h4>🎮 Catégories (modifiables)</h4>
+            <div class="categories-list" id="categoriesList">
+              <!-- Les catégories seront générées ici dynamiquement -->
+            </div>
+            
+            <div class="add-category-form">
+              <input type="text" id="addCustomCat" placeholder="Ajouter une catégorie..." />
+              <button type="button" id="addCatManualBtn" class="primary" style="padding: 8px 12px; font-size: 12px;">
+                Ajouter
+              </button>
             </div>
           </div>
 
@@ -1518,8 +1570,8 @@
     const gameSelectorClose = document.getElementById("gameSelectorClose");
     const gameSelectorContent = document.getElementById("gameSelectorContent");
 
-    // Nouveaux éléments pour les catégories modifiables
-    const editableCategories = document.getElementById("editableCategories");
+    // Nouveaux éléments pour les catégories liste
+    const categoriesList = document.getElementById("categoriesList");
     const addCustomCat = document.getElementById("addCustomCat");
     const addCatManualBtn = document.getElementById("addCatManualBtn");
 
@@ -1614,27 +1666,27 @@
       }
     }
 
-    // Fonction pour rendre les catégories modifiables
-    function renderEditableCategories() {
-      if (!editableCategories) return;
+    // Fonction pour rendre les catégories en liste (selon votre design)
+    function renderCategoriesList() {
+      if (!categoriesList) return;
       
-      editableCategories.innerHTML = '';
+      categoriesList.innerHTML = '';
       
       // Afficher les catégories existantes
       state.data.categories.forEach(cat => {
-        const badge = document.createElement('div');
-        badge.className = 'catBadge';
-        badge.textContent = cat;
+        const item = document.createElement('div');
+        item.className = 'category-item';
+        item.textContent = cat;
         
         // Si la catégorie est déjà sélectionnée
         if (state.selectedCategories.includes(cat)) {
-          badge.classList.add('selected');
+          item.classList.add('selected');
         }
         
-        badge.addEventListener('click', () => {
-          badge.classList.toggle('selected');
+        item.addEventListener('click', () => {
+          item.classList.toggle('selected');
           
-          if (badge.classList.contains('selected')) {
+          if (item.classList.contains('selected')) {
             if (!state.selectedCategories.includes(cat)) {
               state.selectedCategories.push(cat);
             }
@@ -1645,7 +1697,7 @@
           updateSelectedCategoriesDisplay();
         });
         
-        editableCategories.appendChild(badge);
+        categoriesList.appendChild(item);
       });
     }
 
@@ -1872,7 +1924,7 @@
           renderCategories();
           renderGames();
           renderAdminLists();
-          renderEditableCategories();
+          renderCategoriesList();
           toastMsg("Catégorie supprimée");
         });
 
@@ -1958,8 +2010,8 @@
             }
           });
           
-          // Rendre les catégories modifiables
-          renderEditableCategories();
+          // Rendre les catégories liste
+          renderCategoriesList();
           updateSelectedCategoriesDisplay();
           
           renderCategories();
@@ -2005,9 +2057,9 @@
       selectedGameData = null;
       selectedGamePreview.classList.remove('show');
       
-      // Réinitialiser les catégories modifiables
+      // Réinitialiser les catégories
       if (addCustomCat) addCustomCat.value = '';
-      renderEditableCategories();
+      renderCategoriesList();
       
       renderCategories();
     }
@@ -2127,8 +2179,8 @@
         document.getElementById('selectedGameName').textContent = details.name;
         document.getElementById('selectedGameMeta').textContent = `${gameData.year ? gameData.year + ' • ' : ''}${gameData.type}`;
         
-        // Rendre les catégories modifiables
-        renderEditableCategories();
+        // Rendre les catégories liste
+        renderCategoriesList();
         updateSelectedCategoriesDisplay();
 
         gameSelectorModal.classList.remove('open');
@@ -2280,8 +2332,8 @@
       // Vider l'input
       addCustomCat.value = '';
       
-      // Re-rendre les badges
-      renderEditableCategories();
+      // Re-rendre la liste
+      renderCategoriesList();
       updateSelectedCategoriesDisplay();
       toastMsg(`Catégorie "${catNameValue}" ajoutée`);
     });
@@ -2310,7 +2362,7 @@
       saveLocalDraft();
       renderCategories();
       renderAdminLists();
-      renderEditableCategories();
+      renderCategoriesList();
       updateStats();
       toastMsg("Catégorie ajoutée");
     });
@@ -2352,7 +2404,7 @@
       renderGames();
       renderCategories();
       renderAdminLists();
-      renderEditableCategories();
+      renderCategoriesList();
       updateStats();
       toastMsg("Jeu ajouté");
     });
@@ -2386,7 +2438,7 @@
       renderGames();
       renderCategories();
       renderAdminLists();
-      renderEditableCategories();
+      renderCategoriesList();
       updateStats();
       exitEditMode();
       toastMsg("Modif sauvegardée");
@@ -2418,7 +2470,7 @@
         renderCategories();
         renderGames();
         renderAdminLists();
-        renderEditableCategories();
+        renderCategoriesList();
         updateStats();
         exitEditMode();
         toastMsg("Import OK");
@@ -2453,7 +2505,7 @@
       adminModal.classList.add("open");
       adminModal.setAttribute("aria-hidden", "false");
       renderAdminLists();
-      renderEditableCategories();
+      renderCategoriesList();
       updateStats();
     }
     
@@ -2508,7 +2560,7 @@
       renderCategories();
       renderGames();
       renderAdminLists();
-      renderEditableCategories();
+      renderCategoriesList();
       updateStats();
       
       console.log("✅ Initialisation terminée");
