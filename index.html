@@ -1531,7 +1531,7 @@
       const all = ["ALL", ...state.data.categories];
       catList.innerHTML = "";
       
-      all.forEach(cat => {
+      all.forEach((cat, index) => {
         const btn = document.createElement("div");
         btn.className = "catbtn";
         btn.style.animationDelay = `${index < 8 ? 0.05 + (index * 0.08) : 0}s`;
