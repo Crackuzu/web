@@ -257,17 +257,6 @@
       transition: all 0.3s ease;
       animation: slideInLeft 0.7s ease-out 0.4s both;
       cursor: text;
-      position: relative;
-    }
-
-    .search::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 999px;
-      background: transparent;
-      pointer-events: none;
-      z-index: 1;
     }
 
     .search:hover {
@@ -286,8 +275,6 @@
       opacity:.78;
       transition: all 0.3s ease;
       flex-shrink: 0;
-      position: relative;
-      z-index: 2;
     }
 
     .search:focus-within svg {
@@ -301,13 +288,11 @@
       border: none !important;
       outline: none !important;
       box-shadow: none !important;
-      background: transparent !important;
+      background: transparent;
       color: var(--text);
       font-size: clamp(13px, 1.1vw, 14px);
       transition: all 0.3s ease;
       font-family: inherit;
-      position: relative;
-      z-index: 2;
     }
 
     .search input:focus{
@@ -376,7 +361,7 @@
       margin-top: clamp(10px, 1.3vw, 18px);
     }
 
-    /* BOUTONS CATÉGORIES - VERSION ORIGINALE */
+    /* BOUTONS CATÉGORIES */
     .catbtn{
       height: clamp(46px, 5.8vh, 54px);
       border-radius: clamp(14px, 1.4vw, 16px);
@@ -408,11 +393,22 @@
       border-color: var(--accent);
       color: rgba(255,255,255,.98);
       transform: translateY(-1px);
+      animation: float 3s ease-in-out infinite;
     }
 
-    /* Animation uniquement au chargement de la page */
+    /* ANIMATION STAGGER POUR TOUTES LES CATÉGORIES */
     .catbtn {
       animation: fadeIn 0.5s ease-out both;
+    }
+
+    /* Statistiques des catégories */
+    .cat-stats {
+      font-size: 10px;
+      opacity: 0.7;
+      margin-left: auto;
+      padding: 2px 6px;
+      background: rgba(255,255,255,.1);
+      border-radius: 10px;
     }
 
     .sidefoot{
@@ -1836,16 +1832,24 @@
         btn.className = "catbtn";
         if(cat === state.activeCat) btn.classList.add("active");
         
-        // Texte simple sans compteur
-        btn.textContent = cat;
-        
-        // Animation uniquement au chargement initial
-        if (state.activeCat === "ALL") {
-          btn.style.animationDelay = `${0.6 + index * 0.1}s`;
+        // Compter les jeux dans cette catégorie
+        let gameCount = 0;
+        if (cat === "ALL") {
+          gameCount = state.data.games.length;
         } else {
-          btn.style.animation = 'none';
-          btn.style.opacity = '1';
+          gameCount = state.data.games.filter(g => {
+            const cats = Array.isArray(g.categories) ? g.categories : [];
+            return cats.includes(cat);
+          }).length;
         }
+        
+        btn.innerHTML = `
+          <span>${cat}</span>
+          <span class="cat-stats">${gameCount}</span>
+        `;
+        
+        // Animation pour TOUTES les catégories
+        btn.style.animationDelay = `${0.6 + index * 0.05}s`;
         
         btn.addEventListener("click", () => {
           state.activeCat = cat;
@@ -2162,7 +2166,7 @@
           </div>
         `;
       }
-    }
+    });
 
     function renderGameSelector(games) {
       const listHTML = games.map(game => `
