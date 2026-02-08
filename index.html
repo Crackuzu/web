@@ -24,115 +24,31 @@
       --shadow2: 0 18px 46px rgba(0,0,0,.45);
       --side: clamp(250px, 20vw, 330px);
       --cardW: clamp(140px, 10.5vw, 185px);
-      --accent: rgba(100, 140, 255, 0.7);
     }
 
-    /* ANIMATIONS GLOBALES */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes slideInRight {
-      from { opacity: 0; transform: translateX(20px); }
-      to { opacity: 1; transform: translateX(0); }
-    }
-
-    @keyframes slideInLeft {
-      from { opacity: 0; transform: translateX(-20px); }
-      to { opacity: 1; transform: translateX(0); }
-    }
-
-    @keyframes pulseGlow {
-      0%, 100% { box-shadow: 0 0 20px rgba(100, 140, 255, 0.3); }
-      50% { box-shadow: 0 0 40px rgba(100, 140, 255, 0.3); }
-    }
-
-    @keyframes shimmer {
-      0% { background-position: -200% center; }
-      100% { background-position: 200% center; }
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-5px); }
-    }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-
-    @keyframes fadeOut {
-      from { opacity: 1; }
-      to { opacity: 0; }
-    }
-
-    @keyframes ripple {
-      0% { transform: scale(0); opacity: 1; }
-      100% { transform: scale(4); opacity: 0; }
-    }
-
-    *{ 
-      box-sizing:border-box; 
-    }
-    html, body{ 
-      height:100%; 
-      margin: 0;
-      overflow-x: hidden;
-    }
-    
+    *{ box-sizing:border-box; }
+    html, body{ height:100%; }
     body{
+      margin:0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       color: var(--text);
       background:
         radial-gradient(1100px 700px at 15% 0%, rgba(255,255,255,.09), transparent 55%),
         radial-gradient(950px 600px at 90% 20%, rgba(255,255,255,.07), transparent 60%),
         linear-gradient(180deg, var(--bg0), var(--bg1));
-      animation: fadeIn 0.8s ease-out;
-      position: relative;
-      min-height: 100vh;
-    }
-
-    /* TRANSITION DE PAGE */
-    .page-transition {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(45deg, var(--bg0), var(--bg1));
-      z-index: 9999;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.6s ease;
-    }
-
-    .page-transition.active {
-      opacity: 1;
-      pointer-events: all;
-    }
-
-    .page-transition .loader {
-      width: 60px;
-      height: 60px;
-      border: 3px solid rgba(255,255,255,.1);
-      border-top-color: var(--accent);
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
+      overflow-x:hidden;
     }
 
     .glass{
       background: linear-gradient(180deg, var(--glass), var(--glass2));
       border: 1px solid var(--stroke);
       box-shadow: var(--shadow2);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      position: relative;
-      overflow: hidden;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    @supports ((-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px))){
+      .glass{
+        -webkit-backdrop-filter: blur(14px);
+        backdrop-filter: blur(14px);
+      }
     }
 
     .app{
@@ -140,7 +56,6 @@
       min-height: 100dvh;
       padding: var(--outer);
       width: 100%;
-      animation: fadeIn 0.6s ease-out 0.2s both;
     }
 
     .shell{
@@ -152,7 +67,6 @@
       min-height: calc(100dvh - (2 * var(--outer)));
     }
 
-    /* HEADER */
     header{
       border-radius: var(--r-xl);
       padding: var(--pad);
@@ -162,32 +76,19 @@
       align-items:center;
       gap: var(--gap);
       min-height: clamp(86px, 10vh, 120px);
-      animation: slideInRight 0.7s ease-out 0.3s both;
-      position: relative;
-      overflow: hidden;
     }
 
     .brand{
       text-align:center;
       user-select:none;
       line-height:1.05;
-      position: relative;
     }
-
     .brand .big{
       font-weight: 300;
       letter-spacing: clamp(1px, .25vw, 2.5px);
       font-size: clamp(28px, 3.2vw, 46px);
       opacity:.92;
-      background: linear-gradient(135deg, #fff 0%, #a0a0ff 50%, #fff 100%);
-      background-size: 200% auto;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      animation: shimmer 3s infinite linear;
-      text-shadow: 0 0 30px rgba(160, 160, 255, 0.3);
     }
-
     .brand .small{
       margin-top: 4px;
       font-size: clamp(12px, 1.1vw, 14px);
@@ -197,29 +98,8 @@
       align-items:center;
       gap: 8px;
       cursor: pointer;
-      transition: all 0.3s ease;
-      position: relative;
     }
-
-    .brand .small::after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 0;
-      width: 0;
-      height: 1px;
-      background: var(--accent);
-      transition: width 0.3s ease;
-    }
-
-    .brand .small:hover{ 
-      color: rgba(255,255,255,.95);
-      transform: translateY(-1px);
-    }
-
-    .brand .small:hover::after {
-      width: 100%;
-    }
+    .brand .small:hover{ color: rgba(255,255,255,.78); }
 
     .pill{
       font-size: 11px;
@@ -229,17 +109,8 @@
       background: rgba(255,255,255,.08);
       color: rgba(255,255,255,.70);
       letter-spacing: 1px;
-      animation: pulseGlow 2s infinite;
-      transition: all 0.3s ease;
     }
 
-    .pill:hover {
-      transform: scale(1.05);
-      animation: none;
-      box-shadow: 0 0 25px rgba(100, 140, 255, 0.3);
-    }
-
-    /* BARRE DE RECHERCHE CORRIGÉE */
     .search{
       width: clamp(220px, 26vw, 360px);
       height: clamp(34px, 4.2vh, 40px);
@@ -248,82 +119,38 @@
       align-items:center;
       gap: 10px;
       padding: 0 14px;
-      border: 1px solid rgba(255,255,255,.16);
+      border: none;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.16);
       background: rgba(255,255,255,.085);
       justify-self:end;
       outline: none !important;
       isolation: isolate;
       transform: translateZ(0);
-      transition: all 0.3s ease;
-      animation: slideInLeft 0.7s ease-out 0.4s both;
-      cursor: text;
-      position: relative;
     }
-
-    .search::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 999px;
-      background: transparent;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    .search:hover {
-      border-color: var(--accent);
-      transform: translateY(-1px);
-    }
-
     .search:focus-within{
-      border-color: var(--accent);
-      transform: translateY(-2px);
+      outline: none !important;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.16);
     }
-
-    .search svg{ 
-      width: 18px; 
-      height: 18px; 
-      opacity:.78;
-      transition: all 0.3s ease;
-      flex-shrink: 0;
-      position: relative;
-      z-index: 2;
+    .search *{
+      outline: none !important;
+      box-shadow: none !important;
     }
-
-    .search:focus-within svg {
-      opacity: 1;
-      transform: scale(1.1);
-      color: var(--accent);
-    }
-
+    .search svg{ width: 18px; height: 18px; opacity:.78; }
     .search input{
       width:100%;
-      border: none !important;
-      outline: none !important;
-      box-shadow: none !important;
-      background: transparent !important;
+      border:0 !important;
+      outline:0 !important;
+      box-shadow:none !important;
+      background:transparent;
       color: var(--text);
       font-size: clamp(13px, 1.1vw, 14px);
-      transition: all 0.3s ease;
-      font-family: inherit;
-      position: relative;
-      z-index: 2;
     }
-
     .search input:focus{
-      outline: none !important;
-      border: none !important;
-      box-shadow: none !important;
+      outline:none !important;
+      border:none !important;
+      box-shadow:none !important;
     }
-
-    .search input::placeholder{ 
-      color: rgba(255,255,255,.55);
-      transition: color 0.3s ease;
-    }
-
-    .search:focus-within input::placeholder {
-      color: rgba(255,255,255,.3);
-    }
+    .search input::placeholder{ color: rgba(255,255,255,.55); }
 
     .main{
       flex: 1;
@@ -331,10 +158,8 @@
       display:grid;
       grid-template-columns: var(--side) 1fr;
       gap: var(--gap);
-      animation: fadeIn 0.8s ease-out 0.5s both;
     }
 
-    /* ASIDE */
     aside{
       border-radius: var(--r-xl);
       padding: var(--pad);
@@ -342,8 +167,6 @@
       display:flex;
       flex-direction:column;
       min-height: 0;
-      animation: slideInLeft 0.7s ease-out 0.6s both;
-      position: relative;
     }
 
     aside h2{
@@ -353,20 +176,6 @@
       letter-spacing: clamp(1px, .3vw, 2.2px);
       font-size: clamp(22px, 2.3vw, 28px);
       color: rgba(255,255,255,.86);
-      position: relative;
-      display: inline-block;
-    }
-
-    aside h2::after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 40px;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--accent), transparent);
-      border-radius: 2px;
     }
 
     .catlist{
@@ -376,7 +185,6 @@
       margin-top: clamp(10px, 1.3vw, 18px);
     }
 
-    /* BOUTONS CATÉGORIES - VERSION ORIGINALE */
     .catbtn{
       height: clamp(46px, 5.8vh, 54px);
       border-radius: clamp(14px, 1.4vw, 16px);
@@ -390,29 +198,19 @@
       letter-spacing: 1px;
       color: rgba(255,255,255,.70);
       cursor:pointer;
-      transition: all 0.3s ease;
+      transition: transform .15s ease, background .15s ease, border-color .15s ease, color .15s ease;
       user-select:none;
-      position: relative;
-      overflow: hidden;
     }
-
     .catbtn:hover{
       background: rgba(255,255,255,.14);
-      border-color: var(--accent);
+      border-color: rgba(255,255,255,.25);
       transform: translateY(-1px);
       color: rgba(255,255,255,.86);
     }
-
     .catbtn.active{
-      background: linear-gradient(135deg, rgba(100,140,255,.25), rgba(80,120,240,.2));
-      border-color: var(--accent);
-      color: rgba(255,255,255,.98);
-      transform: translateY(-1px);
-    }
-
-    /* Animation uniquement au chargement de la page */
-    .catbtn {
-      animation: fadeIn 0.5s ease-out both;
+      background: rgba(255,255,255,.16);
+      border-color: rgba(255,255,255,.28);
+      color: rgba(255,255,255,.92);
     }
 
     .sidefoot{
@@ -426,49 +224,18 @@
       color: rgba(255,255,255,.55);
       font-size: clamp(12px, 1.05vw, 13px);
       letter-spacing: .8px;
-      animation: fadeIn 0.6s ease-out 1.5s both;
     }
+    .sidefoot .boondocks{ color: rgba(255,255,255,.55); text-decoration: none; }
+    .sidefoot .boondocks:hover{ color: rgba(255,255,255,.80); text-decoration: underline; }
 
-    .sidefoot .boondocks{ 
-      color: rgba(255,255,255,.55); 
-      text-decoration: none;
-      position: relative;
-      transition: all 0.3s ease;
-      font-family: "Segoe UI", system-ui;
-      font-weight: bold;
-    }
-
-    .sidefoot .boondocks::after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 0;
-      width: 0;
-      height: 1px;
-      background: var(--accent);
-      transition: width 0.3s ease;
-    }
-
-    .sidefoot .boondocks:hover{ 
-      color: rgba(255,255,255,.90); 
-      transform: translateY(-1px);
-    }
-
-    .sidefoot .boondocks:hover::after {
-      width: 100%;
-    }
-
-    /* SECTION PRINCIPALE */
     section{
       border-radius: var(--r-xl);
       padding: var(--pad);
       box-shadow: var(--shadow);
       min-height: 0;
       overflow:auto;
-      animation: slideInRight 0.7s ease-out 0.6s both;
     }
 
-    /* GRID DE JEUX */
     .grid{
       display:grid;
       gap: var(--gap);
@@ -487,20 +254,7 @@
       cursor: pointer;
       transform: translateZ(0);
       transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
-      animation: fadeIn 0.6s ease-out both;
     }
-
-    /* ANIMATION STAGGER PLUS RAPIDE POUR LES CARTES */
-    .card:nth-child(1) { animation-delay: 0.4s; }
-    .card:nth-child(2) { animation-delay: 0.45s; }
-    .card:nth-child(3) { animation-delay: 0.5s; }
-    .card:nth-child(4) { animation-delay: 0.55s; }
-    .card:nth-child(5) { animation-delay: 0.6s; }
-    .card:nth-child(6) { animation-delay: 0.65s; }
-    .card:nth-child(7) { animation-delay: 0.7s; }
-    .card:nth-child(8) { animation-delay: 0.75s; }
-    .card:nth-child(9) { animation-delay: 0.8s; }
-    .card:nth-child(10) { animation-delay: 0.85s; }
 
     .card::before{
       content:"";
@@ -536,16 +290,6 @@
     }
     .card:hover::before{ opacity:1; }
     .card:hover::after{ opacity:1; }
-
-    /* EFFET RIPPLE AU CLIC */
-    .card .ripple {
-      position: absolute;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.3);
-      transform: scale(0);
-      animation: ripple 0.6s linear;
-      pointer-events: none;
-    }
 
     .card-bg{
       position:absolute;
@@ -627,15 +371,9 @@
       padding: 40px 20px;
       font-style:italic;
       font-size: clamp(14px, 1.2vw, 16px);
-      animation: fadeIn 0.6s ease-out;
     }
 
-    /* ANIMATION DE TRANSITION ENTRE CATÉGORIES */
-    .grid.fade-out {
-      animation: fadeOut 0.3s ease forwards;
-    }
-
-    /* MODAL ADMIN (PREMIÈRE VERSION) */
+    /* MODAL BASE */
     .modal{
       display:flex;
       position:fixed;
@@ -656,6 +394,7 @@
       pointer-events:all;
     }
 
+    /* ADMIN PANEL AMÉLIORÉ */
     .adminBox{
       background: var(--bg1);
       border-radius: var(--r-xl);
@@ -882,7 +621,7 @@
       text-align:center;
     }
 
-    /* LISTE DES JEUX ADMIN */
+    /* LISTE DES JEUX ADMIN - AMÉLIORÉE */
     .gameListContainer{
       max-height: 50vh;
       overflow-y: auto;
@@ -1161,6 +900,10 @@
       margin: 0 auto 16px;
     }
 
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
     .game-selector-list {
       display: flex;
       flex-direction: column;
@@ -1315,25 +1058,9 @@
       background: linear-gradient(135deg, rgba(155, 89, 182, 0.3), rgba(142, 68, 173, 0.25));
       border-color: rgba(155, 89, 182, 0.5);
     }
-
-    /* RESPONSIVE DESIGN */
-    @media (max-width: 768px) {
-      .main {
-        grid-template-columns: 1fr;
-      }
-      
-      .adminBox {
-        grid-template-columns: 1fr;
-      }
-    }
   </style>
 </head>
 <body>
-  <!-- TRANSITION DE PAGE -->
-  <div class="page-transition" id="pageTransition">
-    <div class="loader"></div>
-  </div>
-
   <div class="app">
     <div class="shell">
 
@@ -1359,8 +1086,8 @@
           <h2>Catégories</h2>
           <div class="catlist" id="catList"></div>
           <div class="sidefoot">
-            <a href="https://discord.gg/qvxkVubaGN" class="boondocks" target="_blank">𝕋𝕙𝕖 𝔹𝕠𝕠𝕟𝕕𝕠𝕔𝕜𝕤</a>
             <span id="gamesCount">0 jeux</span>
+            <a href="https://discord.gg/qvxkVubaGN" class="boondocks" target="_blank">𝕋𝕙𝕖 𝔹𝕠𝕠𝕟𝕕𝕠𝕔𝕜𝕤</a>
           </div>
         </aside>
 
@@ -1374,7 +1101,7 @@
     </div>
   </div>
 
-  <!-- ADMIN PANEL (PREMIÈRE VERSION) -->
+  <!-- ADMIN PANEL SIMPLIFIÉ -->
   <div class="modal" id="adminModal" aria-hidden="true">
     <div class="adminBox">
       <button class="closeBtn" id="closeAdmin" aria-label="Fermer">✕</button>
@@ -1568,7 +1295,6 @@
     const noGames = document.getElementById("noGames");
     const stateMsg = document.getElementById("stateMsg");
     const toast = document.getElementById("toast");
-    const pageTransition = document.getElementById("pageTransition");
     const gamesCount = document.getElementById("gamesCount");
 
     const adminEntry = document.getElementById("adminEntry");
@@ -1611,32 +1337,6 @@
     const statCategories = document.getElementById("statCategories");
     const statLastModified = document.getElementById("statLastModified");
 
-    // Effet ripple sur les cartes
-    function createRipple(event) {
-      const card = event.currentTarget;
-      const circle = document.createElement("span");
-      const diameter = Math.max(card.clientWidth, card.clientHeight);
-      const radius = diameter / 2;
-      
-      circle.style.width = circle.style.height = `${diameter}px`;
-      circle.style.left = `${event.clientX - card.getBoundingClientRect().left - radius}px`;
-      circle.style.top = `${event.clientY - card.getBoundingClientRect().top - radius}px`;
-      circle.classList.add("ripple");
-      
-      const ripple = card.getElementsByClassName("ripple")[0];
-      if (ripple) ripple.remove();
-      
-      card.appendChild(circle);
-    }
-
-    // Transition de page
-    function pageTransitionOut(url) {
-      pageTransition.classList.add('active');
-      setTimeout(() => {
-        window.location.href = url;
-      }, 600);
-    }
-
     // Utilitaires
     function norm(s){ return (s || "").trim(); }
     function upper(s){ return norm(s).toUpperCase(); }
@@ -1654,10 +1354,6 @@
       }else{
         element.style.display = "block";
         element.textContent = msg;
-        element.style.animation = 'none';
-        setTimeout(() => {
-          element.style.animation = 'fadeIn 0.6s ease-out';
-        }, 10);
       }
     }
 
@@ -1727,27 +1423,7 @@
       }
     }
 
-    // Mettre à jour le compteur de jeux
-    function updateGamesCount() {
-      let filtered = state.data.games;
-
-      if(state.activeCat !== "ALL"){
-        filtered = filtered.filter(g => {
-          const cats = Array.isArray(g.categories) ? g.categories : [];
-          return cats.includes(state.activeCat);
-        });
-      }
-
-      if(state.query){
-        const lq = state.query.toLowerCase();
-        filtered = filtered.filter(g => g.name.toLowerCase().includes(lq));
-      }
-
-      const count = filtered.length;
-      gamesCount.textContent = `${count} jeu${count !== 1 ? 'x' : ''}`;
-    }
-
-    // Navigation admin
+    // Navigation admin - MODIFIÉ
     document.querySelectorAll('.adminNavBtn:not(.upload-btn)').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('.adminNavBtn').forEach(b => b.classList.remove('active'));
@@ -1826,38 +1502,40 @@
       }
     });
 
+    // Mettre à jour le compteur de jeux
+    function updateGamesCount() {
+      let filtered = state.data.games;
+
+      if(state.activeCat !== "ALL"){
+        filtered = filtered.filter(g => {
+          const cats = Array.isArray(g.categories) ? g.categories : [];
+          return cats.includes(state.activeCat);
+        });
+      }
+
+      if(state.query){
+        const lq = state.query.toLowerCase();
+        filtered = filtered.filter(g => g.name.toLowerCase().includes(lq));
+      }
+
+      const count = filtered.length;
+      gamesCount.textContent = `${count} jeu${count !== 1 ? 'x' : ''}`;
+    }
+
     // Render functions
     function renderCategories(){
       const all = ["ALL", ...state.data.categories];
       catList.innerHTML = "";
       
-      all.forEach((cat, index) => {
+      all.forEach(cat => {
         const btn = document.createElement("div");
         btn.className = "catbtn";
         if(cat === state.activeCat) btn.classList.add("active");
-        
-        // Texte simple sans compteur
         btn.textContent = cat;
-        
-        // Animation uniquement au chargement initial
-        if (state.activeCat === "ALL") {
-          btn.style.animationDelay = `${0.6 + index * 0.1}s`;
-        } else {
-          btn.style.animation = 'none';
-          btn.style.opacity = '1';
-        }
-        
         btn.addEventListener("click", () => {
           state.activeCat = cat;
-          
-          // Animation de transition pour les cartes
-          gameGrid.classList.add('fade-out');
-          setTimeout(() => {
-            renderGames();
-            renderCategories();
-            updateGamesCount();
-            gameGrid.classList.remove('fade-out');
-          }, 300);
+          renderCategories();
+          renderGames();
         });
         catList.appendChild(btn);
       });
@@ -1891,12 +1569,9 @@
 
       noGames.style.display = "none";
       
-      filtered.forEach((g, index) => {
+      filtered.forEach((g) => {
         const card = document.createElement("div");
         card.className = "card";
-        // Animation plus rapide pour toutes les cartes
-        card.style.animationDelay = `${0.4 + index * 0.05}s`;
-        card.addEventListener('click', createRipple);
 
         const bg = document.createElement("div");
         bg.className = "card-bg";
@@ -1926,10 +1601,7 @@
           </svg>
           Télécharger
         `;
-        downloadLink.addEventListener("click", (e) => {
-          e.stopPropagation();
-          createRipple(e);
-        });
+        downloadLink.addEventListener("click", (e) => e.stopPropagation());
 
         overlay.appendChild(title);
         overlay.appendChild(downloadLink);
@@ -1938,7 +1610,7 @@
         card.appendChild(overlay);
 
         card.addEventListener("click", () => {
-          pageTransitionOut(`game.html?name=${encodeURIComponent(g.name)}`);
+          window.location.href = `game.html?name=${encodeURIComponent(g.name)}`;
         });
 
         gameGrid.appendChild(card);
@@ -2562,11 +2234,6 @@
 
     // Démarrer l'application
     init();
-    
-    // Cacher la transition de page après le chargement
-    setTimeout(() => {
-      pageTransition.classList.remove('active');
-    }, 800);
   </script>
 </body>
 </html>
