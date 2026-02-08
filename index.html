@@ -34,27 +34,53 @@
     
     @keyframes slideInLeft {
       from { opacity: 0; transform: translateX(-20px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
 
     @keyframes slideInRight {
       from { opacity: 0; transform: translateX(20px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
 
     @keyframes shimmer {
       0% { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
 
     @keyframes pulseGlow {
       0%, 100% { box-shadow: 0 0 20px rgba(100, 140, 255, 0.3); }
       50% { box-shadow: 0 0 40px rgba(100, 140, 255, 0.3); }
     }
 
-      100% { background-position: 200% center; }
+    @keyframes searchPulse {
+      0%, 100% {
+        box-shadow: 
+          inset 0 1px 0 rgba(255, 255, 255, 0.2),
+          0 16px 64px rgba(0, 0, 0, 0.5),
+          0 0 0 2px rgba(100, 140, 255, 0.4),
+          0 0 30px rgba(100, 140, 255, 0.25);
+      }
+      50% {
+        box-shadow: 
+          inset 0 1px 0 rgba(255, 255, 255, 0.2),
+          0 16px 64px rgba(0, 0, 0, 0.5),
+          0 0 0 2px rgba(100, 140, 255, 0.6),
+          0 0 40px rgba(100, 140, 255, 0.35);
+      }
     }
 
-      to { opacity: 1; transform: translateX(0); }
+    @keyframes iconShimmer {
+      0%, 100% {
+        filter: drop-shadow(0 0 2px rgba(100, 140, 255, 0.5));
+      }
+      50% {
+        filter: drop-shadow(0 0 6px rgba(100, 140, 255, 0.8));
+      }
     }
 
-      to { opacity: 1; transform: translateX(0); }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
     }
-
 
     *{ box-sizing:border-box; }
     html, body{ height:100%; }
@@ -99,19 +125,25 @@
     }
 
     header{
+      position: relative;
       border-radius: var(--r-xl);
       padding: var(--pad);
       box-shadow: var(--shadow);
-      display:grid;
-      grid-template-columns: 1fr auto;
-      align-items:center;
+      display: grid;
+      grid-template-columns: 1fr;
+      align-items: center;
       gap: var(--gap);
       min-height: clamp(86px, 10vh, 120px);
       animation: slideInRight 0.7s ease-out 0.3s both;
     }
 
     .brand{
-      text-align:center;
+      position: relative;
+      text-align: center;
+      grid-column: 1 / -1;
+      justify-self: center;
+      width: fit-content;
+      margin: 0 auto;
       user-select:none;
       line-height:1.05;
     }
@@ -152,55 +184,137 @@
       transition: all 0.3s ease;
     }
 
-    .search{
-      width: clamp(220px, 26vw, 360px);
-      height: clamp(34px, 4.2vh, 40px);
+    /* BARRE DE RECHERCHE AMÉLIORÉE */
+    .search {
+      position: absolute;
+      right: var(--pad);
+      top: 50%;
+      transform: translateY(-50%);
+      width: clamp(220px, 28vw, 400px);
+      height: clamp(40px, 5vh, 48px);
       border-radius: 999px;
-      display:flex;
-      align-items:center;
-      gap: 10px;
-      padding: 0 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0 18px;
       border: none;
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,.16);
-      background: transparent;
-      justify-self:end;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+      box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(255, 255, 255, 0.08);
+      justify-self: end;
       outline: none !important;
       isolation: isolate;
-      transform: translateZ(0);
+      transform: translateY(-50%) translateZ(0);
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      overflow: hidden;
     }
-    .search:focus-within{
-      outline: none !important;
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,.16);
+
+    .search::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.1), 
+        transparent);
+      transition: left 0.6s ease;
+      z-index: 1;
     }
-    .search *{
-      outline: none !important;
+
+    .search:hover::before {
+      left: 100%;
+    }
+
+    .search:hover {
+      box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.15),
+        0 12px 48px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(100, 140, 255, 0.3),
+        0 0 20px rgba(100, 140, 255, 0.15);
+      transform: translateY(-50%) scale(1.02);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.04));
+    }
+
+    .search:focus-within {
+      box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        0 16px 64px rgba(0, 0, 0, 0.5),
+        0 0 0 2px rgba(100, 140, 255, 0.4),
+        0 0 30px rgba(100, 140, 255, 0.25);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.06));
+      animation: searchPulse 2s infinite;
+    }
+
+    .search svg {
+      width: 20px;
+      height: 20px;
+      opacity: 0.7;
+      transition: all 0.3s ease;
+      flex-shrink: 0;
+      stroke-width: 2.2;
+    }
+
+    .search:focus-within svg {
+      opacity: 1;
+      color: rgba(100, 140, 255, 1);
+      transform: scale(1.1);
+      animation: iconShimmer 1.5s ease-in-out infinite;
+    }
+
+    .search input {
+      width: 100%;
+      border: 0 !important;
+      outline: 0 !important;
       box-shadow: none !important;
-    }
-    .search svg{ width: 18px; height: 18px; opacity:.78; }
-    .search input{
-      width:100%;
-      border:0 !important;
-      outline:0 !important;
-      box-shadow:none !important;
-      background:transparent !important;
-      color: var(--text);
-      font-size: clamp(13px, 1.1vw, 14px);
-    }
-    .search input:focus{
-      outline:none !important;
-      border:none !important;
-      box-shadow:none !important;
-      background:transparent !important;
-    }
-    .search input:-webkit-autofill,
-    .search input:-webkit-autofill:hover,
-    .search input:-webkit-autofill:focus,
-    .search input:-webkit-autofill:active {
-      -webkit-box-shadow: 0 0 0 30px transparent inset !important;
-      -webkit-text-fill-color: var(--text) !important;
       background: transparent !important;
+      color: var(--text);
+      font-size: clamp(14px, 1.15vw, 15px);
+      font-weight: 400;
+      letter-spacing: 0.3px;
+      padding: 0;
+      transition: color 0.3s ease;
     }
-    .search input::placeholder{ color: rgba(255,255,255,.55); }
+
+    .search input:focus {
+      color: rgba(255, 255, 255, 0.98);
+    }
+
+    .search input::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+      font-weight: 400;
+      transition: color 0.3s ease;
+    }
+
+    .search:focus-within input::placeholder {
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    .search input:focus {
+      background: linear-gradient(90deg, 
+        rgba(255, 255, 255, 0.95), 
+        rgba(200, 220, 255, 0.9)) text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .search input::-webkit-search-cancel-button {
+      -webkit-appearance: none;
+      height: 20px;
+      width: 20px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000s/svg" viewBox="0 0 24 24" fill="rgba(255,255,255,0.5)"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>') no-repeat center;
+      cursor: pointer;
+      transition: opacity 0.3s;
+    }
+
+    .search input::-webkit-search-cancel-button:hover {
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000s/svg" viewBox="0 0 24 24" fill="rgba(255,255,255,0.8)"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>') no-repeat center;
+    }
 
     .main{
       flex: 1;
@@ -252,6 +366,8 @@
       cursor:pointer;
       transition: transform .15s ease, background .15s ease, border-color .15s ease, color .15s ease;
       user-select:none;
+      opacity: 0;
+      animation: slideInLeft 0.5s ease-out forwards;
     }
     .catbtn:hover{
       background: rgba(255,255,255,.14);
@@ -297,18 +413,10 @@
       align-content: start;
     }
 
-    
     .card{
       opacity: 0;
       animation: fadeIn 0.6s ease-out forwards;
     }
-    
-    .catbtn{
-      opacity: 0;
-      animation: slideInLeft 0.5s ease-out forwards;
-    }
-
-
 
     .card{
       position: relative;
@@ -967,10 +1075,6 @@
       margin: 0 auto 16px;
     }
 
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-
     .game-selector-list {
       display: flex;
       flex-direction: column;
@@ -1225,6 +1329,22 @@
             </div>
           </div>
 
+          <!-- SECTION: Catégories modifiables -->
+          <div class="formRow" style="margin-top: 12px;">
+            <div>
+              <label>Catégories (modifiables)</label>
+              <div class="categoryBadges" id="editableCategories">
+                <!-- Les badges seront générés ici -->
+              </div>
+              <div style="display: flex; gap: 8px; margin-top: 8px;">
+                <input type="text" id="addCustomCat" placeholder="Ajouter une catégorie..." 
+                       style="flex: 1; padding: 8px 12px;" />
+                <button type="button" id="addCatManualBtn" class="primary" 
+                        style="padding: 8px 12px; font-size: 12px;">Ajouter</button>
+              </div>
+            </div>
+          </div>
+
           <div class="torrent-drop-zone" id="torrentDropZone">
             <div class="icon">📎</div>
             <p><strong>Glissez un fichier .torrent ici</strong></p>
@@ -1398,6 +1518,11 @@
     const gameSelectorClose = document.getElementById("gameSelectorClose");
     const gameSelectorContent = document.getElementById("gameSelectorContent");
 
+    // Nouveaux éléments pour les catégories modifiables
+    const editableCategories = document.getElementById("editableCategories");
+    const addCustomCat = document.getElementById("addCustomCat");
+    const addCatManualBtn = document.getElementById("addCatManualBtn");
+
     // Statistiques
     const statGames = document.getElementById("statGames");
     const statCategories = document.getElementById("statCategories");
@@ -1489,7 +1614,53 @@
       }
     }
 
-    // Navigation admin - MODIFIÉ
+    // Fonction pour rendre les catégories modifiables
+    function renderEditableCategories() {
+      if (!editableCategories) return;
+      
+      editableCategories.innerHTML = '';
+      
+      // Afficher les catégories existantes
+      state.data.categories.forEach(cat => {
+        const badge = document.createElement('div');
+        badge.className = 'catBadge';
+        badge.textContent = cat;
+        
+        // Si la catégorie est déjà sélectionnée
+        if (state.selectedCategories.includes(cat)) {
+          badge.classList.add('selected');
+        }
+        
+        badge.addEventListener('click', () => {
+          badge.classList.toggle('selected');
+          
+          if (badge.classList.contains('selected')) {
+            if (!state.selectedCategories.includes(cat)) {
+              state.selectedCategories.push(cat);
+            }
+          } else {
+            state.selectedCategories = state.selectedCategories.filter(c => c !== cat);
+          }
+          
+          updateSelectedCategoriesDisplay();
+        });
+        
+        editableCategories.appendChild(badge);
+      });
+    }
+
+    // Fonction pour mettre à jour l'affichage des catégories sélectionnées
+    function updateSelectedCategoriesDisplay() {
+      const previewEl = document.getElementById('selectedGameCategories');
+      if (previewEl) {
+        const categoriesHTML = state.selectedCategories.map(cat => 
+          `<span class="catBadge selected" style="font-size: 10px; padding: 3px 8px;">${cat}</span>`
+        ).join('');
+        previewEl.innerHTML = categoriesHTML;
+      }
+    }
+
+    // Navigation admin
     document.querySelectorAll('.adminNavBtn:not(.upload-btn)').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('.adminNavBtn').forEach(b => b.classList.remove('active'));
@@ -1602,6 +1773,7 @@
         const lq = state.query.toLowerCase();
         filtered = filtered.filter(g => g.name.toLowerCase().includes(lq));
       }
+      
       // Mettre à jour le compteur de jeux
       const gameCount = state.activeCat === "ALL" ? state.data.games.length : filtered.length;
       const gameCountDisplay = document.getElementById("gameCountDisplay");
@@ -1700,6 +1872,7 @@
           renderCategories();
           renderGames();
           renderAdminLists();
+          renderEditableCategories();
           toastMsg("Catégorie supprimée");
         });
 
@@ -1785,6 +1958,10 @@
             }
           });
           
+          // Rendre les catégories modifiables
+          renderEditableCategories();
+          updateSelectedCategoriesDisplay();
+          
           renderCategories();
           toastMsg("Mode modification");
           
@@ -1827,6 +2004,11 @@
       state.selectedCategories = [];
       selectedGameData = null;
       selectedGamePreview.classList.remove('show');
+      
+      // Réinitialiser les catégories modifiables
+      if (addCustomCat) addCustomCat.value = '';
+      renderEditableCategories();
+      
       renderCategories();
     }
 
@@ -1945,12 +2127,9 @@
         document.getElementById('selectedGameName').textContent = details.name;
         document.getElementById('selectedGameMeta').textContent = `${gameData.year ? gameData.year + ' • ' : ''}${gameData.type}`;
         
-        const categoriesHTML = details.categories.map(cat => 
-          `<span class="catBadge selected" style="font-size: 10px; padding: 3px 8px;">${cat}</span>`
-        ).join('');
-        document.getElementById('selectedGameCategories').innerHTML = categoriesHTML;
-
-        renderCategories();
+        // Rendre les catégories modifiables
+        renderEditableCategories();
+        updateSelectedCategoriesDisplay();
 
         gameSelectorModal.classList.remove('open');
         gameSelectorModal.setAttribute('aria-hidden', 'true');
@@ -2002,6 +2181,12 @@
         await handleTorrentFile(e.target.files[0]);
       }
     });
+
+    async function handleTorrentFile(file) {
+      // Simuler la lecture du fichier torrent (pour l'exemple)
+      toastMsg("📁 Fichier torrent reçu");
+      // Dans une version réelle, vous extrairiez le magnet link du fichier .torrent
+    }
 
     // Cloudinary upload
     async function uploadImageToCloudinary(file) {
@@ -2069,6 +2254,45 @@
       }
     });
 
+    // Ajouter une catégorie manuellement
+    addCatManualBtn.addEventListener("click", () => {
+      const catNameValue = upper(addCustomCat.value);
+      
+      if (!catNameValue) {
+        toastMsg("Nom de catégorie vide");
+        return;
+      }
+      
+      // Ajouter à la liste globale si elle n'existe pas
+      if (!state.data.categories.includes(catNameValue)) {
+        state.data.categories.push(catNameValue);
+        state.data.categories.sort();
+        saveLocalDraft();
+        renderCategories();
+        renderAdminLists();
+      }
+      
+      // Ajouter aux catégories sélectionnées si pas déjà
+      if (!state.selectedCategories.includes(catNameValue)) {
+        state.selectedCategories.push(catNameValue);
+      }
+      
+      // Vider l'input
+      addCustomCat.value = '';
+      
+      // Re-rendre les badges
+      renderEditableCategories();
+      updateSelectedCategoriesDisplay();
+      toastMsg(`Catégorie "${catNameValue}" ajoutée`);
+    });
+
+    // Permettre l'ajout avec la touche Entrée
+    addCustomCat.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") {
+        addCatManualBtn.click();
+      }
+    });
+
     // Event listeners
     q.addEventListener("input", () => {
       state.query = q.value || "";
@@ -2086,6 +2310,7 @@
       saveLocalDraft();
       renderCategories();
       renderAdminLists();
+      renderEditableCategories();
       updateStats();
       toastMsg("Catégorie ajoutée");
     });
@@ -2121,11 +2346,13 @@
       state.selectedCategories = [];
       selectedGameData = null;
       selectedGamePreview.classList.remove('show');
+      if (addCustomCat) addCustomCat.value = '';
 
       saveLocalDraft();
       renderGames();
       renderCategories();
       renderAdminLists();
+      renderEditableCategories();
       updateStats();
       toastMsg("Jeu ajouté");
     });
@@ -2159,6 +2386,7 @@
       renderGames();
       renderCategories();
       renderAdminLists();
+      renderEditableCategories();
       updateStats();
       exitEditMode();
       toastMsg("Modif sauvegardée");
@@ -2190,6 +2418,7 @@
         renderCategories();
         renderGames();
         renderAdminLists();
+        renderEditableCategories();
         updateStats();
         exitEditMode();
         toastMsg("Import OK");
@@ -2224,6 +2453,7 @@
       adminModal.classList.add("open");
       adminModal.setAttribute("aria-hidden", "false");
       renderAdminLists();
+      renderEditableCategories();
       updateStats();
     }
     
@@ -2278,6 +2508,7 @@
       renderCategories();
       renderGames();
       renderAdminLists();
+      renderEditableCategories();
       updateStats();
       
       console.log("✅ Initialisation terminée");
