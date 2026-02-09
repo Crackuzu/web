@@ -19,6 +19,20 @@
   ],
   "games": [
     {
+      "name": "60 Seconds! Reatomized",
+      "categories": [
+        "ROLE-PLAYING (RPG)",
+        "SIMULATION",
+        "STRATEGY",
+        "ADVENTURE",
+        "INDIE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:b1113c8083b591aee5db3605de939923d9abad81&dn=60.Seconds.Reatomized.v1.1.5.32.rar&tr=udp://tracker.openbittorrent.com:80/announce&tr=udp://tracker.opentrackr.org:1337/announce",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2t2j.jpg",
+      "igdbId": 120560,
+      "videoId": "xqC3Bu94eU8"
+    },
+    {
       "name": "Beyond: Two Souls",
       "categories": [
         "ADVENTURE"
