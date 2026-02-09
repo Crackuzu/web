@@ -378,10 +378,11 @@
       coverLoading.style.display = 'block';
       
       try {
-        const response = await fetch(`${WORKER_URL}/api/cover?game=${encodeURIComponent(gameName)}`);
+        // Try RAWG first for 16:9 HD cover
+        const rawgResponse = await fetch(`${WORKER_URL}/api/rawg-cover?game=${encodeURIComponent(gameName)}`);
         
-        if (response.ok) {
-          const data = await response.json();
+        if (rawgResponse.ok) {
+          const data = await rawgResponse.json();
           
           if (data.coverUrl) {
             coverImg.src = data.coverUrl;
@@ -481,19 +482,20 @@
           }
         }
         
-        // Fallback si pas d'igdbId ou erreur
-        if (!synopsis) {
-          const response = await fetch(`${WORKER_URL}/api/synopsis?game=${encodeURIComponent(gameName)}`);
+        // Fallback: utiliser RAWG si pas d'IGDB ou pas de synopsis
+        if (!synopsis || synopsis === "Pas de description disponible.") {
+          const response = await fetch(`${WORKER_URL}/api/rawg-synopsis?game=${encodeURIComponent(gameName)}`);
           if (response.ok) {
             const data = await response.json();
             synopsis = data.synopsis;
             rating = data.rating;
             releaseDate = data.released;
-            source = data.source;
+            source = 'RAWG';
           }
         }
         
-        if (synopsis) {
+        if (synopsis && synopsis !== "Pas de description disponible.") {
+          // Traduire automatiquement la description
           descContainer.innerHTML = '<div class="loading-state">Traduction en cours...</div>';
           const synopsisFR = await translateText(synopsis, 'fr');
           
@@ -501,7 +503,7 @@
           if (rating || releaseDate) {
             extraInfo = '<p style="margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.08);">';
             if (releaseDate) extraInfo += `<strong>📅 Sortie :</strong> ${releaseDate}<br>`;
-            if (rating) extraInfo += `<strong>⭐ Note :</strong> ${rating}${source === 'IGDB' ? '/5' : ''}<br>`;
+            if (rating) extraInfo += `<strong>⭐ Note :</strong> ${rating}${source === 'IGDB' ? '/5' : '/10'}<br>`;
             extraInfo += '</p>';
           }
 
@@ -510,7 +512,7 @@
               <p>${synopsisFR}</p>
               ${extraInfo}
               <p style="margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.08); font-size: 12px; opacity: 0.7;">
-                <em>Source: ${source || 'Unknown'}</em>
+                <em>Source: ${source || 'Unknown'} | Traduit automatiquement</em>
               </p>
             </div>
           `;
