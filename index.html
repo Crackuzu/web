@@ -2186,7 +2186,9 @@
         selectedGameData = {
           name: details.name,
           cover34: details.cover34,
-          categories: details.categories
+          categories: details.categories,
+          igdbId: gameData.id,
+          videoId: details.videoId
         };
 
         gameName.value = details.name;
@@ -2636,7 +2638,9 @@
         name, 
         categories: [...state.selectedCategories], 
         magnet, 
-        cover 
+        cover,
+        igdbId: selectedGameData?.igdbId || null,
+        videoId: selectedGameData?.videoId || null
       });
 
       gameName.value = "";
