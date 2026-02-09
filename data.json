@@ -4,7 +4,6 @@
     "CAR RACE",
     "SIMULATOR",
     "SINGLEPLAYER",
-    "SPORTS",
     "ADVENTURE",
     "INDIE",
     "STRATEGY",
@@ -19,6 +18,16 @@
     "SPORT"
   ],
   "games": [
+    {
+      "name": "Heavy Rain",
+      "categories": [
+        "ADVENTURE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:563a5b51da0d72feee843d281f4c9e5a7a886d59&dn=Heavy.Rain-CPY&tr=udp://9.rarbg.me:2720/announce&tr=udp://9.rarbg.to:2800/announce&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://tracker.leechers-paradise.org:6969/announce&tr=udp://tracker.internetwarriors.net:1337/announce",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/coaajv.jpg",
+      "igdbId": 493,
+      "videoId": "YVYiJ3VSp60"
+    },
     {
       "name": "Hitman 3",
       "categories": [
