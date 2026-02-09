@@ -1414,6 +1414,13 @@
             </div>
           </div>
 
+          <!-- CHAMP TRAILER YOUTUBE -->
+          <div style="margin-top: 12px;">
+            <label>🎬 Trailer YouTube (optionnel)</label>
+            <input type="text" id="trailerUrl" placeholder="https://youtube.com/watch?v=... ou https://youtu.be/..." />
+            <small style="color: rgba(255,255,255,.5); font-size: 11px; display: block; margin-top: 4px;">Laisse vide pour utiliser le trailer IGDB automatique</small>
+          </div>
+
           <!-- PREVIEW COVER FIXE 3:4 + CHAMP URL À DROITE -->
           <div style="display: flex; gap: 16px; margin-top: 16px; align-items: stretch;">
             <!-- CADRE PREVIEW 3:4 FIXE -->
@@ -1561,6 +1568,7 @@
     const gameName = document.getElementById("gameName");
     const gameMagnet = document.getElementById("gameMagnet");
     const gameCover = document.getElementById("gameCover");
+    const trailerUrl = document.getElementById("trailerUrl");
     const searchIGDBBtn = document.getElementById("searchIGDBBtn");
     const pasteImageBtn = document.getElementById("pasteImageBtn");
     const addGameBtn = document.getElementById("addGameBtn");
@@ -1594,6 +1602,24 @@
     // Utilitaires
     function norm(s){ return (s || "").trim(); }
     function upper(s){ return norm(s).toUpperCase(); }
+
+    // Extraire l'ID YouTube d'une URL
+    function extractYouTubeId(url) {
+      if (!url) return null;
+      const patterns = [
+        /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([a-zA-Z0-9_-]{11})/,
+        /v=([a-zA-Z0-9_-]{11})/,
+        /\/embed\/([a-zA-Z0-9_-]{11})/,
+        /\/shorts\/([a-zA-Z0-9_-]{11})/
+      ];
+      for (const pattern of patterns) {
+        const match = url.match(pattern);
+        if (match && match[1]) {
+          return match[1];
+        }
+      }
+      return null;
+    }
 
     function toastMsg(msg){
       toast.textContent = msg;
@@ -2012,6 +2038,13 @@
           gameMagnet.value = g.magnet;
           gameCover.value = g.cover || "";
 
+          // Populate trailerUrl from videoId if it exists
+          if (g.videoId) {
+            trailerUrl.value = `https://youtube.com/watch?v=${g.videoId}`;
+          } else {
+            trailerUrl.value = "";
+          }
+
           const gameCategories = Array.isArray(g.categories) ? g.categories : [];
           state.selectedCategories = [...gameCategories];
           
@@ -2064,6 +2097,7 @@
       gameName.value = "";
       gameMagnet.value = "";
       gameCover.value = "";
+      trailerUrl.value = "";
       state.selectedCategories = [];
       selectedGameData = null;
       selectedGamePreview.classList.remove('show');
@@ -2622,6 +2656,8 @@
       const name = norm(gameName.value);
       const magnet = norm(gameMagnet.value).replaceAll("&amp;", "&");
       const cover = norm(gameCover.value);
+      const trailerUrlValue = norm(trailerUrl.value);
+      const manualVideoId = extractYouTubeId(trailerUrlValue);
 
       if(!name) return toastMsg("Nom manquant");
       if(!magnet.startsWith("magnet:")) return toastMsg("Magnet invalide");
@@ -2640,12 +2676,13 @@
         magnet, 
         cover,
         igdbId: selectedGameData?.igdbId || null,
-        videoId: selectedGameData?.videoId || null
+        videoId: manualVideoId || selectedGameData?.videoId || null
       });
 
       gameName.value = "";
       gameMagnet.value = "";
       gameCover.value = "";
+      trailerUrl.value = "";
       state.selectedCategories = [];
       selectedGameData = null;
       selectedGamePreview.classList.remove('show');
@@ -2666,6 +2703,8 @@
       const name = norm(gameName.value);
       const magnet = norm(gameMagnet.value).replaceAll("&amp;", "&");
       const cover = norm(gameCover.value);
+      const trailerUrlValue = norm(trailerUrl.value);
+      const manualVideoId = extractYouTubeId(trailerUrlValue);
 
       if(!name) return toastMsg("Nom manquant");
       if(!magnet.startsWith("magnet:")) return toastMsg("Magnet invalide");
@@ -2684,7 +2723,7 @@
         magnet, 
         cover,
         igdbId: selectedGameData?.igdbId || state.data.games[editIndex]?.igdbId || null,
-        videoId: selectedGameData?.videoId || state.data.games[editIndex]?.videoId || null
+        videoId: manualVideoId || state.data.games[editIndex]?.videoId || null
       };
 
       saveLocalDraft();
