@@ -20,6 +20,17 @@
   ],
   "games": [
     {
+      "name": "Getting over it",
+      "categories": [
+        "PLATFORMER",
+        "SINGLEPLAYER"
+      ],
+      "magnet": "magnet:?xt=urn:btih:e229d8bd4f5f32ce09a37e9872ac936eb71390b3&dn=Getting.Over.It.with.Bennett.Foddy.v1.7.rar&tr=udp://opentor.org:2710/announce&tr=udp://tracker.torrent.eu.org:451/announce&tr=udp://exodus.desync.com:6969/announce&tr=udp://tracker.moeking.me:6969/announce&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://open.stealth.si:80/announce&tr=udp://tracker.theoks.net:6969/announce&tr=udp://retracker.lanta-net.ru:2710/announce&tr=udp://movies.zsw.ca:6969/announce",
+      "cover": "https://res.cloudinary.com/dkcui82mx/image/upload/v1770618451/lxa1jqm95wmrdtkexe5y.png",
+      "igdbId": null,
+      "videoId": null
+    },
+    {
       "name": "Hollow Knight: Silksong",
       "categories": [
         "PLATFORMER",
