@@ -14,7 +14,9 @@
     "POINT-AND-CLICK",
     "TACTICAL",
     "PLATFORMER",
-    "SIMULATION"
+    "SIMULATION",
+    "RACING",
+    "SPORT"
   ],
   "games": [
     {
@@ -408,17 +410,21 @@
         "ADVENTURE"
       ],
       "magnet": "magnet:?xt=urn:btih:3Z3Y7XBQH4PDQEQXFL4MJHUG5P52PJK7&dn=Assassin's%20Creed%20Mirage%20(2023)&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co57sj.jpg"
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co57sj.jpg",
+      "igdbId": 215060,
+      "videoId": "IRNOoOYVn80"
     },
     {
       "name": "Need for Speed: Heat",
       "categories": [
-        "CAR RACE",
-        "SPORTS",
+        "RACING",
+        "SPORT",
         "ADVENTURE"
       ],
       "magnet": "magnet:?xt=urn:btih:66c751c4a91d8f5f977c0615db6522802750250f&dn=Need%20for%20Speed%20Heat%20(2019)&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.tracker.cl%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker1.bt.moack.co.kr%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.theoks.net%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker-udp.gbitt.info%3A80%2Fannounce&tr=udp%3A%2F%2Fexplodie.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker2.dler.org%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.tiny-vps.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.ccp.ovh%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.0x7c0.com%3A6969%2Fannounce",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/coar0x.jpg"
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/coar0x.jpg",
+      "igdbId": 119161,
+      "videoId": "p4Q3uh2RaZo"
     },
     {
       "name": "Detroit: Become Human",
@@ -426,7 +432,9 @@
         "ADVENTURE"
       ],
       "magnet": "magnet:?xt=urn:btih:C6H7OTUOTABXADE3GTT6LT6AS372KYYA&dn=Detroit.%20Become%20Human%20(2018-2019)&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80%2Fannounce",
-      "cover": "https://res.cloudinary.com/dkcui82mx/image/upload/v1770153683/dpebog7knajw2pkjqcrb.png"
+      "cover": "https://res.cloudinary.com/dkcui82mx/image/upload/v1770153683/dpebog7knajw2pkjqcrb.png",
+      "igdbId": 14362,
+      "videoId": "VqFonFg0-cg"
     },
     {
       "name": "Horizon Forbidden West: Complete Edition",
@@ -435,7 +443,9 @@
         "ADVENTURE"
       ],
       "magnet": "magnet:?xt=urn:btih:8cc53599d123220e3fb79459bf3db1c12cffc545&dn=Horizon%20Forbidden%20West%20Complete%20Edition-InsaneRamZes&tr=http%3A%2F%2Ftr.ysagin.top%3A2710%2Fannounce&tr=http%3A%2F%2Ftr2.ysagin.top%3A2715%2Fannounce&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80%2Fannounce&tr=udp%3A%2F%2Fopentor.org%3A2710",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co7580.jpg"
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co7580.jpg",
+      "igdbId": 268842,
+      "videoId": "EwHIzdqdy3s"
     }
   ]
 }
