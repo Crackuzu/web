@@ -454,8 +454,8 @@
         downloadBtn.href = currentGame.magnet;
         downloadBtn.style.display = 'inline-flex';
 
-        fetchSynopsis(currentGame.name);
-        fetchTrailer(currentGame.name);
+        fetchSynopsis(currentGame.name, currentGame.igdbId);
+        fetchTrailer(currentGame.name, currentGame.videoId);
       } catch (error) {
         console.error('Error loading game data:', error);
         document.getElementById('gameTitle').textContent = 'Erreur';
@@ -464,23 +464,44 @@
       }
     }
 
-    async function fetchSynopsis(gameName) {
+    async function fetchSynopsis(gameName, igdbId) {
       const descContainer = document.getElementById('descriptionContent');
       try {
-        const response = await fetch(`${WORKER_URL}/api/synopsis?game=${encodeURIComponent(gameName)}`);
-        if (!response.ok) throw new Error('Worker request failed');
-
-        const data = await response.json();
-        if (data.synopsis) {
+        // Si on a un igdbId, utiliser l'API game-details pour avoir la description exacte
+        let synopsis, rating, releaseDate, source;
+        
+        if (igdbId) {
+          const response = await fetch(`${WORKER_URL}/api/game-details?id=${igdbId}`);
+          if (response.ok) {
+            const data = await response.json();
+            synopsis = data.synopsis;
+            rating = data.rating;
+            releaseDate = data.releaseDate;
+            source = 'IGDB';
+          }
+        }
+        
+        // Fallback si pas d'igdbId ou erreur
+        if (!synopsis) {
+          const response = await fetch(`${WORKER_URL}/api/synopsis?game=${encodeURIComponent(gameName)}`);
+          if (response.ok) {
+            const data = await response.json();
+            synopsis = data.synopsis;
+            rating = data.rating;
+            releaseDate = data.released;
+            source = data.source;
+          }
+        }
+        
+        if (synopsis) {
           descContainer.innerHTML = '<div class="loading-state">Traduction en cours...</div>';
-          const synopsisFR = await translateText(data.synopsis, 'fr');
+          const synopsisFR = await translateText(synopsis, 'fr');
           
           let extraInfo = '';
-          if (data.rating || data.released || data.genres) {
+          if (rating || releaseDate) {
             extraInfo = '<p style="margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.08);">';
-            if (data.released) extraInfo += `<strong>📅 Sortie :</strong> ${data.released}<br>`;
-            if (data.rating) extraInfo += `<strong>⭐ Note :</strong> ${data.rating}/5<br>`;
-            if (data.genres) extraInfo += `<strong>🎮 Genres :</strong> ${data.genres}`;
+            if (releaseDate) extraInfo += `<strong>📅 Sortie :</strong> ${releaseDate}<br>`;
+            if (rating) extraInfo += `<strong>⭐ Note :</strong> ${rating}${source === 'IGDB' ? '/5' : ''}<br>`;
             extraInfo += '</p>';
           }
 
@@ -489,7 +510,7 @@
               <p>${synopsisFR}</p>
               ${extraInfo}
               <p style="margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.08); font-size: 12px; opacity: 0.7;">
-                <em>Source: <a href="${data.url}" target="_blank" style="color: rgba(100,180,255,.8); text-decoration: none;">${data.source}</a></em>
+                <em>Source: ${source || 'Unknown'}</em>
               </p>
             </div>
           `;
@@ -507,9 +528,32 @@
       }
     }
 
-    async function fetchTrailer(gameName) {
+    async function fetchTrailer(gameName, videoId) {
       const trailerContainer = document.getElementById('trailerContent');
       
+      // Si on a un videoId, utiliser directement YouTube No-Cookie Embed
+      if (videoId) {
+        trailerContainer.innerHTML = `
+          <div class="trailer-container">
+            <iframe 
+              src="https://www.youtube-nocookie.com/embed/${videoId}?rel=0&modestbranding=1&autoplay=0"
+              title="Trailer ${gameName}"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+              loading="lazy">
+            </iframe>
+          </div>
+          <div style="margin-top: 12px; text-align: center; color: rgba(255,255,255,.6); font-size: 13px;">
+            <a href="https://www.youtube.com/watch?v=${videoId}" target="_blank" 
+               style="color: rgba(100,180,255,.8); text-decoration: none;">
+              📺 Ouvrir sur YouTube
+            </a>
+          </div>
+        `;
+        return;
+      }
+      
+      // Fallback: recherche via le worker
       try {
         const searchQuery = `${gameName} game trailer`;
         console.log('Fetching trailer for:', searchQuery);
