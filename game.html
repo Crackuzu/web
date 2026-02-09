@@ -468,13 +468,17 @@
     async function fetchSynopsis(gameName, igdbId) {
       const descContainer = document.getElementById('descriptionContent');
       try {
-        // Si on a un igdbId, utiliser l'API game-details pour avoir la description exacte
+        console.log('🔍 fetchSynopsis called:', { gameName, igdbId });
         let synopsis, rating, releaseDate, source;
         
+        // Si on a un igdbId, essayer IGDB d'abord
         if (igdbId) {
+          console.log('📡 Trying IGDB with id:', igdbId);
           const response = await fetch(`${WORKER_URL}/api/game-details?id=${igdbId}`);
+          console.log('📡 IGDB response status:', response.status);
           if (response.ok) {
             const data = await response.json();
+            console.log('📡 IGDB data:', data);
             synopsis = data.synopsis;
             rating = data.rating;
             releaseDate = data.releaseDate;
@@ -483,19 +487,25 @@
         }
         
         // Fallback: utiliser RAWG si pas d'IGDB ou pas de synopsis
+        console.log('🔍 Checking RAWG fallback - synopsis:', synopsis);
         if (!synopsis || synopsis === "Pas de description disponible.") {
+          console.log('📡 Trying RAWG for:', gameName);
           const response = await fetch(`${WORKER_URL}/api/rawg-synopsis?game=${encodeURIComponent(gameName)}`);
+          console.log('📡 RAWG response status:', response.status);
           if (response.ok) {
             const data = await response.json();
+            console.log('📡 RAWG data:', data);
             synopsis = data.synopsis;
             rating = data.rating;
             releaseDate = data.released;
             source = 'RAWG';
+          } else {
+            console.log('📡 RAWG response not ok:', await response.text());
           }
         }
         
         if (synopsis && synopsis !== "Pas de description disponible.") {
-          // Traduire automatiquement la description
+          console.log('✅ Found synopsis from:', source);
           descContainer.innerHTML = '<div class="loading-state">Traduction en cours...</div>';
           const synopsisFR = await translateText(synopsis, 'fr');
           
@@ -520,7 +530,7 @@
         }
         throw new Error('No synopsis found');
       } catch (error) {
-        console.error('Error fetching synopsis:', error);
+        console.error('❌ Error fetching synopsis:', error);
         descContainer.innerHTML = `
           <div class="description-box">
             <p><strong>${gameName}</strong> est disponible au téléchargement via CRACKUZU.</p>
@@ -532,9 +542,11 @@
 
     async function fetchTrailer(gameName, videoId) {
       const trailerContainer = document.getElementById('trailerContent');
+      console.log('🎬 fetchTrailer called:', { gameName, videoId });
       
       // Si on a un videoId, utiliser directement YouTube No-Cookie Embed
       if (videoId) {
+        console.log('✅ Using stored videoId:', videoId);
         trailerContainer.innerHTML = `
           <div class="trailer-container">
             <iframe 
@@ -556,19 +568,25 @@
       }
       
       // Fallback: recherche via le worker
+      console.log('🔍 No videoId, searching via worker...');
       try {
         const searchQuery = `${gameName} game trailer`;
-        console.log('Fetching trailer for:', searchQuery);
+        console.log('📡 Fetching:', `${WORKER_URL}/api/youtube?q=${encodeURIComponent(searchQuery)}`);
         
         const response = await fetch(`${WORKER_URL}/api/youtube?q=${encodeURIComponent(searchQuery)}`);
+        console.log('📡 Worker response status:', response.status);
         
         if (!response.ok) {
+          const errorText = await response.text();
+          console.log('📡 Worker error response:', errorText);
           throw new Error(`Worker returned ${response.status}`);
         }
 
         const data = await response.json();
+        console.log('📡 Worker data:', data);
         
         if (data.videoId) {
+          console.log('✅ Found trailer via search:', data.videoId);
           trailerContainer.innerHTML = `
             <div class="trailer-container">
               <iframe 
@@ -596,7 +614,7 @@
         }
         
       } catch (error) {
-        console.error('Error fetching trailer:', error);
+        console.error('❌ Error fetching trailer:', error);
         showTrailerFallback(gameName);
       }
     }
