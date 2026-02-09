@@ -2682,7 +2682,9 @@
         name, 
         categories: [...state.selectedCategories], 
         magnet, 
-        cover 
+        cover,
+        igdbId: selectedGameData?.igdbId || state.data.games[editIndex]?.igdbId || null,
+        videoId: selectedGameData?.videoId || state.data.games[editIndex]?.videoId || null
       };
 
       saveLocalDraft();
