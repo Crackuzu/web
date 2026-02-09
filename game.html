@@ -345,22 +345,26 @@
     }
 
     async function translateText(text, targetLang = 'fr') {
+      if (!WORKER_URL) {
+        return text;
+      }
+
       try {
-        const response = await fetch('https://libretranslate.de/translate', {
+        const response = await fetch(`${WORKER_URL}/api/translate`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            q: text,
-            source: 'en',
-            target: targetLang,
-            format: 'text'
-          })
+          body: JSON.stringify({ text, targetLang })
         });
-        if (!response.ok) return text;
+
+        if (!response.ok) {
+          console.error('Translation failed:', response.status);
+          return text;
+        }
+
         const data = await response.json();
         return data.translatedText || text;
       } catch (error) {
-        console.error("Translation error:", error);
+        console.error('Translation error:', error);
         return text;
       }
     }
@@ -463,47 +467,64 @@
 
     async function fetchSynopsis(gameName, igdbId) {
       const descContainer = document.getElementById('descriptionContent');
+      
       try {
         console.log('🔍 fetchSynopsis called:', { gameName, igdbId });
-        let synopsis, rating, releaseDate, source;
+        let synopsis = null;
+        let rating = null;
+        let releaseDate = null;
+        let source = null;
         
-        // Si on a un igdbId, essayer IGDB d'abord
+        // 1. Essayer IGDB si on a un ID
         if (igdbId) {
           console.log('📡 Trying IGDB with id:', igdbId);
-          const response = await fetch(`${WORKER_URL}/api/game-details?id=${igdbId}`);
-          console.log('📡 IGDB response status:', response.status);
-          if (response.ok) {
-            const data = await response.json();
-            console.log('📡 IGDB data:', data);
-            synopsis = data.synopsis;
-            rating = data.rating;
-            releaseDate = data.releaseDate;
-            source = 'IGDB';
+          try {
+            const response = await fetch(`${WORKER_URL}/api/game-details?id=${igdbId}`);
+            console.log('📡 IGDB response status:', response.status);
+            if (response.ok) {
+              const data = await response.json();
+              console.log('📡 IGDB data:', data);
+              if (data.synopsis && data.synopsis !== "Pas de description disponible.") {
+                synopsis = data.synopsis;
+                rating = data.rating;
+                releaseDate = data.releaseDate;
+                source = 'IGDB';
+              }
+            }
+          } catch (e) {
+            console.log('� IGDB failed:', e.message);
           }
         }
         
-        // Fallback: utiliser RAWG si pas d'IGDB ou pas de synopsis
-        console.log('🔍 Checking RAWG fallback - synopsis:', synopsis);
-        if (!synopsis || synopsis === "Pas de description disponible." || synopsis.trim() === "") {
+        // 2. Fallback RAWG si pas de synopsis IGDB
+        if (!synopsis) {
           console.log('📡 Trying RAWG for:', gameName);
-          const response = await fetch(`${WORKER_URL}/api/rawg-synopsis?game=${encodeURIComponent(gameName)}`);
-          console.log('📡 RAWG response status:', response.status);
-          if (response.ok) {
-            const data = await response.json();
-            console.log('📡 RAWG data:', data);
-            synopsis = data.synopsis;
-            rating = data.rating;
-            releaseDate = data.released;
-            source = 'RAWG';
-          } else {
-            console.log('📡 RAWG response not ok:', await response.text());
+          try {
+            const response = await fetch(`${WORKER_URL}/api/rawg-synopsis?game=${encodeURIComponent(gameName)}`);
+            console.log('📡 RAWG response status:', response.status);
+            if (response.ok) {
+              const data = await response.json();
+              console.log('📡 RAWG data:', data);
+              if (data.synopsis && data.synopsis !== "Pas de description disponible." && data.synopsis.length > 10) {
+                synopsis = data.synopsis;
+                rating = data.rating;
+                releaseDate = data.released;
+                source = 'RAWG';
+              }
+            }
+          } catch (e) {
+            console.log('📡 RAWG failed:', e.message);
           }
         }
         
-        if (synopsis && synopsis !== "Pas de description disponible.") {
+        // 3. Afficher la description
+        if (synopsis) {
           console.log('✅ Found synopsis from:', source);
           descContainer.innerHTML = '<div class="loading-state">Traduction en cours...</div>';
+          
+          // Traduire
           const synopsisFR = await translateText(synopsis, 'fr');
+          console.log('✅ Translation done');
           
           let extraInfo = '';
           if (rating || releaseDate) {
@@ -518,13 +539,16 @@
               <p>${synopsisFR}</p>
               ${extraInfo}
               <p style="margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.08); font-size: 12px; opacity: 0.7;">
-                <em>Source: ${source || 'Unknown'} | Traduit automatiquement</em>
+                <em>Source: ${source} | Traduit automatiquement</em>
               </p>
             </div>
           `;
           return;
         }
+        
+        // 4. Aucune description trouvée
         throw new Error('No synopsis found');
+        
       } catch (error) {
         console.error('❌ Error fetching synopsis:', error);
         descContainer.innerHTML = `
