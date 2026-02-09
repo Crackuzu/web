@@ -1397,27 +1397,38 @@
             </div>
           </div>
 
-          <div class="torrent-drop-zone" id="torrentDropZone">
-            <div class="icon">📎</div>
-            <p><strong>Glissez un fichier .torrent ici</strong></p>
-            <p style="font-size:11px; margin-top:4px; opacity:.7;">ou collez le lien magnet ci-dessous</p>
-          </div>
-          <input type="file" id="torrentFileInput" accept=".torrent" style="display:none;" />
+          <label style="display: block; margin-top: 16px; margin-bottom: 6px; font-size: clamp(12px, 1.05vw, 14px); letter-spacing: .5px; color: rgba(255,255,255,.75); font-weight: 500;">Lien Magnet</label>
 
-          <div class="formRow" style="margin-top:12px;">
-            <div>
-              <label>Lien Magnet</label>
-              <textarea id="gameMagnet" placeholder="magnet:?xt=urn:btih:..." rows="2"></textarea>
+          <!-- ZONE TORRENT + MAGNET EN 2 COLONNES (25% / 75%) -->
+          <div style="display: flex; gap: 12px; margin-top:12px; align-items: stretch;">
+            <!-- 25% - ZONE DE DÉPÔT TORRENT -->
+            <div class="torrent-drop-zone" id="torrentDropZone" style="flex: 0 0 25%; padding: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+              <div class="icon" style="font-size: 24px; margin-bottom: 6px;">📎</div>
+              <p style="font-size: 12px; margin: 0; line-height: 1.3;"><strong>Glissez un fichier .torrent ici</strong></p>
+            </div>
+            <input type="file" id="torrentFileInput" accept=".torrent" style="display:none;" />
+            
+            <!-- 75% - CHAMP MAGNET -->
+            <div style="flex: 1; display: flex; flex-direction: column;">
+              <textarea id="gameMagnet" placeholder="magnet:?xt=urn:btih:..." rows="4" style="flex: 1; min-height: 80px; resize: none;"></textarea>
             </div>
           </div>
 
-          <div class="formRow" style="margin-top:12px;">
-            <div style="flex: 1;">
+          <!-- PREVIEW COVER FIXE 3:4 + CHAMP URL À DROITE -->
+          <div style="display: flex; gap: 16px; margin-top: 16px; align-items: stretch;">
+            <!-- CADRE PREVIEW 3:4 FIXE -->
+            <div class="previewBox" id="coverPreviewBox" style="flex: 0 0 auto; width: 180px; aspect-ratio: 3/4; position: relative; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.15); border-radius: 8px; overflow: hidden;">
+              <img id="coverPreviewImg" src="" alt="Cover Preview" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; display: none;" />
+              <div id="coverPlaceholder" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,.4); font-size: 13px; text-align: center;">
+                📸<br>Aperçu
+              </div>
+            </div>
+            
+            <!-- CHAMP URL À DROITE - aligné en bas avec le preview -->
+            <div style="flex: 1; display: flex; flex-direction: column; justify-content: flex-end;">
               <label>URL de la Cover</label>
               <input type="text" id="gameCover" placeholder="https://images.igdb.com/..." />
-            </div>
-            <div style="flex: 0; display: flex; align-items: flex-end; gap: 8px;">
-              <button type="button" class="primary paste-image-btn" id="pasteImageBtn" style="white-space: nowrap;">
+              <button type="button" class="primary paste-image-btn" id="pasteImageBtn" style="margin-top: 8px; width: 100%;">
                 📋 Coller Image
               </button>
             </div>
@@ -2070,6 +2081,14 @@
       renderAdminGamesList();
     });
 
+    // Event Enter sur gameName pour lancer la recherche IGDB
+    gameName.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        searchIGDBBtn.click();
+      }
+    });
+
     // SYSTÈME IGDB
     searchIGDBBtn.addEventListener('click', async () => {
       const name = norm(gameName.value);
@@ -2174,6 +2193,19 @@
         gameCover.value = details.cover34;
         state.selectedCategories = details.categories;
         
+        // Déclencher le preview manuellement après sélection IGDB
+        const coverPreviewImgFix = document.getElementById('coverPreviewImg');
+        const coverPlaceholderFix = document.getElementById('coverPlaceholder');
+        if (coverPreviewImgFix && coverPlaceholderFix && details.cover34) {
+          coverPreviewImgFix.src = details.cover34;
+          coverPreviewImgFix.style.display = 'block';
+          coverPlaceholderFix.style.display = 'none';
+          coverPreviewImgFix.onload = function() {
+            coverPreviewImgFix.style.display = 'block';
+            coverPlaceholderFix.style.display = 'none';
+          };
+        }
+        
         selectedGamePreview.classList.add('show');
         document.getElementById('selectedGameCover').src = details.cover34 || '';
         document.getElementById('selectedGameName').textContent = details.name;
@@ -2206,25 +2238,51 @@
       }
     });
 
-    // Drag & Drop torrent
-    torrentDropZone.addEventListener("click", () => torrentFileInput.click());
+    // Drag & Drop torrent - FIX: meilleure gestion des événements
+    torrentDropZone.addEventListener("click", (e) => {
+      e.preventDefault();
+      torrentFileInput.click();
+    });
+
+    // Empêcher le comportement par défaut du navigateur pour le drag & drop
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+      torrentDropZone.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+      });
+    });
+
+    torrentDropZone.addEventListener("dragenter", (e) => {
+      e.preventDefault();
+      torrentDropZone.classList.add("dragover");
+    });
 
     torrentDropZone.addEventListener("dragover", (e) => {
       e.preventDefault();
       torrentDropZone.classList.add("dragover");
     });
 
-    torrentDropZone.addEventListener("dragleave", () => {
-      torrentDropZone.classList.remove("dragover");
+    torrentDropZone.addEventListener("dragleave", (e) => {
+      e.preventDefault();
+      // Vérifier qu'on quitte vraiment la zone et pas un enfant
+      if (!torrentDropZone.contains(e.relatedTarget)) {
+        torrentDropZone.classList.remove("dragover");
+      }
     });
 
     torrentDropZone.addEventListener("drop", async (e) => {
       e.preventDefault();
+      e.stopPropagation();
       torrentDropZone.classList.remove("dragover");
       
       const files = e.dataTransfer.files;
       if (files.length > 0) {
-        await handleTorrentFile(files[0]);
+        const file = files[0];
+        if (file.name.endsWith('.torrent')) {
+          await handleTorrentFile(file);
+        } else {
+          toastMsg("❌ Veuillez déposer un fichier .torrent");
+        }
       }
     });
 
@@ -2235,9 +2293,198 @@
     });
 
     async function handleTorrentFile(file) {
-      // Simuler la lecture du fichier torrent (pour l'exemple)
-      toastMsg("📁 Fichier torrent reçu");
-      // Dans une version réelle, vous extrairiez le magnet link du fichier .torrent
+      try {
+        toastMsg("📁 Analyse du torrent...");
+        
+        const arrayBuffer = await file.arrayBuffer();
+        const data = new Uint8Array(arrayBuffer);
+        
+        // Parser le torrent et extraire l'info hash
+        const result = await parseTorrentAndExtractInfoHash(data);
+        
+        if (result && result.infoHash) {
+          const name = result.name || "Unknown";
+          const magnetLink = `magnet:?xt=urn:btih:${result.infoHash}&dn=${encodeURIComponent(name)}`;
+          gameMagnet.value = magnetLink;
+          toastMsg("✅ Magnet extrait !");
+          console.log("Magnet link:", magnetLink);
+        } else {
+          toastMsg("❌ Format torrent invalide");
+          console.error("Parse result:", result);
+        }
+      } catch (error) {
+        console.error("Torrent parse error:", error);
+        toastMsg("❌ Erreur lecture torrent");
+      }
+    }
+
+    // Parser Bencode avancé avec extraction de l'info hash
+    async function parseTorrentAndExtractInfoHash(data) {
+      let pos = 0;
+      
+      // Fonction pour lire un entier jusqu'à un délimiteur
+      function readInt(delimiter) {
+        let start = pos;
+        while (pos < data.length && data[pos] !== delimiter) {
+          pos++;
+        }
+        const str = new TextDecoder().decode(data.slice(start, pos));
+        pos++; // Skip delimiter
+        return parseInt(str);
+      }
+      
+      // Fonction pour parser récursivement avec tracking des positions
+      function parseValue() {
+        if (pos >= data.length) return null;
+        
+        const byte = data[pos];
+        
+        if (byte === 0x69) { // 'i' - integer
+          pos++;
+          const value = readInt(0x65); // 'e'
+          return { type: 'int', value };
+        } 
+        else if (byte === 0x6C) { // 'l' - list
+          pos++;
+          const items = [];
+          while (pos < data.length && data[pos] !== 0x65) {
+            items.push(parseValue());
+          }
+          pos++; // Skip 'e'
+          return { type: 'list', items };
+        }
+        else if (byte === 0x64) { // 'd' - dictionary
+          const startPos = pos;
+          pos++;
+          const dict = {};
+          while (pos < data.length && data[pos] !== 0x65) {
+            const keyObj = parseValue();
+            if (keyObj && keyObj.type === 'string') {
+              const key = keyObj.value;
+              if (key === 'info') {
+                // Capturer la position de début de l'info dict
+                const infoStart = pos;
+                const value = parseValue();
+                const infoEnd = pos;
+                dict[key] = value;
+                dict._infoStart = infoStart;
+                dict._infoEnd = infoEnd;
+              } else {
+                dict[key] = parseValue();
+              }
+            }
+          }
+          pos++; // Skip 'e'
+          return { type: 'dict', value: dict, start: startPos, end: pos };
+        }
+        else if (byte >= 0x30 && byte <= 0x39) { // digit - string
+          const len = readInt(0x3A); // ':'
+          const strData = data.slice(pos, pos + len);
+          pos += len;
+          
+          // Essayer de décoder comme UTF-8, sinon garder comme bytes
+          try {
+            const str = new TextDecoder('utf-8', { fatal: false }).decode(strData);
+            return { type: 'string', value: str, raw: strData };
+          } catch {
+            return { type: 'string', value: null, raw: strData };
+          }
+        }
+        
+        return null;
+      }
+      
+      try {
+        const root = parseValue();
+        
+        if (!root || root.type !== 'dict' || !root.value.info) {
+          return null;
+        }
+        
+        // Extraire les bytes bruts de l'info dictionary
+        const infoStart = root.value._infoStart;
+        const infoEnd = root.value._infoEnd;
+        
+        if (!infoStart || !infoEnd) {
+          return null;
+        }
+        
+        // Recalculer: on doit re-serialiser l'info dict pour avoir les bytes exacts
+        // ou trouver la section info dans le fichier original
+        const infoBytes = extractInfoSection(data, infoStart);
+        
+        if (!infoBytes) {
+          return null;
+        }
+        
+        // Calculer SHA-1
+        const hashBuffer = await crypto.subtle.digest('SHA-1', infoBytes);
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        const infoHash = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        
+        // Extraire le nom
+        const info = root.value.info;
+        let name = "Unknown";
+        if (info && info.type === 'dict' && info.value.name) {
+          name = info.value.name.value || "Unknown";
+        }
+        
+        return { infoHash, name };
+        
+      } catch (e) {
+        console.error("Parse error:", e);
+        return null;
+      }
+    }
+    
+    // Extraire la section info du fichier torrent
+    function extractInfoSection(data, startPos) {
+      // L'info section commence avec 'd' et on doit trouver le 'e' correspondant
+      if (data[startPos] !== 0x64) { // 'd'
+        return null;
+      }
+      
+      let pos = startPos + 1;
+      let depth = 1;
+      
+      while (pos < data.length && depth > 0) {
+        const byte = data[pos];
+        
+        if (byte === 0x64) { // 'd' - nouveau dict
+          depth++;
+          pos++;
+        }
+        else if (byte === 0x6C) { // 'l' - nouvelle liste
+          depth++;
+          pos++;
+        }
+        else if (byte === 0x65) { // 'e' - fin
+          depth--;
+          if (depth === 0) {
+            pos++; // Include the 'e'
+            break;
+          }
+          pos++;
+        }
+        else if (byte === 0x69) { // 'i' - integer
+          pos++;
+          while (pos < data.length && data[pos] !== 0x65) pos++;
+          pos++; // Skip 'e'
+        }
+        else if (byte >= 0x30 && byte <= 0x39) { // string
+          // Read length
+          let lenStart = pos;
+          while (pos < data.length && data[pos] !== 0x3A) pos++;
+          const len = parseInt(new TextDecoder().decode(data.slice(lenStart, pos)));
+          pos++; // Skip ':'
+          pos += len; // Skip string content
+        }
+        else {
+          pos++;
+        }
+      }
+      
+      return data.slice(startPos, pos);
     }
 
     // Cloudinary upload
@@ -2563,7 +2810,56 @@
       renderCategoriesList();
       updateStats();
       
+      // INITIALISER LE PREVIEW DE LA COVER
+      setupCoverPreview();
+      
       console.log("✅ Initialisation terminée");
+    }
+
+    // FONCTION POUR LE PREVIEW DE LA COVER - CORRIGÉ
+    function setupCoverPreview() {
+      const gameCoverInput = document.getElementById('gameCover');
+      const coverPreviewImg = document.getElementById('coverPreviewImg');
+      const coverPlaceholder = document.getElementById('coverPlaceholder');
+      
+      if (!gameCoverInput || !coverPreviewImg || !coverPlaceholder) return;
+      
+      function updatePreview() {
+        const url = gameCoverInput.value.trim();
+        
+        if (url) {
+          // Réinitialiser l'image avant de changer la source
+          coverPreviewImg.style.display = 'none';
+          coverPlaceholder.style.display = 'block';
+          
+          // Petit délai pour forcer le re-render
+          setTimeout(() => {
+            coverPreviewImg.src = url;
+            coverPreviewImg.onload = function() {
+              coverPreviewImg.style.display = 'block';
+              coverPlaceholder.style.display = 'none';
+            };
+            coverPreviewImg.onerror = function() {
+              coverPreviewImg.style.display = 'none';
+              coverPlaceholder.style.display = 'block';
+            };
+          }, 10);
+        } else {
+          coverPreviewImg.style.display = 'none';
+          coverPlaceholder.style.display = 'block';
+        }
+      }
+      
+      // Event input pour changements manuels
+      gameCoverInput.addEventListener('input', updatePreview);
+      
+      // Event paste pour mise à jour immédiate après collage
+      gameCoverInput.addEventListener('paste', function(e) {
+        setTimeout(updatePreview, 10);
+      });
+      
+      // Déclencher une première fois au cas où il y a déjà une valeur
+      updatePreview();
     }
 
     // Démarrer l'application
