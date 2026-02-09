@@ -20,6 +20,18 @@
   ],
   "games": [
     {
+      "name": "Hitman 3",
+      "categories": [
+        "ACTION",
+        "TACTICAL",
+        "ADVENTURE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:4c28c447b1b93b5ba4de8f714ed5b4c681a23bea&dn=HITMAN_3_v3.140-Razor1911&tr=udp://tracker.torrent.eu.org:451/announce&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://tracker.theoks.net:6969/announce&tr=udp://tracker.moeking.me:6969/announce&tr=udp://movies.zsw.ca:6969/announce",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co29lt.jpg",
+      "igdbId": 134595,
+      "videoId": "te_nocX0gi4"
+    },
+    {
       "name": "Getting over it",
       "categories": [
         "PLATFORMER",
