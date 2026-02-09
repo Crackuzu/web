@@ -19,6 +19,16 @@
   ],
   "games": [
     {
+      "name": "Beyond: Two Souls",
+      "categories": [
+        "ADVENTURE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:de5f1b280b0a60ff9019394be784161d5fa15d6c&dn=Beyond_Two_Souls_PROPER-HOODLUM&tr=udp://9.rarbg.me:2720/announce&tr=udp://9.rarbg.to:2800/announce&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://tracker.leechers-paradise.org:6969/announce&tr=udp://tracker.internetwarriors.net:1337/announce",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co8r4w.jpg",
+      "igdbId": 1342,
+      "videoId": "4NEup8y0g-Q"
+    },
+    {
       "name": "Heavy Rain",
       "categories": [
         "ADVENTURE"
