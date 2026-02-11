@@ -82,17 +82,23 @@
       to { transform: rotate(360deg); }
     }
 
-    *{ box-sizing:border-box; }
+    /* FOND PARALLAX */
+    .parallax-bg {
+      position: fixed;
+      inset: -50px;
+      background: url('background.jpg') center center / cover no-repeat;
+      z-index: -1;
+      will-change: transform;
+      transition: transform 0.1s ease-out;
+    }
     html, body{ height:100%; }
     body{
       margin:0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       color: var(--text);
-      background:
-        radial-gradient(1100px 700px at 15% 0%, rgba(255,255,255,.09), transparent 55%),
-        radial-gradient(950px 600px at 90% 20%, rgba(255,255,255,.07), transparent 60%),
-        linear-gradient(180deg, var(--bg0), var(--bg1));
+      background: #0a0a12;
       overflow-x:hidden;
+      position: relative;
     }
 
     .glass{
@@ -125,16 +131,34 @@
     }
 
     header{
-      position: relative;
+      position: sticky;
+      top: var(--outer);
+      z-index: 100;
       border-radius: var(--r-xl);
       padding: var(--pad);
-      box-shadow: var(--shadow);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(20px) saturate(200%);
+      -webkit-backdrop-filter: blur(20px) saturate(200%);
       display: grid;
       grid-template-columns: 1fr;
       align-items: center;
       gap: var(--gap);
       min-height: clamp(86px, 10vh, 120px);
       animation: slideInRight 0.7s ease-out 0.3s both;
+      transition: all 0.3s ease;
+    }
+
+    header.scrolled{
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(100, 140, 255, 0.3);
+      box-shadow: 
+        0 16px 64px rgba(0, 0, 0, 0.4),
+        0 0 40px rgba(100, 140, 255, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
     }
 
     .brand{
@@ -320,7 +344,13 @@
     aside{
       border-radius: var(--r-xl);
       padding: var(--pad);
-      box-shadow: var(--shadow);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 
+        0 24px 80px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
       display:flex;
       flex-direction:column;
       min-height: 0;
@@ -346,31 +376,37 @@
     .catbtn{
       height: clamp(46px, 5.8vh, 54px);
       border-radius: clamp(14px, 1.4vw, 16px);
-      border: 1px solid rgba(255,255,255,.18);
-      background: rgba(255,255,255,.10);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.05);
       display:flex;
       align-items:center;
       justify-content:center;
       gap: 12px;
       font-weight: 520;
       letter-spacing: 1px;
-      color: rgba(255,255,255,.70);
+      color: rgba(255, 255, 255, .70);
       cursor:pointer;
-      transition: transform .15s ease, background .15s ease, border-color .15s ease, color .15s ease;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
       user-select:none;
       opacity: 0;
       animation: slideInLeft 0.5s ease-out forwards;
+      backdrop-filter: blur(12px) saturate(150%);
+      -webkit-backdrop-filter: blur(12px) saturate(150%);
     }
     .catbtn:hover{
-      background: rgba(255,255,255,.14);
-      border-color: rgba(255,255,255,.25);
-      transform: translateY(-1px);
-      color: rgba(255,255,255,.86);
+      background: rgba(100, 140, 255, 0.15);
+      border-color: rgba(100, 140, 255, 0.4);
+      transform: translateY(-2px);
+      color: rgba(255, 255, 255, .95);
+      box-shadow: 0 8px 24px rgba(100, 140, 255, 0.2);
     }
     .catbtn.active{
-      background: rgba(255,255,255,.16);
-      border-color: rgba(255,255,255,.28);
-      color: rgba(255,255,255,.92);
+      background: rgba(100, 140, 255, 0.25);
+      border-color: rgba(100, 140, 255, 0.6);
+      color: rgba(255, 255, 255, 1);
+      box-shadow: 
+        0 8px 32px rgba(100, 140, 255, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
     }
 
     .sidefoot{
@@ -392,7 +428,13 @@
     section{
       border-radius: var(--r-xl);
       padding: var(--pad);
-      box-shadow: var(--shadow);
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      box-shadow: 
+        0 24px 80px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(16px) saturate(180%);
+      -webkit-backdrop-filter: blur(16px) saturate(180%);
       min-height: 0;
       overflow:auto;
       animation: slideInRight 0.7s ease-out 0.6s both;
@@ -414,13 +456,17 @@
       position: relative;
       border-radius: var(--r-md);
       overflow:hidden;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.06);
-      box-shadow: 0 16px 40px rgba(0,0,0,.45);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(12px) saturate(150%);
+      -webkit-backdrop-filter: blur(12px) saturate(150%);
+      box-shadow: 
+        0 16px 40px rgba(0,0,0,.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
       aspect-ratio: 3 / 4;
       cursor: pointer;
       transform: translateZ(0);
-      transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .card::before{
@@ -451,11 +497,18 @@
       filter: blur(28px);
     }
     .card:hover{
-      transform: translateY(-5px);
-      border-color: rgba(255,255,255,.22);
-      box-shadow: 0 28px 60px rgba(0,0,0,.6);
+      transform: translateY(-8px) scale(1.02);
+      border-color: rgba(100, 140, 255, 0.4);
+      box-shadow: 
+        0 28px 60px rgba(0,0,0,.6),
+        0 0 40px rgba(100, 140, 255, 0.2);
     }
-    .card:hover::before{ opacity:1; }
+    .card:hover::before{ 
+      opacity:1; 
+      background:
+        radial-gradient(600px 260px at 30% 10%, rgba(100, 140, 255, 0.3), transparent 60%),
+        radial-gradient(500px 240px at 80% 90%, rgba(100, 200, 255, 0.2), transparent 55%);
+    }
     .card:hover::after{ opacity:1; }
 
     .card-bg{
@@ -542,44 +595,57 @@
 
     /* MODAL BASE */
     .modal{
-      display:flex;
       position:fixed;
+      display:flex;
       inset:0;
       z-index:9999;
-      background: rgba(0,0,0,.75);
-      -webkit-backdrop-filter: blur(6px);
-      backdrop-filter: blur(6px);
+      background: rgba(10, 10, 18, 0.85);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      backdrop-filter: blur(20px) saturate(180%);
       align-items:center;
       justify-content:center;
       padding: var(--outer);
       opacity:0;
       pointer-events:none;
-      transition: opacity .3s ease;
+      transition: opacity .4s ease;
     }
     .modal.open{
       opacity:1;
       pointer-events:all;
     }
 
-    /* ADMIN PANEL AMÉLIORÉ */
+    /* ADMIN PANEL - GLASS MORPHISM DESIGN */
     .adminBox{
-      background: var(--bg1);
+      background: rgba(255, 255, 255, 0.05);
       border-radius: var(--r-xl);
-      box-shadow: var(--shadow);
-      border: 1px solid var(--stroke2);
+      box-shadow: 
+        0 28px 90px rgba(0,0,0,.6),
+        0 0 0 1px rgba(255,255,255,0.1),
+        inset 0 1px 0 rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.12);
       width: min(1400px, 95vw);
       max-height: 90vh;
       display: grid;
       grid-template-columns: 280px 1fr;
       overflow: hidden;
       position:relative;
+      -webkit-backdrop-filter: blur(24px) saturate(200%);
+      backdrop-filter: blur(24px) saturate(200%);
+      animation: modalEnter 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    @keyframes modalEnter {
+      from { opacity: 0; transform: scale(0.95) translateY(20px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
     }
 
     .adminSidebar{
-      background: rgba(0,0,0,.2);
-      border-right: 1px solid var(--stroke);
+      background: rgba(0,0,0,.15);
+      border-right: 1px solid rgba(255,255,255,0.08);
       padding: clamp(20px, 2.5vw, 28px);
       overflow-y: auto;
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
     }
 
     .adminSidebar h1{
@@ -657,10 +723,37 @@
 
     .adminSection{
       display: none;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
     }
 
     .adminSection.active{
       display: block;
+      opacity: 1;
+      transform: translateY(0);
+      animation: sectionFadeIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    @keyframes sectionFadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Stagger animation for form elements */
+    .adminSection.active .formRow {
+      animation: slideInUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
+    }
+
+    .adminSection.active .formRow:nth-child(1) { animation-delay: 0.05s; }
+    .adminSection.active .formRow:nth-child(2) { animation-delay: 0.1s; }
+    .adminSection.active .formRow:nth-child(3) { animation-delay: 0.15s; }
+    .adminSection.active .formRow:nth-child(4) { animation-delay: 0.2s; }
+    .adminSection.active .formRow:nth-child(5) { animation-delay: 0.25s; }
+
+    @keyframes slideInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .adminSection h2{
@@ -707,19 +800,29 @@
 
     input[type=text], input[type=password], input[type=url], textarea{
       width:100%;
-      padding: 10px 14px;
-      border-radius: 10px;
-      border: 1px solid var(--stroke2);
-      background: rgba(255,255,255,.06);
+      padding: 12px 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.06);
       color: var(--text);
       font-size: clamp(13px, 1.1vw, 14px);
       outline:0;
-      transition: border-color .2s ease, background .2s ease;
+      transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
       font-family: inherit;
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
     }
     input[type=text]:focus, input[type=password]:focus, input[type=url]:focus, textarea:focus{
-      border-color: rgba(255,255,255,.3);
-      background: rgba(255,255,255,.08);
+      border-color: rgba(100,140,255,0.6);
+      background: rgba(255,255,255,0.1);
+      box-shadow: 
+        0 0 0 3px rgba(100,140,255,0.15),
+        0 4px 20px rgba(100,140,255,0.15);
+      transform: translateY(-1px);
+    }
+    input[type=text]:hover, input[type=password]:hover, input[type=url]:hover, textarea:hover{
+      border-color: rgba(255,255,255,0.25);
+      background: rgba(255,255,255,0.08);
     }
     textarea{
       resize:vertical;
@@ -728,11 +831,18 @@
 
     .formRow{
       display:flex;
-      gap: clamp(10px, 1.5vw, 18px);
+      gap: clamp(12px, 1.5vw, 18px);
       margin-bottom: clamp(12px, 1.5vw, 16px);
+      align-items: flex-end;
+      width: 100%;
+      box-sizing: border-box;
     }
     .formRow > div{
       flex:1;
+      min-width: 0;
+    }
+    .formRow > div.shrink-0 {
+      flex: 0 0 auto;
     }
 
     button, .btn{
@@ -745,13 +855,20 @@
       font-weight:500;
       letter-spacing:.6px;
       cursor:pointer;
-      transition: all .2s ease;
+      transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
       font-family:inherit;
+      position: relative;
+      overflow: hidden;
     }
     button:hover, .btn:hover{
       background: rgba(255,255,255,.18);
       border-color: rgba(255,255,255,.3);
-      transform: translateY(-1px);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(255,255,255,0.1);
+    }
+    button:active, .btn:active{
+      transform: translateY(0);
+      transition: all 0.1s ease;
     }
     button.primary{
       background: linear-gradient(135deg, rgba(100,140,255,.22), rgba(80,120,240,.18));
@@ -760,6 +877,7 @@
     button.primary:hover{
       background: linear-gradient(135deg, rgba(100,140,255,.3), rgba(80,120,240,.25));
       border-color: rgba(100,140,255,.5);
+      box-shadow: 0 4px 20px rgba(100,140,255,0.25);
     }
     button.danger{
       background: linear-gradient(135deg, rgba(255,80,100,.18), rgba(240,60,80,.14));
@@ -768,6 +886,7 @@
     button.danger:hover{
       background: linear-gradient(135deg, rgba(255,80,100,.25), rgba(240,60,80,.2));
       border-color: rgba(255,80,100,.45);
+      box-shadow: 0 4px 20px rgba(255,80,100,0.2);
     }
 
     .btnGroup{
@@ -1217,6 +1336,392 @@
       transform: translateX(4px);
     }
 
+    /* ===== RECHERCHE IMMERSIVE MASTERCLASS ===== */
+    .search-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9998;
+      background: rgba(10, 10, 18, 0.7);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 15vh;
+    }
+
+    .search-overlay.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    /* Barre de recherche centrale - GLASS MORPHISM EXTREME */
+    .search-immersive {
+      width: min(700px, 90vw);
+      position: relative;
+      transform: translateY(-30px) scale(0.95);
+      opacity: 0;
+      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .search-overlay.active .search-immersive {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+
+    .search-immersive-box {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 0 24px;
+      height: 64px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(24px) saturate(200%);
+      -webkit-backdrop-filter: blur(24px) saturate(200%);
+      transition: all 0.3s ease;
+    }
+
+    .search-immersive-box:focus-within {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(100, 140, 255, 0.5);
+      box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4);
+      transform: scale(1.02);
+    }
+
+    .search-immersive svg {
+      width: 24px;
+      height: 24px;
+      color: rgba(255, 255, 255, 0.6);
+      flex-shrink: 0;
+      transition: all 0.3s ease;
+    }
+
+    .search-immersive-box:focus-within svg {
+      color: rgba(100, 140, 255, 1);
+      transform: scale(1.1);
+      filter: drop-shadow(0 0 8px rgba(100, 140, 255, 0.8));
+    }
+
+    .search-immersive input,
+    .search-immersive input:hover,
+    .search-immersive input:active,
+    .search-immersive input:valid,
+    .search-immersive input:invalid {
+      all: unset;
+      flex: 1;
+      background: #0a0a12 !important;
+      background-color: #0a0a12 !important;
+      color: rgba(255, 255, 255, 0.95) !important;
+      font-size: 18px;
+      font-weight: 400;
+      letter-spacing: 0.3px;
+      font-family: inherit;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      border-radius: 0 !important;
+      padding: 0;
+      margin: 0;
+      -webkit-text-fill-color: rgba(255, 255, 255, 0.95);
+      height: 100%;
+      caret-color: rgba(255, 255, 255, 0.95);
+      display: block;
+    }
+
+    .search-immersive-box input {
+      background: transparent !important;
+      background-color: transparent !important;
+      box-shadow: none !important;
+    }
+
+    .search-immersive input:focus {
+      background: transparent !important;
+      background-color: transparent !important;
+      background-image: none !important;
+      border: none !important;
+      box-shadow: none !important;
+      outline: none !important;
+    }
+
+    .search-immersive input:-webkit-autofill,
+    .search-immersive input:-webkit-autofill:hover,
+    .search-immersive input:-webkit-autofill:focus {
+      -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+      -webkit-text-fill-color: rgba(255, 255, 255, 0.95) !important;
+      background-color: transparent !important;
+      transition: background-color 5000s ease-in-out 0s;
+    }
+
+    /* Fix pour barre grise - forcer transparence complète */
+    .search-immersive input::selection {
+      background: rgba(100, 140, 255, 0.3);
+      color: rgba(255, 255, 255, 0.95);
+    }
+
+    .search-immersive input::-webkit-search-decoration,
+    .search-immersive input::-webkit-search-cancel-button,
+    .search-immersive input::-webkit-search-results-button,
+    .search-immersive input::-webkit-search-results-decoration {
+      display: none;
+      -webkit-appearance: none;
+    }
+
+    .search-immersive input:-webkit-autofill,
+    .search-immersive input:-webkit-autofill:hover,
+    .search-immersive input:-webkit-autofill:focus {
+      -webkit-text-fill-color: rgba(255, 255, 255, 0.95);
+      -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+      transition: background-color 5000s ease-in-out 0s;
+      background-color: transparent !important;
+    }
+
+    .search-immersive input::placeholder {
+      color: rgba(255, 255, 255, 0.4);
+      font-weight: 300;
+    }
+
+    .search-immersive-close {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.08);
+      color: rgba(255, 255, 255, 0.7);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .search-immersive-close:hover {
+      background: rgba(255, 255, 255, 0.15);
+      color: rgba(255, 255, 255, 0.95);
+      transform: rotate(90deg);
+    }
+
+    /* Résultats de recherche - LISTE VERTICALE GLASS MORPHISM MAX */
+    .search-results {
+      width: min(700px, 90vw);
+      max-height: 55vh;
+      margin-top: 20px;
+      overflow-y: auto;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(60px) saturate(200%);
+      -webkit-backdrop-filter: blur(60px) saturate(200%);
+      box-shadow: 
+        0 24px 80px rgba(0, 0, 0, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      transform: translateY(20px);
+      opacity: 0;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.1s;
+    }
+
+    .search-overlay.active .search-results {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .search-results::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .search-results::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .search-results::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 4px;
+    }
+
+    .search-results::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    .search-result-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 20px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      position: relative;
+      opacity: 0;
+      animation: fadeIn 0.5s ease-out forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .search-result-item:last-child {
+      border-bottom: none;
+    }
+
+    .search-result-item:hover {
+      background: linear-gradient(90deg, 
+        rgba(100, 140, 255, 0.1) 0%, 
+        rgba(100, 140, 255, 0.05) 50%,
+        transparent 100%);
+      transform: translateX(8px);
+    }
+
+    .search-result-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(180deg, 
+        rgba(100, 140, 255, 0.8), 
+        rgba(100, 140, 255, 0.4));
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+
+    .search-result-item:hover::before {
+      opacity: 1;
+    }
+
+    .search-result-cover {
+      width: 70px;
+      height: 95px;
+      border-radius: 10px;
+      overflow: hidden;
+      flex-shrink: 0;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .search-result-item:hover .search-result-cover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+
+    .search-result-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .search-result-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .search-result-name {
+      font-size: 17px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.95);
+      margin-bottom: 6px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      letter-spacing: 0.3px;
+    }
+
+    .search-result-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .search-result-year {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.6);
+      font-weight: 500;
+    }
+
+    .search-result-categories {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .search-result-cat {
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: rgba(255, 255, 255, 0.75);
+      letter-spacing: 0.5px;
+    }
+
+    .search-result-match {
+      font-size: 12px;
+      color: rgba(100, 200, 255, 0.8);
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .search-result-match::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(100, 200, 255, 0.8);
+    }
+
+    .search-empty {
+      text-align: center;
+      padding: 60px 20px;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .search-empty-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+      opacity: 0.5;
+    }
+
+    .search-shortcuts {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 20px;
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 12px;
+      letter-spacing: 0.5px;
+    }
+
+    .search-shortcuts span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .search-shortcuts kbd {
+      padding: 4px 8px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      font-family: inherit;
+      font-size: 11px;
+    }
+
     .game-selector-empty {
       text-align: center;
       padding: 60px 20px;
@@ -1285,6 +1790,8 @@
   </style>
 </head>
 <body>
+  <!-- FOND PARALLAX -->
+  <div class="parallax-bg" id="parallaxBg"></div>
   <div class="app">
     <div class="shell">
 
@@ -1297,11 +1804,11 @@
           </div>
         </div>
 
-        <div class="search">
+        <div class="search" id="searchTrigger" style="cursor: pointer;">
           <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
             <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
           </svg>
-          <input type="text" placeholder="Rechercher un jeu..." id="q" />
+          <span style="color: rgba(255,255,255,.5); font-size: clamp(14px, 1.15vw, 15px);">Rechercher un jeu...</span>
         </div>
       </header>
 
@@ -1322,6 +1829,29 @@
         </section>
       </div>
 
+    </div>
+  </div>
+
+  <!-- RECHERCHE IMMERSIVE MASTERCLASS -->
+  <div class="search-overlay" id="searchOverlay">
+    <div class="search-immersive">
+      <div class="search-immersive-box">
+        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        </svg>
+        <input type="text" placeholder="Rechercher un jeu..." id="immersiveSearchInput" autocomplete="off" style="background: transparent !important; background-color: transparent !important; border: none !important; box-shadow: none !important;" />
+        <button class="search-immersive-close" id="closeSearchOverlay">✕</button>
+      </div>
+    </div>
+    
+    <div class="search-results" id="searchResults">
+      <!-- Les résultats seront injectés ici -->
+    </div>
+    
+    <div class="search-shortcuts">
+      <span><kbd>↑↓</kbd> naviguer</span>
+      <span><kbd>Entrée</kbd> ouvrir</span>
+      <span><kbd>Échap</kbd> fermer</span>
     </div>
   </div>
 
@@ -1359,14 +1889,14 @@
         <div class="adminSection active" id="sectionAdd">
           <h2>➕ Ajouter / Modifier un jeu</h2>
           
-          <div class="formRow">
-            <div style="flex: 1;">
+          <div style="display: grid; grid-template-columns: 1fr 55px; gap: 16px; margin-bottom: 16px;">
+            <div style="min-width: 0;">
               <label>Nom du jeu</label>
-              <input type="text" id="gameName" placeholder="Ex: Nioh 3" />
+              <input type="text" id="gameName" placeholder="Ex: Nioh 3" style="width: 100%; box-sizing: border-box;" />
             </div>
-            <div style="flex: 0; display: flex; align-items: flex-end;">
-              <button type="button" class="primary" id="searchIGDBBtn" style="white-space: nowrap;">
-                🔍 Rechercher IGDB
+            <div style="display: flex; align-items: flex-end;">
+              <button type="button" class="primary" id="searchIGDBBtn" style="white-space: nowrap; height: 44px; width: 55px; padding: 0 2px; font-size: 9px;">
+                🔍 IGDB
               </button>
             </div>
           </div>
@@ -1383,7 +1913,7 @@
           </div>
 
           <!-- NOUVELLE SECTION CATÉGORIES LISTE -->
-          <div class="categories-list-container">
+          <div class="categories-list-container" style="margin-right: 0;">
             <h4>🎮 Catégories (modifiables)</h4>
             <div class="categories-list" id="categoriesList">
               <!-- Les catégories seront générées ici dynamiquement -->
@@ -1399,44 +1929,46 @@
 
           <label style="display: block; margin-top: 16px; margin-bottom: 6px; font-size: clamp(12px, 1.05vw, 14px); letter-spacing: .5px; color: rgba(255,255,255,.75); font-weight: 500;">Lien Magnet</label>
 
-          <!-- ZONE TORRENT + MAGNET EN 2 COLONNES (25% / 75%) -->
-          <div style="display: flex; gap: 12px; margin-top:12px; align-items: stretch;">
-            <!-- 25% - ZONE DE DÉPÔT TORRENT -->
-            <div class="torrent-drop-zone" id="torrentDropZone" style="flex: 0 0 25%; padding: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
-              <div class="icon" style="font-size: 24px; margin-bottom: 6px;">📎</div>
-              <p style="font-size: 12px; margin: 0; line-height: 1.3;"><strong>Glissez un fichier .torrent ici</strong></p>
+          <!-- ZONE TORRENT + MAGNET EN GRID -->
+          <div style="display: grid; grid-template-columns: 120px 1fr; gap: 12px; margin-bottom: 16px;">
+            <!-- ZONE DE DÉPÔT TORRENT -->
+            <div class="torrent-drop-zone" id="torrentDropZone" style="padding: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; border-radius: 12px; border: 2px dashed rgba(255,255,255,0.2); background: rgba(255,255,255,0.05);">
+              <div style="font-size: 24px; margin-bottom: 6px;">📎</div>
+              <p style="font-size: 11px; margin: 0; line-height: 1.3;"><strong>.torrent</strong></p>
             </div>
             <input type="file" id="torrentFileInput" accept=".torrent" style="display:none;" />
             
-            <!-- 75% - CHAMP MAGNET -->
-            <div style="flex: 1; display: flex; flex-direction: column;">
-              <textarea id="gameMagnet" placeholder="magnet:?xt=urn:btih:..." rows="4" style="flex: 1; min-height: 80px; resize: none;"></textarea>
+            <!-- CHAMP MAGNET -->
+            <div style="display: flex; flex-direction: column;">
+              <textarea id="gameMagnet" placeholder="magnet:?xt=urn:btih:..." rows="4" style="flex: 1; min-height: 80px; resize: none; width: 100%; box-sizing: border-box;"></textarea>
             </div>
           </div>
 
           <!-- CHAMP TRAILER YOUTUBE -->
-          <div style="margin-top: 12px;">
+          <div style="margin-bottom: 16px;">
             <label>🎬 Trailer YouTube (optionnel)</label>
-            <input type="text" id="trailerUrl" placeholder="https://youtube.com/watch?v=... ou https://youtu.be/..." />
+            <input type="text" id="trailerUrl" placeholder="https://youtube.com/watch?v=... ou https://youtu.be/..." style="width: 100%; box-sizing: border-box;" />
             <small style="color: rgba(255,255,255,.5); font-size: 11px; display: block; margin-top: 4px;">Laisse vide pour utiliser le trailer IGDB automatique</small>
           </div>
 
-          <!-- PREVIEW COVER FIXE 3:4 + CHAMP URL À DROITE -->
-          <div style="display: flex; gap: 16px; margin-top: 16px; align-items: stretch;">
+          <!-- PREVIEW COVER FIXE 3:4 + CHAMP URL À DROITE - ALIGNÉ -->
+          <div style="display: grid; grid-template-columns: 140px 1fr; gap: 16px; margin-bottom: 16px; align-items: stretch;">
             <!-- CADRE PREVIEW 3:4 FIXE -->
-            <div class="previewBox" id="coverPreviewBox" style="flex: 0 0 auto; width: 180px; aspect-ratio: 3/4; position: relative; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.15); border-radius: 8px; overflow: hidden;">
-              <img id="coverPreviewImg" src="" alt="Cover Preview" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; display: none;" />
-              <div id="coverPlaceholder" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,.4); font-size: 13px; text-align: center;">
-                📸<br>Aperçu
+            <div class="previewBox" id="coverPreviewBox" style="aspect-ratio: 3/4; position: relative; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.15); border-radius: 12px; overflow: hidden; box-sizing: border-box;">
+              <img id="coverPreviewImg" src="" alt="Cover Preview" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; display: none; border: none; outline: none; box-shadow: none;" />
+              <div id="coverPlaceholder" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,.4); font-size: 13px; text-align: center; box-sizing: border-box;">
+                📸<br>Ctrl+V pour coller
               </div>
             </div>
             
-            <!-- CHAMP URL À DROITE - aligné en bas avec le preview -->
-            <div style="flex: 1; display: flex; flex-direction: column; justify-content: flex-end;">
-              <label>URL de la Cover</label>
-              <input type="text" id="gameCover" placeholder="https://images.igdb.com/..." />
-              <button type="button" class="primary paste-image-btn" id="pasteImageBtn" style="margin-top: 8px; width: 100%;">
-                📋 Coller Image
+            <!-- CHAMP URL À DROITE -->
+            <div style="display: flex; flex-direction: column; gap: 8px; min-width: 0;">
+              <div style="flex: 1; display: flex; flex-direction: column; min-width: 0;">
+                <label>URL de la Cover</label>
+                <input type="text" id="gameCover" placeholder="https://images.igdb.com/..." style="width: 100%; box-sizing: border-box;" />
+              </div>
+              <button type="button" class="primary paste-image-btn" id="pasteImageBtn" style="width: 100%; height: 44px; box-sizing: border-box;">
+                📋 Coller Image (Ctrl+V)
               </button>
             </div>
           </div>
@@ -1546,7 +2078,6 @@
     let selectedGameData = null;
 
     // Éléments DOM
-    const q = document.getElementById("q");
     const catList = document.getElementById("catList");
     const gameGrid = document.getElementById("gameGrid");
     const noGames = document.getElementById("noGames");
@@ -1924,7 +2455,26 @@
         card.appendChild(overlay);
 
         card.addEventListener("click", () => {
-          window.location.href = `game.html?name=${encodeURIComponent(g.name)}`;
+          // Animation de transition vers game.html
+          const transition = document.createElement('div');
+          transition.style.cssText = `
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: #0a0a12;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: all;
+          `;
+          document.body.appendChild(transition);
+          
+          // Force reflow
+          transition.offsetHeight;
+          transition.style.opacity = '1';
+          
+          setTimeout(() => {
+            window.location.href = `game.html?name=${encodeURIComponent(g.name)}`;
+          }, 400);
         });
 
         gameGrid.appendChild(card);
@@ -2555,6 +3105,32 @@
 
     // Paste image functionality
     pasteImageBtn.addEventListener("click", async () => {
+      await pasteImageFromClipboard();
+    });
+    
+    // Support Ctrl+V global pour coller des images
+    document.addEventListener('keydown', async (e) => {
+      // Vérifier si Ctrl+V est pressé et que le modal admin est ouvert
+      if ((e.ctrlKey || e.metaKey) && e.key === 'v' && adminModal.classList.contains('open')) {
+        // Ne pas interférer si on est dans un champ de texte (sauf gameCover)
+        const activeElement = document.activeElement;
+        const isInTextField = activeElement && (
+          activeElement.tagName === 'INPUT' || 
+          activeElement.tagName === 'TEXTAREA'
+        );
+        
+        // Si on est dans un champ texte qui n'est pas gameCover, laisser le comportement par défaut
+        if (isInTextField && activeElement.id !== 'gameCover') {
+          return;
+        }
+        
+        e.preventDefault();
+        await pasteImageFromClipboard();
+      }
+    });
+    
+    // Fonction pour coller l'image depuis le presse-papier
+    async function pasteImageFromClipboard() {
       if (!navigator.clipboard) {
         toastMsg("❌ Clipboard API non supportée");
         return;
@@ -2569,10 +3145,13 @@
               const blob = await item.getType(type);
               const file = new File([blob], "pasted-image.png", { type: blob.type });
               
+              toastMsg("📤 Upload en cours...");
               const imageUrl = await uploadImageToCloudinary(file);
               
               if (imageUrl) {
                 gameCover.value = imageUrl;
+                // Déclencher l'événement input pour mettre à jour le preview
+                gameCover.dispatchEvent(new Event('input'));
                 toastMsg("✅ Image collée et uploadée!");
               } else {
                 toastMsg("❌ Échec de l'upload");
@@ -2587,7 +3166,7 @@
         console.error("Paste error:", error);
         toastMsg("❌ Impossible de lire le presse-papier");
       }
-    });
+    }
 
     // Ajouter une catégorie manuellement
     addCatManualBtn.addEventListener("click", () => {
@@ -2628,11 +3207,7 @@
       }
     });
 
-    // Event listeners
-    q.addEventListener("input", () => {
-      state.query = q.value || "";
-      renderGames();
-    });
+    // Event listeners de l'ancien input de recherche supprimés - remplacés par l'overlay immersif
 
     addCatBtn.addEventListener("click", () => {
       const name = upper(catName.value);
@@ -2844,7 +3419,7 @@
 
       state.activeCat = "ALL";
       state.query = "";
-      q.value = "";
+      // L'ancien input de recherche a été remplacé par l'overlay immersif
 
       editIndex = null;
       exitEditMode();
@@ -2909,6 +3484,401 @@
 
     // Démarrer l'application
     init();
+
+    // ===== EFFET SCROLL HEADER GLASS =====
+    const header = document.querySelector('header');
+    let lastScrollY = 0;
+    
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      if (scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+      lastScrollY = scrollY;
+    }, { passive: true });
+
+    // ===== EFFET PARALLAX SOURIS MULTI-COUCHES =====
+    const parallaxBg = document.getElementById('parallaxBg');
+    let mouseX = 0;
+    let mouseY = 0;
+    let currentX = 0;
+    let currentY = 0;
+    
+    document.addEventListener('mousemove', (e) => {
+      mouseX = (e.clientX / window.innerWidth - 0.5) * -30;
+      mouseY = (e.clientY / window.innerHeight - 0.5) * -30;
+    });
+    
+    function updateParallax() {
+      currentX += (mouseX - currentX) * 0.08;
+      currentY += (mouseY - currentY) * 0.08;
+      
+      // Fond principal
+      parallaxBg.style.transform = `translate(${currentX}px, ${currentY}px) scale(1.1)`;
+      
+      // Parallax sur les sections de jeux (inverse plus subtil)
+      const gameSections = document.querySelectorAll('.category-section');
+      gameSections.forEach((section, i) => {
+        const offset = (i % 2 === 0 ? 1 : -1) * 5;
+        section.style.transform = `translate(${currentX * 0.3 + offset}px, ${currentY * 0.2}px)`;
+      });
+      
+      // Parallax sur les cartes individuelles
+      const cards = document.querySelectorAll('.game-card');
+      cards.forEach((card, i) => {
+        const delay = i * 0.01;
+        const x = currentX * 0.5 * (1 + delay);
+        const y = currentY * 0.3 * (1 + delay);
+        card.style.transform = `translate(${x}px, ${y}px)`;
+      });
+      
+      // Parallax sur la sidebar
+      const sidebar = document.querySelector('.sidebar');
+      if (sidebar) {
+        sidebar.style.transform = `translate(${currentX * 0.15}px, ${currentY * 0.1}px)`;
+      }
+      
+      requestAnimationFrame(updateParallax);
+    }
+    updateParallax();
+
+    // ===== RECHERCHE IMMERSIVE MASTERCLASS =====
+    const searchOverlay = document.getElementById('searchOverlay');
+    const searchTrigger = document.getElementById('searchTrigger');
+    const immersiveSearchInput = document.getElementById('immersiveSearchInput');
+    const closeSearchOverlay = document.getElementById('closeSearchOverlay');
+    const searchResults = document.getElementById('searchResults');
+
+    let searchSelectedIndex = -1;
+    let currentSearchResults = [];
+
+    // Ouvrir l'overlay de recherche
+    searchTrigger.addEventListener('click', () => {
+      searchOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      setTimeout(() => {
+        immersiveSearchInput.focus();
+      }, 100);
+    });
+
+    // Fermer l'overlay
+    function closeSearch() {
+      searchOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+      immersiveSearchInput.value = '';
+      searchResults.innerHTML = '';
+      searchSelectedIndex = -1;
+    }
+
+    closeSearchOverlay.addEventListener('click', closeSearch);
+
+    // Fermer avec Échap
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && searchOverlay.classList.contains('active')) {
+        closeSearch();
+      }
+      // Ouvrir avec Ctrl+K ou Cmd+K
+      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        e.preventDefault();
+        searchOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        setTimeout(() => {
+          immersiveSearchInput.focus();
+        }, 100);
+      }
+    });
+
+    // Fermer en cliquant sur le fond
+    searchOverlay.addEventListener('click', (e) => {
+      if (e.target === searchOverlay) {
+        closeSearch();
+      }
+    });
+
+    // ===== ALGORITHME FUZZY SEARCH AVEC TOLÉRANCE AUX FAUTES =====
+    
+    // Calcul de la distance de Levenshtein (édition)
+    function levenshteinDistance(str1, str2) {
+      const m = str1.length;
+      const n = str2.length;
+      const d = [];
+      
+      if (m === 0) return n;
+      if (n === 0) return m;
+      
+      for (let i = 0; i <= m; i++) {
+        d[i] = [];
+        d[i][0] = i;
+      }
+      
+      for (let j = 0; j <= n; j++) {
+        d[0][j] = j;
+      }
+      
+      for (let i = 1; i <= m; i++) {
+        for (let j = 1; j <= n; j++) {
+          const cost = str1[i - 1] === str2[j - 1] ? 0 : 1;
+          d[i][j] = Math.min(
+            d[i - 1][j] + 1,      // suppression
+            d[i][j - 1] + 1,      // insertion
+            d[i - 1][j - 1] + cost // substitution
+          );
+        }
+      }
+      
+      return d[m][n];
+    }
+
+    // Normaliser une chaîne (enlever accents, espaces, etc.)
+    function normalizeString(str) {
+      return str
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '') // enlever accents
+        .replace(/[^a-z0-9]/g, '')        // garder uniquement lettres et chiffres
+        .trim();
+    }
+
+    // Calculer le score de similarité fuzzy
+    function fuzzyScore(query, target) {
+      const normalizedQuery = normalizeString(query);
+      const normalizedTarget = normalizeString(target);
+      
+      if (normalizedQuery === normalizedTarget) return 1000; // match exact
+      
+      // Vérifier si query est contenu dans target
+      if (normalizedTarget.includes(normalizedQuery)) {
+        return 900 + (normalizedQuery.length / normalizedTarget.length) * 100;
+      }
+      
+      // Vérifier les sous-séquences (abréviations)
+      let subsequenceMatch = true;
+      let queryIndex = 0;
+      for (let i = 0; i < normalizedTarget.length && queryIndex < normalizedQuery.length; i++) {
+        if (normalizedTarget[i] === normalizedQuery[queryIndex]) {
+          queryIndex++;
+        }
+      }
+      if (queryIndex === normalizedQuery.length) {
+        return 700 + (normalizedQuery.length / normalizedTarget.length) * 100;
+      }
+      
+      // Distance de Levenshtein normalisée
+      const distance = levenshteinDistance(normalizedQuery, normalizedTarget);
+      const maxLen = Math.max(normalizedQuery.length, normalizedTarget.length);
+      const similarity = 1 - (distance / maxLen);
+      
+      // Score basé sur la similarité
+      if (similarity > 0.7) return 500 + similarity * 100;
+      if (similarity > 0.5) return 300 + similarity * 100;
+      if (similarity > 0.3) return 100 + similarity * 100;
+      
+      // Vérifier les mots individuellement
+      const queryWords = query.toLowerCase().split(/\s+/);
+      const targetWords = target.toLowerCase().split(/\s+/);
+      let wordMatchScore = 0;
+      
+      for (const qWord of queryWords) {
+        for (const tWord of targetWords) {
+          if (tWord.includes(qWord)) {
+            wordMatchScore += 50;
+          } else {
+            const wordDist = levenshteinDistance(qWord, tWord);
+            const wordMaxLen = Math.max(qWord.length, tWord.length);
+            const wordSim = 1 - (wordDist / wordMaxLen);
+            if (wordSim > 0.6) {
+              wordMatchScore += wordSim * 30;
+            }
+          }
+        }
+      }
+      
+      return Math.max(0, wordMatchScore);
+    }
+
+    // Recherche fuzzy dans les jeux
+    function fuzzySearch(query, games) {
+      if (!query || query.trim() === '') return [];
+      
+      const results = [];
+      
+      for (const game of games) {
+        const nameScore = fuzzyScore(query, game.name);
+        
+        // Bonus pour les catégories
+        let categoryScore = 0;
+        if (game.categories && Array.isArray(game.categories)) {
+          for (const cat of game.categories) {
+            const catScore = fuzzyScore(query, cat);
+            categoryScore = Math.max(categoryScore, catScore * 0.5); // poids réduit pour catégories
+          }
+        }
+        
+        const totalScore = Math.max(nameScore, categoryScore);
+        
+        if (totalScore > 0) {
+          results.push({
+            game,
+            score: totalScore,
+            matchType: nameScore >= categoryScore ? 'name' : 'category'
+          });
+        }
+      }
+      
+      // Trier par score décroissant
+      results.sort((a, b) => b.score - a.score);
+      
+      return results;
+    }
+
+    // Formater la date de sortie
+    function formatReleaseDate(dateStr) {
+      if (!dateStr) return null;
+      
+      // Si c'est juste une année
+      if (/^\d{4}$/.test(dateStr)) {
+        return dateStr;
+      }
+      
+      // Essayer de parser la date
+      try {
+        const date = new Date(dateStr);
+        if (!isNaN(date.getTime())) {
+          return date.toLocaleDateString('fr-FR', { 
+            year: 'numeric', 
+            month: 'short',
+            day: 'numeric'
+          });
+        }
+      } catch (e) {
+        // ignore
+      }
+      
+      return dateStr;
+    }
+
+    // Afficher les résultats de recherche
+    function renderSearchResults(results) {
+      if (results.length === 0) {
+        searchResults.innerHTML = `
+          <div class="search-empty">
+            <div class="search-empty-icon">🔍</div>
+            <p>Aucun jeu trouvé</p>
+            <p style="font-size: 13px; opacity: 0.6; margin-top: 8px;">Essayez avec une autre orthographe</p>
+          </div>
+        `;
+        return;
+      }
+      
+      const maxScore = results[0].score;
+      
+      const html = results.map((result, index) => {
+        const { game, score } = result;
+        const isTopMatch = score >= maxScore * 0.9;
+        const matchPercent = Math.round((score / 1000) * 100);
+        const animationDelay = 0.05 + (index * 0.06);
+        
+        // Extraire la date de sortie (si disponible via IGDB ou autre)
+        let releaseYear = null;
+        if (game.igdbId) {
+          // La date sera affichée si elle est dans les données
+          releaseYear = game.releaseDate || game.year || null;
+        }
+        
+        const categories = (game.categories || []).slice(0, 3);
+        
+        return `
+          <div class="search-result-item ${index === searchSelectedIndex ? 'selected' : ''}" 
+               data-index="${index}" 
+               data-game="${encodeURIComponent(JSON.stringify(game))}"
+               style="animation-delay: ${animationDelay}s">
+            <div class="search-result-cover">
+              <img src="${game.cover || ''}" alt="${game.name}" 
+                   onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22533%22 viewBox=%220 0 400 533%22%3E%3Crect width=%22400%22 height=%22533%22 fill=%22%23222%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-family=%22Arial%22 font-size=%2220%22 fill=%22white%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3E${game.name.substring(0, 20)}%3C/text%3E%3C/svg%3E'" />
+            </div>
+            <div class="search-result-info">
+              <div class="search-result-name">${game.name}</div>
+              <div class="search-result-meta">
+                ${releaseYear ? `<span class="search-result-year">${formatReleaseDate(releaseYear)}</span>` : ''}
+                <div class="search-result-categories">
+                  ${categories.map(cat => `<span class="search-result-cat">${cat}</span>`).join('')}
+                </div>
+              </div>
+            </div>
+            ${isTopMatch ? '<span class="search-result-match">Meilleure correspondance</span>' : ''}
+          </div>
+        `;
+      }).join('');
+      
+      searchResults.innerHTML = html;
+      
+      // Ajouter les événements de clic
+      document.querySelectorAll('.search-result-item').forEach(item => {
+        item.addEventListener('click', () => {
+          const gameData = JSON.parse(decodeURIComponent(item.dataset.game));
+          window.location.href = `game.html?name=${encodeURIComponent(gameData.name)}`;
+        });
+      });
+    }
+
+    // Gestion de la recherche en temps réel
+    let searchDebounceTimer;
+    immersiveSearchInput.addEventListener('input', () => {
+      clearTimeout(searchDebounceTimer);
+      const query = immersiveSearchInput.value.trim();
+      
+      if (query === '') {
+        searchResults.innerHTML = '';
+        searchSelectedIndex = -1;
+        return;
+      }
+      
+      searchDebounceTimer = setTimeout(() => {
+        const games = state.data?.games || [];
+        currentSearchResults = fuzzySearch(query, games);
+        renderSearchResults(currentSearchResults);
+        searchSelectedIndex = -1;
+      }, 150);
+    });
+
+    // Navigation clavier dans les résultats
+    immersiveSearchInput.addEventListener('keydown', (e) => {
+      const items = document.querySelectorAll('.search-result-item');
+      
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        if (searchSelectedIndex < items.length - 1) {
+          searchSelectedIndex++;
+          updateSelection(items);
+        }
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        if (searchSelectedIndex > 0) {
+          searchSelectedIndex--;
+          updateSelection(items);
+        }
+      } else if (e.key === 'Enter') {
+        e.preventDefault();
+        if (searchSelectedIndex >= 0 && items[searchSelectedIndex]) {
+          items[searchSelectedIndex].click();
+        } else if (items.length > 0) {
+          items[0].click();
+        }
+      }
+    });
+
+    function updateSelection(items) {
+      items.forEach((item, index) => {
+        if (index === searchSelectedIndex) {
+          item.style.background = 'linear-gradient(90deg, rgba(100, 140, 255, 0.2) 0%, rgba(100, 140, 255, 0.1) 50%, transparent 100%)';
+          item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        } else {
+          item.style.background = '';
+        }
+      });
+    }
   </script>
 </body>
 </html>
