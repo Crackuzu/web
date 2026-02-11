@@ -45,6 +45,41 @@
       "videoId": "hh2VkuYQQHE"
     },
     {
+      "name": "Assassin's Creed II",
+      "categories": [
+        "PLATFORMER",
+        "ADVENTURE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:LEVS4XBX5ODYL4YOGCF4I4VVIGNNTL4F&dn=Assassins-Creed-2-AnkerGames.rar&xl=5190017966&tr=https%3A%2F%2Fdatanodes.to%2Fannounce%3Fpasskey%3D9ox6m8s0hxslz0pu9z39gf6gi4jxtyld",
+      "directLink": "",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1rcf.jpg",
+      "igdbId": 127,
+      "videoId": "R20-MOOZPpY"
+    },
+    {
+      "name": "Assassin's Creed III Remastered",
+      "categories": [
+        "ROLE-PLAYING (RPG)",
+        "ADVENTURE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:ZIEYI4V7T3GPJHKU2PYSHBWCPSMXA6CI&dn=Assassins-Creed-III-Remastered-AnkerGames.rar&xl=28587170159&tr=https%3A%2F%2Fdatanodes.to%2Fannounce%3Fpasskey%3Dt5325obvg7j80wsvhz0ebuddjmrlhw20",
+      "directLink": "",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2gjw.jpg",
+      "igdbId": 109532,
+      "videoId": "4rWU9PB-3Ns"
+    },
+    {
+      "name": "Assassin's Creed IV Black Flag",
+      "categories": [
+        "ADVENTURE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:N6GWQCECOFBDW54O2FW3CPHPEOFZQWGX&dn=Assassins-Creed-IV-Black-Flag-AnkerGames.rar&xl=13408866329&tr=https%3A%2F%2Fdatanodes.to%2Fannounce%3Fpasskey%3Db1wtgbdg558qb0wo7z1pjsbw7f8agd9o",
+      "directLink": "",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co4qfn.jpg",
+      "igdbId": 1970,
+      "videoId": "4Z9wnzlw9hA"
+    },
+    {
       "name": "Assassin's Creed Mirage",
       "categories": [
         "ADVENTURE"
@@ -53,6 +88,53 @@
       "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co57sj.jpg",
       "igdbId": 215060,
       "videoId": "IRNOoOYVn80"
+    },
+    {
+      "name": "Assassin's Creed Origins",
+      "categories": [
+        "ROLE-PLAYING (RPG)",
+        "ADVENTURE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:C4XWM2JSVYHTDGNRS77T3YA7V673IQDF&dn=Assassins-Creed-Origins-AnkerGames.rar&xl=60224032499&tr=https%3A%2F%2Fdatanodes.to%2Fannounce%3Fpasskey%3D66ge2fdb1hjp9oqentto4m6fcm4kjlhx",
+      "directLink": "",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1rbe.jpg",
+      "igdbId": 28540,
+      "videoId": "gczocLl14_U"
+    },
+    {
+      "name": "Assassin's Creed Valhalla",
+      "categories": [
+        "ROLE-PLAYING (RPG)",
+        "ADVENTURE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:53I2ROQHFETZTBKR7DPAZMXZAZVQJJYC&dn=Assassins-Creed-Valhalla-Complete-Edition-AnkerGames.rar&xl=156397062517&tr=https%3A%2F%2Fdatanodes.to%2Fannounce%3Fpasskey%3D22lgfrzemh3cfb06fs3kzfe4pai39g2w",
+      "directLink": "",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2ed3.jpg",
+      "igdbId": 133004,
+      "videoId": "iylGoWbIeXA"
+    },
+    {
+      "name": "Assassin's Creed: Director's Cut Edition",
+      "categories": [
+        "PLATFORMER",
+        "ADVENTURE"
+      ],
+      "magnet": "",
+      "directLink": "https://pixeldrain.com/api/file/gm4H3mKW?download=",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1zj6.jpg",
+      "igdbId": 27827,
+      "videoId": "uEZFLuHXOlE"
+    },
+    {
+      "name": "Assassin's Creed: Odyssey - Ultimate Edition",
+      "categories": [
+        "ACTION"
+      ],
+      "magnet": "magnet:?xt=urn:btih:2RVWBCR7POJZB6BI4SZ7MAYSSC53FPKH&dn=Assassins-Creed-Odyssey-AnkerGames.rar&xl=88378267512&tr=https%3A%2F%2Fdatanodes.to%2Fannounce%3Fpasskey%3Doj49jry6fkbgxf0y0xht2nnt20d6p0hu",
+      "directLink": "",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co7oi7.jpg",
+      "igdbId": 27567,
+      "videoId": null
     },
     {
       "name": "Beyond: Two Souls",
@@ -762,6 +844,20 @@
         "Far Cry 4: Gold Edition",
         "Far Cry 5",
         "Far Cry 6"
+      ]
+    },
+    {
+      "id": "assassin's-creed",
+      "name": "Assassin's Creed",
+      "games": [
+        "Assassin's Creed: Director's Cut Edition",
+        "Assassin's Creed II",
+        "Assassin's Creed III Remastered",
+        "Assassin's Creed IV Black Flag",
+        "Assassin's Creed Origins",
+        "Assassin's Creed: Odyssey - Ultimate Edition",
+        "Assassin's Creed Mirage",
+        "Assassin's Creed Valhalla"
       ]
     }
   ]
