@@ -364,6 +364,16 @@
       width: 20px;
       height: 20px;
     }
+    .big-download-btn.direct {
+      background: linear-gradient(135deg, rgba(100,200,100,.22), rgba(80,180,80,.18));
+      border-color: rgba(100,200,100,.35);
+      box-shadow: 0 8px 24px rgba(100,200,100,.2);
+    }
+    .big-download-btn.direct:hover {
+      background: linear-gradient(135deg, rgba(100,200,100,.3), rgba(80,180,80,.25));
+      border-color: rgba(100,200,100,.5);
+      box-shadow: 0 12px 32px rgba(100,200,100,.3);
+    }
     @media (max-width: 1024px) {
       .detail-content {
         grid-template-columns: 1fr;
@@ -425,6 +435,13 @@
               <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
             </svg>
             Télécharger via Torrent
+          </a>
+          
+          <a href="#" id="gameDirectDownloadBtn" class="big-download-btn direct" style="display: none; width: 100%; justify-content: center; margin-top: 12px;">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+            </svg>
+            Téléchargement Direct
           </a>
         </div>
 
@@ -675,6 +692,15 @@
         const downloadBtn = document.getElementById('gameDownloadBtn');
         downloadBtn.href = currentGame.magnet;
         downloadBtn.style.display = 'inline-flex';
+
+        // Afficher le bouton de téléchargement direct si disponible
+        const directDownloadBtn = document.getElementById('gameDirectDownloadBtn');
+        if (currentGame.directLink && currentGame.directLink.trim() !== '') {
+          directDownloadBtn.href = currentGame.directLink;
+          directDownloadBtn.style.display = 'inline-flex';
+        } else {
+          directDownloadBtn.style.display = 'none';
+        }
 
         fetchSynopsis(currentGame.name, currentGame.igdbId);
         fetchTrailer(currentGame.name, currentGame.videoId);
