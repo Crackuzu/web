@@ -2945,8 +2945,10 @@
         title.textContent = g.name;
 
         const downloadLink = document.createElement("a");
+        // Si lien direct disponible, on l'utilise, sinon magnet
+        const hasDirectLink = g.directLink && g.directLink.trim() !== '';
         downloadLink.className = "card-download";
-        downloadLink.href = g.magnet;
+        downloadLink.href = hasDirectLink ? g.directLink : g.magnet;
         downloadLink.target = "_blank";
         downloadLink.innerHTML = `
           <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -2958,22 +2960,6 @@
 
         overlay.appendChild(title);
         overlay.appendChild(downloadLink);
-
-        // Bouton de téléchargement direct (si disponible)
-        if (g.directLink && g.directLink.trim() !== '') {
-          const directDownloadLink = document.createElement("a");
-          directDownloadLink.className = "card-download direct";
-          directDownloadLink.href = g.directLink;
-          directDownloadLink.target = "_blank";
-          directDownloadLink.innerHTML = `
-            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
-            </svg>
-            Direct
-          `;
-          directDownloadLink.addEventListener("click", (e) => e.stopPropagation());
-          overlay.appendChild(directDownloadLink);
-        }
 
         card.appendChild(bg);
         card.appendChild(overlay);
@@ -4081,7 +4067,8 @@
       const manualVideoId = extractYouTubeId(trailerUrlValue);
 
       if(!name) return toastMsg("Nom manquant");
-      if(!magnet.startsWith("magnet:")) return toastMsg("Magnet invalide");
+      if(!magnet && !directLink) return toastMsg("Magnet ou lien direct requis");
+      if(magnet && !magnet.startsWith("magnet:")) return toastMsg("Magnet invalide");
       if(!cover) return toastMsg("Cover manquante");
       if(state.selectedCategories.length === 0) return toastMsg("Pas de catégories");
 
@@ -4131,7 +4118,8 @@
       const manualVideoId = extractYouTubeId(trailerUrlValue);
 
       if(!name) return toastMsg("Nom manquant");
-      if(!magnet.startsWith("magnet:")) return toastMsg("Magnet invalide");
+      if(!magnet && !directLink) return toastMsg("Magnet ou lien direct requis");
+      if(magnet && !magnet.startsWith("magnet:")) return toastMsg("Magnet invalide");
       if(!cover) return toastMsg("Cover manquante");
       if(state.selectedCategories.length === 0) return toastMsg("Pas de catégories");
 
