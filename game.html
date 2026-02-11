@@ -5,6 +5,75 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title id="pageTitle">CRACKUZU</title>
   <style>
+    /* ===== ANIMATIONS PAGE ===== */
+    @keyframes pageEnter {
+      from { opacity: 0; transform: translateY(30px) scale(0.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    @keyframes slideInFromLeft {
+      from { opacity: 0; transform: translateX(-40px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes slideInFromRight {
+      from { opacity: 0; transform: translateX(40px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes fadeScaleIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    @keyframes floatUp {
+      from { opacity: 0; transform: translateY(60px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+
+    /* FOND PARALLAX RAWG */
+    .parallax-bg {
+      position: fixed;
+      inset: -50px;
+      background: center center / cover no-repeat;
+      z-index: -1;
+      will-change: transform;
+      opacity: 0;
+      transition: opacity 1s ease;
+      filter: brightness(0.4) saturate(1.2);
+    }
+    .parallax-bg.loaded { opacity: 1; }
+
+    /* Page Transition Overlay */
+    .page-transition {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: #0a0a12;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+    .page-transition.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    /* Animation classes */
+    .animate-enter { animation: pageEnter 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+    .animate-left { animation: slideInFromLeft 0.6s ease-out forwards; opacity: 0; }
+    .animate-right { animation: slideInFromRight 0.6s ease-out forwards; opacity: 0; }
+    .animate-fade { animation: fadeScaleIn 0.5s ease-out forwards; opacity: 0; }
+    .animate-float { animation: floatUp 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; opacity: 0; }
+
+    /* Stagger delays */
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+    .delay-4 { animation-delay: 0.4s; }
+    .delay-5 { animation-delay: 0.5s; }
+    .delay-6 { animation-delay: 0.6s; }
+
     :root {
       --bg0: #0b0e12;
       --bg1: #10151b;
@@ -39,7 +108,13 @@
     @supports (-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px)) {
       .glass { -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
     }
-    .page-container { height: 100vh; height: 100dvh; padding: var(--outer); overflow: hidden; }
+    .page-container { 
+      height: 100vh; 
+      height: 100dvh; 
+      padding: var(--outer); 
+      overflow: hidden;
+      animation: pageEnter 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
     .detail-wrapper {
       height: calc(100dvh - 2 * var(--outer));
       border-radius: var(--r-xl);
@@ -48,6 +123,9 @@
       position: relative;
       display: flex;
       flex-direction: column;
+      background: rgba(255,255,255,0.03);
+      backdrop-filter: blur(20px) saturate(180%);
+      border: 1px solid rgba(255,255,255,0.08);
     }
     .detail-header {
       padding: var(--pad);
@@ -95,18 +173,35 @@
       grid-template-columns: 1fr 1.2fr;
       gap: clamp(24px, 3vw, 48px);
       align-items: start;
+      animation: fadeScaleIn 0.6s ease-out 0.3s both;
     }
-    .cover-section { position: sticky; top: 0; }
+    .cover-section { 
+      position: sticky; 
+      top: 0; 
+      animation: slideInFromLeft 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s both;
+    }
+    .content-section {
+      animation: slideInFromRight 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s both;
+    }
+    .content-section section {
+      animation: floatUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    }
+    .content-section section:nth-child(1) { animation-delay: 0.4s; }
+    .content-section section:nth-child(2) { animation-delay: 0.5s; }
     .game-cover {
       width: 100%;
-      aspect-ratio: 16 / 9;
+      aspect-ratio: 16/9;
       border-radius: var(--r-md);
       overflow: hidden;
-      border: 1px solid var(--stroke2);
       box-shadow: var(--shadow);
-      margin-bottom: clamp(16px, 2vw, 24px);
+      background: rgba(0,0,0,.25);
       position: relative;
-      background: linear-gradient(135deg, rgba(20,25,35,.8), rgba(10,15,25,.9));
+      animation: fadeScaleIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.15s both;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .game-cover:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 32px 80px rgba(0,0,0,.7);
     }
     .game-cover img { 
       width: 100%; 
@@ -135,26 +230,35 @@
       font-size: 14px;
     }
     .info-card {
+      margin-top: 16px;
+      padding: 18px;
       border-radius: var(--r-md);
-      padding: clamp(16px, 2vw, 22px);
+      background: linear-gradient(180deg, var(--glass), var(--glass2));
       border: 1px solid var(--stroke);
-      background: rgba(255,255,255,.06);
+      backdrop-filter: blur(20px);
+      animation: floatUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.25s both;
     }
     .info-card h3 {
-      margin: 0 0 12px;
-      font-size: clamp(16px, 1.6vw, 20px);
-      font-weight: 520;
-      letter-spacing: .8px;
-      color: rgba(255,255,255,.86);
+      margin: 0 0 14px 0;
+      font-size: clamp(14px, 1.2vw, 16px);
+      font-weight: 500;
+      color: var(--text);
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--stroke);
+      animation: slideInFromLeft 0.4s ease-out 0.3s both;
     }
     .info-item {
-      padding: 10px 0;
-      border-bottom: 1px solid rgba(255,255,255,.06);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      animation: slideInFromLeft 0.4s ease-out both;
     }
+    .info-item:nth-child(2) { animation-delay: 0.35s; }
+    .info-item:nth-child(3) { animation-delay: 0.4s; }
+    .info-item:nth-child(4) { animation-delay: 0.45s; }
+    .info-item:nth-child(5) { animation-delay: 0.5s; }
     .info-item:last-child { border-bottom: none; }
     .info-label { color: var(--muted); font-size: clamp(12px, 1.05vw, 14px); letter-spacing: .5px; }
     .info-value { 
@@ -248,6 +352,7 @@
       text-decoration: none;
       transition: all .25s ease;
       box-shadow: 0 8px 24px rgba(100,140,255,.2);
+      animation: floatUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.55s both;
     }
     .big-download-btn:hover {
       background: linear-gradient(135deg, rgba(100,140,255,.3), rgba(80,120,240,.25));
@@ -270,6 +375,12 @@
   </style>
 </head>
 <body>
+  <!-- FOND PARALLAX RAWG -->
+  <div class="parallax-bg" id="parallaxBg"></div>
+  
+  <!-- PAGE TRANSITION OVERLAY -->
+  <div class="page-transition" id="pageTransition"></div>
+  
   <div class="page-container">
     <div class="detail-wrapper glass">
       <div class="detail-header">
@@ -333,6 +444,61 @@
   </div>
 
   <script>
+    // ===== EFFET PARALLAX SOURIS =====
+    const parallaxBg = document.getElementById('parallaxBg');
+    let mouseX = 0, mouseY = 0, currentX = 0, currentY = 0;
+    
+    document.addEventListener('mousemove', (e) => {
+      mouseX = (e.clientX / window.innerWidth - 0.5) * -40;
+      mouseY = (e.clientY / window.innerHeight - 0.5) * -40;
+    });
+    
+    function updateParallax() {
+      currentX += (mouseX - currentX) * 0.08;
+      currentY += (mouseY - currentY) * 0.08;
+      if (parallaxBg) {
+        parallaxBg.style.transform = `translate(${currentX}px, ${currentY}px) scale(1.1)`;
+      }
+      requestAnimationFrame(updateParallax);
+    }
+    updateParallax();
+
+    // ===== PAGE TRANSITION =====
+    const pageTransition = document.getElementById('pageTransition');
+    
+    // Transition d'entrée
+    window.addEventListener('load', () => {
+      if (pageTransition) {
+        pageTransition.classList.add('active');
+        setTimeout(() => {
+          pageTransition.style.opacity = '0';
+          setTimeout(() => {
+            pageTransition.classList.remove('active');
+            pageTransition.style.opacity = '';
+          }, 400);
+        }, 100);
+      }
+    });
+    
+    // Transition de sortie
+    document.querySelectorAll('a[href^="index.html"]').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const href = link.getAttribute('href');
+        if (pageTransition) {
+          pageTransition.classList.add('active');
+          setTimeout(() => {
+            window.location.href = href;
+          }, 400);
+        } else {
+          window.location.href = href;
+        }
+      });
+    });
+
+    // Stockage de l'URL de l'image RAWG pour le fond
+    let rawgBackgroundUrl = null;
+    
     const urlParams = new URLSearchParams(window.location.search);
     const gameName = urlParams.get('name');
     const WORKER_URL = localStorage.getItem('worker_url') || 'https://crackuzu-api.crackuzu.workers.dev';
@@ -414,6 +580,21 @@
           const data = await rawgResponse.json();
           
           if (data.coverUrl) {
+            // Stocker l'URL pour le fond parallax
+            rawgBackgroundUrl = data.coverUrl;
+            
+            // Appliquer l'image comme fond parallax
+            const parallaxBg = document.getElementById('parallaxBg');
+            if (parallaxBg) {
+              parallaxBg.style.backgroundImage = `url('${data.coverUrl}')`;
+              // Attendre que l'image soit chargée pour l'afficher
+              const bgImg = new Image();
+              bgImg.onload = () => {
+                parallaxBg.classList.add('loaded');
+              };
+              bgImg.src = data.coverUrl;
+            }
+            
             coverImg.src = data.coverUrl;
             coverImg.onload = () => {
               coverContainer.classList.remove('loading');
@@ -438,6 +619,17 @@
           coverImg.src = currentGame.cover;
           coverContainer.classList.remove('loading');
           coverLoading.style.display = 'none';
+          
+          // Utiliser l'image de fallback comme fond aussi
+          const parallaxBg = document.getElementById('parallaxBg');
+          if (parallaxBg) {
+            parallaxBg.style.backgroundImage = `url('${currentGame.cover}')`;
+            const bgImg = new Image();
+            bgImg.onload = () => {
+              parallaxBg.classList.add('loaded');
+            };
+            bgImg.src = currentGame.cover;
+          }
         }
       }
     }
