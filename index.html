@@ -580,6 +580,16 @@
       border-color: rgba(255,255,255,.4);
       transform: translateY(-1px);
     }
+    .card-download.direct{
+      background: rgba(100,200,100,.2);
+      border-color: rgba(100,200,100,.4);
+      color: rgba(200,255,200,.95);
+      margin-top: 8px;
+    }
+    .card-download.direct:hover{
+      background: rgba(100,200,100,.35);
+      border-color: rgba(100,200,100,.6);
+    }
     .card-download svg{
       width: 14px;
       height: 14px;
@@ -2198,6 +2208,13 @@
             </div>
           </div>
 
+          <!-- CHAMP LIEN DIRECT (OPTIONNEL) -->
+          <div style="margin-bottom: 16px;">
+            <label style="display: block; margin-bottom: 6px; font-size: clamp(12px, 1.05vw, 14px); letter-spacing: .5px; color: rgba(255,255,255,.75); font-weight: 500;">⬇️ Lien de téléchargement direct (optionnel)</label>
+            <input type="text" id="gameDirectLink" placeholder="https://exemple.com/telechargement/jeu.zip" style="width: 100%; box-sizing: border-box;" />
+            <small style="color: rgba(255,255,255,.5); font-size: 11px; display: block; margin-top: 4px;">Lien qui lance directement le téléchargement du fichier</small>
+          </div>
+
           <!-- CHAMP TRAILER YOUTUBE -->
           <div style="margin-bottom: 16px;">
             <label>🎬 Trailer YouTube (optionnel)</label>
@@ -2406,6 +2423,7 @@
 
     const gameName = document.getElementById("gameName");
     const gameMagnet = document.getElementById("gameMagnet");
+    const gameDirectLink = document.getElementById("gameDirectLink");
     const gameCover = document.getElementById("gameCover");
     const trailerUrl = document.getElementById("trailerUrl");
     const searchIGDBBtn = document.getElementById("searchIGDBBtn");
@@ -2941,6 +2959,22 @@
         overlay.appendChild(title);
         overlay.appendChild(downloadLink);
 
+        // Bouton de téléchargement direct (si disponible)
+        if (g.directLink && g.directLink.trim() !== '') {
+          const directDownloadLink = document.createElement("a");
+          directDownloadLink.className = "card-download direct";
+          directDownloadLink.href = g.directLink;
+          directDownloadLink.target = "_blank";
+          directDownloadLink.innerHTML = `
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+            </svg>
+            Direct
+          `;
+          directDownloadLink.addEventListener("click", (e) => e.stopPropagation());
+          overlay.appendChild(directDownloadLink);
+        }
+
         card.appendChild(bg);
         card.appendChild(overlay);
 
@@ -3075,6 +3109,7 @@
 
           gameName.value = g.name;
           gameMagnet.value = g.magnet;
+          gameDirectLink.value = g.directLink || "";
           gameCover.value = g.cover || "";
 
           // Populate trailerUrl from videoId if it exists
@@ -3455,6 +3490,7 @@
       cancelEditBtn.style.display = "none";
       gameName.value = "";
       gameMagnet.value = "";
+      gameDirectLink.value = "";
       gameCover.value = "";
       trailerUrl.value = "";
       state.selectedCategories = [];
@@ -4039,6 +4075,7 @@
 
       const name = norm(gameName.value);
       const magnet = norm(gameMagnet.value).replaceAll("&amp;", "&");
+      const directLink = norm(gameDirectLink.value);
       const cover = norm(gameCover.value);
       const trailerUrlValue = norm(trailerUrl.value);
       const manualVideoId = extractYouTubeId(trailerUrlValue);
@@ -4058,6 +4095,7 @@
         name, 
         categories: [...state.selectedCategories], 
         magnet, 
+        directLink,
         cover,
         igdbId: selectedGameData?.igdbId || null,
         videoId: manualVideoId || selectedGameData?.videoId || null
@@ -4065,6 +4103,7 @@
 
       gameName.value = "";
       gameMagnet.value = "";
+      gameDirectLink.value = "";
       gameCover.value = "";
       trailerUrl.value = "";
       state.selectedCategories = [];
@@ -4086,6 +4125,7 @@
 
       const name = norm(gameName.value);
       const magnet = norm(gameMagnet.value).replaceAll("&amp;", "&");
+      const directLink = norm(gameDirectLink.value);
       const cover = norm(gameCover.value);
       const trailerUrlValue = norm(trailerUrl.value);
       const manualVideoId = extractYouTubeId(trailerUrlValue);
@@ -4105,6 +4145,7 @@
         name, 
         categories: [...state.selectedCategories], 
         magnet, 
+        directLink,
         cover,
         igdbId: selectedGameData?.igdbId || state.data.games[editIndex]?.igdbId || null,
         videoId: manualVideoId || state.data.games[editIndex]?.videoId || null
