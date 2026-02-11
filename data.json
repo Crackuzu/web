@@ -589,5 +589,22 @@
       "igdbId": 268842,
       "videoId": "EwHIzdqdy3s"
     }
+  ],
+  "sagas": [
+    {
+      "id": "residentevil",
+      "name": "Resident evil",
+      "games": [
+        "Resident Evil 2",
+        "Resident Evil 5",
+        "Resident Evil 6",
+        "Resident Evil 7: Biohazard",
+        "Resident Evil Village",
+        "Resident Evil 0",
+        "Resident Evil",
+        "Resident Evil 3",
+        "Resident Evil 4"
+      ]
+    }
   ]
 }
