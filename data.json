@@ -324,6 +324,30 @@
       "videoId": "p4Q3uh2RaZo"
     },
     {
+      "name": "Nioh",
+      "categories": [
+        "ROLE-PLAYING (RPG)",
+        "HACK AND SLASH/BEAT 'EM UP",
+        "ADVENTURE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:48e449b1e1101d119f616c8506b157ebc96fa91f&dn=Nioh%20Complete%20Edition&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969%2Fannounce&tr=udp%3A%2F%2F9.rarbg.to%3A2710%2Fannounce",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co20xg.jpg",
+      "igdbId": 12571,
+      "videoId": "16_Obhy5OR0"
+    },
+    {
+      "name": "Nioh 2",
+      "categories": [
+        "ROLE-PLAYING (RPG)",
+        "HACK AND SLASH/BEAT 'EM UP",
+        "ADVENTURE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:57c44873f20fd09403a80171f05a2050ab3336c7&dn=Nioh%202%20The%20Complete%20Edition&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A6969",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1sh7.jpg",
+      "igdbId": 103330,
+      "videoId": "mZ6147sLyrI"
+    },
+    {
       "name": "Nioh 3",
       "categories": [
         "ROLE-PLAYING (RPG)",
@@ -618,6 +642,15 @@
       "games": [
         "Outlast",
         "Outlast II"
+      ]
+    },
+    {
+      "id": "nioh",
+      "name": "Nioh",
+      "games": [
+        "Nioh",
+        "Nioh 2",
+        "Nioh 3"
       ]
     }
   ]
