@@ -17,27 +17,16 @@
   ],
   "games": [
     {
-      "name": "Far Cry 2: Fortune's Edition",
+      "name": "Far Cry 3",
       "categories": [
         "ACTION",
         "ADVENTURE"
       ],
       "magnet": "",
-      "directLink": "https://trashbytes.net/dl/Twws5Ci4HQiNpPANQJgK2sNgoIol5TIxQBy4KuuHOgUqtJWtxkFjGHbWFyNZhl1qCDT14VcoFV2rcWjLwAFskfwY5OrujIJjF-fDIUasDZrNw-62o0clGbGGdDlqkXAYNoKYAm7Yt_O0zNVYx0ye?v=1770807620-M5OzKS0zbNHR52QeO3KKL4TFoudX6yTPOn+50UZxLMg=",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2fdk.jpg",
-      "igdbId": 46633,
-      "videoId": "d1-ArDZn9oU"
-    },
-    {
-      "name": "Far Cry",
-      "categories": [
-        "ACTION"
-      ],
-      "magnet": "",
-      "directLink": "https://trashbytes.net/dl/iEJfyC4VKmDlWv6vC8j9rnFI8kFOfBiEPWrmaKQ6_luoVlJ4K90eZrfBsBAuad3qTyaXfvvk6rzVuG49fLgoB-NapAdOEVIQtNTfCosJPxSEKOBWb7I3q6ubzzbb1g?v=1770806665-tnLYvDiiNv+3DpbjbFLArmCNZVa0PckuRXFMMZKJjsE=",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1vpf.jpg",
-      "igdbId": 306,
-      "videoId": "3O4aCCP4NWM"
+      "directLink": "https://trashbytes.net/dl/OjlnAM9LA5LYEb4kZSvImTfOLyjxu96Ki9r8ofjGUZD0ypFTk5mPTL0owFUJ3ad3w3E_IpRJYL-z_NiL2wYdYV4x-P8wlhuA-U9jDva6j49WYvOSUMP4AEipAqmThg?v=1770808079-ZwlS7DtG9ZzSQr7EMnl86/nFRfccSNrsscXu3cDUlZM=",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1vpd.jpg",
+      "igdbId": 529,
+      "videoId": "0yZI_hUCVZM"
     },
     {
       "name": "60 Seconds! Reatomized",
@@ -176,6 +165,29 @@
       "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co95gk.jpg",
       "igdbId": 325591,
       "videoId": "Z_fmEDsQPh4"
+    },
+    {
+      "name": "Far Cry",
+      "categories": [
+        "ACTION"
+      ],
+      "magnet": "",
+      "directLink": "https://trashbytes.net/dl/iEJfyC4VKmDlWv6vC8j9rnFI8kFOfBiEPWrmaKQ6_luoVlJ4K90eZrfBsBAuad3qTyaXfvvk6rzVuG49fLgoB-NapAdOEVIQtNTfCosJPxSEKOBWb7I3q6ubzzbb1g?v=1770806665-tnLYvDiiNv+3DpbjbFLArmCNZVa0PckuRXFMMZKJjsE=",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1vpf.jpg",
+      "igdbId": 306,
+      "videoId": "3O4aCCP4NWM"
+    },
+    {
+      "name": "Far Cry 2: Fortune's Edition",
+      "categories": [
+        "ACTION",
+        "ADVENTURE"
+      ],
+      "magnet": "",
+      "directLink": "https://trashbytes.net/dl/Twws5Ci4HQiNpPANQJgK2sNgoIol5TIxQBy4KuuHOgUqtJWtxkFjGHbWFyNZhl1qCDT14VcoFV2rcWjLwAFskfwY5OrujIJjF-fDIUasDZrNw-62o0clGbGGdDlqkXAYNoKYAm7Yt_O0zNVYx0ye?v=1770807620-M5OzKS0zbNHR52QeO3KKL4TFoudX6yTPOn+50UZxLMg=",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2fdk.jpg",
+      "igdbId": 46633,
+      "videoId": "d1-ArDZn9oU"
     },
     {
       "name": "Far Cry 5",
