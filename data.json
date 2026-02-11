@@ -17,18 +17,6 @@
   ],
   "games": [
     {
-      "name": "Marvel's Spider-Man Remastered",
-      "categories": [
-        "HACK AND SLASH/BEAT 'EM UP",
-        "ADVENTURE"
-      ],
-      "magnet": "magnet:?xt=urn:btih:PHAKBWL7A5YWQLYWQNBDTH5YHGE7O5KU&dn=Marvels-Spider-Man-Remastered-AnkerGames.rar&xl=73032368810&tr=https%3A%2F%2Fdatanodes.to%2Fannounce%3Fpasskey%3Dbbb7yiu2g0qwlo7z5ms5vtf9rfkgr5is",
-      "directLink": "",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/cobfyd.jpg",
-      "igdbId": 138949,
-      "videoId": "-i5tTKSbePI"
-    },
-    {
       "name": "60 Seconds! Reatomized",
       "categories": [
         "ROLE-PLAYING (RPG)",
@@ -363,6 +351,18 @@
       "videoId": "yF60tx4GfN0"
     },
     {
+      "name": "Marvel's Spider-Man Remastered",
+      "categories": [
+        "HACK AND SLASH/BEAT 'EM UP",
+        "ADVENTURE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:PHAKBWL7A5YWQLYWQNBDTH5YHGE7O5KU&dn=Marvels-Spider-Man-Remastered-AnkerGames.rar&xl=73032368810&tr=https%3A%2F%2Fdatanodes.to%2Fannounce%3Fpasskey%3Dbbb7yiu2g0qwlo7z5ms5vtf9rfkgr5is",
+      "directLink": "",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/cobfyd.jpg",
+      "igdbId": 138949,
+      "videoId": "-i5tTKSbePI"
+    },
+    {
       "name": "Marvel's Spider-Man: Miles Morales",
       "categories": [
         "HACK AND SLASH/BEAT 'EM UP",
@@ -624,6 +624,30 @@
       "videoId": "tjfTxFzGh3Q"
     },
     {
+      "name": "Resident Evil: Revelations",
+      "categories": [
+        "ACTION",
+        "ADVENTURE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:32RLO4YLHKH2YT2J2RFE2RAHZFONETTI&dn=Resident-Evil-Revelations-AnkerGames.rar&xl=8588852055&tr=https%3A%2F%2Fdatanodes.to%2Fannounce%3Fpasskey%3D07bvcx3ak6tnfkvis2fz89oqh2i1tg30",
+      "directLink": "",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co54dy.jpg",
+      "igdbId": 978,
+      "videoId": "A5QTLtLr844"
+    },
+    {
+      "name": "Resident Evil: Revelations 2",
+      "categories": [
+        "ACTION",
+        "ADVENTURE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:RJLF5CXBD2XLMC4N2JSVR4CEAEY4WGQD&dn=Resident-Evil-Revelations-2-AnkerGames.rar&xl=19339554938&tr=https%3A%2F%2Fdatanodes.to%2Fannounce%3Fpasskey%3Dseql766vih8mbqawz9r22y8k3hmpnyn6",
+      "directLink": "",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co92d9.jpg",
+      "igdbId": 7725,
+      "videoId": "O7VpWghbDO8"
+    },
+    {
       "name": "Ryse: Son of Rome",
       "categories": [
         "HACK AND SLASH/BEAT 'EM UP",
@@ -697,7 +721,9 @@
         "Resident Evil 5",
         "Resident Evil 6",
         "Resident Evil 7: Biohazard",
-        "Resident Evil Village"
+        "Resident Evil Village",
+        "Resident Evil: Revelations",
+        "Resident Evil: Revelations 2"
       ]
     },
     {
