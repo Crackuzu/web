@@ -585,6 +585,241 @@
       height: 14px;
     }
 
+    /* ===== STYLES POUR LES CARTES SAGA ===== */
+    .saga-card {
+      position: relative;
+      border-radius: var(--r-md);
+      overflow: hidden;
+      border: 2px solid rgba(255, 215, 0, 0.3);
+      background: linear-gradient(135deg, rgba(255,215,0,0.1), rgba(255,140,0,0.1));
+      backdrop-filter: blur(12px) saturate(150%);
+      -webkit-backdrop-filter: blur(12px) saturate(150%);
+      box-shadow: 
+        0 16px 40px rgba(0,0,0,.3),
+        inset 0 1px 0 rgba(255,255,255,.1),
+        0 0 20px rgba(255,215,0,0.15);
+      aspect-ratio: 3 / 4;
+      cursor: pointer;
+      transform: translateZ(0);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .saga-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      border-color: rgba(255, 215, 0, 0.5);
+      box-shadow: 
+        0 28px 60px rgba(0,0,0,.6),
+        0 0 40px rgba(255,215,0,0.3);
+    }
+    .saga-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: linear-gradient(135deg, rgba(255,215,0,0.9), rgba(255,140,0,0.9));
+      color: #000;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+      letter-spacing: 1px;
+      z-index: 10;
+      box-shadow: 0 2px 10px rgba(255,215,0,0.3);
+    }
+    .saga-count {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(0,0,0,0.6);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 999px;
+      z-index: 10;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    .saga-cover-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      width: 100%;
+      height: 100%;
+      gap: 2px;
+    }
+    .saga-cover-grid img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .saga-cover-grid img:only-child,
+    .saga-cover-grid img:first-child:nth-last-child(2),
+    .saga-cover-grid img:first-child:nth-last-child(2) ~ img {
+      grid-column: span 1;
+      grid-row: span 2;
+    }
+    .saga-cover-grid img:first-child:nth-last-child(3) {
+      grid-row: span 2;
+    }
+    .saga-title {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 60%, transparent 100%);
+      padding: 20px 15px 15px;
+      font-size: clamp(13px, 1.15vw, 16px);
+      font-weight: 600;
+      letter-spacing: .6px;
+      color: rgba(255,255,255,.95);
+      text-shadow: 0 2px 8px rgba(0,0,0,.5);
+      text-align: center;
+    }
+
+    /* ===== MODAL SAGA ===== */
+    .saga-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 9998;
+      background: rgba(10, 10, 18, 0.85);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 10vh;
+      overflow-y: auto;
+    }
+    .saga-modal.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .saga-modal-box {
+      width: min(900px, 95vw);
+      max-height: 80vh;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: var(--r-xl);
+      backdrop-filter: blur(40px) saturate(200%);
+      -webkit-backdrop-filter: blur(40px) saturate(200%);
+      box-shadow: 
+        0 28px 90px rgba(0,0,0,.6),
+        inset 0 1px 0 rgba(255,255,255,.1);
+      transform: translateY(-30px) scale(0.95);
+      opacity: 0;
+      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .saga-modal.active .saga-modal-box {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+    .saga-modal-header {
+      padding: clamp(20px, 3vw, 30px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-shrink: 0;
+    }
+    .saga-modal-header h2 {
+      margin: 0;
+      font-size: clamp(24px, 3vw, 32px);
+      font-weight: 300;
+      letter-spacing: 1px;
+      color: rgba(255,255,255,.95);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .saga-modal-header h2::before {
+      content: '✦';
+      color: #FFD700;
+      font-size: 0.8em;
+    }
+    .saga-modal-close {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.08);
+      color: rgba(255, 255, 255, 0.7);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+    .saga-modal-close:hover {
+      background: rgba(255, 255, 255, 0.15);
+      color: rgba(255, 255, 255, 0.95);
+      transform: rotate(90deg);
+    }
+    .saga-modal-content {
+      padding: clamp(20px, 3vw, 30px);
+      overflow-y: auto;
+      flex: 1;
+    }
+    .saga-games-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 20px;
+    }
+    .saga-game-card {
+      position: relative;
+      border-radius: var(--r-md);
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.05);
+      aspect-ratio: 3 / 4;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .saga-game-card:hover {
+      transform: translateY(-5px) scale(1.02);
+      border-color: rgba(100, 140, 255, 0.4);
+      box-shadow: 0 16px 40px rgba(0,0,0,.4);
+    }
+    .saga-game-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .saga-game-card .game-order {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(100, 140, 255, 0.9);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+    .saga-game-card .game-title {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.3), transparent);
+      padding: 15px 10px 10px;
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(255,255,255,.95);
+      text-align: center;
+    }
+
     .noGames{
       text-align:center;
       color: rgba(255,255,255,.55);
@@ -1855,6 +2090,21 @@
     </div>
   </div>
 
+  <!-- MODAL SAGA -->
+  <div class="saga-modal" id="sagaModal">
+    <div class="saga-modal-box">
+      <div class="saga-modal-header">
+        <h2 id="sagaModalTitle">Saga</h2>
+        <button class="saga-modal-close" id="closeSagaModal">✕</button>
+      </div>
+      <div class="saga-modal-content">
+        <div class="saga-games-grid" id="sagaGamesGrid">
+          <!-- Les jeux de la saga seront injectés ici -->
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- ADMIN PANEL SIMPLIFIÉ -->
   <div class="modal" id="adminModal" aria-hidden="true">
     <div class="adminBox">
@@ -1876,6 +2126,10 @@
           <button class="adminNavBtn" data-section="categories">
             <span class="icon">🏷️</span>
             Catégories
+          </button>
+          <button class="adminNavBtn" data-section="sagas">
+            <span class="icon">✦</span>
+            Sagas
           </button>
           <button class="adminNavBtn upload-btn" id="uploadToGitHubBtn">
             <span class="icon">🚀</span>
@@ -2007,6 +2261,57 @@
           </div>
         </div>
 
+        <!-- SECTION: Sagas -->
+        <div class="adminSection" id="sectionSagas">
+          <h2>✦ Gérer les Sagas</h2>
+          
+          <div style="background: rgba(255,215,0,0.1); border: 1px solid rgba(255,215,0,0.3); border-radius: 10px; padding: 16px; margin-bottom: 20px;">
+            <p style="margin: 0; font-size: 14px; color: rgba(255,255,255,0.8);">
+              ✨ Une saga regroupe plusieurs jeux liés (ex: Resident Evil 1, 2, 3...).<br>
+              Les jeux d'une saga apparaissent comme une seule carte dorée sur le site.
+            </p>
+          </div>
+
+          <!-- Créer/Modifier une saga -->
+          <div style="border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 20px; margin-bottom: 24px; background: rgba(255,255,255,0.03);">
+            <h3 style="margin: 0 0 16px; font-size: 16px; font-weight: 500; color: rgba(255,215,0,0.9);">Créer / Modifier une Saga</h3>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+              <div>
+                <label>Nom de la saga</label>
+                <input type="text" id="sagaName" placeholder="ex: Resident Evil" style="width: 100%;" />
+              </div>
+              <div>
+                <label>ID unique (sans espaces)</label>
+                <input type="text" id="sagaId" placeholder="ex: resident-evil" style="width: 100%;" />
+              </div>
+            </div>
+            
+            <div style="margin-bottom: 16px;">
+              <label>Sélectionner les jeux (dans l'ordre)</label>
+              <div class="gameListContainer" id="sagaGameSelector" style="max-height: 200px; margin-top: 8px;">
+                <p style="text-align: center; color: rgba(255,255,255,0.5); padding: 20px;">Chargement des jeux...</p>
+              </div>
+            </div>
+            
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+              <button id="createSagaBtn" class="primary" style="background: linear-gradient(135deg, rgba(255,215,0,0.3), rgba(255,140,0,0.2)); border-color: rgba(255,215,0,0.4);">
+                ✨ Créer la Saga
+              </button>
+              <button id="updateSagaBtn" class="primary" style="display: none; background: linear-gradient(135deg, rgba(100,140,255,0.3), rgba(80,120,240,0.2));">
+                💾 Modifier la Saga
+              </button>
+              <button id="cancelSagaEditBtn" style="display: none;">❌ Annuler</button>
+            </div>
+          </div>
+
+          <!-- Liste des sagas existantes -->
+          <h3 style="margin: 0 0 12px; font-size: 16px; font-weight: 500;">Sagas existantes</h3>
+          <div class="gameListContainer" id="sagaListAdmin">
+            <p style="text-align: center; color: rgba(255,255,255,0.5); padding: 40px;">Aucune saga créée</p>
+          </div>
+        </div>
+
         <!-- SECTION: Export/Import (remplace Upload) -->
         <div class="adminSection" id="sectionExport">
           <h2>📁 Export / Import</h2>
@@ -2061,7 +2366,8 @@
 
     const DEFAULT_DATA = {
       categories: ["ACTION", "RPG", "STRATEGY", "SIMULATION", "SPORT"],
-      games: []
+      games: [],
+      sagas: []
     };
 
     let state = {
@@ -2071,7 +2377,8 @@
       adminUnlocked: false,
       selectedCategories: [],
       adminSearchQuery: "",
-      lastModified: null
+      lastModified: null,
+      selectedSagaGames: []
     };
 
     let editIndex = null;
@@ -2189,6 +2496,7 @@
     function sanitizeData(obj){
       if(!obj.categories || !Array.isArray(obj.categories)) obj.categories = [];
       if(!obj.games || !Array.isArray(obj.games)) obj.games = [];
+      if(!obj.sagas || !Array.isArray(obj.sagas)) obj.sagas = [];
       
       obj.games = obj.games.map(g => {
         if(Array.isArray(g.categories)){
@@ -2379,6 +2687,102 @@
       });
     }
 
+    // ===== FONCTIONS SAGA =====
+    
+    // Trouver dans quelle saga un jeu appartient
+    function findSagaForGame(gameName) {
+      if (!state.data.sagas) return null;
+      return state.data.sagas.find(saga => 
+        saga.games && saga.games.includes(gameName)
+      );
+    }
+    
+    // Ouvrir le modal d'une saga
+    function openSagaModal(saga) {
+      const modal = document.getElementById('sagaModal');
+      const title = document.getElementById('sagaModalTitle');
+      const grid = document.getElementById('sagaGamesGrid');
+      
+      title.textContent = saga.name;
+      grid.innerHTML = '';
+      
+      // Récupérer les jeux de la saga dans l'ordre
+      const sagaGames = saga.games.map((gameName, index) => {
+        const game = state.data.games.find(g => g.name === gameName);
+        return { ...game, order: index + 1 };
+      }).filter(g => g.name); // Filtrer les jeux non trouvés
+      
+      // Créer les cartes pour chaque jeu
+      sagaGames.forEach((game, index) => {
+        const card = document.createElement('div');
+        card.className = 'saga-game-card';
+        card.style.animationDelay = `${index * 0.1}s`;
+        
+        const orderBadge = document.createElement('div');
+        orderBadge.className = 'game-order';
+        orderBadge.textContent = game.order;
+        
+        const img = document.createElement('img');
+        img.src = game.cover || '';
+        img.alt = game.name;
+        img.loading = 'lazy';
+        img.onerror = function() {
+          this.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='533' viewBox='0 0 400 533'%3E%3Crect width='400' height='533' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' font-family='Arial' font-size='20' fill='white' text-anchor='middle' dominant-baseline='middle'%3E" + game.name.substring(0, 20) + "%3C/text%3E%3C/svg%3E";
+        };
+        
+        const titleDiv = document.createElement('div');
+        titleDiv.className = 'game-title';
+        titleDiv.textContent = game.name;
+        
+        card.appendChild(orderBadge);
+        card.appendChild(img);
+        card.appendChild(titleDiv);
+        
+        card.addEventListener('click', () => {
+          // Animation de transition vers game.html
+          const transition = document.createElement('div');
+          transition.style.cssText = `
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: #0a0a12;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: all;
+          `;
+          document.body.appendChild(transition);
+          
+          transition.offsetHeight;
+          transition.style.opacity = '1';
+          
+          setTimeout(() => {
+            window.location.href = `game.html?name=${encodeURIComponent(game.name)}`;
+          }, 400);
+        });
+        
+        grid.appendChild(card);
+      });
+      
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    
+    // Fermer le modal saga
+    function closeSagaModal() {
+      const modal = document.getElementById('sagaModal');
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    
+    // Fermer le modal saga au clic sur le bouton
+    document.getElementById('closeSagaModal').addEventListener('click', closeSagaModal);
+    document.getElementById('sagaModal').addEventListener('click', (e) => {
+      if (e.target.id === 'sagaModal') closeSagaModal();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeSagaModal();
+    });
+
     function renderGames(){
       let filtered = state.data.games;
 
@@ -2394,16 +2798,48 @@
         filtered = filtered.filter(g => g.name.toLowerCase().includes(lq));
       }
       
-      // Mettre à jour le compteur de jeux
-      const gameCount = state.activeCat === "ALL" ? state.data.games.length : filtered.length;
+      // Regrouper les jeux par saga
+      const gamesInSagas = new Set();
+      state.data.sagas.forEach(saga => {
+        if (saga.games) {
+          saga.games.forEach(gameName => gamesInSagas.add(gameName));
+        }
+      });
+      
+      // Séparer les jeux qui sont dans des sagas de ceux qui ne le sont pas
+      const standaloneGames = filtered.filter(g => !gamesInSagas.has(g.name));
+      
+      // Trouver les sagas qui ont au moins un jeu visible dans le filtre actuel
+      const visibleSagas = state.data.sagas.filter(saga => {
+        if (!saga.games) return false;
+        return saga.games.some(gameName => {
+          const game = state.data.games.find(g => g.name === gameName);
+          if (!game) return false;
+          
+          // Vérifier si ce jeu est dans le filtre actuel
+          if (state.activeCat !== "ALL") {
+            const cats = Array.isArray(game.categories) ? game.categories : [];
+            if (!cats.includes(state.activeCat)) return false;
+          }
+          
+          if (state.query) {
+            if (!game.name.toLowerCase().includes(state.query.toLowerCase())) return false;
+          }
+          
+          return true;
+        });
+      });
+      
+      // Mettre à jour le compteur (sagas + jeux standalone)
+      const totalItems = visibleSagas.length + standaloneGames.length;
       const gameCountDisplay = document.getElementById("gameCountDisplay");
       if (gameCountDisplay) {
-        gameCountDisplay.textContent = gameCount + (gameCount > 1 ? " jeux" : " jeu");
+        gameCountDisplay.textContent = totalItems + (totalItems > 1 ? " éléments" : " élément");
       }
 
       gameGrid.innerHTML = "";
       
-      if(filtered.length === 0){
+      if(totalItems === 0){
         noGames.style.display = "block";
         noGames.textContent = state.data.games.length === 0 ? 
           "Aucun jeu dans la bibliothèque. Ajoutez-en via le panneau admin." : 
@@ -2413,7 +2849,60 @@
 
       noGames.style.display = "none";
       
-      filtered.forEach((g, index) => {
+      // Afficher d'abord les sagas
+      visibleSagas.forEach((saga, index) => {
+        const card = document.createElement("div");
+        card.className = "saga-card";
+        card.style.animationDelay = `${index === 0 ? 0.5 : 0.5 + (index * 0.066)}s`;
+
+        // Badge "SAGA"
+        const badge = document.createElement("div");
+        badge.className = "saga-badge";
+        badge.textContent = "SAGA";
+        
+        // Badge compteur
+        const countBadge = document.createElement("div");
+        countBadge.className = "saga-count";
+        countBadge.textContent = `${saga.games.length} jeux`;
+
+        // Grille de covers (max 4)
+        const coverGrid = document.createElement("div");
+        coverGrid.className = "saga-cover-grid";
+        
+        const gamesToShow = saga.games.slice(0, 4);
+        gamesToShow.forEach(gameName => {
+          const game = state.data.games.find(g => g.name === gameName);
+          if (game && game.cover) {
+            const img = document.createElement("img");
+            img.src = game.cover;
+            img.alt = gameName;
+            img.loading = "lazy";
+            img.onerror = function() {
+              this.style.display = 'none';
+            };
+            coverGrid.appendChild(img);
+          }
+        });
+
+        // Titre de la saga
+        const title = document.createElement("div");
+        title.className = "saga-title";
+        title.textContent = saga.name;
+
+        card.appendChild(badge);
+        card.appendChild(countBadge);
+        card.appendChild(coverGrid);
+        card.appendChild(title);
+
+        card.addEventListener("click", () => {
+          openSagaModal(saga);
+        });
+
+        gameGrid.appendChild(card);
+      });
+      
+      // Puis afficher les jeux standalone
+      standaloneGames.forEach((g, index) => {
         const card = document.createElement("div");
         card.className = "card";
         card.style.animationDelay = `${index === 0 ? 0.5 : 0.5 + (index * 0.066)}s`;
@@ -2468,7 +2957,6 @@
           `;
           document.body.appendChild(transition);
           
-          // Force reflow
           transition.offsetHeight;
           transition.style.opacity = '1';
           
@@ -2638,6 +3126,239 @@
         gameListAdmin.appendChild(row);
       });
     }
+
+    // ===== FONCTIONS ADMIN SAGAS =====
+    
+    let editingSagaId = null;
+    
+    function renderAdminSagasList() {
+      const sagaListAdmin = document.getElementById('sagaListAdmin');
+      if (!sagaListAdmin) return;
+      
+      sagaListAdmin.innerHTML = '';
+      
+      if (!state.data.sagas || state.data.sagas.length === 0) {
+        sagaListAdmin.innerHTML = '<p style="text-align: center; color: rgba(255,255,255,0.5); padding: 40px;">Aucune saga créée</p>';
+        return;
+      }
+      
+      state.data.sagas.forEach((saga, idx) => {
+        const row = document.createElement('div');
+        row.className = 'gameRow';
+        
+        const left = document.createElement('div');
+        left.className = 'left';
+        
+        // Mini covers
+        const coversHtml = saga.games.slice(0, 3).map(gameName => {
+          const game = state.data.games.find(g => g.name === gameName);
+          return game && game.cover ? `<img src="${game.cover}" style="width:30px;height:40px;object-fit:cover;border-radius:4px;margin-right:4px;" />` : '';
+        }).join('');
+        
+        const nameSpan = document.createElement('span');
+        nameSpan.className = 'name';
+        nameSpan.innerHTML = `✦ ${saga.name} <span style="color:rgba(255,215,0,0.7);">(${saga.games.length} jeux)</span>`;
+        
+        left.innerHTML = coversHtml;
+        left.appendChild(nameSpan);
+        
+        const edit = document.createElement('button');
+        edit.className = 'iconBtn primary';
+        edit.type = 'button';
+        edit.textContent = 'Modif';
+        edit.addEventListener('click', () => {
+          startEditSaga(saga);
+        });
+        
+        const del = document.createElement('button');
+        del.className = 'iconBtn danger';
+        del.type = 'button';
+        del.textContent = 'Suppr';
+        del.addEventListener('click', () => {
+          const ok = confirm(`Supprimer la saga "${saga.name}" ? Les jeux ne seront pas supprimés.`);
+          if (!ok) return;
+          state.data.sagas.splice(idx, 1);
+          saveLocalDraft();
+          renderAdminSagasList();
+          renderGames();
+          toastMsg('Saga supprimée');
+        });
+        
+        row.appendChild(left);
+        row.appendChild(edit);
+        row.appendChild(del);
+        sagaListAdmin.appendChild(row);
+      });
+    }
+    
+    function renderSagaGameSelector() {
+      const selector = document.getElementById('sagaGameSelector');
+      if (!selector) return;
+      
+      selector.innerHTML = '';
+      
+      if (state.data.games.length === 0) {
+        selector.innerHTML = '<p style="text-align: center; color: rgba(255,255,255,0.5); padding: 20px;">Aucun jeu disponible</p>';
+        return;
+      }
+      
+      // Jeux déjà dans une saga (pour les désactiver)
+      const gamesInSagas = new Set();
+      state.data.sagas.forEach(saga => {
+        if (saga.games) {
+          saga.games.forEach(gameName => {
+            // Si on est en mode édition, ne pas désactiver les jeux de la saga qu'on édite
+            if (!editingSagaId || saga.id !== editingSagaId) {
+              gamesInSagas.add(gameName);
+            }
+          });
+        }
+      });
+      
+      state.data.games.forEach(game => {
+        const item = document.createElement('div');
+        item.className = 'game-selector-item';
+        item.style.cssText = 'padding: 8px 12px; cursor: pointer; border-radius: 8px; transition: all 0.2s; display: flex; align-items: center; gap: 10px;';
+        
+        const isSelected = state.selectedSagaGames && state.selectedSagaGames.includes(game.name);
+        const isInOtherSaga = gamesInSagas.has(game.name);
+        
+        if (isSelected) {
+          item.style.background = 'rgba(255,215,0,0.2)';
+          item.style.border = '1px solid rgba(255,215,0,0.4)';
+        } else if (isInOtherSaga) {
+          item.style.background = 'rgba(255,255,255,0.03)';
+          item.style.opacity = '0.5';
+          item.style.cursor = 'not-allowed';
+        } else {
+          item.style.background = 'rgba(255,255,255,0.05)';
+          item.style.border = '1px solid rgba(255,255,255,0.1)';
+        }
+        
+        // Numéro d'ordre si sélectionné
+        let orderBadge = '';
+        if (isSelected) {
+          const order = state.selectedSagaGames.indexOf(game.name) + 1;
+          orderBadge = `<span style="background: rgba(255,215,0,0.9); color: #000; padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 700;">${order}</span>`;
+        }
+        
+        item.innerHTML = `
+          <img src="${game.cover || ''}" style="width: 40px; height: 54px; object-fit: cover; border-radius: 4px;" />
+          <div style="flex: 1;">
+            <div style="font-weight: 500; color: rgba(255,255,255,0.9);">${game.name}</div>
+            ${isInOtherSaga ? '<div style="font-size: 11px; color: rgba(255,100,100,0.8);">Déjà dans une saga</div>' : ''}
+          </div>
+          ${orderBadge}
+        `;
+        
+        if (!isInOtherSaga) {
+          item.addEventListener('click', () => {
+            if (!state.selectedSagaGames) state.selectedSagaGames = [];
+            
+            if (isSelected) {
+              state.selectedSagaGames = state.selectedSagaGames.filter(name => name !== game.name);
+            } else {
+              state.selectedSagaGames.push(game.name);
+            }
+            renderSagaGameSelector();
+          });
+        }
+        
+        selector.appendChild(item);
+      });
+    }
+    
+    function startEditSaga(saga) {
+      editingSagaId = saga.id;
+      document.getElementById('sagaName').value = saga.name;
+      document.getElementById('sagaId').value = saga.id;
+      document.getElementById('sagaId').disabled = true;
+      state.selectedSagaGames = [...saga.games];
+      
+      document.getElementById('createSagaBtn').style.display = 'none';
+      document.getElementById('updateSagaBtn').style.display = '';
+      document.getElementById('cancelSagaEditBtn').style.display = '';
+      
+      renderSagaGameSelector();
+      
+      // Scroll vers le formulaire
+      document.getElementById('sectionSagas').scrollIntoView({ behavior: 'smooth' });
+    }
+    
+    function resetSagaForm() {
+      editingSagaId = null;
+      document.getElementById('sagaName').value = '';
+      document.getElementById('sagaId').value = '';
+      document.getElementById('sagaId').disabled = false;
+      state.selectedSagaGames = [];
+      
+      document.getElementById('createSagaBtn').style.display = '';
+      document.getElementById('updateSagaBtn').style.display = 'none';
+      document.getElementById('cancelSagaEditBtn').style.display = 'none';
+      
+      renderSagaGameSelector();
+    }
+    
+    // Event listeners pour les sagas
+    document.getElementById('createSagaBtn')?.addEventListener('click', () => {
+      const name = document.getElementById('sagaName').value.trim();
+      const id = document.getElementById('sagaId').value.trim().toLowerCase().replace(/\s+/g, '-');
+      
+      if (!name) return toastMsg('Nom de la saga requis');
+      if (!id) return toastMsg('ID de la saga requis');
+      if (!state.selectedSagaGames || state.selectedSagaGames.length < 2) {
+        return toastMsg('Sélectionnez au moins 2 jeux');
+      }
+      
+      // Vérifier si l'ID existe déjà
+      if (state.data.sagas.find(s => s.id === id)) {
+        return toastMsg('Cet ID existe déjà');
+      }
+      
+      state.data.sagas.push({
+        id,
+        name,
+        games: [...state.selectedSagaGames]
+      });
+      
+      saveLocalDraft();
+      renderAdminSagasList();
+      renderGames();
+      resetSagaForm();
+      toastMsg('Saga créée !');
+    });
+    
+    document.getElementById('updateSagaBtn')?.addEventListener('click', () => {
+      if (!editingSagaId) return;
+      
+      const name = document.getElementById('sagaName').value.trim();
+      
+      if (!name) return toastMsg('Nom de la saga requis');
+      if (!state.selectedSagaGames || state.selectedSagaGames.length < 2) {
+        return toastMsg('Sélectionnez au moins 2 jeux');
+      }
+      
+      const saga = state.data.sagas.find(s => s.id === editingSagaId);
+      if (saga) {
+        saga.name = name;
+        saga.games = [...state.selectedSagaGames];
+      }
+      
+      saveLocalDraft();
+      renderAdminSagasList();
+      renderGames();
+      resetSagaForm();
+      toastMsg('Saga modifiée !');
+    });
+    
+    document.getElementById('cancelSagaEditBtn')?.addEventListener('click', resetSagaForm);
+    
+    // Rendre le sélecteur quand on ouvre la section sagas
+    document.querySelector('[data-section="sagas"]')?.addEventListener('click', () => {
+      state.selectedSagaGames = [];
+      renderSagaGameSelector();
+      renderAdminSagasList();
+    });
 
     function exitEditMode(){
       editIndex = null;
@@ -3698,12 +4419,13 @@
       return Math.max(0, wordMatchScore);
     }
 
-    // Recherche fuzzy dans les jeux
-    function fuzzySearch(query, games) {
+    // Recherche fuzzy dans les jeux ET les sagas
+    function fuzzySearch(query, games, sagas = []) {
       if (!query || query.trim() === '') return [];
       
       const results = [];
       
+      // Recherche dans les jeux
       for (const game of games) {
         const nameScore = fuzzyScore(query, game.name);
         
@@ -3712,7 +4434,7 @@
         if (game.categories && Array.isArray(game.categories)) {
           for (const cat of game.categories) {
             const catScore = fuzzyScore(query, cat);
-            categoryScore = Math.max(categoryScore, catScore * 0.5); // poids réduit pour catégories
+            categoryScore = Math.max(categoryScore, catScore * 0.5);
           }
         }
         
@@ -3722,7 +4444,36 @@
           results.push({
             game,
             score: totalScore,
-            matchType: nameScore >= categoryScore ? 'name' : 'category'
+            matchType: nameScore >= categoryScore ? 'name' : 'category',
+            type: 'game'
+          });
+        }
+      }
+      
+      // Recherche dans les sagas
+      for (const saga of sagas) {
+        const sagaNameScore = fuzzyScore(query, saga.name);
+        
+        // Vérifier aussi dans les jeux de la saga
+        let sagaGameScore = 0;
+        if (saga.games) {
+          for (const gameName of saga.games) {
+            const game = games.find(g => g.name === gameName);
+            if (game) {
+              const gameNameScore = fuzzyScore(query, game.name);
+              sagaGameScore = Math.max(sagaGameScore, gameNameScore * 0.8);
+            }
+          }
+        }
+        
+        const sagaTotalScore = Math.max(sagaNameScore, sagaGameScore);
+        
+        if (sagaTotalScore > 0) {
+          results.push({
+            saga,
+            score: sagaTotalScore,
+            matchType: sagaNameScore >= sagaGameScore ? 'saga_name' : 'saga_game',
+            type: 'saga'
           });
         }
       }
@@ -3775,41 +4526,73 @@
       const maxScore = results[0].score;
       
       const html = results.map((result, index) => {
-        const { game, score } = result;
+        const { score, type } = result;
         const isTopMatch = score >= maxScore * 0.9;
-        const matchPercent = Math.round((score / 1000) * 100);
         const animationDelay = 0.05 + (index * 0.06);
         
-        // Extraire la date de sortie (si disponible via IGDB ou autre)
-        let releaseYear = null;
-        if (game.igdbId) {
-          // La date sera affichée si elle est dans les données
-          releaseYear = game.releaseDate || game.year || null;
-        }
-        
-        const categories = (game.categories || []).slice(0, 3);
-        
-        return `
-          <div class="search-result-item ${index === searchSelectedIndex ? 'selected' : ''}" 
-               data-index="${index}" 
-               data-game="${encodeURIComponent(JSON.stringify(game))}"
-               style="animation-delay: ${animationDelay}s">
-            <div class="search-result-cover">
-              <img src="${game.cover || ''}" alt="${game.name}" 
-                   onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22533%22 viewBox=%220 0 400 533%22%3E%3Crect width=%22400%22 height=%22533%22 fill=%22%23222%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-family=%22Arial%22 font-size=%2220%22 fill=%22white%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3E${game.name.substring(0, 20)}%3C/text%3E%3C/svg%3E'" />
-            </div>
-            <div class="search-result-info">
-              <div class="search-result-name">${game.name}</div>
-              <div class="search-result-meta">
-                ${releaseYear ? `<span class="search-result-year">${formatReleaseDate(releaseYear)}</span>` : ''}
-                <div class="search-result-categories">
-                  ${categories.map(cat => `<span class="search-result-cat">${cat}</span>`).join('')}
+        if (type === 'saga') {
+          // Affichage pour une saga
+          const { saga } = result;
+          const firstGame = state.data.games.find(g => g.name === saga.games[0]);
+          const cover = firstGame ? firstGame.cover : '';
+          
+          return `
+            <div class="search-result-item ${index === searchSelectedIndex ? 'selected' : ''} saga-search-result" 
+                 data-index="${index}" 
+                 data-saga="${encodeURIComponent(JSON.stringify(saga))}"
+                 style="animation-delay: ${animationDelay}s; border-left: 3px solid #FFD700;">
+              <div class="search-result-cover" style="position: relative;">
+                <img src="${cover || ''}" alt="${saga.name}" 
+                     onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22533%22 viewBox=%220 0 400 533%22%3E%3Crect width=%22400%22 height=%22533%22 fill=%22%23222%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-family=%22Arial%22 font-size=%2220%22 fill=%22white%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3E${saga.name.substring(0, 20)}%3C/text%3E%3C/svg%3E'" />
+                <span style="position: absolute; top: 5px; right: 5px; background: linear-gradient(135deg, #FFD700, #FF8C00); color: #000; font-size: 10px; padding: 2px 6px; border-radius: 999px; font-weight: 700;">SAGA</span>
+              </div>
+              <div class="search-result-info">
+                <div class="search-result-name" style="color: #FFD700;">✦ ${saga.name}</div>
+                <div class="search-result-meta">
+                  <span class="search-result-year">${saga.games.length} jeux</span>
+                  <div class="search-result-categories">
+                    <span class="search-result-cat" style="background: rgba(255,215,0,0.2); border-color: rgba(255,215,0,0.4); color: #FFD700;">Saga</span>
+                  </div>
                 </div>
               </div>
+              ${isTopMatch ? '<span class="search-result-match">Meilleure correspondance</span>' : ''}
             </div>
-            ${isTopMatch ? '<span class="search-result-match">Meilleure correspondance</span>' : ''}
-          </div>
-        `;
+          `;
+        } else {
+          // Affichage pour un jeu
+          const { game } = result;
+          const matchPercent = Math.round((score / 1000) * 100);
+          
+          // Extraire la date de sortie
+          let releaseYear = null;
+          if (game.igdbId) {
+            releaseYear = game.releaseDate || game.year || null;
+          }
+          
+          const categories = (game.categories || []).slice(0, 3);
+          
+          return `
+            <div class="search-result-item ${index === searchSelectedIndex ? 'selected' : ''}" 
+                 data-index="${index}" 
+                 data-game="${encodeURIComponent(JSON.stringify(game))}"
+                 style="animation-delay: ${animationDelay}s">
+              <div class="search-result-cover">
+                <img src="${game.cover || ''}" alt="${game.name}" 
+                     onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22533%22 viewBox=%220 0 400 533%22%3E%3Crect width=%22400%22 height=%22533%22 fill=%22%23222%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-family=%22Arial%22 font-size=%2220%22 fill=%22white%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3E${game.name.substring(0, 20)}%3C/text%3E%3C/svg%3E'" />
+              </div>
+              <div class="search-result-info">
+                <div class="search-result-name">${game.name}</div>
+                <div class="search-result-meta">
+                  ${releaseYear ? `<span class="search-result-year">${formatReleaseDate(releaseYear)}</span>` : ''}
+                  <div class="search-result-categories">
+                    ${categories.map(cat => `<span class="search-result-cat">${cat}</span>`).join('')}
+                  </div>
+                </div>
+              </div>
+              ${isTopMatch ? '<span class="search-result-match">Meilleure correspondance</span>' : ''}
+            </div>
+          `;
+        }
       }).join('');
       
       searchResults.innerHTML = html;
@@ -3817,8 +4600,16 @@
       // Ajouter les événements de clic
       document.querySelectorAll('.search-result-item').forEach(item => {
         item.addEventListener('click', () => {
-          const gameData = JSON.parse(decodeURIComponent(item.dataset.game));
-          window.location.href = `game.html?name=${encodeURIComponent(gameData.name)}`;
+          if (item.dataset.saga) {
+            // C'est une saga
+            const sagaData = JSON.parse(decodeURIComponent(item.dataset.saga));
+            closeSearch();
+            openSagaModal(sagaData);
+          } else if (item.dataset.game) {
+            // C'est un jeu
+            const gameData = JSON.parse(decodeURIComponent(item.dataset.game));
+            window.location.href = `game.html?name=${encodeURIComponent(gameData.name)}`;
+          }
         });
       });
     }
@@ -3837,7 +4628,8 @@
       
       searchDebounceTimer = setTimeout(() => {
         const games = state.data?.games || [];
-        currentSearchResults = fuzzySearch(query, games);
+        const sagas = state.data?.sagas || [];
+        currentSearchResults = fuzzySearch(query, games, sagas);
         renderSearchResults(currentSearchResults);
         searchSelectedIndex = -1;
       }, 150);
