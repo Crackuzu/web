@@ -679,7 +679,7 @@
       position: fixed;
       inset: 0;
       z-index: 9998;
-      background: rgba(10, 10, 18, 0.85);
+      background: rgba(10, 10, 18, 0.7);
       backdrop-filter: blur(20px) saturate(180%);
       -webkit-backdrop-filter: blur(20px) saturate(180%);
       opacity: 0;
@@ -2289,6 +2289,7 @@
             
             <div style="margin-bottom: 16px;">
               <label>Sélectionner les jeux (dans l'ordre)</label>
+              <input type="text" id="sagaGameSearch" placeholder="🔍 Rechercher des jeux..." style="width: 100%; margin-top: 8px; margin-bottom: 8px;" />
               <div class="gameListContainer" id="sagaGameSelector" style="max-height: 200px; margin-top: 8px;">
                 <p style="text-align: center; color: rgba(255,255,255,0.5); padding: 20px;">Chargement des jeux...</p>
               </div>
@@ -3191,7 +3192,9 @@
       });
     }
     
-    function renderSagaGameSelector() {
+    let sagaGameSearchQuery = '';
+    
+    function renderSagaGameSelector(searchQuery = '') {
       const selector = document.getElementById('sagaGameSelector');
       if (!selector) return;
       
@@ -3215,7 +3218,65 @@
         }
       });
       
-      state.data.games.forEach(game => {
+      // Filtrer et scorer les jeux avec fuzzy search si une recherche est active
+      let gamesToShow = state.data.games;
+      
+      if (searchQuery.trim()) {
+        const query = searchQuery.toLowerCase().trim();
+        
+        // Scorer chaque jeu avec fuzzy
+        const scoredGames = state.data.games.map(game => {
+          const score = fuzzyScore(query, game.name);
+          return { game, score };
+        }).filter(item => item.score > 0);
+        
+        // Trier par score décroissant
+        scoredGames.sort((a, b) => b.score - a.score);
+        
+        // Prendre les jeux avec un score > 100 (correspondance moyenne ou meilleure)
+        gamesToShow = scoredGames.filter(item => item.score >= 100).map(item => item.game);
+        
+        // Si aucun résultat avec score >= 100, prendre les 5 meilleurs
+        if (gamesToShow.length === 0 && scoredGames.length > 0) {
+          gamesToShow = scoredGames.slice(0, 5).map(item => item.game);
+        }
+      }
+      
+      // Trier: jeux sélectionnés d'abord, PUIS par score de correspondance (si recherche active), PUIS alphabétique
+      gamesToShow.sort((a, b) => {
+        const aSelected = state.selectedSagaGames && state.selectedSagaGames.includes(a.name);
+        const bSelected = state.selectedSagaGames && state.selectedSagaGames.includes(b.name);
+        
+        // Priorité 1: Jeux sélectionnés en premier
+        if (aSelected && !bSelected) return -1;
+        if (!aSelected && bSelected) return 1;
+        
+        // Si les deux sont sélectionnés, ordre de sélection
+        if (aSelected && bSelected) {
+          const aOrder = state.selectedSagaGames.indexOf(a.name);
+          const bOrder = state.selectedSagaGames.indexOf(b.name);
+          return aOrder - bOrder;
+        }
+        
+        // Priorité 2: Score de correspondance (si recherche active)
+        if (searchQuery.trim()) {
+          const scoreA = fuzzyScore(searchQuery.toLowerCase(), a.name);
+          const scoreB = fuzzyScore(searchQuery.toLowerCase(), b.name);
+          if (scoreB !== scoreA) {
+            return scoreB - scoreA; // Score décroissant
+          }
+        }
+        
+        // Priorité 3: Ordre alphabétique
+        return a.name.localeCompare(b.name);
+      });
+      
+      if (gamesToShow.length === 0) {
+        selector.innerHTML = `<p style="text-align: center; color: rgba(255,255,255,0.5); padding: 20px;">Aucun jeu trouvé pour "${searchQuery}"</p>`;
+        return;
+      }
+      
+      gamesToShow.forEach(game => {
         const item = document.createElement('div');
         item.className = 'game-selector-item';
         item.style.cssText = 'padding: 8px 12px; cursor: pointer; border-radius: 8px; transition: all 0.2s; display: flex; align-items: center; gap: 10px;';
@@ -3242,10 +3303,21 @@
           orderBadge = `<span style="background: rgba(255,215,0,0.9); color: #000; padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 700;">${order}</span>`;
         }
         
+        // Badge "Meilleure correspondance" si recherche active
+        let matchBadge = '';
+        if (searchQuery.trim() && !isSelected && !isInOtherSaga) {
+          const score = fuzzyScore(searchQuery.toLowerCase(), game.name);
+          if (score >= 900) {
+            matchBadge = `<span style="background: rgba(100,255,100,0.3); color: #90EE90; font-size: 10px; padding: 2px 6px; border-radius: 4px; margin-left: 8px;">⭐ Exact</span>`;
+          } else if (score >= 700) {
+            matchBadge = `<span style="background: rgba(100,200,255,0.2); color: #87CEEB; font-size: 10px; padding: 2px 6px; border-radius: 4px; margin-left: 8px;">✓ Correspond</span>`;
+          }
+        }
+        
         item.innerHTML = `
           <img src="${game.cover || ''}" style="width: 40px; height: 54px; object-fit: cover; border-radius: 4px;" />
           <div style="flex: 1;">
-            <div style="font-weight: 500; color: rgba(255,255,255,0.9);">${game.name}</div>
+            <div style="font-weight: 500; color: rgba(255,255,255,0.9);">${game.name}${matchBadge}</div>
             ${isInOtherSaga ? '<div style="font-size: 11px; color: rgba(255,100,100,0.8);">Déjà dans une saga</div>' : ''}
           </div>
           ${orderBadge}
@@ -3260,12 +3332,20 @@
             } else {
               state.selectedSagaGames.push(game.name);
             }
-            renderSagaGameSelector();
+            renderSagaGameSelector(sagaGameSearchQuery);
           });
         }
         
         selector.appendChild(item);
       });
+      
+      // Message indiquant combien de jeux sont affichés vs total
+      if (searchQuery.trim()) {
+        const infoDiv = document.createElement('div');
+        infoDiv.style.cssText = 'text-align: center; padding: 8px; font-size: 12px; color: rgba(255,255,255,0.5); border-top: 1px solid rgba(255,255,255,0.1); margin-top: 8px;';
+        infoDiv.textContent = `${gamesToShow.length} jeu(x) trouvé(s) sur ${state.data.games.length} total`;
+        selector.appendChild(infoDiv);
+      }
     }
     
     function startEditSaga(saga) {
@@ -3356,8 +3436,16 @@
     // Rendre le sélecteur quand on ouvre la section sagas
     document.querySelector('[data-section="sagas"]')?.addEventListener('click', () => {
       state.selectedSagaGames = [];
+      sagaGameSearchQuery = '';
+      document.getElementById('sagaGameSearch').value = '';
       renderSagaGameSelector();
       renderAdminSagasList();
+    });
+    
+    // Recherche fuzzy dans le sélecteur de jeux saga
+    document.getElementById('sagaGameSearch')?.addEventListener('input', (e) => {
+      sagaGameSearchQuery = e.target.value;
+      renderSagaGameSelector(sagaGameSearchQuery);
     });
 
     function exitEditMode(){
@@ -4420,13 +4508,25 @@
     }
 
     // Recherche fuzzy dans les jeux ET les sagas
+    // Les jeux déjà dans des sagas ne sont PAS affichés individuellement
     function fuzzySearch(query, games, sagas = []) {
       if (!query || query.trim() === '') return [];
       
       const results = [];
       
-      // Recherche dans les jeux
+      // Collecter tous les jeux qui sont déjà dans des sagas
+      const gamesInSagas = new Set();
+      sagas.forEach(saga => {
+        if (saga.games) {
+          saga.games.forEach(gameName => gamesInSagas.add(gameName));
+        }
+      });
+      
+      // Recherche dans les jeux (SEULEMENT ceux qui ne sont pas dans une saga)
       for (const game of games) {
+        // SKIP si le jeu est déjà dans une saga
+        if (gamesInSagas.has(game.name)) continue;
+        
         const nameScore = fuzzyScore(query, game.name);
         
         // Bonus pour les catégories
