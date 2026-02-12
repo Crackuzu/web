@@ -444,15 +444,16 @@
       "videoId": "UI0-TISn5-g"
     },
     {
-      "name": "Hitman 3",
+      "name": "Hitman 3: Deluxe Edition",
       "categories": [
         "ACTION",
-        "TACTICAL",
-        "ADVENTURE"
+        "PUZZLE",
+        "TACTICAL"
       ],
-      "magnet": "magnet:?xt=urn:btih:4c28c447b1b93b5ba4de8f714ed5b4c681a23bea&dn=HITMAN_3_v3.140-Razor1911&tr=udp://tracker.torrent.eu.org:451/announce&tr=udp://tracker.opentrackr.org:1337/announce&tr=udp://tracker.theoks.net:6969/announce&tr=udp://tracker.moeking.me:6969/announce&tr=udp://movies.zsw.ca:6969/announce",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co29lt.jpg",
-      "igdbId": 134595,
+      "magnet": "magnet:?xt=urn:btih:DFA57342F1A8DC413B4E2A486D4D34EC92E187DF&dn=HITMAN+3+%2F+Hitman+Trilogy+-+Deluxe+Edition+%28v3.100+-+Update+13+%2B+DLCs+%2B+MULTi9%29+%28Hitman+1+%2B+Hitman+2%29+-+%5BDODI+Repack%5D&tr=udp%3A%2F%2F9.rarbg.to%3A2870%2Fannounce&tr=udp%3A%2F%2Feddie4.nl%3A6969%2Fannounce&tr=udp%3A%2F%2Fthetracker.org%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337&tr=udp%3A%2F%2Ftracker.zer0day.to%3A1337&tr=udp%3A%2F%2F9.rarbg.com%3A2710%2Fannounce&tr=udp%3A%2F%2Fexplodie.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker1.wasabii.com.tw%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Ftracker.cypherpunks.ru%3A6969%2Fannounce&tr=udp%3A%2F%2Fp4p.arenabg.com%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.zer0day.to%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fcoppersurfer.tk%3A6969%2Fannounce",
+      "directLink": "",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2jov.jpg",
+      "igdbId": 140438,
       "videoId": "te_nocX0gi4"
     },
     {
