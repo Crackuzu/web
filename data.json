@@ -17,19 +17,6 @@
   ],
   "games": [
     {
-      "name": "Forza Horizon 4",
-      "categories": [
-        "RACING",
-        "SPORT",
-        "ADVENTURE"
-      ],
-      "magnet": "magnet:?xt=urn:btih:52ef2e285635a59c0e49d6544e128ec97116de3a&dn=Forza+Horizon+4&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A6969",
-      "directLink": "",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2e1a.jpg",
-      "igdbId": 82090,
-      "videoId": "S6CKWsNeDu8"
-    },
-    {
       "name": "60 Seconds! Reatomized",
       "categories": [
         "ROLE-PLAYING (RPG)",
@@ -336,6 +323,30 @@
       "videoId": "S1VnNstzHoo"
     },
     {
+      "name": "Forza Horizon 3",
+      "categories": [
+        "RACING"
+      ],
+      "magnet": "magnet:?xt=urn:btih:cd9c6555dac6df13829c115d4c7186abc95ea392&dn=Forza+Horizon+3&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A6969",
+      "directLink": "",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2e25.jpg",
+      "igdbId": 19539,
+      "videoId": "GnuAgRdTtHM"
+    },
+    {
+      "name": "Forza Horizon 4",
+      "categories": [
+        "RACING",
+        "SPORT",
+        "ADVENTURE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:52ef2e285635a59c0e49d6544e128ec97116de3a&dn=Forza+Horizon+4&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A6969",
+      "directLink": "",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2e1a.jpg",
+      "igdbId": 82090,
+      "videoId": "S6CKWsNeDu8"
+    },
+    {
       "name": "Forza Horizon 5",
       "categories": [
         "RACING"
@@ -344,6 +355,19 @@
       "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co3ofx.jpg",
       "igdbId": 141503,
       "videoId": "7fytkGUU7jk"
+    },
+    {
+      "name": "Forza Motorsport",
+      "categories": [
+        "RACING",
+        "SIMULATION",
+        "SPORT"
+      ],
+      "magnet": "magnet:?xt=urn:btih:7f1bfda18bbae89dc3dfc4ab34b5db0c45c16bde&dn=Forza+Motorsport&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337",
+      "directLink": "",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co6lzd.jpg",
+      "igdbId": 78511,
+      "videoId": "aL4h5cMONIs"
     },
     {
       "name": "Getting over it",
@@ -907,6 +931,16 @@
         "Payday: The Heist",
         "Payday 2",
         "Payday 3"
+      ]
+    },
+    {
+      "id": "forza",
+      "name": "forza",
+      "games": [
+        "Forza Horizon 3",
+        "Forza Horizon 4",
+        "Forza Motorsport",
+        "Forza Horizon 5"
       ]
     }
   ]
