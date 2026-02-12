@@ -85,11 +85,12 @@
     /* FOND PARALLAX */
     .parallax-bg {
       position: fixed;
-      inset: -50px;
+      inset: -100px;
       background: url('background.jpg') center center / cover no-repeat;
       z-index: -1;
       will-change: transform;
       transition: transform 0.1s ease-out;
+      filter: blur(20px) brightness(0.7);
     }
     html, body{ height:100%; }
     body{
@@ -4455,8 +4456,8 @@
     let currentY = 0;
     
     document.addEventListener('mousemove', (e) => {
-      mouseX = (e.clientX / window.innerWidth - 0.5) * -30;
-      mouseY = (e.clientY / window.innerHeight - 0.5) * -30;
+      mouseX = (e.clientX / window.innerWidth - 0.5) * -120;
+      mouseY = (e.clientY / window.innerHeight - 0.5) * -80;
     });
     
     function updateParallax() {
