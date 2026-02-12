@@ -2208,6 +2208,16 @@
             </div>
           </div>
 
+          <!-- RECHERCHE 1337x -->
+          <div style="margin-bottom: 16px;">
+            <label style="display: block; margin-bottom: 6px; font-size: clamp(12px, 1.05vw, 14px); letter-spacing: .5px; color: rgba(255,255,255,.75); font-weight: 500;">🔍 Rechercher le magnet auto</label>
+            <div style="display: flex; gap: 8px;">
+              <input type="text" id="search1337xInput" placeholder="Nom du jeu..." style="flex: 1;" />
+              <button type="button" id="search1337xBtn" class="btn-primary" style="padding: 8px 16px; white-space: nowrap;">Chercher</button>
+            </div>
+            <div id="search1337xResults" style="margin-top: 8px; max-height: 200px; overflow-y: auto;"></div>
+          </div>
+
           <!-- CHAMP LIEN DIRECT (OPTIONNEL) -->
           <div style="margin-bottom: 16px;">
             <label style="display: block; margin-bottom: 6px; font-size: clamp(12px, 1.05vw, 14px); letter-spacing: .5px; color: rgba(255,255,255,.75); font-weight: 500;">⬇️ Lien de téléchargement direct (optionnel)</label>
@@ -2441,6 +2451,11 @@
 
     const torrentDropZone = document.getElementById("torrentDropZone");
     const torrentFileInput = document.getElementById("torrentFileInput");
+
+    // Éléments 1337x search
+    const search1337xInput = document.getElementById("search1337xInput");
+    const search1337xBtn = document.getElementById("search1337xBtn");
+    const search1337xResults = document.getElementById("search1337xResults");
 
     const gameSelectorModal = document.getElementById("gameSelectorModal");
     const gameSelectorClose = document.getElementById("gameSelectorClose");
@@ -3608,6 +3623,11 @@
 
         gameName.value = details.name;
         gameCover.value = details.cover34;
+        
+        // Auto-remplir le champ de recherche torrent et lancer la recherche
+        search1337xInput.value = details.name;
+        search1337x(details.name); // Lancer la recherche automatiquement
+        
         state.selectedCategories = details.categories;
         
         // Déclencher le preview manuellement après sélection IGDB
@@ -3706,6 +3726,17 @@
     torrentFileInput.addEventListener("change", async (e) => {
       if (e.target.files.length > 0) {
         await handleTorrentFile(e.target.files[0]);
+      }
+    });
+
+    // Event listeners pour 1337x search
+    search1337xBtn.addEventListener("click", () => {
+      search1337x(search1337xInput.value);
+    });
+
+    search1337xInput.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") {
+        search1337x(search1337xInput.value);
       }
     });
 
@@ -3902,6 +3933,85 @@
       }
       
       return data.slice(startPos, pos);
+    }
+
+    // Fonction de recherche 1337x
+    async function search1337x(query) {
+      if (!query.trim()) {
+        toastMsg("Veuillez entrer un nom de jeu");
+        return;
+      }
+      
+      try {
+        toastMsg("🔍 Recherche sur 1337x...");
+        search1337xResults.innerHTML = '<div style="padding: 12px; color: rgba(255,255,255,0.6);">Recherche en cours...</div>';
+        
+        const workerUrl = localStorage.getItem("worker_url") || "https://crackuzu-api.crackuzu.workers.dev";
+        if (!workerUrl) {
+          toastMsg("❌ URL du Worker non configurée");
+          search1337xResults.innerHTML = '<div style="padding: 12px; color: #ff6b6b;">Worker URL non configurée</div>';
+          return;
+        }
+        
+        const response = await fetch(`${workerUrl}/api/search1337x?q=${encodeURIComponent(query)}`);
+        const data = await response.json();
+        
+        if (data.error) {
+          throw new Error(data.error);
+        }
+        
+        if (!data.results || data.results.length === 0) {
+          search1337xResults.innerHTML = '<div style="padding: 12px; color: rgba(255,255,255,0.6);">Aucun résultat trouvé</div>';
+          toastMsg("❌ Aucun résultat");
+          return;
+        }
+        
+        // Afficher les résultats
+        let html = '';
+        data.results.forEach((result, index) => {
+          html += `
+            <div style="padding: 12px; margin-bottom: 8px; background: rgba(255,255,255,0.05); border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+              <div style="font-weight: 600; margin-bottom: 6px; color: #fff; font-size: 13px;">${escapeHtml(result.name)}</div>
+              <div style="display: flex; gap: 12px; font-size: 11px; color: rgba(255,255,255,0.6); margin-bottom: 8px; flex-wrap: wrap; align-items: center;">
+                <span>📦 ${result.size}</span>
+                <span style="color: #4ade80;">👆 ${result.seeders}</span>
+                <span style="color: #f87171;">👇 ${result.leechers}</span>
+                <span style="background: rgba(99, 102, 241, 0.3); color: #a5b4fc; padding: 2px 8px; border-radius: 12px; font-size: 10px; font-weight: 500;">${escapeHtml(result.source || 'Unknown')}</span>
+              </div>
+              <button type="button" class="btn-primary use-magnet-btn" data-magnet="${escapeHtml(result.magnet)}" style="padding: 6px 12px; font-size: 12px; width: 100%;">
+                📋 Utiliser ce magnet
+              </button>
+            </div>
+          `;
+        });
+        
+        search1337xResults.innerHTML = html;
+        toastMsg(`✅ ${data.count} résultat(s) trouvé(s)`);
+        
+        // Ajouter les event listeners sur les boutons
+        document.querySelectorAll('.use-magnet-btn').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const magnet = e.target.dataset.magnet;
+            gameMagnet.value = magnet;
+            toastMsg("✅ Magnet copié dans le champ");
+            search1337xResults.innerHTML = '';
+            search1337xInput.value = '';
+          });
+        });
+        
+      } catch (error) {
+        console.error("1337x search error:", error);
+        search1337xResults.innerHTML = `<div style="padding: 12px; color: #ff6b6b;">Erreur: ${escapeHtml(error.message)}</div>`;
+        toastMsg("❌ Erreur recherche 1337x");
+      }
+    }
+
+    // Helper pour échapper le HTML
+    function escapeHtml(text) {
+      if (!text) return '';
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
     }
 
     // Cloudinary upload
