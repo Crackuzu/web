@@ -17,6 +17,19 @@
   ],
   "games": [
     {
+      "name": "Peak",
+      "categories": [
+        "PLATFORMER",
+        "ADVENTURE",
+        "INDIE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:abc17a1c3f316b49513d63f1b170d0d5e79c9690&dn=PEAK&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337",
+      "directLink": "",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/coat49.jpg",
+      "igdbId": 349524,
+      "videoId": "rVcAdSPO1YA"
+    },
+    {
       "name": "60 Seconds! Reatomized",
       "categories": [
         "ROLE-PLAYING (RPG)",
