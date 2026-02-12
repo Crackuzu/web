@@ -148,13 +148,14 @@
       "videoId": "4NEup8y0g-Q"
     },
     {
-      "name": "Bigfoot",
+      "name": "Finding Bigfoot",
       "categories": [
         "ACTION",
         "ADVENTURE",
         "INDIE"
       ],
       "magnet": "magnet:?xt=urn:btih:LE3MIFBWPX5WKSPNES7NFG723PWB6OEG&dn=BIGFOOT&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce",
+      "directLink": "",
       "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2lj4.jpg",
       "igdbId": 31851,
       "videoId": "gF9dE7uglWI"
