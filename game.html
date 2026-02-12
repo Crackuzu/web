@@ -40,7 +40,7 @@
       will-change: transform;
       opacity: 0;
       transition: opacity 1s ease;
-      filter: brightness(0.4) saturate(1.2);
+      filter: brightness(0.25) saturate(0.8) blur(3px);
     }
     .parallax-bg.loaded { opacity: 1; }
 
@@ -96,9 +96,9 @@
     body {
       font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
       color: var(--text);
-      background: radial-gradient(1100px 700px at 15% 0%, rgba(255,255,255,.09), transparent 55%),
-                  radial-gradient(950px 600px at 90% 20%, rgba(255,255,255,.07), transparent 60%),
-                  linear-gradient(180deg, var(--bg0), var(--bg1));
+      background: radial-gradient(1100px 700px at 15% 0%, rgba(255,255,255,.03), transparent 55%),
+                  radial-gradient(950px 600px at 90% 20%, rgba(255,255,255,.02), transparent 60%),
+                  linear-gradient(180deg, #07090c, #0a0d12);
     }
     .glass {
       background: linear-gradient(180deg, var(--glass), var(--glass2));
@@ -466,8 +466,8 @@
     let mouseX = 0, mouseY = 0, currentX = 0, currentY = 0;
     
     document.addEventListener('mousemove', (e) => {
-      mouseX = (e.clientX / window.innerWidth - 0.5) * -40;
-      mouseY = (e.clientY / window.innerHeight - 0.5) * -40;
+      mouseX = (e.clientX / window.innerWidth - 0.5) * -120;
+      mouseY = (e.clientY / window.innerHeight - 0.5) * -80;
     });
     
     function updateParallax() {
