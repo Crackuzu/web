@@ -18,19 +18,6 @@
   ],
   "games": [
     {
-      "name": "Dying Light 2: Stay Human",
-      "categories": [
-        "ROLE-PLAYING (RPG)",
-        "ADVENTURE",
-        "HORROR"
-      ],
-      "magnet": "magnet:?xt=urn:btih:0d19acf0c4c9fd07b7fa9bc4d44488874745e5ce&dn=Dying+Light+2.+Stay+Human+(2022)",
-      "directLink": "",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co65yk.jpg",
-      "igdbId": 102584,
-      "videoId": "KHSiYzBHSvI"
-    },
-    {
       "name": "60 Seconds! Reatomized",
       "categories": [
         "ROLE-PLAYING (RPG)",
@@ -229,6 +216,19 @@
       "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co65yq.jpg",
       "igdbId": 3042,
       "videoId": "dY8RYRwZ4oM"
+    },
+    {
+      "name": "Dying Light 2: Stay Human",
+      "categories": [
+        "ROLE-PLAYING (RPG)",
+        "ADVENTURE",
+        "HORROR"
+      ],
+      "magnet": "magnet:?xt=urn:btih:0d19acf0c4c9fd07b7fa9bc4d44488874745e5ce&dn=Dying+Light+2.+Stay+Human+(2022)",
+      "directLink": "",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co65yk.jpg",
+      "igdbId": 102584,
+      "videoId": "KHSiYzBHSvI"
     },
     {
       "name": "Elden Ring",
@@ -1047,6 +1047,14 @@
       "games": [
         "Elden Ring",
         "Elden Ring: Nightreign"
+      ]
+    },
+    {
+      "id": "dying-light",
+      "name": "Dying Light",
+      "games": [
+        "Dying Light",
+        "Dying Light 2: Stay Human"
       ]
     }
   ]
