@@ -18,30 +18,6 @@
   ],
   "games": [
     {
-      "name": "Dragon Ball: Sparking! Zero",
-      "categories": [
-        "ACTION"
-      ],
-      "magnet": "magnet:?xt=urn:btih:506EA5B6EF8EF6426EA24673CBC111849D2E7B33&dn=DRAGON+BALL%3A+Sparking%21+ZERO+%28v2011.010.003.007.006+%2B+10+DLCs+%2B+Multiplayer%2C+MULTi16%29+%5BFitGirl+Repack%2C+Selective+Download+-+from+16.8+GB%5D&tr=udp%3A%2F%2Fopentor.net%3A6969&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Ftracker.theoks.net%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.ccp.ovh%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=http%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=https%3A%2F%2Ftracker.tamersunion.org%3A443%2Fannounce&tr=udp%3A%2F%2Fexplodie.org%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.bt4g.com%3A2095%2Fannounce&tr=udp%3A%2F%2Fbt2.archive.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fbt1.archive.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.filemail.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker1.bt.moack.co.kr%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=http%3A%2F%2Ftracker.openbittorrent.com%3A80%2Fannounce&tr=udp%3A%2F%2Fopentracker.i2p.rocks%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.internetwarriors.net%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fcoppersurfer.tk%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.zer0day.to%3A1337%2Fannounce",
-      "directLink": "",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co8bhn.jpg",
-      "igdbId": 279634,
-      "videoId": "NDGeWO_am1c"
-    },
-    {
-      "name": "Peak",
-      "categories": [
-        "PLATFORMER",
-        "ADVENTURE",
-        "INDIE"
-      ],
-      "magnet": "magnet:?xt=urn:btih:abc17a1c3f316b49513d63f1b170d0d5e79c9690&dn=PEAK&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337",
-      "directLink": "",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/coat49.jpg",
-      "igdbId": 349524,
-      "videoId": "rVcAdSPO1YA"
-    },
-    {
       "name": "60 Seconds! Reatomized",
       "categories": [
         "ROLE-PLAYING (RPG)",
@@ -173,19 +149,6 @@
       "videoId": "4NEup8y0g-Q"
     },
     {
-      "name": "Finding Bigfoot",
-      "categories": [
-        "ACTION",
-        "ADVENTURE",
-        "INDIE"
-      ],
-      "magnet": "magnet:?xt=urn:btih:LE3MIFBWPX5WKSPNES7NFG723PWB6OEG&dn=BIGFOOT&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce",
-      "directLink": "",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2lj4.jpg",
-      "igdbId": 31851,
-      "videoId": "gF9dE7uglWI"
-    },
-    {
       "name": "Clair Obscur: Expedition 33",
       "categories": [
         "ROLE-PLAYING (RPG)",
@@ -229,6 +192,17 @@
       "cover": "https://res.cloudinary.com/dkcui82mx/image/upload/v1770153884/knwnvf9qwb7lf2xaa3qb.png",
       "igdbId": 325609,
       "videoId": "4R_b9ptnT2w"
+    },
+    {
+      "name": "Dragon Ball: Sparking! Zero",
+      "categories": [
+        "ACTION"
+      ],
+      "magnet": "magnet:?xt=urn:btih:506EA5B6EF8EF6426EA24673CBC111849D2E7B33&dn=DRAGON+BALL%3A+Sparking%21+ZERO+%28v2011.010.003.007.006+%2B+10+DLCs+%2B+Multiplayer%2C+MULTi16%29+%5BFitGirl+Repack%2C+Selective+Download+-+from+16.8+GB%5D&tr=udp%3A%2F%2Fopentor.net%3A6969&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Ftracker.theoks.net%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.ccp.ovh%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=http%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=https%3A%2F%2Ftracker.tamersunion.org%3A443%2Fannounce&tr=udp%3A%2F%2Fexplodie.org%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.bt4g.com%3A2095%2Fannounce&tr=udp%3A%2F%2Fbt2.archive.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fbt1.archive.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.filemail.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker1.bt.moack.co.kr%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=http%3A%2F%2Ftracker.openbittorrent.com%3A80%2Fannounce&tr=udp%3A%2F%2Fopentracker.i2p.rocks%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.internetwarriors.net%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fcoppersurfer.tk%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.zer0day.to%3A1337%2Fannounce",
+      "directLink": "",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co8bhn.jpg",
+      "igdbId": 279634,
+      "videoId": "NDGeWO_am1c"
     },
     {
       "name": "Dying Light",
@@ -348,6 +322,19 @@
       "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/coa0yh.jpg",
       "igdbId": 350483,
       "videoId": "S1VnNstzHoo"
+    },
+    {
+      "name": "Finding Bigfoot",
+      "categories": [
+        "ACTION",
+        "ADVENTURE",
+        "INDIE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:LE3MIFBWPX5WKSPNES7NFG723PWB6OEG&dn=BIGFOOT&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce",
+      "directLink": "",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2lj4.jpg",
+      "igdbId": 31851,
+      "videoId": "gF9dE7uglWI"
     },
     {
       "name": "Forza Horizon 3",
@@ -680,6 +667,19 @@
       "videoId": "o9PGpkZNQKg"
     },
     {
+      "name": "Peak",
+      "categories": [
+        "PLATFORMER",
+        "ADVENTURE",
+        "INDIE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:abc17a1c3f316b49513d63f1b170d0d5e79c9690&dn=PEAK&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337",
+      "directLink": "",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/coat49.jpg",
+      "igdbId": 349524,
+      "videoId": "rVcAdSPO1YA"
+    },
+    {
       "name": "Phasmophobia",
       "categories": [
         "PUZZLE",
@@ -997,7 +997,8 @@
         "Assassin's Creed: Odyssey - Ultimate Edition",
         "Assassin's Creed Odyssey",
         "Assassin's Creed Mirage",
-        "Assassin's Creed Valhalla"
+        "Assassin's Creed Valhalla",
+        "Assassin's Creed IV: Black Flag - Jackdaw Edition"
       ]
     },
     {
