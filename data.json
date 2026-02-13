@@ -1027,6 +1027,14 @@
         "God of War",
         "God of War Ragnarök"
       ]
+    },
+    {
+      "id": "elden-ring",
+      "name": "elden ring",
+      "games": [
+        "Elden Ring",
+        "Elden Ring: Nightreign"
+      ]
     }
   ]
 }
