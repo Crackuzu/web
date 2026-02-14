@@ -2142,6 +2142,10 @@
             <span class="icon">✦</span>
             Sagas
           </button>
+          <button class="adminNavBtn" data-section="batch">
+            <span class="icon">⚡</span>
+            Import Batch
+          </button>
           <button class="adminNavBtn upload-btn" id="uploadToGitHubBtn">
             <span class="icon">🚀</span>
             Upload to GitHub
@@ -2338,6 +2342,75 @@
           <h3 style="margin: 0 0 12px; font-size: 16px; font-weight: 500;">Sagas existantes</h3>
           <div class="gameListContainer" id="sagaListAdmin">
             <p style="text-align: center; color: rgba(255,255,255,0.5); padding: 40px;">Aucune saga créée</p>
+          </div>
+        </div>
+
+        <!-- SECTION: Import Batch - AJOUT MASSIF AUTOMATIQUE -->
+        <div class="adminSection" id="sectionBatch">
+          <h2>⚡ Import Batch (Automatique)</h2>
+          <p style="color: rgba(255,255,255,0.6); margin-bottom: 16px; font-size: 13px;">
+            Collez plusieurs noms de jeux séparés par <strong>;</strong>. Le système cherchera automatiquement sur IGDB et les sources magnet.
+          </p>
+
+          <div style="margin-bottom: 16px;">
+            <label>Noms des jeux (séparés par ;)</label>
+            <textarea id="batchGamesInput" placeholder="Resident Evil 4; Silent Hill 2; God of War Ragnarok; Elden Ring..." rows="6" style="width: 100%; box-sizing: border-box; font-family: monospace; font-size: 13px;"></textarea>
+            <small style="color: rgba(255,255,255,0.4); font-size: 11px;">Exemple: "Resident Evil HD Remaster; Silent Hill 2 Remake; God of War"</small>
+          </div>
+
+          <!-- Options -->
+          <div style="display: flex; gap: 16px; margin-bottom: 16px; flex-wrap: wrap;">
+            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 13px;">
+              <input type="checkbox" id="batchSkipExisting" checked style="accent-color: #6366f1;" />
+              <span>Ignorer les jeux existants</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 13px;">
+              <input type="checkbox" id="batchSkipNoMagnet" checked style="accent-color: #6366f1;" />
+              <span>Ignorer si pas de magnet</span>
+            </label>
+          </div>
+
+          <!-- Bouton Start -->
+          <div style="margin-bottom: 20px;">
+            <button type="button" id="startBatchImportBtn" class="primary" style="background: linear-gradient(135deg, rgba(100,140,255,0.3), rgba(80,120,240,0.2)); border-color: rgba(100,140,255,0.4); padding: 12px 24px; font-size: 14px;">
+              🚀 Lancer l'import batch
+            </button>
+            <button type="button" id="stopBatchImportBtn" class="danger" style="display: none; padding: 12px 24px; font-size: 14px;">
+              ⏹️ Arrêter
+            </button>
+          </div>
+
+          <!-- Progress -->
+          <div id="batchProgress" style="display: none; margin-bottom: 20px; padding: 16px; background: rgba(255,255,255,0.05); border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px;">
+              <span id="batchProgressText">Préparation...</span>
+              <span id="batchProgressPercent">0%</span>
+            </div>
+            <div style="height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow: hidden;">
+              <div id="batchProgressBar" style="height: 100%; width: 0%; background: linear-gradient(90deg, #6366f1, #8b5cf6); transition: width 0.3s ease;"></div>
+            </div>
+            <div style="margin-top: 8px; font-size: 11px; color: rgba(255,255,255,0.5);">
+              <span id="batchStatsSuccess" style="color: #4ade80;">✓ 0 ajoutés</span> &nbsp;|&nbsp;
+              <span id="batchStatsSkipped" style="color: #fbbf24;">⏭ 0 ignorés</span> &nbsp;|&nbsp;
+              <span id="batchStatsFailed" style="color: #f87171;">✗ 0 échoués</span>
+            </div>
+          </div>
+
+          <!-- Log en temps réel -->
+          <div style="margin-bottom: 16px;">
+            <label style="display: flex; justify-content: space-between; align-items: center;">
+              <span>Journal d'import</span>
+              <button type="button" id="clearBatchLogBtn" style="padding: 4px 10px; font-size: 11px; opacity: 0.7;">Effacer</button>
+            </label>
+            <div id="batchLog" style="height: 200px; overflow-y: auto; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 12px; font-family: monospace; font-size: 12px; color: rgba(255,255,255,0.8);">
+              <div style="color: rgba(255,255,255,0.4);">Prêt pour l'import batch...</div>
+            </div>
+          </div>
+
+          <!-- Résultat final -->
+          <div id="batchResult" style="display: none; padding: 16px; background: rgba(99,102,241,0.1); border-radius: 12px; border: 1px solid rgba(99,102,241,0.3);">
+            <h4 style="margin: 0 0 12px; color: #a5b4fc;">✅ Import terminé !</h4>
+            <div id="batchResultContent" style="font-size: 13px; line-height: 1.6;"></div>
           </div>
         </div>
 
@@ -3625,9 +3698,9 @@
         gameName.value = details.name;
         gameCover.value = details.cover34;
         
-        // Auto-remplir le champ de recherche torrent et lancer la recherche
+        // Auto-remplir le champ de recherche torrent et lancer la recherche auto avec IGDB ID
         search1337xInput.value = details.name;
-        search1337x(details.name); // Lancer la recherche automatiquement
+        search1337x(details.name, gameData.id); // Lancer la recherche automatiquement avec IGDB ID
         
         state.selectedCategories = details.categories;
         
@@ -3936,58 +4009,115 @@
       return data.slice(startPos, pos);
     }
 
-    // Fonction de recherche 1337x
-    async function search1337x(query) {
-      if (!query.trim()) {
+    // Fonction de recherche 1337x - AMÉLIORÉE avec recherche par IGDB ID
+    // Fonction de recherche 1337x - OPTIMISÉE: 1 seule requête pour auto-magnet
+    async function search1337x(query, igdbId = null, retryCount = 0) {
+      if (!query.trim() && !igdbId) {
         toastMsg("Veuillez entrer un nom de jeu");
         return;
       }
       
+      const workerUrl = localStorage.getItem("worker_url") || "https://crackuzu-api.crackuzu.workers.dev";
+      
       try {
-        toastMsg("🔍 Recherche sur 1337x...");
-        search1337xResults.innerHTML = '<div style="padding: 12px; color: rgba(255,255,255,0.6);">Recherche en cours...</div>';
-        
-        const workerUrl = localStorage.getItem("worker_url") || "https://crackuzu-api.crackuzu.workers.dev";
-        if (!workerUrl) {
-          toastMsg("❌ URL du Worker non configurée");
-          search1337xResults.innerHTML = '<div style="padding: 12px; color: #ff6b6b;">Worker URL non configurée</div>';
-          return;
-        }
-        
-        const response = await fetch(`${workerUrl}/api/search1337x?q=${encodeURIComponent(query)}`);
-        const data = await response.json();
-        
-        if (data.error) {
-          throw new Error(data.error);
-        }
-        
-        if (!data.results || data.results.length === 0) {
-          search1337xResults.innerHTML = '<div style="padding: 12px; color: rgba(255,255,255,0.6);">Aucun résultat trouvé</div>';
-          toastMsg("❌ Aucun résultat");
-          return;
-        }
-        
-        // Afficher les résultats
-        let html = '';
-        data.results.forEach((result, index) => {
-          html += `
+        // ✅ SI IGDB ID: 1 SEULE REQUÊTE AU LIEU DE 2
+        if (igdbId) {
+          toastMsg("🔍 Recherche auto optimale...");
+          search1337xResults.innerHTML = '<div style="padding: 12px; color: rgba(255,255,255,0.6);">Recherche en cours...</div>';
+          
+          const response = await fetch(`${workerUrl}/api/auto-magnet?id=${encodeURIComponent(igdbId)}`);
+          
+          if (response.status === 503) {
+            throw new Error('RATE_LIMIT');
+          }
+          
+          if (!response.ok) {
+            throw new Error(`Erreur ${response.status}`);
+          }
+          
+          const data = await response.json();
+          
+          if (data.error) {
+            throw new Error(data.error);
+          }
+          
+          if (!data.results || data.results.length === 0) {
+            search1337xResults.innerHTML = `<div style="padding: 12px; color: rgba(255,255,255,0.6);">Aucun résultat trouvé</div>`;
+            toastMsg("❌ Aucun résultat");
+            return;
+          }
+          
+          // Afficher les résultats
+          let html = `<div style="padding: 8px 12px; margin-bottom: 12px; background: rgba(99, 102, 241, 0.2); border-radius: 8px; border: 1px solid rgba(99, 102, 241, 0.4); font-size: 12px; color: rgba(255,255,255,0.8);">
+            <strong>🎮 ${escapeHtml(data.gameName)}</strong><br>
+            <span style="font-size: 11px; opacity: 0.7;">Query: "${escapeHtml(data.searchQuery)}" (1 requête)</span>
+          </div>`;
+          
+          data.results.forEach((result, index) => {
+            html += `
             <div style="padding: 12px; margin-bottom: 8px; background: rgba(255,255,255,0.05); border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
               <div style="font-weight: 600; margin-bottom: 6px; color: #fff; font-size: 13px;">${escapeHtml(result.name)}</div>
               <div style="display: flex; gap: 12px; font-size: 11px; color: rgba(255,255,255,0.6); margin-bottom: 8px; flex-wrap: wrap; align-items: center;">
                 <span>📦 ${result.size}</span>
-                <span style="color: #4ade80;">👆 ${result.seeders}</span>
-                <span style="color: #f87171;">👇 ${result.leechers}</span>
                 <span style="background: rgba(99, 102, 241, 0.3); color: #a5b4fc; padding: 2px 8px; border-radius: 12px; font-size: 10px; font-weight: 500;">${escapeHtml(result.source || 'Unknown')}</span>
               </div>
               <button type="button" class="btn-primary use-magnet-btn" data-magnet="${escapeHtml(result.magnet)}" style="padding: 6px 12px; font-size: 12px; width: 100%;">
                 📋 Utiliser ce magnet
               </button>
             </div>
-          `;
-        });
-        
-        search1337xResults.innerHTML = html;
-        toastMsg(`✅ ${data.count} résultat(s) trouvé(s)`);
+            `;
+          });
+          
+          search1337xResults.innerHTML = html;
+          toastMsg(`✅ ${data.count} résultat(s) - 1 requête seulement!`);
+          
+        } else {
+          // Recherche manuelle normale
+          toastMsg("🔍 Recherche manuelle...");
+          search1337xResults.innerHTML = '<div style="padding: 12px; color: rgba(255,255,255,0.6);">Recherche en cours...</div>';
+          
+          const response = await fetch(`${workerUrl}/api/search1337x?q=${encodeURIComponent(query)}`);
+          
+          if (response.status === 503) {
+            throw new Error('RATE_LIMIT');
+          }
+          
+          const data = await response.json();
+          
+          if (data.error) {
+            throw new Error(data.error);
+          }
+          
+          if (!data.results || data.results.length === 0) {
+            search1337xResults.innerHTML = `<div style="padding: 12px; color: rgba(255,255,255,0.6);">Aucun résultat trouvé pour "${query}"</div>`;
+            toastMsg("❌ Aucun résultat");
+            return;
+          }
+          
+          // Afficher les résultats
+          let html = `<div style="padding: 8px 12px; margin-bottom: 12px; background: rgba(99, 102, 241, 0.2); border-radius: 8px; border: 1px solid rgba(99, 102, 241, 0.4); font-size: 12px; color: rgba(255,255,255,0.8);">
+            <strong>🔍 Recherche: Manuel</strong><br>
+            <span style="font-size: 11px; opacity: 0.7;">Query: "${escapeHtml(query)}"</span>
+          </div>`;
+          
+          data.results.forEach((result, index) => {
+            html += `
+            <div style="padding: 12px; margin-bottom: 8px; background: rgba(255,255,255,0.05); border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+              <div style="font-weight: 600; margin-bottom: 6px; color: #fff; font-size: 13px;">${escapeHtml(result.name)}</div>
+              <div style="display: flex; gap: 12px; font-size: 11px; color: rgba(255,255,255,0.6); margin-bottom: 8px; flex-wrap: wrap; align-items: center;">
+                <span>📦 ${result.size}</span>
+                <span style="background: rgba(99, 102, 241, 0.3); color: #a5b4fc; padding: 2px 8px; border-radius: 12px; font-size: 10px; font-weight: 500;">${escapeHtml(result.source || 'Unknown')}</span>
+              </div>
+              <button type="button" class="btn-primary use-magnet-btn" data-magnet="${escapeHtml(result.magnet)}" style="padding: 6px 12px; font-size: 12px; width: 100%;">
+                📋 Utiliser ce magnet
+              </button>
+            </div>
+            `;
+          });
+          
+          search1337xResults.innerHTML = html;
+          toastMsg(`✅ ${data.count} résultat(s)`);
+        }
         
         // Ajouter les event listeners sur les boutons
         document.querySelectorAll('.use-magnet-btn').forEach(btn => {
@@ -4001,9 +4131,19 @@
         });
         
       } catch (error) {
-        console.error("1337x search error:", error);
+        console.error("Search error:", error);
+        
+        if (error.message === 'RATE_LIMIT' && retryCount < 3) {
+          const waitTime = 5000 * Math.pow(2, retryCount);
+          toastMsg(`⏳ Rate limit, retry dans ${waitTime/1000}s...`);
+          search1337xResults.innerHTML = `<div style="padding: 12px; color: #fbbf24;">⏳ Pause ${waitTime/1000}s...</div>`;
+          
+          await new Promise(resolve => setTimeout(resolve, waitTime));
+          return search1337x(query, igdbId, retryCount + 1);
+        }
+        
         search1337xResults.innerHTML = `<div style="padding: 12px; color: #ff6b6b;">Erreur: ${escapeHtml(error.message)}</div>`;
-        toastMsg("❌ Erreur recherche 1337x");
+        toastMsg("❌ Erreur recherche");
       }
     }
 
@@ -4910,6 +5050,311 @@
           item.style.background = '';
         }
       });
+    }
+
+    // ===== FONCTIONS IMPORT BATCH =====
+    let batchImportRunning = false;
+    let batchImportCancelled = false;
+
+    const batchGamesInput = document.getElementById('batchGamesInput');
+    const startBatchImportBtn = document.getElementById('startBatchImportBtn');
+    const stopBatchImportBtn = document.getElementById('stopBatchImportBtn');
+    const batchProgress = document.getElementById('batchProgress');
+    const batchProgressBar = document.getElementById('batchProgressBar');
+    const batchProgressText = document.getElementById('batchProgressText');
+    const batchProgressPercent = document.getElementById('batchProgressPercent');
+    const batchStatsSuccess = document.getElementById('batchStatsSuccess');
+    const batchStatsSkipped = document.getElementById('batchStatsSkipped');
+    const batchStatsFailed = document.getElementById('batchStatsFailed');
+    const batchLog = document.getElementById('batchLog');
+    const batchResult = document.getElementById('batchResult');
+    const batchResultContent = document.getElementById('batchResultContent');
+    const clearBatchLogBtn = document.getElementById('clearBatchLogBtn');
+    const batchSkipExisting = document.getElementById('batchSkipExisting');
+    const batchSkipNoMagnet = document.getElementById('batchSkipNoMagnet');
+
+    // Effacer le log
+    clearBatchLogBtn.addEventListener('click', () => {
+      batchLog.innerHTML = '<div style="color: rgba(255,255,255,0.4);">Log effacé...</div>';
+    });
+
+    // Arrêter l'import
+    stopBatchImportBtn.addEventListener('click', () => {
+      batchImportCancelled = true;
+      logBatch('⏹️ Arrêt demandé par l\'utilisateur...', 'warning');
+    });
+
+    // Démarrer l'import batch
+    startBatchImportBtn.addEventListener('click', async () => {
+      const input = batchGamesInput.value.trim();
+      if (!input) {
+        toastMsg('⚠️ Veuillez entrer des noms de jeux');
+        return;
+      }
+
+      // Parser les noms de jeux
+      const gameNames = input.split(';').map(n => n.trim()).filter(n => n.length > 0);
+      if (gameNames.length === 0) {
+        toastMsg('⚠️ Aucun nom de jeu valide trouvé');
+        return;
+      }
+
+      // Initialiser l'état
+      batchImportRunning = true;
+      batchImportCancelled = false;
+      startBatchImportBtn.style.display = 'none';
+      stopBatchImportBtn.style.display = '';
+      batchProgress.style.display = 'block';
+      batchResult.style.display = 'none';
+      batchLog.innerHTML = '';
+
+      let successCount = 0;
+      let skippedCount = 0;
+      let failedCount = 0;
+      const addedGames = [];
+      const skippedGames = [];
+      const failedGames = [];
+
+      logBatch(`🚀 Démarrage de l'import de ${gameNames.length} jeux...`, 'info');
+      logBatch('');
+
+      const workerUrl = localStorage.getItem("worker_url") || "https://crackuzu-api.crackuzu.workers.dev";
+
+      for (let i = 0; i < gameNames.length; i++) {
+        if (batchImportCancelled) {
+          logBatch('⏹️ Import annulé.', 'warning');
+          break;
+        }
+
+        const gameName = gameNames[i];
+        const progress = Math.round(((i + 1) / gameNames.length) * 100);
+        
+        updateBatchProgress(progress, `Traitement: ${gameName} (${i + 1}/${gameNames.length})`);
+        logBatch(`[${i + 1}/${gameNames.length}] 🔍 ${gameName}`, 'info');
+
+        try {
+          logBatch('   → Recherche IGDB...', 'muted');
+          const searchResponse = await fetch(`${workerUrl}/api/search-games?query=${encodeURIComponent(gameName)}`);
+          
+          if (!searchResponse.ok) {
+            throw new Error('Erreur recherche IGDB');
+          }
+
+          const searchData = await searchResponse.json();
+          
+          if (!searchData.games || searchData.games.length === 0) {
+            logBatch('   ❌ Pas trouvé sur IGDB', 'error');
+            failedCount++;
+            failedGames.push({ name: gameName, reason: 'Non trouvé sur IGDB' });
+            continue;
+          }
+
+          // Prendre le premier résultat
+          const firstGame = searchData.games[0];
+          logBatch(`   ✓ Trouvé: ${firstGame.name}`, 'success');
+
+          // Vérifier si le jeu existe déjà
+          const existingGame = state.data.games.find(g => 
+            g.name.toLowerCase() === firstGame.name.toLowerCase() ||
+            (g.igdbId && g.igdbId === firstGame.id)
+          );
+
+          if (existingGame) {
+            logBatch('   ⏭ Jeu déjà existant', 'warning');
+            if (batchSkipExisting.checked) {
+              skippedCount++;
+              skippedGames.push({ name: firstGame.name, reason: 'Déjà existant' });
+              continue;
+            }
+          }
+
+          // Étape 2: Récupérer les détails du jeu
+          logBatch('   → Récupération des détails...', 'muted');
+          const detailsResponse = await fetch(`${workerUrl}/api/game-details?id=${firstGame.id}`);
+          
+          if (!detailsResponse.ok) {
+            throw new Error('Erreur détails IGDB');
+          }
+
+          const details = await detailsResponse.json();
+          logBatch(`   ✓ Cover et catégories récupérées`, 'success');
+
+          // Étape 3: Recherche magnet - NOUVEAU FLOW 1 requête via /api/auto-magnet
+          let magnet = null;
+          let magnetFound = false;
+          let magnetRetries = 0;
+          const maxMagnetRetries = 3;
+          
+          while (magnetRetries < maxMagnetRetries && !magnetFound) {
+            try {
+              logBatch(`   → Recherche magnet optimisée (tentative ${magnetRetries + 1}/${maxMagnetRetries})...`, 'muted');
+              
+              // 1 SEULE requête qui fait tout : IGDB + recherche magnet
+              const response = await fetch(`${workerUrl}/api/auto-magnet?id=${firstGame.id}`);
+              
+              if (response.status === 503) {
+                logBatch('   ⚠️ Erreur 503 détectée (rate limiting)', 'warning');
+                logBatch('   ⏳ Pause de 1 minute...', 'warning');
+                await new Promise(resolve => setTimeout(resolve, 60000));
+                magnetRetries++;
+                continue;
+              }
+              
+              if (!response.ok) {
+                throw new Error(`HTTP ${response.status}`);
+              }
+              
+              const data = await response.json();
+              
+              if (data.error) {
+                throw new Error(data.error);
+              }
+              
+              if (data.results && data.results.length > 0) {
+                magnet = data.results[0].magnet;
+                magnetFound = true;
+                logBatch(`   ✓ Magnet trouvé (${data.results[0].source})`, 'success');
+              } else {
+                logBatch(`   ⚠️ Pas de résultat pour "${data.searchQuery}"`, 'warning');
+              }
+              
+              if (!magnetFound && magnetRetries < maxMagnetRetries - 1) {
+                const backoffMs = 3000 * Math.pow(2, magnetRetries);
+                logBatch(`   ⚠️ Retry dans ${backoffMs/1000}s...`, 'warning');
+                await new Promise(resolve => setTimeout(resolve, backoffMs));
+              }
+            } catch (magnetError) {
+              logBatch(`   ❌ Erreur: ${magnetError.message}`, 'warning');
+              
+              if (magnetError.message.includes('fetch') || 
+                  magnetError.message.includes('network') ||
+                  magnetError.message.includes('Failed') ||
+                  magnetRetries >= 1) {
+                logBatch('   ⏳ Pause de 1 minute (erreur réseau)...', 'warning');
+                await new Promise(resolve => setTimeout(resolve, 60000));
+              } else if (magnetRetries < maxMagnetRetries - 1) {
+                const backoffMs = 3000 * Math.pow(2, magnetRetries);
+                logBatch(`   ⚠️ Retry dans ${backoffMs/1000}s...`, 'warning');
+                await new Promise(resolve => setTimeout(resolve, backoffMs));
+              }
+            }
+            magnetRetries++;
+          }
+
+          if (!magnetFound) {
+            logBatch('   ❌ Pas de magnet trouvé', 'error');
+            if (batchSkipNoMagnet.checked) {
+              skippedCount++;
+              skippedGames.push({ name: firstGame.name, reason: 'Pas de magnet' });
+              continue;
+            }
+          }
+
+          // Étape 4: Ajouter le jeu
+          const categories = details.categories || ['ACTION'];
+          
+          // S'assurer que les catégories existent dans la liste globale
+          categories.forEach(cat => {
+            if (!state.data.categories.includes(cat)) {
+              state.data.categories.push(cat);
+            }
+          });
+
+          const newGame = {
+            name: details.name,
+            categories: categories,
+            magnet: magnet || '',
+            cover: details.cover34 || '',
+            igdbId: firstGame.id,
+            videoId: details.videoId || null
+          };
+
+          state.data.games.unshift(newGame);
+          successCount++;
+          addedGames.push(details.name);
+          logBatch(`   ✅ AJOUTÉ: ${details.name}`, 'success');
+
+          // Sauvegarder après chaque jeu ajouté
+          saveLocalDraft();
+          updateStats();
+
+        } catch (error) {
+          logBatch(`   ❌ Erreur: ${error.message}`, 'error');
+          failedCount++;
+          failedGames.push({ name: gameName, reason: error.message });
+        }
+
+        logBatch('');
+        
+        // Pause longue tous les 7 jeux pour éviter le rate limiting Cloudflare (503)
+        if ((i + 1) % 7 === 0 && i < gameNames.length - 1) {
+          logBatch('   ⏳ Pause longue (30s) pour éviter le rate limiting...', 'warning');
+          await new Promise(resolve => setTimeout(resolve, 30000));
+        }
+        // Pause normale de 12s entre chaque jeu
+        else if (i < gameNames.length - 1) {
+          logBatch('   ⏳ Pause de 12s...', 'muted');
+          await new Promise(resolve => setTimeout(resolve, 12000));
+        }
+      }
+
+      // Terminer
+      batchImportRunning = false;
+      startBatchImportBtn.style.display = '';
+      stopBatchImportBtn.style.display = 'none';
+      
+      updateBatchStats(successCount, skippedCount, failedCount);
+      
+      // Afficher le résumé
+      batchResult.style.display = 'block';
+      batchResultContent.innerHTML = `
+        <strong>🎮 ${successCount} jeu(x) ajouté(s)</strong><br>
+        ${addedGames.map(g => `✓ ${g}`).join('<br>')}
+        ${skippedCount > 0 ? `<br><br><strong>⏭ ${skippedCount} ignoré(s)</strong><br>${skippedGames.map(g => `• ${g.name} (${g.reason})`).join('<br>')}` : ''}
+        ${failedCount > 0 ? `<br><br><strong>✗ ${failedCount} échoué(s)</strong><br>${failedGames.map(g => `• ${g.name} (${g.reason})`).join('<br>')}` : ''}
+      `;
+
+      logBatch('', 'info');
+      logBatch(`✅ Import terminé: ${successCount} ajoutés, ${skippedCount} ignorés, ${failedCount} échoués`, 'info');
+
+      // Rafraîchir l'affichage
+      renderCategories();
+      renderGames();
+      renderAdminLists();
+      renderCategoriesList();
+
+      toastMsg(`✅ Import terminé: ${successCount} ajoutés`);
+    });
+
+    function logBatch(message, type = 'muted') {
+      const div = document.createElement('div');
+      div.textContent = message;
+      
+      const colors = {
+        muted: 'rgba(255,255,255,0.4)',
+        info: 'rgba(255,255,255,0.8)',
+        success: '#4ade80',
+        warning: '#fbbf24',
+        error: '#f87171'
+      };
+      
+      div.style.color = colors[type] || colors.muted;
+      div.style.marginBottom = '2px';
+      
+      batchLog.appendChild(div);
+      batchLog.scrollTop = batchLog.scrollHeight;
+    }
+
+    function updateBatchProgress(percent, text) {
+      batchProgressBar.style.width = percent + '%';
+      batchProgressPercent.textContent = percent + '%';
+      batchProgressText.textContent = text;
+    }
+
+    function updateBatchStats(success, skipped, failed) {
+      batchStatsSuccess.textContent = `✓ ${success} ajoutés`;
+      batchStatsSkipped.textContent = `⏭ ${skipped} ignorés`;
+      batchStatsFailed.textContent = `✗ ${failed} échoués`;
     }
   </script>
 </body>
