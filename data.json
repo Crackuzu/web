@@ -15,9 +15,234 @@
     "SPORT",
     "STRATEGY",
     "TACTICAL",
-    "REAL TIME STRATEGY (RTS)"
+    "REAL TIME STRATEGY (RTS)",
+    "CARD & BOARD GAME"
   ],
   "games": [
+    {
+      "name": "Balatro",
+      "categories": [
+        "STRATEGY",
+        "STRATEGY",
+        "INDIE",
+        "CARD & BOARD GAME"
+      ],
+      "magnet": "magnet:?xt=urn:btih:ff1e626912bf9527a50c917b8d54edfab9dda7c7&dn=Balatro+(2024)&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.tracker.cl%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Ftracker-udp.gbitt.info%3A80%2Fannounce&tr=udp%3A%2F%2Fexplodie.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.theoks.net%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.dump.cl%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.ccp.ovh%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.bittor.pw%3A1337%2Fannounce&tr=udp%3A%2F%2Ftamas3.ynh.fr%3A6969%2Fannounce&tr=udp%3A%2F%2Frun.publictracker.xyz%3A6969%2Fannounce&tr=udp%3A%2F%2Fretracker01-msk-virt.corbina.net%3A80%2Fannounce&tr=udp%3A%2F%2Fopentracker.io%3A6969%2Fannounce&tr=udp%3A%2F%2Fopen.dstud.io%3A6969%2Fannounce&tr=udp%3A%2F%2Fnew-line.net%3A6969%2Fannounce&tr=udp%3A%2F%2Fmoonburrow.club%3A6969%2Fannounce&tr=udp%3A%2F%2Fleet-tracker.moe%3A1337%2Fannounce",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co9f4g.jpg",
+      "igdbId": 251833,
+      "videoId": "qChMssQkk3M"
+    },
+    {
+      "name": "The Rogue Prince of Persia",
+      "categories": [
+        "PLATFORMER",
+        "HACK AND SLASH/BEAT 'EM UP",
+        "ADVENTURE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:e86403a4ab76b7c7b9449b99ea1648e1d4360406&dn=rutor.info&tr=udp://opentor.net:6969&tr=http://retracker.local/announce",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/coab8v.jpg",
+      "igdbId": 296843,
+      "videoId": "XZzOxEK7hXo"
+    },
+    {
+      "name": "Cyberpunk 2077: Ultimate Edition",
+      "categories": [
+        "ACTION",
+        "ROLE-PLAYING (RPG)",
+        "ADVENTURE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:0456e08293e1bf7a9e173e573dfbe8dcd5fb0e3e",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co7iy1.jpg",
+      "igdbId": 277807,
+      "videoId": "7B4r1jbpS2A"
+    },
+    {
+      "name": "Final Fantasy VII Rebirth",
+      "categories": [
+        "ROLE-PLAYING (RPG)",
+        "ADVENTURE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:F53734575823F31151ACC678CA590935898E6102&tr=http%3A%2F%2Fbt3.t-ru.org%2Fann%3Fmagnet",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/cob9k6.jpg",
+      "igdbId": 133236,
+      "videoId": "H_4CkyOmuuU"
+    },
+    {
+      "name": "Elden Ring: Shadow of the Erdtree",
+      "categories": [
+        "ROLE-PLAYING (RPG)",
+        "ADVENTURE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:B3CB238628956851CDE7D10D3A2693D8CEFAEFA2&dn=ELDEN+RING%3A+Deluxe+Edition+%2B+Shadow+of+the+Erdtree+Premium+Bundle+%28v1.16+%2B+All+DLCs+%2B+Bonus+Content+%2B+Online+Multiplayer+%2B+MULTi15%29+%28From+49.9+GB%29+%5BDODI+Repack%5D&tr=udp%3A%2F%2F9.rarbg.to%3A2870%2Fannounce&tr=udp%3A%2F%2Feddie4.nl%3A6969%2Fannounce&tr=udp%3A%2F%2Fthetracker.org%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337&tr=udp%3A%2F%2Ftracker.zer0day.to%3A1337&tr=udp%3A%2F%2F9.rarbg.com%3A2710%2Fannounce&tr=udp%3A%2F%2Fexplodie.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker1.wasabii.com.tw%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Ftracker.cypherpunks.ru%3A6969%2Fannounce&tr=udp%3A%2F%2Fp4p.arenabg.com%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=http%3A%2F%2Ftracker.openbittorrent.com%3A80%2Fannounce&tr=udp%3A%2F%2Fopentracker.i2p.rocks%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.internetwarriors.net%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fcoppersurfer.tk%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.zer0day.to%3A1337%2Fannounce",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co7sly.jpg",
+      "igdbId": 240009,
+      "videoId": "M-Xh4vbs6go"
+    },
+    {
+      "name": "Ghost of Tsushima: Director's Cut",
+      "categories": [
+        "ROLE-PLAYING (RPG)",
+        "ADVENTURE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:c56f779ccca9f5d04958c50cecadaa7f6b23038e&dn=rutor.info&tr=udp://opentor.net:6969&tr=http://retracker.local/announce",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co3p5f.jpg",
+      "igdbId": 153700,
+      "videoId": "EzWBNwhb870"
+    },
+    {
+      "name": "Ragnarok: War of Gods",
+      "categories": [
+        "ROLE-PLAYING (RPG)"
+      ],
+      "magnet": "magnet:?xt=urn:btih:AF13F64BFCB4466ED8F56D911C35B0D744D89914&tr=http%3A%2F%2Fbt3.t-ru.org%2Fann%3Fmagnet",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co92vm.jpg",
+      "igdbId": 323174,
+      "videoId": "Ll-QGD_lzdo"
+    },
+    {
+      "name": "Monster Hunter Wilds: Title Update 2",
+      "categories": [
+        "ACTION"
+      ],
+      "magnet": "magnet:?xt=urn:btih:EBA5C39B46C040AE4B529CB0C1D544DB296608B1&tr=http%3A%2F%2Fbt.t-ru.org%2Fann%3Fmagnet",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/coauso.jpg",
+      "igdbId": 338637,
+      "videoId": "GAf4Z4rCpK4"
+    },
+    {
+      "name": "Schedule I",
+      "categories": [
+        "SIMULATION",
+        "STRATEGY",
+        "INDIE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:C488C089FC55C2F250143DF6C85CB9087097B2AD&tr=http%3A%2F%2Fbt3.t-ru.org%2Fann%3Fmagnet",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co9adi.jpg",
+      "igdbId": 328373,
+      "videoId": "fR1-GXVPbuo"
+    },
+    {
+      "name": "Borderlands 4",
+      "categories": [
+        "ACTION",
+        "ROLE-PLAYING (RPG)",
+        "ADVENTURE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:22AF22AD5C6C15E3E436AC5B56C0C2FE9A2748B4&tr=http%3A%2F%2Fbt.t-ru.org%2Fann%3Fmagnet",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co9zuq.jpg",
+      "igdbId": 314246,
+      "videoId": "BXzf6j2Sr5c"
+    },
+    {
+      "name": "ARC Raiders",
+      "categories": [
+        "ACTION"
+      ],
+      "magnet": "magnet:?xt=urn:btih:F5B7B5BE2064D275E628429AFCCA8314A5FBFAFA&tr=http%3A%2F%2Fbt2.t-ru.org%2Fann%3Fmagnet",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co9rk1.jpg",
+      "igdbId": 185258,
+      "videoId": "61adghS9aps"
+    },
+    {
+      "name": "Deep Rock Galactic: Survivor",
+      "categories": [
+        "ACTION"
+      ],
+      "magnet": "magnet:?xt=urn:btih:01e37148891f970c7de1595153566dd0f04183c1&dn=rutor.info&tr=udp://opentor.net:6969&tr=http://retracker.local/announce",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co68ah.jpg",
+      "igdbId": 240556,
+      "videoId": "VQ4WnXdarx4"
+    },
+    {
+      "name": "Monster Hunter Wilds",
+      "categories": [
+        "ROLE-PLAYING (RPG)",
+        "HACK AND SLASH/BEAT 'EM UP",
+        "ADVENTURE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:79cf056abcaac842cf2502fccebdb6df9c3a339e&dn=MONSTER+HUNTER+RISE&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A6969",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co904o.jpg",
+      "igdbId": 279661,
+      "videoId": "O3syM4tV8Xw"
+    },
+    {
+      "name": "Shin Megami Tensei V: Vengeance",
+      "categories": [
+        "ROLE-PLAYING (RPG)",
+        "ADVENTURE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:37feb232eb8c7f977de7b39cda34c3c5cc3e1cb1&dn=rutor.info&tr=udp://opentor.net:6969&tr=http://retracker.local/announce",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co7sv4.jpg",
+      "igdbId": 287850,
+      "videoId": "KDiRwSeXbZM"
+    },
+    {
+      "name": "Granblue Fantasy: Relink",
+      "categories": [
+        "ROLE-PLAYING (RPG)",
+        "HACK AND SLASH/BEAT 'EM UP",
+        "ADVENTURE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:B63E26AA0997E95A336E7F78BFF4A5E561CB6103&tr=http%3A%2F%2Fbt3.t-ru.org%2Fann%3Fmagnet",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co7ptq.jpg",
+      "igdbId": 22788,
+      "videoId": "odAeEqQTIrU"
+    },
+    {
+      "name": "Metaphor: ReFantazio",
+      "categories": [
+        "ROLE-PLAYING (RPG)",
+        "STRATEGY",
+        "ADVENTURE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:e6a6d8e89c5e3d1d29f257f7e154ca206511d9d4&dn=rutor.info&tr=udp://opentor.net:6969&tr=http://retracker.local/announce",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co8d9t.jpg",
+      "igdbId": 26602,
+      "videoId": "0vpnf0SChPA"
+    },
+    {
+      "name": "Dragon's Dogma II",
+      "categories": [
+        "ROLE-PLAYING (RPG)"
+      ],
+      "magnet": "magnet:?xt=urn:btih:678bc6ac22a5befac6bbc50834e91d4f9755dee4&dn=rutor.info&tr=udp://opentor.net:6969&tr=http://retracker.local/announce",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co833w.jpg",
+      "igdbId": 115060,
+      "videoId": "ndLqGPqeQqM"
+    },
+    {
+      "name": "Like a Dragon: Infinite Wealth",
+      "categories": [
+        "ROLE-PLAYING (RPG)",
+        "HACK AND SLASH/BEAT 'EM UP",
+        "ADVENTURE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:A3993755592B014CD90872DAFA6057B7D0357ABB&tr=http%3A%2F%2Fbt.t-ru.org%2Fann%3Fmagnet",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co8356.jpg",
+      "igdbId": 217623,
+      "videoId": "Fx0YMVgCD5E"
+    },
+    {
+      "name": "Tekken 8",
+      "categories": [
+        "ACTION"
+      ],
+      "magnet": "magnet:?xt=urn:btih:e0d90ffbb2e16acd0f7fee686ba161c6a2131273&dn=TEKKEN+8+(2024)&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.tracker.cl%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Ftracker-udp.gbitt.info%3A80%2Fannounce&tr=udp%3A%2F%2Fexplodie.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.theoks.net%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.dump.cl%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.ccp.ovh%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.bittor.pw%3A1337%2Fannounce&tr=udp%3A%2F%2Ftamas3.ynh.fr%3A6969%2Fannounce&tr=udp%3A%2F%2Frun.publictracker.xyz%3A6969%2Fannounce&tr=udp%3A%2F%2Fretracker01-msk-virt.corbina.net%3A80%2Fannounce&tr=udp%3A%2F%2Fopentracker.io%3A6969%2Fannounce&tr=udp%3A%2F%2Fopen.dstud.io%3A6969%2Fannounce&tr=udp%3A%2F%2Fnew-line.net%3A6969%2Fannounce&tr=udp%3A%2F%2Fmoonburrow.club%3A6969%2Fannounce&tr=udp%3A%2F%2Fleet-tracker.moe%3A1337%2Fannounce",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co7lbb.jpg",
+      "igdbId": 217590,
+      "videoId": "07FdDRbdurg"
+    },
+    {
+      "name": "Helldivers 2",
+      "categories": [
+        "ACTION",
+        "TACTICAL"
+      ],
+      "magnet": "magnet:?xt=urn:btih:c84445efbc6402b47b4d090c360c112a7e89081b&dn=rutor.info&tr=udp://opentor.net:6969&tr=http://retracker.local/announce",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/coabbf.jpg",
+      "igdbId": 250616,
+      "videoId": "rE7KTE28HrA"
+    },
     {
       "name": "Red Dead Redemption 2",
       "categories": [
