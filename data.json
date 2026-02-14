@@ -20,123 +20,18 @@
   ],
   "games": [
     {
-      "name": "Senua's Saga: Hellblade II",
-      "categories": [
-        "ADVENTURE",
-        "HORROR"
-      ],
-      "magnet": "magnet:?xt=urn:btih:808d30b5713690fcdf6d16f061a29c3fed7fe6b3&dn=Senua's+Saga+Hellblade+II+(2024)&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Ftracker-udp.gbitt.info%3A80%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=https%3A%2F%2Ftracker.gbitt.info%3A443%2Fannounce&tr=http%3A%2F%2Ftracker.gbitt.info%3A80%2Fannounce&tr=udp%3A%2F%2Fexplodie.org%3A6969%2Fannounce&tr=https%3A%2F%2Ftracker.tamersunion.org%3A443%2Fannounce&tr=http%3A%2F%2Ftracker1.bt.moack.co.kr%3A80%2Fannounce&tr=http%3A%2F%2Ftracker.skyts.net%3A6969%2Fannounce&tr=http%3A%2F%2Fopen.tracker.ink%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.tiny-vps.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.theoks.net%3A6969%2Fannounce&tr=udp%3A%2F%2Fopentracker.io%3A6969%2Fannounce&tr=udp%3A%2F%2Fopen.free-tracker.ga%3A6969%2Fannounce&tr=udp%3A%2F%2Fnew-line.net%3A6969%2Fannounce&tr=udp%3A%2F%2Fepider.me%3A6969%2Fannounce&tr=udp%3A%2F%2Fbt2.archive.org%3A6969%2Fannounce",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co81i4.jpg",
-      "igdbId": 127342,
-      "videoId": "qJWI4bkD9ZM"
-    },
-    {
-      "name": "Empire of the Ants",
-      "categories": [
-        "REAL TIME STRATEGY (RTS)",
-        "STRATEGY",
-        "ADVENTURE",
-        "INDIE"
-      ],
-      "magnet": "magnet:?xt=urn:btih:818b8f1b5bddce1fa65759c96115a8bbba9833f9&dn=Empire+of+the+Ants+(2024)&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=http%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Ftracker-udp.gbitt.info%3A80%2Fannounce&tr=udp%3A%2F%2Fexplodie.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.qu.ax%3A6969%2Fannounce&tr=udp%3A%2F%2Fopentracker.io%3A6969%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.qu.ax%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.ololosh.space%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.dump.cl%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.bittor.pw%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.free-tracker.ga%3A6969%2Fannounce&tr=udp%3A%2F%2Fns-1.x-fins.com%3A6969%2Fannounce&tr=udp%3A%2F%2Fleet-tracker.moe%3A1337%2Fannounce&tr=udp%3A%2F%2Fisk.richardsw.club%3A6969%2Fannounce&tr=udp%3A%2F%2Fdiscord.heihachi.pw%3A6969%2Fannounce&tr=http%3A%2F%2Fwww.torrentsnipe.info%3A2701%2Fannounce&tr=http%3A%2F%2Fwww.genesis-sp.org%3A2710%2Fannounce&tr=http%3A%2F%2Ftracker810.xyz%3A11450%2Fannounce&tr=http%3A%2F%2Ftracker.xiaoduola.xyz%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.vanitycore.co%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.sbsub.com%3A2710%2Fannounce&tr=http%3A%2F%2Ftracker.moxing.party%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.lintk.me%3A2710%2Fannounce&tr=http%3A%2F%2Ftracker.ipv6tracker.org%3A80%2Fannounce&tr=http%3A%2F%2Ftracker.dmcomic.org%3A2710%2Fannounce&tr=http%3A%2F%2Ftracker.corpscorp.online%3A80%2Fannounce&tr=http%3A%2F%2Ftracker.bz%3A80%2Fannounce&tr=http%3A%2F%2Ftracker.bt-hash.com%3A80%2Fannounce&tr=http%3A%2F%2Ftracker.bittor.pw%3A1337%2Fannounce&tr=http%3A%2F%2Ft.jaekr.sh%3A6969%2Fannounce&tr=http%3A%2F%2Fshubt.net%3A2710%2Fannounce&tr=http%3A%2F%2Fshare.hkg-fansub.info%3A80%2Fannounce.php&tr=http%3A%2F%2Fservandroidkino.ru%3A80%2Fannounce&tr=http%3A%2F%2Fseeders-paradise.org%3A80%2Fannounce&tr=http%3A%2F%2Fretracker.spark-rostov.ru%3A80%2Fannounce&tr=http%3A%2F%2Fopen.trackerlist.xyz%3A80%2Fannounce&tr=http%3A%2F%2Fhome.yxgz.club%3A6969%2Fannounce&tr=http%3A%2F%2Fhighteahop.top%3A6960%2Fannounce&tr=http%3A%2F%2Ffinbytes.org%3A80%2Fannounce.php&tr=http%3A%2F%2Fbuny.uk%3A6969%2Fannounce&tr=http%3A%2F%2Fbt1.xxxxbt.cc%3A6969%2Fannounce&tr=http%3A%2F%2Fbt.poletracker.org%3A2710%2Fannounce&tr=http%3A%2F%2F0d.kebhana.mx%3A443%2Fannounce&tr=http%3A%2F%2F0123456789nonexistent.com%3A80%2Fannounce&tr=udp%3A%2F%2Fpublic.tracker.vraphim.com%3A6969%2Fannounce&tr=http%3A%2F%2Fpublic.tracker.vraphim.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker1.myporn.club%3A9337%2Fannounce&tr=udp%3A%2F%2Ftracker.theoks.net%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.0x7c0.com%3A6969%2Fannounce&tr=udp%3A%2F%2Fp4p.arenabg.com%3A1337%2Fannounce&tr=udp%3A%2F%2Fbt.ktrackers.com%3A6666%2Fannounce&tr=http%3A%2F%2Ftracker.renfei.net%3A8080%2Fannounce&tr=http%3A%2F%2Fp4p.arenabg.com%3A1337%2Fannounce&tr=udp%3A%2F%2Fz.mercax.com%3A53%2Fannounce&tr=udp%3A%2F%2Fwepzone.net%3A6969%2Fannounce&tr=udp%3A%2F%2Fttk2.nbaonlineservice.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker2.dler.org%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.tryhackx.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.tiny-vps.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.srv00.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.skynetcloud.site%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.gmi.gd%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.gigantino.net%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.fnix.net%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.filemail.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.edkj.club%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.dler.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftrackarr.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftr4ck3r.duckdns.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ft.overflow.biz%3A6969%2Fannounce&tr=udp%3A%2F%2Fserpb.vpsburti.com%3A6969%2Fannounce&tr=udp%3A%2F%2Fseedpeer.net%3A6969%2Fannounce&tr=udp%3A%2F%2Fretracker.lanta.me%3A2710%2Fannounce&tr=udp%3A%2F%2Fp2p.publictracker.xyz%3A6969%2Fannounce&tr=udp%3A%2F%2Fopen.dstud.io%3A6969%2Fannounce&tr=udp%3A%2F%2Fodd-hd.fr%3A6969%2Fannounce&tr=udp%3A%2F%2Fmartin-gebhardt.eu%3A25%2Fannounce&tr=udp%3A%2F%2Fjutone.com%3A6969%2Fannounce&tr=udp%3A%2F%2Fismaarino.com%3A1234%2Fannounce&tr=udp%3A%2F%2Fevan.im%3A6969%2Fannounce&tr=udp%3A%2F%2Fd40969.acod.regrucolo.ru%3A6969%2Fannounce&tr=udp%3A%2F%2Fbt.rer.lol%3A2710%2Fannounce&tr=udp%3A%2F%2Fbittorrent-tracker.e-n-c-r-y-p-t.net%3A1337%2Fannounce&tr=udp%3A%2F%2Fbandito.byterunner.io%3A6969%2Fannounce&tr=udp%3A%2F%2Famigacity.xyz%3A6969%2Fannounce&tr=https%3A%2F%2Ftracker.yemekyedim.com%3A443%2Fannounce&tr=https%3A%2F%2Ftracker.lilithraws.org%3A443%2Fannounce&tr=https%3A%2F%2Ftracker.gcrenwp.top%3A443%2Fannounce&tr=https%3A%2F%2Ftracker.cloudit.top%3A443%2Fannounce&tr=https%3A%2F%2Ftracker.bt4g.com%3A443%2Fannounce&tr=https%3A%2F%2Ftracker-zhuqiy.dgj055.icu%3A443%2Fannounce&tr=https%3A%2F%2Ftr.zukizuki.org%3A443%2Fannounce&tr=https%3A%2F%2Ftr.nyacat.pw%3A443%2Fannounce&tr=https%3A%2F%2Fsparkle.ghostchu-services.top%3A443%2Fannounce&tr=https%3A%2F%2Fapi.ipv4online.uk%3A443%2Fannounce&tr=http%3A%2F%2Fwepzone.net%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker2.dler.org%3A80%2Fannounce&tr=http%3A%2F%2Ftracker.waaa.moe%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.srv00.com%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.mywaifu.best%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.edkj.club%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.dler.org%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.dler.com%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.bt4g.com%3A2095%2Fannounce&tr=http%3A%2F%2Ftracker-zhuqiy.dgj055.icu%3A80%2Fannounce&tr=http%3A%2F%2Ftr1.aag.moe%3A2095%2Fannounce&tr=http%3A%2F%2Ftr.nyacat.pw%3A80%2Fannounce&tr=http%3A%2F%2Ftaciturn-shadow.spb.ru%3A6969%2Fannounce&tr=http%3A%2F%2Ft.overflow.biz%3A6969%2Fannounce&tr=http%3A%2F%2Fopen.acgtracker.com%3A1096%2Fannounce&tr=http%3A%2F%2Fch3oh.ru%3A6969%2Fannounce&tr=http%3A%2F%2Fbittorrent-tracker.e-n-c-r-y-p-t.net%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.torrust-demo.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.deadorbit.nl%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.darkness.services%3A6969%2Fannounce&tr=udp%3A%2F%2Fipv4announce.sktorrent.eu%3A6969%2Fannounce&tr=udp%3A%2F%2Fipv4.rer.lol%3A2710%2Fannounce&tr=udp%3A%2F%2Fconcen.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fbt.rer.lol%3A6969%2Fannounce&tr=https%3A%2F%2Ftracker.leechshield.link%3A443%2Fannounce&tr=https%3A%2F%2Ftracker.ipfsscan.io%3A443%2Fannounce&tr=http%3A%2F%2Ftracker4.itzmx.com%3A2710%2Fannounce&tr=http%3A%2F%2Ftracker3.itzmx.com%3A6961%2Fannounce&tr=http%3A%2F%2Ftracker1.itzmx.com%3A8080%2Fannounce&tr=http%3A%2F%2F1337.abcvg.info%3A80%2Fannounce",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co7xrn.jpg",
-      "igdbId": 237276,
-      "videoId": "TY5r0nEd2ag"
-    },
-    {
-      "name": "Sonic X Shadow Generations",
-      "categories": [
-        "PLATFORMER",
-        "ADVENTURE"
-      ],
-      "magnet": "magnet:?xt=urn:btih:f754cbb3b978a71c16d09da1e8004adc797d4b6a&dn=rutor.info&tr=udp://opentor.net:6969&tr=http://retracker.local/announce",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co8byo.jpg",
-      "igdbId": 284716,
-      "videoId": "ihUiNzrcG4Q"
-    },
-    {
-      "name": "Delta Force",
-      "categories": [
-        "ACTION",
-        "TACTICAL"
-      ],
-      "magnet": "magnet:?xt=urn:btih:7C9EA669B58B524908B1FE91F1EE40F62F58DB0B&tr=http%3A%2F%2Fbt4.t-ru.org%2Fann%3Fmagnet",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/coa98y.jpg",
-      "igdbId": 262186,
-      "videoId": "0SWMqANp8T0"
-    },
-    {
-      "name": "Pacific Drive",
-      "categories": [
-        "SIMULATION",
-        "ADVENTURE",
-        "INDIE"
-      ],
-      "magnet": "magnet:?xt=urn:btih:63fcdc40ff00dbcb24513af80a913369463f21e3&dn=Pacific+Drive+(2024)&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.tracker.cl%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Ftracker-udp.gbitt.info%3A80%2Fannounce&tr=udp%3A%2F%2Fexplodie.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.theoks.net%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.dump.cl%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.ccp.ovh%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.bittor.pw%3A1337%2Fannounce&tr=udp%3A%2F%2Ftamas3.ynh.fr%3A6969%2Fannounce&tr=udp%3A%2F%2Frun.publictracker.xyz%3A6969%2Fannounce&tr=udp%3A%2F%2Fretracker01-msk-virt.corbina.net%3A80%2Fannounce&tr=udp%3A%2F%2Fopentracker.io%3A6969%2Fannounce&tr=udp%3A%2F%2Fopen.dstud.io%3A6969%2Fannounce&tr=udp%3A%2F%2Fnew-line.net%3A6969%2Fannounce&tr=udp%3A%2F%2Fmoonburrow.club%3A6969%2Fannounce&tr=udp%3A%2F%2Fleet-tracker.moe%3A1337%2Fannounce",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co7t2e.jpg",
-      "igdbId": 217592,
-      "videoId": "4DYYfdZ-R8I"
-    },
-    {
-      "name": "Gundam Breaker 4",
+      "name": "60 Seconds! Reatomized",
       "categories": [
         "ROLE-PLAYING (RPG)",
-        "HACK AND SLASH/BEAT 'EM UP"
-      ],
-      "magnet": "magnet:?xt=urn:btih:6C110D8A8A7CED83D071BD88389AC38DBAD2481E&tr=http%3A%2F%2Fbt4.t-ru.org%2Fann%3Fmagnet",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co92s8.jpg",
-      "igdbId": 287853,
-      "videoId": "lqAq-7tk144"
-    },
-    {
-      "name": "Chained Together",
-      "categories": [
-        "SIMULATION",
-        "ADVENTURE",
-        "INDIE"
-      ],
-      "magnet": "magnet:?xt=urn:btih:6bff1f2b336d9f8990f6ba08b0593e8953c11cc8&dn=rutor.info&tr=udp://opentor.net:6969&tr=http://retracker.local/announce",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/coaazz.jpg",
-      "igdbId": 265111,
-      "videoId": "lVVyMT_HEgY"
-    },
-    {
-      "name": "Frostpunk 2",
-      "categories": [
-        "SIMULATION",
-        "STRATEGY",
-        "INDIE"
-      ],
-      "magnet": "magnet:?xt=urn:btih:eb4b333cd1465c1747652767fdd751b1c2ca1bbf&dn=Frostpunk+2+(2024)&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.tracker.cl%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker1.bt.moack.co.kr%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.theoks.net%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker-udp.gbitt.info%3A80%2Fannounce&tr=udp%3A%2F%2Fexplodie.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker2.dler.org%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.tiny-vps.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.ccp.ovh%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.0x7c0.com%3A6969%2Fannounce",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co8yrc.jpg",
-      "igdbId": 164290,
-      "videoId": "9kfHUN4gFiw"
-    },
-    {
-      "name": "Satisfactory: 1.0 Update",
-      "categories": [
         "SIMULATION",
         "STRATEGY",
         "ADVENTURE",
         "INDIE"
       ],
-      "magnet": "magnet:?xt=urn:btih:A3993755592B014CD90872DAFA6057B7D0357ABB&tr=http%3A%2F%2Fbt.t-ru.org%2Fann%3Fmagnet",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co9sd3.jpg",
-      "igdbId": 314012,
-      "videoId": "febekpSoEbA"
-    },
-    {
-      "name": "Hades II",
-      "categories": [
-        "ROLE-PLAYING (RPG)",
-        "HACK AND SLASH/BEAT 'EM UP",
-        "ADVENTURE",
-        "INDIE"
-      ],
-      "magnet": "magnet:?xt=urn:btih:cce01b52dfda79c3b8c1956392096a9570c712f2&dn=rutor.info&tr=udp://opentor.net:6969&tr=http://retracker.local/announce",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/coaknx.jpg",
-      "igdbId": 228525,
-      "videoId": "WH3jT53hIYM"
+      "magnet": "magnet:?xt=urn:btih:b1113c8083b591aee5db3605de939923d9abad81&dn=60.Seconds.Reatomized.v1.1.5.32.rar&tr=udp://tracker.openbittorrent.com:80/announce&tr=udp://tracker.opentrackr.org:1337/announce",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2t2j.jpg",
+      "igdbId": 120560,
+      "videoId": "xqC3Bu94eU8"
     },
     {
       "name": "Another Crab's Treasure",
@@ -152,110 +47,6 @@
       "videoId": "lAqV2XtVCUc"
     },
     {
-      "name": "Balatro",
-      "categories": [
-        "STRATEGY",
-        "STRATEGY",
-        "INDIE",
-        "CARD & BOARD GAME"
-      ],
-      "magnet": "magnet:?xt=urn:btih:ff1e626912bf9527a50c917b8d54edfab9dda7c7&dn=Balatro+(2024)&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.tracker.cl%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Ftracker-udp.gbitt.info%3A80%2Fannounce&tr=udp%3A%2F%2Fexplodie.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.theoks.net%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.dump.cl%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.ccp.ovh%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.bittor.pw%3A1337%2Fannounce&tr=udp%3A%2F%2Ftamas3.ynh.fr%3A6969%2Fannounce&tr=udp%3A%2F%2Frun.publictracker.xyz%3A6969%2Fannounce&tr=udp%3A%2F%2Fretracker01-msk-virt.corbina.net%3A80%2Fannounce&tr=udp%3A%2F%2Fopentracker.io%3A6969%2Fannounce&tr=udp%3A%2F%2Fopen.dstud.io%3A6969%2Fannounce&tr=udp%3A%2F%2Fnew-line.net%3A6969%2Fannounce&tr=udp%3A%2F%2Fmoonburrow.club%3A6969%2Fannounce&tr=udp%3A%2F%2Fleet-tracker.moe%3A1337%2Fannounce",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co9f4g.jpg",
-      "igdbId": 251833,
-      "videoId": "qChMssQkk3M"
-    },
-    {
-      "name": "The Rogue Prince of Persia",
-      "categories": [
-        "PLATFORMER",
-        "HACK AND SLASH/BEAT 'EM UP",
-        "ADVENTURE"
-      ],
-      "magnet": "magnet:?xt=urn:btih:e86403a4ab76b7c7b9449b99ea1648e1d4360406&dn=rutor.info&tr=udp://opentor.net:6969&tr=http://retracker.local/announce",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/coab8v.jpg",
-      "igdbId": 296843,
-      "videoId": "XZzOxEK7hXo"
-    },
-    {
-      "name": "Cyberpunk 2077: Ultimate Edition",
-      "categories": [
-        "ACTION",
-        "ROLE-PLAYING (RPG)",
-        "ADVENTURE"
-      ],
-      "magnet": "magnet:?xt=urn:btih:0456e08293e1bf7a9e173e573dfbe8dcd5fb0e3e",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co7iy1.jpg",
-      "igdbId": 277807,
-      "videoId": "7B4r1jbpS2A"
-    },
-    {
-      "name": "Final Fantasy VII Rebirth",
-      "categories": [
-        "ROLE-PLAYING (RPG)",
-        "ADVENTURE"
-      ],
-      "magnet": "magnet:?xt=urn:btih:F53734575823F31151ACC678CA590935898E6102&tr=http%3A%2F%2Fbt3.t-ru.org%2Fann%3Fmagnet",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/cob9k6.jpg",
-      "igdbId": 133236,
-      "videoId": "H_4CkyOmuuU"
-    },
-    {
-      "name": "Elden Ring: Shadow of the Erdtree",
-      "categories": [
-        "ROLE-PLAYING (RPG)",
-        "ADVENTURE"
-      ],
-      "magnet": "magnet:?xt=urn:btih:B3CB238628956851CDE7D10D3A2693D8CEFAEFA2&dn=ELDEN+RING%3A+Deluxe+Edition+%2B+Shadow+of+the+Erdtree+Premium+Bundle+%28v1.16+%2B+All+DLCs+%2B+Bonus+Content+%2B+Online+Multiplayer+%2B+MULTi15%29+%28From+49.9+GB%29+%5BDODI+Repack%5D&tr=udp%3A%2F%2F9.rarbg.to%3A2870%2Fannounce&tr=udp%3A%2F%2Feddie4.nl%3A6969%2Fannounce&tr=udp%3A%2F%2Fthetracker.org%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337&tr=udp%3A%2F%2Ftracker.zer0day.to%3A1337&tr=udp%3A%2F%2F9.rarbg.com%3A2710%2Fannounce&tr=udp%3A%2F%2Fexplodie.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker1.wasabii.com.tw%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Ftracker.cypherpunks.ru%3A6969%2Fannounce&tr=udp%3A%2F%2Fp4p.arenabg.com%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=http%3A%2F%2Ftracker.openbittorrent.com%3A80%2Fannounce&tr=udp%3A%2F%2Fopentracker.i2p.rocks%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.internetwarriors.net%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fcoppersurfer.tk%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.zer0day.to%3A1337%2Fannounce",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co7sly.jpg",
-      "igdbId": 240009,
-      "videoId": "M-Xh4vbs6go"
-    },
-    {
-      "name": "Ghost of Tsushima: Director's Cut",
-      "categories": [
-        "ROLE-PLAYING (RPG)",
-        "ADVENTURE"
-      ],
-      "magnet": "magnet:?xt=urn:btih:c56f779ccca9f5d04958c50cecadaa7f6b23038e&dn=rutor.info&tr=udp://opentor.net:6969&tr=http://retracker.local/announce",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co3p5f.jpg",
-      "igdbId": 153700,
-      "videoId": "EzWBNwhb870"
-    },
-    {
-      "name": "Monster Hunter Wilds: Title Update 2",
-      "categories": [
-        "ACTION"
-      ],
-      "magnet": "magnet:?xt=urn:btih:EBA5C39B46C040AE4B529CB0C1D544DB296608B1&tr=http%3A%2F%2Fbt.t-ru.org%2Fann%3Fmagnet",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/coauso.jpg",
-      "igdbId": 338637,
-      "videoId": "GAf4Z4rCpK4"
-    },
-    {
-      "name": "Schedule I",
-      "categories": [
-        "SIMULATION",
-        "STRATEGY",
-        "INDIE"
-      ],
-      "magnet": "magnet:?xt=urn:btih:C488C089FC55C2F250143DF6C85CB9087097B2AD&tr=http%3A%2F%2Fbt3.t-ru.org%2Fann%3Fmagnet",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co9adi.jpg",
-      "igdbId": 328373,
-      "videoId": "fR1-GXVPbuo"
-    },
-    {
-      "name": "Borderlands 4",
-      "categories": [
-        "ACTION",
-        "ROLE-PLAYING (RPG)",
-        "ADVENTURE"
-      ],
-      "magnet": "magnet:?xt=urn:btih:22AF22AD5C6C15E3E436AC5B56C0C2FE9A2748B4&tr=http%3A%2F%2Fbt.t-ru.org%2Fann%3Fmagnet",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co9zuq.jpg",
-      "igdbId": 314246,
-      "videoId": "BXzf6j2Sr5c"
-    },
-    {
       "name": "ARC Raiders",
       "categories": [
         "ACTION"
@@ -264,446 +55,6 @@
       "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co9rk1.jpg",
       "igdbId": 185258,
       "videoId": "61adghS9aps"
-    },
-    {
-      "name": "Deep Rock Galactic: Survivor",
-      "categories": [
-        "ACTION"
-      ],
-      "magnet": "magnet:?xt=urn:btih:01e37148891f970c7de1595153566dd0f04183c1&dn=rutor.info&tr=udp://opentor.net:6969&tr=http://retracker.local/announce",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co68ah.jpg",
-      "igdbId": 240556,
-      "videoId": "VQ4WnXdarx4"
-    },
-    {
-      "name": "Monster Hunter Wilds",
-      "categories": [
-        "ROLE-PLAYING (RPG)",
-        "HACK AND SLASH/BEAT 'EM UP",
-        "ADVENTURE"
-      ],
-      "magnet": "magnet:?xt=urn:btih:79cf056abcaac842cf2502fccebdb6df9c3a339e&dn=MONSTER+HUNTER+RISE&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A6969",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co904o.jpg",
-      "igdbId": 279661,
-      "videoId": "O3syM4tV8Xw"
-    },
-    {
-      "name": "Shin Megami Tensei V: Vengeance",
-      "categories": [
-        "ROLE-PLAYING (RPG)",
-        "ADVENTURE"
-      ],
-      "magnet": "magnet:?xt=urn:btih:37feb232eb8c7f977de7b39cda34c3c5cc3e1cb1&dn=rutor.info&tr=udp://opentor.net:6969&tr=http://retracker.local/announce",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co7sv4.jpg",
-      "igdbId": 287850,
-      "videoId": "KDiRwSeXbZM"
-    },
-    {
-      "name": "Granblue Fantasy: Relink",
-      "categories": [
-        "ROLE-PLAYING (RPG)",
-        "HACK AND SLASH/BEAT 'EM UP",
-        "ADVENTURE"
-      ],
-      "magnet": "magnet:?xt=urn:btih:B63E26AA0997E95A336E7F78BFF4A5E561CB6103&tr=http%3A%2F%2Fbt3.t-ru.org%2Fann%3Fmagnet",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co7ptq.jpg",
-      "igdbId": 22788,
-      "videoId": "odAeEqQTIrU"
-    },
-    {
-      "name": "Metaphor: ReFantazio",
-      "categories": [
-        "ROLE-PLAYING (RPG)",
-        "STRATEGY",
-        "ADVENTURE"
-      ],
-      "magnet": "magnet:?xt=urn:btih:e6a6d8e89c5e3d1d29f257f7e154ca206511d9d4&dn=rutor.info&tr=udp://opentor.net:6969&tr=http://retracker.local/announce",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co8d9t.jpg",
-      "igdbId": 26602,
-      "videoId": "0vpnf0SChPA"
-    },
-    {
-      "name": "Dragon's Dogma II",
-      "categories": [
-        "ROLE-PLAYING (RPG)"
-      ],
-      "magnet": "magnet:?xt=urn:btih:678bc6ac22a5befac6bbc50834e91d4f9755dee4&dn=rutor.info&tr=udp://opentor.net:6969&tr=http://retracker.local/announce",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co833w.jpg",
-      "igdbId": 115060,
-      "videoId": "ndLqGPqeQqM"
-    },
-    {
-      "name": "Like a Dragon: Infinite Wealth",
-      "categories": [
-        "ROLE-PLAYING (RPG)",
-        "HACK AND SLASH/BEAT 'EM UP",
-        "ADVENTURE"
-      ],
-      "magnet": "magnet:?xt=urn:btih:A3993755592B014CD90872DAFA6057B7D0357ABB&tr=http%3A%2F%2Fbt.t-ru.org%2Fann%3Fmagnet",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co8356.jpg",
-      "igdbId": 217623,
-      "videoId": "Fx0YMVgCD5E"
-    },
-    {
-      "name": "Tekken 8",
-      "categories": [
-        "ACTION"
-      ],
-      "magnet": "magnet:?xt=urn:btih:e0d90ffbb2e16acd0f7fee686ba161c6a2131273&dn=TEKKEN+8+(2024)&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.tracker.cl%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Ftracker-udp.gbitt.info%3A80%2Fannounce&tr=udp%3A%2F%2Fexplodie.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.theoks.net%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.dump.cl%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.ccp.ovh%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.bittor.pw%3A1337%2Fannounce&tr=udp%3A%2F%2Ftamas3.ynh.fr%3A6969%2Fannounce&tr=udp%3A%2F%2Frun.publictracker.xyz%3A6969%2Fannounce&tr=udp%3A%2F%2Fretracker01-msk-virt.corbina.net%3A80%2Fannounce&tr=udp%3A%2F%2Fopentracker.io%3A6969%2Fannounce&tr=udp%3A%2F%2Fopen.dstud.io%3A6969%2Fannounce&tr=udp%3A%2F%2Fnew-line.net%3A6969%2Fannounce&tr=udp%3A%2F%2Fmoonburrow.club%3A6969%2Fannounce&tr=udp%3A%2F%2Fleet-tracker.moe%3A1337%2Fannounce",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co7lbb.jpg",
-      "igdbId": 217590,
-      "videoId": "07FdDRbdurg"
-    },
-    {
-      "name": "Helldivers 2",
-      "categories": [
-        "ACTION",
-        "TACTICAL"
-      ],
-      "magnet": "magnet:?xt=urn:btih:c84445efbc6402b47b4d090c360c112a7e89081b&dn=rutor.info&tr=udp://opentor.net:6969&tr=http://retracker.local/announce",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/coabbf.jpg",
-      "igdbId": 250616,
-      "videoId": "rE7KTE28HrA"
-    },
-    {
-      "name": "Red Dead Redemption 2",
-      "categories": [
-        "ACTION",
-        "ROLE-PLAYING (RPG)",
-        "ADVENTURE"
-      ],
-      "magnet": "magnet:?xt=urn:btih:9a1027149acf5a590277b28426908b3f6413bf8b&dn=Red+Dead+Redemption+2+(2018-2019)&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=https%3A%2F%2Ftracker.loligirl.cn%3A443%2Fannounce&tr=udp%3A%2F%2Ftracker1.myporn.club%3A9337%2Fannounce&tr=udp%3A%2F%2Ftracker.tiny-vps.com%3A6969%2Fannounce&tr=udp%3A%2F%2Fopentracker.io%3A6969%2Fannounce&tr=udp%3A%2F%2Fopen.free-tracker.ga%3A6969%2Fannounce&tr=udp%3A%2F%2Fmoonburrow.club%3A6969%2Fannounce&tr=udp%3A%2F%2Fisk.richardsw.club%3A6969%2Fannounce&tr=udp%3A%2F%2Fepider.me%3A6969%2Fannounce&tr=udp%3A%2F%2Fbt2.archive.org%3A6969%2Fannounce&tr=https%3A%2F%2Ftracker.tamersunion.org%3A443%2Fannounce&tr=https%3A%2F%2Ftracker.renfei.net%3A443%2Fannounce&tr=http%3A%2F%2Ftracker.renfei.net%3A8080%2Fannounce&tr=http%3A%2F%2Ftracker.ipv6tracker.org%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker2.dler.org%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.therarbg.to%3A6969%2Fannounce",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1q1f.jpg",
-      "igdbId": 25076,
-      "videoId": "94B-38sX5fs"
-    },
-    {
-      "name": "Death Stranding",
-      "categories": [
-        "ACTION",
-        "ROLE-PLAYING (RPG)",
-        "ADVENTURE"
-      ],
-      "magnet": "magnet:?xt=urn:btih:03a64dc3a24a432ec9daa7a8a96efbab293b83bc&dn=Death+Stranding+by+xatab&tr=udp%3A%2F%2Fopentor.org%3A2710&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80%2Fannounc&tr=http%3A%2F%2Fretracker.local%2Fannounce&tr=http%3A%2F%2Ftracker.filetracker.pl%3A8089%2Fannounce&tr=http%3A%2F%2Ftracker2.wasabii.com.tw%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.grepler.com%3A6969%2Fannounce&tr=http%3A%2F%2F125.227.35.196%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.tiny-vps.com%3A6969%2Fannounce&tr=http%3A%2F%2F87.248.186.252%3A8080%2Fannounce&tr=http%3A%2F%2F210.244.71.25%3A6969%2Fannounce&tr=http%3A%2F%2F46.4.109.148%3A6969%2Fannounce&tr=udp%3A%2F%2F46.148.18.250%3A2710&tr=http%3A%2F%2Ftracker.dler.org%3A6969%2Fannounce&tr=udp%3A%2F%2F%5B2001%3A67c%3A28f8%3A92%3A%3A1111%3A1%5D%3A2710&tr=udp%3A%2F%2Fipv6.leechers-paradise.org%3A6969",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co5vq8.jpg",
-      "igdbId": 19564,
-      "videoId": "wyAnYp4GbWM"
-    },
-    {
-      "name": "Control",
-      "categories": [
-        "ACTION",
-        "ADVENTURE",
-        "HORROR"
-      ],
-      "magnet": "magnet:?xt=urn:btih:c591fc0442ae1c3755b610edb08b1ccf2f96bb95&dn=Control+by+xatab&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80%2Fannounc&tr=http%3A%2F%2Fretracker.local%2Fannounce&tr=http%3A%2F%2Ftracker.filetracker.pl%3A8089%2Fannounce&tr=http%3A%2F%2Ftracker2.wasabii.com.tw%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.grepler.com%3A6969%2Fannounce&tr=http%3A%2F%2F125.227.35.196%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.tiny-vps.com%3A6969%2Fannounce&tr=http%3A%2F%2F87.248.186.252%3A8080%2Fannounce&tr=http%3A%2F%2F210.244.71.25%3A6969%2Fannounce&tr=http%3A%2F%2F46.4.109.148%3A6969%2Fannounce&tr=udp%3A%2F%2F46.148.18.250%3A2710&tr=http%3A%2F%2Ftracker.dler.org%3A6969%2Fannounce&tr=udp%3A%2F%2F%5B2001%3A67c%3A28f8%3A92%3A%3A1111%3A1%5D%3A2710&tr=udp%3A%2F%2Fipv6.leechers-paradise.org%3A6969",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2evj.jpg",
-      "igdbId": 103329,
-      "videoId": "8Idtqyx6gsU"
-    },
-    {
-      "name": "Outer Wilds",
-      "categories": [
-        "PUZZLE",
-        "SIMULATION",
-        "ADVENTURE",
-        "INDIE"
-      ],
-      "magnet": "magnet:?xt=urn:btih:43c8e5cba3ca36e4037a2a2437c3e712da6ff5cc&dn=Outer+Wilds+(2019)&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=https%3A%2F%2Ftracker.loligirl.cn%3A443%2Fannounce&tr=udp%3A%2F%2Ftracker1.myporn.club%3A9337%2Fannounce&tr=udp%3A%2F%2Ftracker.tiny-vps.com%3A6969%2Fannounce&tr=udp%3A%2F%2Fopentracker.io%3A6969%2Fannounce&tr=udp%3A%2F%2Fopen.free-tracker.ga%3A6969%2Fannounce&tr=udp%3A%2F%2Fmoonburrow.club%3A6969%2Fannounce&tr=udp%3A%2F%2Fisk.richardsw.club%3A6969%2Fannounce&tr=udp%3A%2F%2Fepider.me%3A6969%2Fannounce&tr=udp%3A%2F%2Fbt2.archive.org%3A6969%2Fannounce&tr=https%3A%2F%2Ftracker.tamersunion.org%3A443%2Fannounce&tr=https%3A%2F%2Ftracker.renfei.net%3A443%2Fannounce&tr=http%3A%2F%2Ftracker.renfei.net%3A8080%2Fannounce&tr=http%3A%2F%2Ftracker.ipv6tracker.org%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker2.dler.org%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.therarbg.to%3A6969%2Fannounce",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co65ac.jpg",
-      "igdbId": 11737,
-      "videoId": "1Lr2IYLAb_Y"
-    },
-    {
-      "name": "Subnautica",
-      "categories": [
-        "ADVENTURE",
-        "INDIE"
-      ],
-      "magnet": "magnet:?xt=urn:btih:1550e81cb7b79cf37c3aedd0d724bf35011b86c9&dn=Subnautica+(2014-2018)&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80%2Fannounc&tr=http%3A%2F%2Fretracker.local%2Fannounce&tr=http%3A%2F%2Ftracker.filetracker.pl%3A8089%2Fannounce&tr=http%3A%2F%2Ftracker2.wasabii.com.tw%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.grepler.com%3A6969%2Fannounce&tr=http%3A%2F%2F125.227.35.196%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.tiny-vps.com%3A6969%2Fannounce&tr=http%3A%2F%2F87.248.186.252%3A8080%2Fannounce&tr=http%3A%2F%2F210.244.71.25%3A6969%2Fannounce&tr=http%3A%2F%2F46.4.109.148%3A6969%2Fannounce&tr=udp%3A%2F%2F46.148.18.250%3A2710&tr=http%3A%2F%2Ftracker.dler.org%3A6969%2Fannounce&tr=udp%3A%2F%2F%5B2001%3A67c%3A28f8%3A92%3A%3A1111%3A1%5D%3A2710&tr=udp%3A%2F%2Fipv6.leechers-paradise.org%3A6969",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/coa938.jpg",
-      "igdbId": 9254,
-      "videoId": "Rz2SNm8VguE"
-    },
-    {
-      "name": "Hades",
-      "categories": [
-        "ROLE-PLAYING (RPG)",
-        "HACK AND SLASH/BEAT 'EM UP",
-        "ADVENTURE",
-        "INDIE"
-      ],
-      "magnet": "magnet:?xt=urn:btih:c09b78297c1be668eb89c286269493685e49297c",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/cob9kr.jpg",
-      "igdbId": 113112,
-      "videoId": "YZZFlcE0fWE"
-    },
-    {
-      "name": "Valheim",
-      "categories": [
-        "ROLE-PLAYING (RPG)",
-        "ADVENTURE",
-        "INDIE"
-      ],
-      "magnet": "magnet:?xt=urn:btih:08380793ED422F71FB0324660AE42C89DE5EFF82&tr=http%3A%2F%2Fbt4.t-ru.org%2Fann%3Fmagnet",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/cob24q.jpg",
-      "igdbId": 104967,
-      "videoId": "GlePlUL9npA"
-    },
-    {
-      "name": "Rust",
-      "categories": [
-        "ACTION",
-        "ROLE-PLAYING (RPG)",
-        "ADVENTURE",
-        "INDIE"
-      ],
-      "magnet": "magnet:?xt=urn:btih:1ABA7D7AA8BC23F5ED87E992662BD5900B2B74E2&tr=http%3A%2F%2Fbt3.t-ru.org%2Fann%3Fmagnet",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/coajjj.jpg",
-      "igdbId": 3277,
-      "videoId": "5SbKrynpliw"
-    },
-    {
-      "name": "Left 4 Dead 2",
-      "categories": [
-        "ACTION",
-        "HORROR"
-      ],
-      "magnet": "magnet:?xt=urn:btih:05d48c348ed7a1637082f32bf90c934dac4b0002&dn=rutor.info&tr=udp://opentor.net:6969&tr=http://retracker.local/announce",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1y2f.jpg",
-      "igdbId": 124,
-      "videoId": "9XIle_kLHKU"
-    },
-    {
-      "name": "Counter-Strike: Source",
-      "categories": [
-        "ACTION"
-      ],
-      "magnet": "magnet:?xt=urn:btih:364074fb9c0f5e2644f2f780be544149ee986cc4&dn=rutor.info&tr=udp://opentor.net:6969&tr=http://retracker.local/announce",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1txv.jpg",
-      "igdbId": 307,
-      "videoId": "bvI62FUDpKA"
-    },
-    {
-      "name": "Diablo II",
-      "categories": [
-        "ROLE-PLAYING (RPG)",
-        "HACK AND SLASH/BEAT 'EM UP"
-      ],
-      "magnet": "magnet:?xt=urn:btih:3b46dfe9df42c1571a1a6ffc29c29ef10319b7d0&dn=Diablo+II+Resurrected&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.tracker.cl%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker1.bt.moack.co.kr%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.theoks.net%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker-udp.gbitt.info%3A80%2Fannounce&tr=udp%3A%2F%2Fexplodie.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker2.dler.org%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.tiny-vps.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.ccp.ovh%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.0x7c0.com%3A6969%2Fannounce",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co3gfq.jpg",
-      "igdbId": 126,
-      "videoId": "KxnWjyvmpnI"
-    },
-    {
-      "name": "The Sims 3",
-      "categories": [
-        "ROLE-PLAYING (RPG)",
-        "SIMULATION",
-        "STRATEGY"
-      ],
-      "magnet": "magnet:?xt=urn:btih:27100d4dc952508daf28ddfd3a43efbb10910d22",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/coavu6.jpg",
-      "igdbId": 260,
-      "videoId": "DuOBaZxnfwQ"
-    },
-    {
-      "name": "Factorio",
-      "categories": [
-        "SIMULATION",
-        "STRATEGY",
-        "INDIE"
-      ],
-      "magnet": "magnet:?xt=urn:btih:125C04E5A055AA07C3BFB9BC2FF41546C6C28545&#038;tr=http%3A%2F%2Fbt.t-ru.org%2Fann%3Fmagnet&#038;dn=%5BDL%5D%20Factorio%20%5BL%5D%20%5BRUS%20%2B%20ENG%20%2B%2020%5D%20(2016%2C%20Simulation)%20(2.0.32%20%2B%201%20DLC)%20%5BGOG%5D",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1tfy.jpg",
-      "igdbId": 7046,
-      "videoId": "KVvXv1Z6EY8"
-    },
-    {
-      "name": "Disco Elysium: The Final Cut",
-      "categories": [
-        "ROLE-PLAYING (RPG)",
-        "ADVENTURE",
-        "INDIE"
-      ],
-      "magnet": "magnet:?xt=urn:btih:e1e71fc6bdae5097c2faaf5d6dc6b22d232ec617&#038;dn=Disco_Elysium_a0a062e7_(63158)_win_gog",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2ve1.jpg",
-      "igdbId": 141540,
-      "videoId": "ixtTkkEnq0Q"
-    },
-    {
-      "name": "Baldur's Gate 3: Digital Deluxe Edition",
-      "categories": [
-        "ROLE-PLAYING (RPG)",
-        "STRATEGY",
-        "STRATEGY",
-        "TACTICAL",
-        "ADVENTURE"
-      ],
-      "magnet": "magnet:?xt=urn:btih:B374466DAC361494021A356F7C4EE7DC2A4D978D&dn=Baldur%26%23039%3Bs+Gate+3%3A+Digital+Deluxe+Edition+%28v4.1.1.3624901%2FHotfix+1+%2B+DLC%2FBonus+Content%2C+MULTi13%29+%5BFitGirl+Repack%2C+Selective+Download+-+from+63.1+GB%5D&tr=udp%3A%2F%2Fopentor.net%3A6969&tr=udp%3A%2F%2Fopentor.org%3A2710&tr=udp%3A%2F%2F9.rarbg.me%3A2730%2Fannounce&tr=udp%3A%2F%2F9.rarbg.me%3A2770%2Fannounce&tr=udp%3A%2F%2F9.rarbg.to%3A2720%2Fannounce&tr=udp%3A%2F%2F9.rarbg.to%3A2730%2Fannounce&tr=udp%3A%2F%2F9.rarbg.to%3A2770%2Fannounce&tr=udp%3A%2F%2Fopentracker.i2p.rocks%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=https%3A%2F%2Ftracker.tamersunion.org%3A443%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=http%3A%2F%2Ftracker.gbitt.info%3A80%2Fannounce&tr=http%3A%2F%2Ftracker.ccp.ovh%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=http%3A%2F%2Ftracker.openbittorrent.com%3A80%2Fannounce&tr=udp%3A%2F%2Fopentracker.i2p.rocks%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.internetwarriors.net%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fcoppersurfer.tk%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.zer0day.to%3A1337%2Fannounce",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co9bc5.jpg",
-      "igdbId": 279884,
-      "videoId": "jNY7AEQ59-8"
-    },
-    {
-      "name": "Cities: Skylines",
-      "categories": [
-        "SIMULATION",
-        "STRATEGY"
-      ],
-      "magnet": "magnet:?xt=urn:btih:9d56af731a9e56ba7235a919af54d5f416d9ee75&dn=Cities+Skylines+(2015)&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.tracker.cl%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Ftracker-udp.gbitt.info%3A80%2Fannounce&tr=udp%3A%2F%2Fexplodie.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.theoks.net%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.dump.cl%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.ccp.ovh%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.bittor.pw%3A1337%2Fannounce&tr=udp%3A%2F%2Ftamas3.ynh.fr%3A6969%2Fannounce&tr=udp%3A%2F%2Frun.publictracker.xyz%3A6969%2Fannounce&tr=udp%3A%2F%2Fretracker01-msk-virt.corbina.net%3A80%2Fannounce&tr=udp%3A%2F%2Fopentracker.io%3A6969%2Fannounce&tr=udp%3A%2F%2Fopen.dstud.io%3A6969%2Fannounce&tr=udp%3A%2F%2Fnew-line.net%3A6969%2Fannounce&tr=udp%3A%2F%2Fmoonburrow.club%3A6969%2Fannounce&tr=udp%3A%2F%2Fleet-tracker.moe%3A1337%2Fannounce",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/coaas0.jpg",
-      "igdbId": 9066,
-      "videoId": "cVhYSyVbGBs"
-    },
-    {
-      "name": "Portal 2",
-      "categories": [
-        "PLATFORMER",
-        "PUZZLE",
-        "ADVENTURE"
-      ],
-      "magnet": "magnet:?xt=urn:btih:879a394561d73a9215d83f704c3e7fa0fbd482e5&dn=Portal+2+%5BValve%5D+(2011)&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=http%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Ftracker-udp.gbitt.info%3A80%2Fannounce&tr=udp%3A%2F%2Fexplodie.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.qu.ax%3A6969%2Fannounce&tr=udp%3A%2F%2Fopentracker.io%3A6969%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.qu.ax%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.ololosh.space%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.dump.cl%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.bittor.pw%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.free-tracker.ga%3A6969%2Fannounce&tr=udp%3A%2F%2Fns-1.x-fins.com%3A6969%2Fannounce&tr=udp%3A%2F%2Fleet-tracker.moe%3A1337%2Fannounce&tr=udp%3A%2F%2Fisk.richardsw.club%3A6969%2Fannounce&tr=udp%3A%2F%2Fdiscord.heihachi.pw%3A6969%2Fannounce&tr=http%3A%2F%2Fwww.torrentsnipe.info%3A2701%2Fannounce&tr=http%3A%2F%2Fwww.genesis-sp.org%3A2710%2Fannounce&tr=http%3A%2F%2Ftracker810.xyz%3A11450%2Fannounce&tr=http%3A%2F%2Ftracker.xiaoduola.xyz%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.vanitycore.co%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.sbsub.com%3A2710%2Fannounce&tr=http%3A%2F%2Ftracker.moxing.party%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.lintk.me%3A2710%2Fannounce&tr=http%3A%2F%2Ftracker.ipv6tracker.org%3A80%2Fannounce&tr=http%3A%2F%2Ftracker.dmcomic.org%3A2710%2Fannounce&tr=http%3A%2F%2Ftracker.corpscorp.online%3A80%2Fannounce&tr=http%3A%2F%2Ftracker.bz%3A80%2Fannounce&tr=http%3A%2F%2Ftracker.bt-hash.com%3A80%2Fannounce&tr=http%3A%2F%2Ftracker.bittor.pw%3A1337%2Fannounce&tr=http%3A%2F%2Ft.jaekr.sh%3A6969%2Fannounce&tr=http%3A%2F%2Fshubt.net%3A2710%2Fannounce&tr=http%3A%2F%2Fshare.hkg-fansub.info%3A80%2Fannounce.php&tr=http%3A%2F%2Fservandroidkino.ru%3A80%2Fannounce&tr=http%3A%2F%2Fseeders-paradise.org%3A80%2Fannounce&tr=http%3A%2F%2Fretracker.spark-rostov.ru%3A80%2Fannounce&tr=http%3A%2F%2Fopen.trackerlist.xyz%3A80%2Fannounce&tr=http%3A%2F%2Fhome.yxgz.club%3A6969%2Fannounce&tr=http%3A%2F%2Fhighteahop.top%3A6960%2Fannounce&tr=http%3A%2F%2Ffinbytes.org%3A80%2Fannounce.php&tr=http%3A%2F%2Fbuny.uk%3A6969%2Fannounce&tr=http%3A%2F%2Fbt1.xxxxbt.cc%3A6969%2Fannounce&tr=http%3A%2F%2Fbt.poletracker.org%3A2710%2Fannounce&tr=http%3A%2F%2F0d.kebhana.mx%3A443%2Fannounce&tr=http%3A%2F%2F0123456789nonexistent.com%3A80%2Fannounce&tr=udp%3A%2F%2Fpublic.tracker.vraphim.com%3A6969%2Fannounce&tr=http%3A%2F%2Fpublic.tracker.vraphim.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker1.myporn.club%3A9337%2Fannounce&tr=udp%3A%2F%2Ftracker.theoks.net%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.0x7c0.com%3A6969%2Fannounce&tr=udp%3A%2F%2Fp4p.arenabg.com%3A1337%2Fannounce&tr=udp%3A%2F%2Fbt.ktrackers.com%3A6666%2Fannounce&tr=http%3A%2F%2Ftracker.renfei.net%3A8080%2Fannounce&tr=http%3A%2F%2Fp4p.arenabg.com%3A1337%2Fannounce&tr=udp%3A%2F%2Fz.mercax.com%3A53%2Fannounce&tr=udp%3A%2F%2Fwepzone.net%3A6969%2Fannounce&tr=udp%3A%2F%2Fttk2.nbaonlineservice.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker2.dler.org%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.tryhackx.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.tiny-vps.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.srv00.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.skynetcloud.site%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.gmi.gd%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.gigantino.net%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.fnix.net%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.filemail.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.edkj.club%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.dler.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftrackarr.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftr4ck3r.duckdns.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ft.overflow.biz%3A6969%2Fannounce&tr=udp%3A%2F%2Fserpb.vpsburti.com%3A6969%2Fannounce&tr=udp%3A%2F%2Fseedpeer.net%3A6969%2Fannounce&tr=udp%3A%2F%2Fretracker.lanta.me%3A2710%2Fannounce&tr=udp%3A%2F%2Fp2p.publictracker.xyz%3A6969%2Fannounce&tr=udp%3A%2F%2Fopen.dstud.io%3A6969%2Fannounce&tr=udp%3A%2F%2Fodd-hd.fr%3A6969%2Fannounce&tr=udp%3A%2F%2Fmartin-gebhardt.eu%3A25%2Fannounce&tr=udp%3A%2F%2Fjutone.com%3A6969%2Fannounce&tr=udp%3A%2F%2Fismaarino.com%3A1234%2Fannounce&tr=udp%3A%2F%2Fevan.im%3A6969%2Fannounce&tr=udp%3A%2F%2Fd40969.acod.regrucolo.ru%3A6969%2Fannounce&tr=udp%3A%2F%2Fbt.rer.lol%3A2710%2Fannounce&tr=udp%3A%2F%2Fbittorrent-tracker.e-n-c-r-y-p-t.net%3A1337%2Fannounce&tr=udp%3A%2F%2Fbandito.byterunner.io%3A6969%2Fannounce&tr=udp%3A%2F%2Famigacity.xyz%3A6969%2Fannounce&tr=https%3A%2F%2Ftracker.yemekyedim.com%3A443%2Fannounce&tr=https%3A%2F%2Ftracker.lilithraws.org%3A443%2Fannounce&tr=https%3A%2F%2Ftracker.gcrenwp.top%3A443%2Fannounce&tr=https%3A%2F%2Ftracker.cloudit.top%3A443%2Fannounce&tr=https%3A%2F%2Ftracker.bt4g.com%3A443%2Fannounce&tr=https%3A%2F%2Ftracker-zhuqiy.dgj055.icu%3A443%2Fannounce&tr=https%3A%2F%2Ftr.zukizuki.org%3A443%2Fannounce&tr=https%3A%2F%2Ftr.nyacat.pw%3A443%2Fannounce&tr=https%3A%2F%2Fsparkle.ghostchu-services.top%3A443%2Fannounce&tr=https%3A%2F%2Fapi.ipv4online.uk%3A443%2Fannounce&tr=http%3A%2F%2Fwepzone.net%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker2.dler.org%3A80%2Fannounce&tr=http%3A%2F%2Ftracker.waaa.moe%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.srv00.com%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.mywaifu.best%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.edkj.club%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.dler.org%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.dler.com%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.bt4g.com%3A2095%2Fannounce&tr=http%3A%2F%2Ftracker-zhuqiy.dgj055.icu%3A80%2Fannounce&tr=http%3A%2F%2Ftr1.aag.moe%3A2095%2Fannounce&tr=http%3A%2F%2Ftr.nyacat.pw%3A80%2Fannounce&tr=http%3A%2F%2Ftaciturn-shadow.spb.ru%3A6969%2Fannounce&tr=http%3A%2F%2Ft.overflow.biz%3A6969%2Fannounce&tr=http%3A%2F%2Fopen.acgtracker.com%3A1096%2Fannounce&tr=http%3A%2F%2Fch3oh.ru%3A6969%2Fannounce&tr=http%3A%2F%2Fbittorrent-tracker.e-n-c-r-y-p-t.net%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.torrust-demo.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.deadorbit.nl%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.darkness.services%3A6969%2Fannounce&tr=udp%3A%2F%2Fipv4announce.sktorrent.eu%3A6969%2Fannounce&tr=udp%3A%2F%2Fipv4.rer.lol%3A2710%2Fannounce&tr=udp%3A%2F%2Fconcen.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fbt.rer.lol%3A6969%2Fannounce&tr=https%3A%2F%2Ftracker.leechshield.link%3A443%2Fannounce&tr=https%3A%2F%2Ftracker.ipfsscan.io%3A443%2Fannounce&tr=http%3A%2F%2Ftracker4.itzmx.com%3A2710%2Fannounce&tr=http%3A%2F%2Ftracker3.itzmx.com%3A6961%2Fannounce&tr=http%3A%2F%2Ftracker1.itzmx.com%3A8080%2Fannounce&tr=http%3A%2F%2F1337.abcvg.info%3A80%2Fannounce",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1rs4.jpg",
-      "igdbId": 72,
-      "videoId": "mC_u9ZwlIUc"
-    },
-    {
-      "name": "StarCraft II: Wings of Liberty",
-      "categories": [
-        "REAL TIME STRATEGY (RTS)",
-        "STRATEGY"
-      ],
-      "magnet": "magnet:?xt=urn:btih:4e693c69ffed1d806dbb9bdfb1784c50bc180c2b",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1tnn.jpg",
-      "igdbId": 239,
-      "videoId": "kMBToA5QzeE"
-    },
-    {
-      "name": "Sid Meier's Civilization V",
-      "categories": [
-        "SIMULATION",
-        "STRATEGY",
-        "STRATEGY"
-      ],
-      "magnet": "magnet:?xt=urn:btih:19de01b26f19455add635c4b64c172e753ec03ed&dn=Sid+Meier's+Civilization+VI+(2016)&tr=http%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.tracker.cl%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.tiny-vps.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.0x7c0.com%3A6969%2Fannounce&tr=udp%3A%2F%2Fopentracker.io%3A6969%2Fannounce&tr=https%3A%2F%2Ftracker.tamersunion.org%3A443%2Fannounce&tr=https%3A%2F%2Ftracker.loligirl.cn%3A443%2Fannounce&tr=udp%3A%2F%2Ftracker.theoks.net%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.dler.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fretracker01-msk-virt.corbina.net%3A80%2Fannounce&tr=udp%3A%2F%2Fretracker.lanta.me%3A2710%2Fannounce&tr=udp%3A%2F%2Fopen.u-p.pw%3A6969%2Fannounce&tr=udp%3A%2F%2Foh.fuuuuuck.com%3A6969%2Fannounce&tr=udp%3A%2F%2Fmoonburrow.club%3A6969%2Fannounce&tr=udp%3A%2F%2Fmartin-gebhardt.eu%3A25%2Fannounce&tr=udp%3A%2F%2Fexplodie.org%3A6969%2Fannounce",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co20up.jpg",
-      "igdbId": 866,
-      "videoId": "B2EDj8yfMoQ"
-    },
-    {
-      "name": "Euro Truck Simulator 2",
-      "categories": [
-        "RACING",
-        "SIMULATION"
-      ],
-      "magnet": "magnet:?xt=urn:btih:AACBA7E3F7F86C74385A7472381472EF276D716C&dn=Euro+Truck+Simulator+2+%28v1.53.2.1s+%2B+94+DLCs%2C+MULTi42%29+%5BFitGirl+Repack%5D&tr=udp%3A%2F%2Fopentor.net%3A6969&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Ftracker.theoks.net%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.ccp.ovh%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=http%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=https%3A%2F%2Ftracker.tamersunion.org%3A443%2Fannounce&tr=udp%3A%2F%2Fexplodie.org%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.bt4g.com%3A2095%2Fannounce&tr=udp%3A%2F%2Fbt2.archive.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fbt1.archive.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.filemail.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker1.bt.moack.co.kr%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=http%3A%2F%2Ftracker.openbittorrent.com%3A80%2Fannounce&tr=udp%3A%2F%2Fopentracker.i2p.rocks%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.internetwarriors.net%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fcoppersurfer.tk%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.zer0day.to%3A1337%2Fannounce",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co7et5.jpg",
-      "igdbId": 3070,
-      "videoId": "5uvwfskYwl0"
-    },
-    {
-      "name": "Terraria",
-      "categories": [
-        "PLATFORMER",
-        "ROLE-PLAYING (RPG)",
-        "SIMULATION",
-        "STRATEGY",
-        "ADVENTURE",
-        "INDIE",
-        "HORROR"
-      ],
-      "magnet": "magnet:?xt=urn:btih:D569C084C2F63E4EEEA5213D0335E7E7C8267AD4&#038;dn=Terraria%20%5BL%5D%20%5BRUS%20%2B%20ENG%20%2B%207%5D%20(2011)%20(1.4.4.9%20v4)%20%5BGOG%5D",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/coaamg.jpg",
-      "igdbId": 1879,
-      "videoId": "w7uOhFTrrq0"
-    },
-    {
-      "name": "Stardew Valley",
-      "categories": [
-        "ROLE-PLAYING (RPG)",
-        "SIMULATION",
-        "STRATEGY",
-        "ADVENTURE",
-        "INDIE"
-      ],
-      "magnet": "magnet:?xt=urn:btih:dfb47553ccd0157b8e36f8e61a4884a7ce1c9b3d&#038;dn=Stardew%20Valley%20%5BGOG%5D%20%282016%29&#038;tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&#038;tr=udp%3A%2F%2Fopen.tracker.cl%3A1337%2Fannounce&#038;tr=udp%3A%2F%2Ftracker.auctor.tv%3A6969%2Fannounce&#038;tr=udp%3A%2F%2Fopentracker.i2p.rocks%3A6969%2Fannounce&#038;tr=https%3A%2F%2Fopentracker.i2p.rocks%3A443%2Fannounce&#038;tr=udp%3A%2F%2Fopen.demonii.com%3A1337%2Fannounce&#038;tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&#038;tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&#038;tr=udp%3A%2F%2Ftracker.moeking.me%3A6969%2Fannounce&#038;tr=udp%3A%2F%2Fexplodie.org%3A6969%2Fannounce&#038;tr=udp%3A%2F%2Ftracker-udp.gbitt.info%3A80%2Fannounce&#038;tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&#038;tr=https%3A%2F%2Ftracker.gbitt.info%3A443%2Fannounce&#038;tr=http%3A%2F%2Ftracker.gbitt.info%3A80%2Fannounce&#038;tr=udp%3A%2F%2Ftracker.tiny-vps.com%3A6969%2Fannounce&#038;tr=udp%3A%2F%2Ftracker.therarbg.to%3A6969%2Fannounce&#038;tr=udp%3A%2F%2Ftracker.therarbg.com%3A6969%2Fannounce&#038;tr=udp%3A%2F%2Ftracker.t-rb.org%3A6969%2Fannounce&#038;tr=udp%3A%2F%2Ftracker.skyts.net%3A6969%2Fannounce&#038;tr=udp%3A%2F%2Ftracker.cubonegro.lol%3A6969%2Fannounce",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/coa93h.jpg",
-      "igdbId": 17000,
-      "videoId": "ot7uXNQskhs"
-    },
-    {
-      "name": "Half-Life 2",
-      "categories": [
-        "ACTION",
-        "HORROR"
-      ],
-      "magnet": "magnet:?xt=urn:btih:42369807e20187a71963d34ac5d8805e1ff68ab7",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1nmw.jpg",
-      "igdbId": 233,
-      "videoId": "ID1dWN3n7q4"
-    },
-    {
-      "name": "Diablo III",
-      "categories": [
-        "ROLE-PLAYING (RPG)",
-        "HACK AND SLASH/BEAT 'EM UP",
-        "ADVENTURE",
-        "HORROR"
-      ],
-      "magnet": "magnet:?xt=urn:btih:A6B2D27586F93E19CDA39CA6096EE29B26B03CBB&dn=Diablo+3%3A+Eternal+Collection%3A+%28v2.6.10.72837%2C+MULTi13+%2B+Yuzu+Emu+for+PC%29+%5BFitGirl+Repack%2C+Selective+Download+-+from+10.8+GB%5D&tr=udp%3A%2F%2F46.148.18.250%3A2710&tr=udp%3A%2F%2Fopentor.org%3A2710&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=http%3A%2F%2Ftracker.dler.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969%2Fannounce&tr=udp%3A%2F%2F9.rarbg.me%3A2730%2Fannounce&tr=udp%3A%2F%2F9.rarbg.to%3A2770%2Fannounce&tr=udp%3A%2F%2Ftracker.pirateparty.gr%3A6969%2Fannounce&tr=http%3A%2F%2Fretracker.local%2Fannounce&tr=http%3A%2F%2Fretracker.ip.ncnet.ru%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=udp%3A%2F%2Fipv4.tracker.harry.lu%3A80%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.zer0day.to%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fcoppersurfer.tk%3A6969%2Fannounce",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2l1u.jpg",
-      "igdbId": 120,
-      "videoId": "C2zL-Eq-sNM"
-    },
-    {
-      "name": "The Elder Scrolls V: Skyrim",
-      "categories": [
-        "ROLE-PLAYING (RPG)",
-        "ADVENTURE"
-      ],
-      "magnet": "magnet:?xt=urn:btih:c68198e3637f211e45288b4f5d8dd9bf1119edbf&dn=The+Elder+Scrolls+V+Skyrim+VR+by+xatab&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80%2Fannounc&tr=http%3A%2F%2Fretracker.local%2Fannounce&tr=http%3A%2F%2Ftracker.filetracker.pl%3A8089%2Fannounce&tr=http%3A%2F%2Ftracker2.wasabii.com.tw%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.grepler.com%3A6969%2Fannounce&tr=http%3A%2F%2F125.227.35.196%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.tiny-vps.com%3A6969%2Fannounce&tr=http%3A%2F%2F87.248.186.252%3A8080%2Fannounce&tr=http%3A%2F%2F210.244.71.25%3A6969%2Fannounce&tr=http%3A%2F%2F46.4.109.148%3A6969%2Fannounce&tr=udp%3A%2F%2F46.148.18.250%3A2710&tr=http%3A%2F%2Ftracker.dler.org%3A6969%2Fannounce&tr=udp%3A%2F%2F%5B2001%3A67c%3A28f8%3A92%3A%3A1111%3A1%5D%3A2710&tr=udp%3A%2F%2Fipv6.leechers-paradise.org%3A6969",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1tnw.jpg",
-      "igdbId": 472,
-      "videoId": "2doLV4hNMIg"
-    },
-    {
-      "name": "The Witcher 3: Wild Hunt",
-      "categories": [
-        "ROLE-PLAYING (RPG)",
-        "ADVENTURE"
-      ],
-      "magnet": "magnet:?xt=urn:btih:b3616f6887e42f91ab0c5b2d555aa5a0229a33de&dn=The_Witcher_3_1.32_win_gog&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80%2Fannounc&tr=http%3A%2F%2Fretracker.local%2Fannounce&tr=http%3A%2F%2Ftracker.filetracker.pl%3A8089%2Fannounce&tr=http%3A%2F%2Ftracker2.wasabii.com.tw%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.grepler.com%3A6969%2Fannounce&tr=http%3A%2F%2F125.227.35.196%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.tiny-vps.com%3A6969%2Fannounce&tr=http%3A%2F%2F87.248.186.252%3A8080%2Fannounce&tr=http%3A%2F%2F210.244.71.25%3A6969%2Fannounce&tr=http%3A%2F%2F46.4.109.148%3A6969%2Fannounce&tr=udp%3A%2F%2F46.148.18.250%3A2710&tr=http%3A%2F%2Ftracker.dler.org%3A6969%2Fannounce&tr=udp%3A%2F%2F%5B2001%3A67c%3A28f8%3A92%3A%3A1111%3A1%5D%3A2710&tr=udp%3A%2F%2Fipv6.leechers-paradise.org%3A6969&ws=https%3A%2F%2Febaniy.design%2Ftap",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/coaarl.jpg",
-      "igdbId": 1942,
-      "videoId": "yowv6_rspoM"
-    },
-    {
-      "name": "Peak",
-      "categories": [
-        "PLATFORMER",
-        "ADVENTURE",
-        "INDIE"
-      ],
-      "magnet": "magnet:?xt=urn:btih:abc17a1c3f316b49513d63f1b170d0d5e79c9690&dn=PEAK&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337",
-      "directLink": "",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/coat49.jpg",
-      "igdbId": 349524,
-      "videoId": "rVcAdSPO1YA"
-    },
-    {
-      "name": "60 Seconds! Reatomized",
-      "categories": [
-        "ROLE-PLAYING (RPG)",
-        "SIMULATION",
-        "STRATEGY",
-        "ADVENTURE",
-        "INDIE"
-      ],
-      "magnet": "magnet:?xt=urn:btih:b1113c8083b591aee5db3605de939923d9abad81&dn=60.Seconds.Reatomized.v1.1.5.32.rar&tr=udp://tracker.openbittorrent.com:80/announce&tr=udp://tracker.opentrackr.org:1337/announce",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2t2j.jpg",
-      "igdbId": 120560,
-      "videoId": "xqC3Bu94eU8"
     },
     {
       "name": "Ark: Survival Evolved",
@@ -813,6 +164,33 @@
       "videoId": "uEZFLuHXOlE"
     },
     {
+      "name": "Balatro",
+      "categories": [
+        "STRATEGY",
+        "STRATEGY",
+        "INDIE",
+        "CARD & BOARD GAME"
+      ],
+      "magnet": "magnet:?xt=urn:btih:ff1e626912bf9527a50c917b8d54edfab9dda7c7&dn=Balatro+(2024)&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.tracker.cl%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Ftracker-udp.gbitt.info%3A80%2Fannounce&tr=udp%3A%2F%2Fexplodie.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.theoks.net%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.dump.cl%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.ccp.ovh%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.bittor.pw%3A1337%2Fannounce&tr=udp%3A%2F%2Ftamas3.ynh.fr%3A6969%2Fannounce&tr=udp%3A%2F%2Frun.publictracker.xyz%3A6969%2Fannounce&tr=udp%3A%2F%2Fretracker01-msk-virt.corbina.net%3A80%2Fannounce&tr=udp%3A%2F%2Fopentracker.io%3A6969%2Fannounce&tr=udp%3A%2F%2Fopen.dstud.io%3A6969%2Fannounce&tr=udp%3A%2F%2Fnew-line.net%3A6969%2Fannounce&tr=udp%3A%2F%2Fmoonburrow.club%3A6969%2Fannounce&tr=udp%3A%2F%2Fleet-tracker.moe%3A1337%2Fannounce",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co9f4g.jpg",
+      "igdbId": 251833,
+      "videoId": "qChMssQkk3M"
+    },
+    {
+      "name": "Baldur's Gate 3: Digital Deluxe Edition",
+      "categories": [
+        "ROLE-PLAYING (RPG)",
+        "STRATEGY",
+        "STRATEGY",
+        "TACTICAL",
+        "ADVENTURE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:B374466DAC361494021A356F7C4EE7DC2A4D978D&dn=Baldur%26%23039%3Bs+Gate+3%3A+Digital+Deluxe+Edition+%28v4.1.1.3624901%2FHotfix+1+%2B+DLC%2FBonus+Content%2C+MULTi13%29+%5BFitGirl+Repack%2C+Selective+Download+-+from+63.1+GB%5D&tr=udp%3A%2F%2Fopentor.net%3A6969&tr=udp%3A%2F%2Fopentor.org%3A2710&tr=udp%3A%2F%2F9.rarbg.me%3A2730%2Fannounce&tr=udp%3A%2F%2F9.rarbg.me%3A2770%2Fannounce&tr=udp%3A%2F%2F9.rarbg.to%3A2720%2Fannounce&tr=udp%3A%2F%2F9.rarbg.to%3A2730%2Fannounce&tr=udp%3A%2F%2F9.rarbg.to%3A2770%2Fannounce&tr=udp%3A%2F%2Fopentracker.i2p.rocks%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=https%3A%2F%2Ftracker.tamersunion.org%3A443%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=http%3A%2F%2Ftracker.gbitt.info%3A80%2Fannounce&tr=http%3A%2F%2Ftracker.ccp.ovh%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=http%3A%2F%2Ftracker.openbittorrent.com%3A80%2Fannounce&tr=udp%3A%2F%2Fopentracker.i2p.rocks%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.internetwarriors.net%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fcoppersurfer.tk%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.zer0day.to%3A1337%2Fannounce",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co9bc5.jpg",
+      "igdbId": 279884,
+      "videoId": "jNY7AEQ59-8"
+    },
+    {
       "name": "Beyond: Two Souls",
       "categories": [
         "ADVENTURE"
@@ -823,17 +201,39 @@
       "videoId": "4NEup8y0g-Q"
     },
     {
-      "name": "Finding Bigfoot",
+      "name": "Borderlands 4",
       "categories": [
         "ACTION",
+        "ROLE-PLAYING (RPG)",
+        "ADVENTURE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:22AF22AD5C6C15E3E436AC5B56C0C2FE9A2748B4&tr=http%3A%2F%2Fbt.t-ru.org%2Fann%3Fmagnet",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co9zuq.jpg",
+      "igdbId": 314246,
+      "videoId": "BXzf6j2Sr5c"
+    },
+    {
+      "name": "Chained Together",
+      "categories": [
+        "SIMULATION",
         "ADVENTURE",
         "INDIE"
       ],
-      "magnet": "magnet:?xt=urn:btih:LE3MIFBWPX5WKSPNES7NFG723PWB6OEG&dn=BIGFOOT&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce",
-      "directLink": "",
-      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2lj4.jpg",
-      "igdbId": 31851,
-      "videoId": "gF9dE7uglWI"
+      "magnet": "magnet:?xt=urn:btih:6bff1f2b336d9f8990f6ba08b0593e8953c11cc8&dn=rutor.info&tr=udp://opentor.net:6969&tr=http://retracker.local/announce",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/coaazz.jpg",
+      "igdbId": 265111,
+      "videoId": "lVVyMT_HEgY"
+    },
+    {
+      "name": "Cities: Skylines",
+      "categories": [
+        "SIMULATION",
+        "STRATEGY"
+      ],
+      "magnet": "magnet:?xt=urn:btih:9d56af731a9e56ba7235a919af54d5f416d9ee75&dn=Cities+Skylines+(2015)&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.tracker.cl%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Ftracker-udp.gbitt.info%3A80%2Fannounce&tr=udp%3A%2F%2Fexplodie.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.theoks.net%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.dump.cl%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.ccp.ovh%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.bittor.pw%3A1337%2Fannounce&tr=udp%3A%2F%2Ftamas3.ynh.fr%3A6969%2Fannounce&tr=udp%3A%2F%2Frun.publictracker.xyz%3A6969%2Fannounce&tr=udp%3A%2F%2Fretracker01-msk-virt.corbina.net%3A80%2Fannounce&tr=udp%3A%2F%2Fopentracker.io%3A6969%2Fannounce&tr=udp%3A%2F%2Fopen.dstud.io%3A6969%2Fannounce&tr=udp%3A%2F%2Fnew-line.net%3A6969%2Fannounce&tr=udp%3A%2F%2Fmoonburrow.club%3A6969%2Fannounce&tr=udp%3A%2F%2Fleet-tracker.moe%3A1337%2Fannounce",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/coaas0.jpg",
+      "igdbId": 9066,
+      "videoId": "cVhYSyVbGBs"
     },
     {
       "name": "Clair Obscur: Expedition 33",
@@ -848,6 +248,28 @@
       "videoId": "ejgW-upPMgk"
     },
     {
+      "name": "Control",
+      "categories": [
+        "ACTION",
+        "ADVENTURE",
+        "HORROR"
+      ],
+      "magnet": "magnet:?xt=urn:btih:c591fc0442ae1c3755b610edb08b1ccf2f96bb95&dn=Control+by+xatab&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80%2Fannounc&tr=http%3A%2F%2Fretracker.local%2Fannounce&tr=http%3A%2F%2Ftracker.filetracker.pl%3A8089%2Fannounce&tr=http%3A%2F%2Ftracker2.wasabii.com.tw%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.grepler.com%3A6969%2Fannounce&tr=http%3A%2F%2F125.227.35.196%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.tiny-vps.com%3A6969%2Fannounce&tr=http%3A%2F%2F87.248.186.252%3A8080%2Fannounce&tr=http%3A%2F%2F210.244.71.25%3A6969%2Fannounce&tr=http%3A%2F%2F46.4.109.148%3A6969%2Fannounce&tr=udp%3A%2F%2F46.148.18.250%3A2710&tr=http%3A%2F%2Ftracker.dler.org%3A6969%2Fannounce&tr=udp%3A%2F%2F%5B2001%3A67c%3A28f8%3A92%3A%3A1111%3A1%5D%3A2710&tr=udp%3A%2F%2Fipv6.leechers-paradise.org%3A6969",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2evj.jpg",
+      "igdbId": 103329,
+      "videoId": "8Idtqyx6gsU"
+    },
+    {
+      "name": "Counter-Strike: Source",
+      "categories": [
+        "ACTION"
+      ],
+      "magnet": "magnet:?xt=urn:btih:364074fb9c0f5e2644f2f780be544149ee986cc4&dn=rutor.info&tr=udp://opentor.net:6969&tr=http://retracker.local/announce",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1txv.jpg",
+      "igdbId": 307,
+      "videoId": "bvI62FUDpKA"
+    },
+    {
       "name": "Cyberpunk 2077",
       "categories": [
         "ACTION",
@@ -860,6 +282,51 @@
       "videoId": "8X2kIfS6fb8"
     },
     {
+      "name": "Cyberpunk 2077: Ultimate Edition",
+      "categories": [
+        "ACTION",
+        "ROLE-PLAYING (RPG)",
+        "ADVENTURE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:0456e08293e1bf7a9e173e573dfbe8dcd5fb0e3e",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co7iy1.jpg",
+      "igdbId": 277807,
+      "videoId": "7B4r1jbpS2A"
+    },
+    {
+      "name": "Death Stranding",
+      "categories": [
+        "ACTION",
+        "ROLE-PLAYING (RPG)",
+        "ADVENTURE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:03a64dc3a24a432ec9daa7a8a96efbab293b83bc&dn=Death+Stranding+by+xatab&tr=udp%3A%2F%2Fopentor.org%3A2710&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80%2Fannounc&tr=http%3A%2F%2Fretracker.local%2Fannounce&tr=http%3A%2F%2Ftracker.filetracker.pl%3A8089%2Fannounce&tr=http%3A%2F%2Ftracker2.wasabii.com.tw%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.grepler.com%3A6969%2Fannounce&tr=http%3A%2F%2F125.227.35.196%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.tiny-vps.com%3A6969%2Fannounce&tr=http%3A%2F%2F87.248.186.252%3A8080%2Fannounce&tr=http%3A%2F%2F210.244.71.25%3A6969%2Fannounce&tr=http%3A%2F%2F46.4.109.148%3A6969%2Fannounce&tr=udp%3A%2F%2F46.148.18.250%3A2710&tr=http%3A%2F%2Ftracker.dler.org%3A6969%2Fannounce&tr=udp%3A%2F%2F%5B2001%3A67c%3A28f8%3A92%3A%3A1111%3A1%5D%3A2710&tr=udp%3A%2F%2Fipv6.leechers-paradise.org%3A6969",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co5vq8.jpg",
+      "igdbId": 19564,
+      "videoId": "wyAnYp4GbWM"
+    },
+    {
+      "name": "Deep Rock Galactic: Survivor",
+      "categories": [
+        "ACTION"
+      ],
+      "magnet": "magnet:?xt=urn:btih:01e37148891f970c7de1595153566dd0f04183c1&dn=rutor.info&tr=udp://opentor.net:6969&tr=http://retracker.local/announce",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co68ah.jpg",
+      "igdbId": 240556,
+      "videoId": "VQ4WnXdarx4"
+    },
+    {
+      "name": "Delta Force",
+      "categories": [
+        "ACTION",
+        "TACTICAL"
+      ],
+      "magnet": "magnet:?xt=urn:btih:7C9EA669B58B524908B1FE91F1EE40F62F58DB0B&tr=http%3A%2F%2Fbt4.t-ru.org%2Fann%3Fmagnet",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/coa98y.jpg",
+      "igdbId": 262186,
+      "videoId": "0SWMqANp8T0"
+    },
+    {
       "name": "Detroit: Become Human",
       "categories": [
         "ADVENTURE"
@@ -868,6 +335,42 @@
       "cover": "https://res.cloudinary.com/dkcui82mx/image/upload/v1770153683/dpebog7knajw2pkjqcrb.png",
       "igdbId": 14362,
       "videoId": "8a-EObAhYrg"
+    },
+    {
+      "name": "Diablo II",
+      "categories": [
+        "ROLE-PLAYING (RPG)",
+        "HACK AND SLASH/BEAT 'EM UP"
+      ],
+      "magnet": "magnet:?xt=urn:btih:3b46dfe9df42c1571a1a6ffc29c29ef10319b7d0&dn=Diablo+II+Resurrected&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.tracker.cl%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker1.bt.moack.co.kr%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.theoks.net%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker-udp.gbitt.info%3A80%2Fannounce&tr=udp%3A%2F%2Fexplodie.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker2.dler.org%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.tiny-vps.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.ccp.ovh%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.0x7c0.com%3A6969%2Fannounce",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co3gfq.jpg",
+      "igdbId": 126,
+      "videoId": "KxnWjyvmpnI"
+    },
+    {
+      "name": "Diablo III",
+      "categories": [
+        "ROLE-PLAYING (RPG)",
+        "HACK AND SLASH/BEAT 'EM UP",
+        "ADVENTURE",
+        "HORROR"
+      ],
+      "magnet": "magnet:?xt=urn:btih:A6B2D27586F93E19CDA39CA6096EE29B26B03CBB&dn=Diablo+3%3A+Eternal+Collection%3A+%28v2.6.10.72837%2C+MULTi13+%2B+Yuzu+Emu+for+PC%29+%5BFitGirl+Repack%2C+Selective+Download+-+from+10.8+GB%5D&tr=udp%3A%2F%2F46.148.18.250%3A2710&tr=udp%3A%2F%2Fopentor.org%3A2710&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=http%3A%2F%2Ftracker.dler.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969%2Fannounce&tr=udp%3A%2F%2F9.rarbg.me%3A2730%2Fannounce&tr=udp%3A%2F%2F9.rarbg.to%3A2770%2Fannounce&tr=udp%3A%2F%2Ftracker.pirateparty.gr%3A6969%2Fannounce&tr=http%3A%2F%2Fretracker.local%2Fannounce&tr=http%3A%2F%2Fretracker.ip.ncnet.ru%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=udp%3A%2F%2Fipv4.tracker.harry.lu%3A80%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.zer0day.to%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fcoppersurfer.tk%3A6969%2Fannounce",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2l1u.jpg",
+      "igdbId": 120,
+      "videoId": "C2zL-Eq-sNM"
+    },
+    {
+      "name": "Disco Elysium: The Final Cut",
+      "categories": [
+        "ROLE-PLAYING (RPG)",
+        "ADVENTURE",
+        "INDIE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:e1e71fc6bdae5097c2faaf5d6dc6b22d232ec617&#038;dn=Disco_Elysium_a0a062e7_(63158)_win_gog",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2ve1.jpg",
+      "igdbId": 141540,
+      "videoId": "ixtTkkEnq0Q"
     },
     {
       "name": "Dispatch",
@@ -879,6 +382,16 @@
       "cover": "https://res.cloudinary.com/dkcui82mx/image/upload/v1770153884/knwnvf9qwb7lf2xaa3qb.png",
       "igdbId": 325609,
       "videoId": "4R_b9ptnT2w"
+    },
+    {
+      "name": "Dragon's Dogma II",
+      "categories": [
+        "ROLE-PLAYING (RPG)"
+      ],
+      "magnet": "magnet:?xt=urn:btih:678bc6ac22a5befac6bbc50834e91d4f9755dee4&dn=rutor.info&tr=udp://opentor.net:6969&tr=http://retracker.local/announce",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co833w.jpg",
+      "igdbId": 115060,
+      "videoId": "ndLqGPqeQqM"
     },
     {
       "name": "Dying Light",
@@ -913,6 +426,53 @@
       "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co95gk.jpg",
       "igdbId": 325591,
       "videoId": "Z_fmEDsQPh4"
+    },
+    {
+      "name": "Elden Ring: Shadow of the Erdtree",
+      "categories": [
+        "ROLE-PLAYING (RPG)",
+        "ADVENTURE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:B3CB238628956851CDE7D10D3A2693D8CEFAEFA2&dn=ELDEN+RING%3A+Deluxe+Edition+%2B+Shadow+of+the+Erdtree+Premium+Bundle+%28v1.16+%2B+All+DLCs+%2B+Bonus+Content+%2B+Online+Multiplayer+%2B+MULTi15%29+%28From+49.9+GB%29+%5BDODI+Repack%5D&tr=udp%3A%2F%2F9.rarbg.to%3A2870%2Fannounce&tr=udp%3A%2F%2Feddie4.nl%3A6969%2Fannounce&tr=udp%3A%2F%2Fthetracker.org%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337&tr=udp%3A%2F%2Ftracker.zer0day.to%3A1337&tr=udp%3A%2F%2F9.rarbg.com%3A2710%2Fannounce&tr=udp%3A%2F%2Fexplodie.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker1.wasabii.com.tw%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Ftracker.cypherpunks.ru%3A6969%2Fannounce&tr=udp%3A%2F%2Fp4p.arenabg.com%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=http%3A%2F%2Ftracker.openbittorrent.com%3A80%2Fannounce&tr=udp%3A%2F%2Fopentracker.i2p.rocks%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.internetwarriors.net%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fcoppersurfer.tk%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.zer0day.to%3A1337%2Fannounce",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co7sly.jpg",
+      "igdbId": 240009,
+      "videoId": "M-Xh4vbs6go"
+    },
+    {
+      "name": "Empire of the Ants",
+      "categories": [
+        "REAL TIME STRATEGY (RTS)",
+        "STRATEGY",
+        "ADVENTURE",
+        "INDIE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:818b8f1b5bddce1fa65759c96115a8bbba9833f9&dn=Empire+of+the+Ants+(2024)&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=http%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Ftracker-udp.gbitt.info%3A80%2Fannounce&tr=udp%3A%2F%2Fexplodie.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.qu.ax%3A6969%2Fannounce&tr=udp%3A%2F%2Fopentracker.io%3A6969%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.qu.ax%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.ololosh.space%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.dump.cl%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.bittor.pw%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.free-tracker.ga%3A6969%2Fannounce&tr=udp%3A%2F%2Fns-1.x-fins.com%3A6969%2Fannounce&tr=udp%3A%2F%2Fleet-tracker.moe%3A1337%2Fannounce&tr=udp%3A%2F%2Fisk.richardsw.club%3A6969%2Fannounce&tr=udp%3A%2F%2Fdiscord.heihachi.pw%3A6969%2Fannounce&tr=http%3A%2F%2Fwww.torrentsnipe.info%3A2701%2Fannounce&tr=http%3A%2F%2Fwww.genesis-sp.org%3A2710%2Fannounce&tr=http%3A%2F%2Ftracker810.xyz%3A11450%2Fannounce&tr=http%3A%2F%2Ftracker.xiaoduola.xyz%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.vanitycore.co%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.sbsub.com%3A2710%2Fannounce&tr=http%3A%2F%2Ftracker.moxing.party%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.lintk.me%3A2710%2Fannounce&tr=http%3A%2F%2Ftracker.ipv6tracker.org%3A80%2Fannounce&tr=http%3A%2F%2Ftracker.dmcomic.org%3A2710%2Fannounce&tr=http%3A%2F%2Ftracker.corpscorp.online%3A80%2Fannounce&tr=http%3A%2F%2Ftracker.bz%3A80%2Fannounce&tr=http%3A%2F%2Ftracker.bt-hash.com%3A80%2Fannounce&tr=http%3A%2F%2Ftracker.bittor.pw%3A1337%2Fannounce&tr=http%3A%2F%2Ft.jaekr.sh%3A6969%2Fannounce&tr=http%3A%2F%2Fshubt.net%3A2710%2Fannounce&tr=http%3A%2F%2Fshare.hkg-fansub.info%3A80%2Fannounce.php&tr=http%3A%2F%2Fservandroidkino.ru%3A80%2Fannounce&tr=http%3A%2F%2Fseeders-paradise.org%3A80%2Fannounce&tr=http%3A%2F%2Fretracker.spark-rostov.ru%3A80%2Fannounce&tr=http%3A%2F%2Fopen.trackerlist.xyz%3A80%2Fannounce&tr=http%3A%2F%2Fhome.yxgz.club%3A6969%2Fannounce&tr=http%3A%2F%2Fhighteahop.top%3A6960%2Fannounce&tr=http%3A%2F%2Ffinbytes.org%3A80%2Fannounce.php&tr=http%3A%2F%2Fbuny.uk%3A6969%2Fannounce&tr=http%3A%2F%2Fbt1.xxxxbt.cc%3A6969%2Fannounce&tr=http%3A%2F%2Fbt.poletracker.org%3A2710%2Fannounce&tr=http%3A%2F%2F0d.kebhana.mx%3A443%2Fannounce&tr=http%3A%2F%2F0123456789nonexistent.com%3A80%2Fannounce&tr=udp%3A%2F%2Fpublic.tracker.vraphim.com%3A6969%2Fannounce&tr=http%3A%2F%2Fpublic.tracker.vraphim.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker1.myporn.club%3A9337%2Fannounce&tr=udp%3A%2F%2Ftracker.theoks.net%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.0x7c0.com%3A6969%2Fannounce&tr=udp%3A%2F%2Fp4p.arenabg.com%3A1337%2Fannounce&tr=udp%3A%2F%2Fbt.ktrackers.com%3A6666%2Fannounce&tr=http%3A%2F%2Ftracker.renfei.net%3A8080%2Fannounce&tr=http%3A%2F%2Fp4p.arenabg.com%3A1337%2Fannounce&tr=udp%3A%2F%2Fz.mercax.com%3A53%2Fannounce&tr=udp%3A%2F%2Fwepzone.net%3A6969%2Fannounce&tr=udp%3A%2F%2Fttk2.nbaonlineservice.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker2.dler.org%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.tryhackx.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.tiny-vps.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.srv00.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.skynetcloud.site%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.gmi.gd%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.gigantino.net%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.fnix.net%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.filemail.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.edkj.club%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.dler.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftrackarr.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftr4ck3r.duckdns.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ft.overflow.biz%3A6969%2Fannounce&tr=udp%3A%2F%2Fserpb.vpsburti.com%3A6969%2Fannounce&tr=udp%3A%2F%2Fseedpeer.net%3A6969%2Fannounce&tr=udp%3A%2F%2Fretracker.lanta.me%3A2710%2Fannounce&tr=udp%3A%2F%2Fp2p.publictracker.xyz%3A6969%2Fannounce&tr=udp%3A%2F%2Fopen.dstud.io%3A6969%2Fannounce&tr=udp%3A%2F%2Fodd-hd.fr%3A6969%2Fannounce&tr=udp%3A%2F%2Fmartin-gebhardt.eu%3A25%2Fannounce&tr=udp%3A%2F%2Fjutone.com%3A6969%2Fannounce&tr=udp%3A%2F%2Fismaarino.com%3A1234%2Fannounce&tr=udp%3A%2F%2Fevan.im%3A6969%2Fannounce&tr=udp%3A%2F%2Fd40969.acod.regrucolo.ru%3A6969%2Fannounce&tr=udp%3A%2F%2Fbt.rer.lol%3A2710%2Fannounce&tr=udp%3A%2F%2Fbittorrent-tracker.e-n-c-r-y-p-t.net%3A1337%2Fannounce&tr=udp%3A%2F%2Fbandito.byterunner.io%3A6969%2Fannounce&tr=udp%3A%2F%2Famigacity.xyz%3A6969%2Fannounce&tr=https%3A%2F%2Ftracker.yemekyedim.com%3A443%2Fannounce&tr=https%3A%2F%2Ftracker.lilithraws.org%3A443%2Fannounce&tr=https%3A%2F%2Ftracker.gcrenwp.top%3A443%2Fannounce&tr=https%3A%2F%2Ftracker.cloudit.top%3A443%2Fannounce&tr=https%3A%2F%2Ftracker.bt4g.com%3A443%2Fannounce&tr=https%3A%2F%2Ftracker-zhuqiy.dgj055.icu%3A443%2Fannounce&tr=https%3A%2F%2Ftr.zukizuki.org%3A443%2Fannounce&tr=https%3A%2F%2Ftr.nyacat.pw%3A443%2Fannounce&tr=https%3A%2F%2Fsparkle.ghostchu-services.top%3A443%2Fannounce&tr=https%3A%2F%2Fapi.ipv4online.uk%3A443%2Fannounce&tr=http%3A%2F%2Fwepzone.net%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker2.dler.org%3A80%2Fannounce&tr=http%3A%2F%2Ftracker.waaa.moe%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.srv00.com%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.mywaifu.best%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.edkj.club%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.dler.org%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.dler.com%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.bt4g.com%3A2095%2Fannounce&tr=http%3A%2F%2Ftracker-zhuqiy.dgj055.icu%3A80%2Fannounce&tr=http%3A%2F%2Ftr1.aag.moe%3A2095%2Fannounce&tr=http%3A%2F%2Ftr.nyacat.pw%3A80%2Fannounce&tr=http%3A%2F%2Ftaciturn-shadow.spb.ru%3A6969%2Fannounce&tr=http%3A%2F%2Ft.overflow.biz%3A6969%2Fannounce&tr=http%3A%2F%2Fopen.acgtracker.com%3A1096%2Fannounce&tr=http%3A%2F%2Fch3oh.ru%3A6969%2Fannounce&tr=http%3A%2F%2Fbittorrent-tracker.e-n-c-r-y-p-t.net%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.torrust-demo.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.deadorbit.nl%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.darkness.services%3A6969%2Fannounce&tr=udp%3A%2F%2Fipv4announce.sktorrent.eu%3A6969%2Fannounce&tr=udp%3A%2F%2Fipv4.rer.lol%3A2710%2Fannounce&tr=udp%3A%2F%2Fconcen.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fbt.rer.lol%3A6969%2Fannounce&tr=https%3A%2F%2Ftracker.leechshield.link%3A443%2Fannounce&tr=https%3A%2F%2Ftracker.ipfsscan.io%3A443%2Fannounce&tr=http%3A%2F%2Ftracker4.itzmx.com%3A2710%2Fannounce&tr=http%3A%2F%2Ftracker3.itzmx.com%3A6961%2Fannounce&tr=http%3A%2F%2Ftracker1.itzmx.com%3A8080%2Fannounce&tr=http%3A%2F%2F1337.abcvg.info%3A80%2Fannounce",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co7xrn.jpg",
+      "igdbId": 237276,
+      "videoId": "TY5r0nEd2ag"
+    },
+    {
+      "name": "Euro Truck Simulator 2",
+      "categories": [
+        "RACING",
+        "SIMULATION"
+      ],
+      "magnet": "magnet:?xt=urn:btih:AACBA7E3F7F86C74385A7472381472EF276D716C&dn=Euro+Truck+Simulator+2+%28v1.53.2.1s+%2B+94+DLCs%2C+MULTi42%29+%5BFitGirl+Repack%5D&tr=udp%3A%2F%2Fopentor.net%3A6969&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Ftracker.theoks.net%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.ccp.ovh%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=http%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=https%3A%2F%2Ftracker.tamersunion.org%3A443%2Fannounce&tr=udp%3A%2F%2Fexplodie.org%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.bt4g.com%3A2095%2Fannounce&tr=udp%3A%2F%2Fbt2.archive.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fbt1.archive.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.filemail.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker1.bt.moack.co.kr%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=http%3A%2F%2Ftracker.openbittorrent.com%3A80%2Fannounce&tr=udp%3A%2F%2Fopentracker.i2p.rocks%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.internetwarriors.net%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fcoppersurfer.tk%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.zer0day.to%3A1337%2Fannounce",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co7et5.jpg",
+      "igdbId": 3070,
+      "videoId": "5uvwfskYwl0"
+    },
+    {
+      "name": "Factorio",
+      "categories": [
+        "SIMULATION",
+        "STRATEGY",
+        "INDIE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:125C04E5A055AA07C3BFB9BC2FF41546C6C28545&#038;tr=http%3A%2F%2Fbt.t-ru.org%2Fann%3Fmagnet&#038;dn=%5BDL%5D%20Factorio%20%5BL%5D%20%5BRUS%20%2B%20ENG%20%2B%2020%5D%20(2016%2C%20Simulation)%20(2.0.32%20%2B%201%20DLC)%20%5BGOG%5D",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1tfy.jpg",
+      "igdbId": 7046,
+      "videoId": "KVvXv1Z6EY8"
     },
     {
       "name": "Far Cry",
@@ -1000,6 +560,30 @@
       "videoId": "S1VnNstzHoo"
     },
     {
+      "name": "Final Fantasy VII Rebirth",
+      "categories": [
+        "ROLE-PLAYING (RPG)",
+        "ADVENTURE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:F53734575823F31151ACC678CA590935898E6102&tr=http%3A%2F%2Fbt3.t-ru.org%2Fann%3Fmagnet",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/cob9k6.jpg",
+      "igdbId": 133236,
+      "videoId": "H_4CkyOmuuU"
+    },
+    {
+      "name": "Finding Bigfoot",
+      "categories": [
+        "ACTION",
+        "ADVENTURE",
+        "INDIE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:LE3MIFBWPX5WKSPNES7NFG723PWB6OEG&dn=BIGFOOT&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce",
+      "directLink": "",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2lj4.jpg",
+      "igdbId": 31851,
+      "videoId": "gF9dE7uglWI"
+    },
+    {
       "name": "Forza Horizon 3",
       "categories": [
         "RACING"
@@ -1047,6 +631,18 @@
       "videoId": "aL4h5cMONIs"
     },
     {
+      "name": "Frostpunk 2",
+      "categories": [
+        "SIMULATION",
+        "STRATEGY",
+        "INDIE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:eb4b333cd1465c1747652767fdd751b1c2ca1bbf&dn=Frostpunk+2+(2024)&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.tracker.cl%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker1.bt.moack.co.kr%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.theoks.net%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker-udp.gbitt.info%3A80%2Fannounce&tr=udp%3A%2F%2Fexplodie.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker2.dler.org%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.tiny-vps.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.ccp.ovh%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.0x7c0.com%3A6969%2Fannounce",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co8yrc.jpg",
+      "igdbId": 164290,
+      "videoId": "9kfHUN4gFiw"
+    },
+    {
       "name": "Getting over it",
       "categories": [
         "PLATFORMER",
@@ -1056,6 +652,17 @@
       "cover": "https://res.cloudinary.com/dkcui82mx/image/upload/v1770618451/lxa1jqm95wmrdtkexe5y.png",
       "igdbId": null,
       "videoId": null
+    },
+    {
+      "name": "Ghost of Tsushima: Director's Cut",
+      "categories": [
+        "ROLE-PLAYING (RPG)",
+        "ADVENTURE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:c56f779ccca9f5d04958c50cecadaa7f6b23038e&dn=rutor.info&tr=udp://opentor.net:6969&tr=http://retracker.local/announce",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co3p5f.jpg",
+      "igdbId": 153700,
+      "videoId": "EzWBNwhb870"
     },
     {
       "name": "God of War",
@@ -1084,6 +691,66 @@
       "videoId": "EE-4GvjKcfs"
     },
     {
+      "name": "Granblue Fantasy: Relink",
+      "categories": [
+        "ROLE-PLAYING (RPG)",
+        "HACK AND SLASH/BEAT 'EM UP",
+        "ADVENTURE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:B63E26AA0997E95A336E7F78BFF4A5E561CB6103&tr=http%3A%2F%2Fbt3.t-ru.org%2Fann%3Fmagnet",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co7ptq.jpg",
+      "igdbId": 22788,
+      "videoId": "odAeEqQTIrU"
+    },
+    {
+      "name": "Gundam Breaker 4",
+      "categories": [
+        "ROLE-PLAYING (RPG)",
+        "HACK AND SLASH/BEAT 'EM UP"
+      ],
+      "magnet": "magnet:?xt=urn:btih:6C110D8A8A7CED83D071BD88389AC38DBAD2481E&tr=http%3A%2F%2Fbt4.t-ru.org%2Fann%3Fmagnet",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co92s8.jpg",
+      "igdbId": 287853,
+      "videoId": "lqAq-7tk144"
+    },
+    {
+      "name": "Hades",
+      "categories": [
+        "ROLE-PLAYING (RPG)",
+        "HACK AND SLASH/BEAT 'EM UP",
+        "ADVENTURE",
+        "INDIE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:c09b78297c1be668eb89c286269493685e49297c",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/cob9kr.jpg",
+      "igdbId": 113112,
+      "videoId": "YZZFlcE0fWE"
+    },
+    {
+      "name": "Hades II",
+      "categories": [
+        "ROLE-PLAYING (RPG)",
+        "HACK AND SLASH/BEAT 'EM UP",
+        "ADVENTURE",
+        "INDIE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:cce01b52dfda79c3b8c1956392096a9570c712f2&dn=rutor.info&tr=udp://opentor.net:6969&tr=http://retracker.local/announce",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/coaknx.jpg",
+      "igdbId": 228525,
+      "videoId": "WH3jT53hIYM"
+    },
+    {
+      "name": "Half-Life 2",
+      "categories": [
+        "ACTION",
+        "HORROR"
+      ],
+      "magnet": "magnet:?xt=urn:btih:42369807e20187a71963d34ac5d8805e1ff68ab7",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1nmw.jpg",
+      "igdbId": 233,
+      "videoId": "ID1dWN3n7q4"
+    },
+    {
       "name": "Heavy Rain",
       "categories": [
         "ADVENTURE"
@@ -1092,6 +759,17 @@
       "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/coaajv.jpg",
       "igdbId": 493,
       "videoId": "YVYiJ3VSp60"
+    },
+    {
+      "name": "Helldivers 2",
+      "categories": [
+        "ACTION",
+        "TACTICAL"
+      ],
+      "magnet": "magnet:?xt=urn:btih:c84445efbc6402b47b4d090c360c112a7e89081b&dn=rutor.info&tr=udp://opentor.net:6969&tr=http://retracker.local/announce",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/coabbf.jpg",
+      "igdbId": 250616,
+      "videoId": "rE7KTE28HrA"
     },
     {
       "name": "Hello Neighbor 2",
@@ -1155,6 +833,28 @@
       "videoId": "KkRQsURQjH4"
     },
     {
+      "name": "Kunitsu-Gami: Path of the Goddess",
+      "categories": [
+        "STRATEGY",
+        "HACK AND SLASH/BEAT 'EM UP"
+      ],
+      "magnet": "magnet:?xt=urn:btih:2ac7cfb64b4337775d5119d6e481b8a2ba034d08&dn=rutor.info&tr=udp://opentor.net:6969&tr=http://retracker.local/announce",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/cob1tt.jpg",
+      "igdbId": 252835,
+      "videoId": "TBbz12bhyE8"
+    },
+    {
+      "name": "Left 4 Dead 2",
+      "categories": [
+        "ACTION",
+        "HORROR"
+      ],
+      "magnet": "magnet:?xt=urn:btih:05d48c348ed7a1637082f32bf90c934dac4b0002&dn=rutor.info&tr=udp://opentor.net:6969&tr=http://retracker.local/announce",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1y2f.jpg",
+      "igdbId": 124,
+      "videoId": "9XIle_kLHKU"
+    },
+    {
       "name": "Lies of P",
       "categories": [
         "ROLE-PLAYING (RPG)",
@@ -1165,6 +865,18 @@
       "cover": "https://res.cloudinary.com/dkcui82mx/image/upload/v1770154150/t3ncwad2cv14igjriwvb.png",
       "igdbId": 148241,
       "videoId": "qKceAv6N8iE"
+    },
+    {
+      "name": "Like a Dragon: Infinite Wealth",
+      "categories": [
+        "ROLE-PLAYING (RPG)",
+        "HACK AND SLASH/BEAT 'EM UP",
+        "ADVENTURE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:A3993755592B014CD90872DAFA6057B7D0357ABB&tr=http%3A%2F%2Fbt.t-ru.org%2Fann%3Fmagnet",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co8356.jpg",
+      "igdbId": 217623,
+      "videoId": "Fx0YMVgCD5E"
     },
     {
       "name": "Marvel's Spider-Man 2",
@@ -1201,6 +913,18 @@
       "videoId": "T03PxxuCfDA"
     },
     {
+      "name": "Metaphor: ReFantazio",
+      "categories": [
+        "ROLE-PLAYING (RPG)",
+        "STRATEGY",
+        "ADVENTURE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:e6a6d8e89c5e3d1d29f257f7e154ca206511d9d4&dn=rutor.info&tr=udp://opentor.net:6969&tr=http://retracker.local/announce",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co8d9t.jpg",
+      "igdbId": 26602,
+      "videoId": "0vpnf0SChPA"
+    },
+    {
       "name": "Microsoft Flight Simulator",
       "categories": [
         "SIMULATION"
@@ -1209,6 +933,28 @@
       "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2dqk.jpg",
       "igdbId": 119295,
       "videoId": "dU6dq3zhCxw"
+    },
+    {
+      "name": "Monster Hunter Wilds",
+      "categories": [
+        "ROLE-PLAYING (RPG)",
+        "HACK AND SLASH/BEAT 'EM UP",
+        "ADVENTURE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:79cf056abcaac842cf2502fccebdb6df9c3a339e&dn=MONSTER+HUNTER+RISE&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A6969",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co904o.jpg",
+      "igdbId": 279661,
+      "videoId": "O3syM4tV8Xw"
+    },
+    {
+      "name": "Monster Hunter Wilds: Title Update 2",
+      "categories": [
+        "ACTION"
+      ],
+      "magnet": "magnet:?xt=urn:btih:EBA5C39B46C040AE4B529CB0C1D544DB296608B1&tr=http%3A%2F%2Fbt.t-ru.org%2Fann%3Fmagnet",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/coauso.jpg",
+      "igdbId": 338637,
+      "videoId": "GAf4Z4rCpK4"
     },
     {
       "name": "Need for Speed: Heat",
@@ -1258,6 +1004,19 @@
       "videoId": "KXGm-JaxY54"
     },
     {
+      "name": "Outer Wilds",
+      "categories": [
+        "PUZZLE",
+        "SIMULATION",
+        "ADVENTURE",
+        "INDIE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:43c8e5cba3ca36e4037a2a2437c3e712da6ff5cc&dn=Outer+Wilds+(2019)&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=https%3A%2F%2Ftracker.loligirl.cn%3A443%2Fannounce&tr=udp%3A%2F%2Ftracker1.myporn.club%3A9337%2Fannounce&tr=udp%3A%2F%2Ftracker.tiny-vps.com%3A6969%2Fannounce&tr=udp%3A%2F%2Fopentracker.io%3A6969%2Fannounce&tr=udp%3A%2F%2Fopen.free-tracker.ga%3A6969%2Fannounce&tr=udp%3A%2F%2Fmoonburrow.club%3A6969%2Fannounce&tr=udp%3A%2F%2Fisk.richardsw.club%3A6969%2Fannounce&tr=udp%3A%2F%2Fepider.me%3A6969%2Fannounce&tr=udp%3A%2F%2Fbt2.archive.org%3A6969%2Fannounce&tr=https%3A%2F%2Ftracker.tamersunion.org%3A443%2Fannounce&tr=https%3A%2F%2Ftracker.renfei.net%3A443%2Fannounce&tr=http%3A%2F%2Ftracker.renfei.net%3A8080%2Fannounce&tr=http%3A%2F%2Ftracker.ipv6tracker.org%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker2.dler.org%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.therarbg.to%3A6969%2Fannounce",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co65ac.jpg",
+      "igdbId": 11737,
+      "videoId": "1Lr2IYLAb_Y"
+    },
+    {
       "name": "Outlast",
       "categories": [
         "ADVENTURE",
@@ -1280,6 +1039,18 @@
       "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co20x8.jpg",
       "igdbId": 14390,
       "videoId": "ibm9Th6oO_U"
+    },
+    {
+      "name": "Pacific Drive",
+      "categories": [
+        "SIMULATION",
+        "ADVENTURE",
+        "INDIE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:63fcdc40ff00dbcb24513af80a913369463f21e3&dn=Pacific+Drive+(2024)&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.tracker.cl%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Ftracker-udp.gbitt.info%3A80%2Fannounce&tr=udp%3A%2F%2Fexplodie.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.theoks.net%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.dump.cl%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.ccp.ovh%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.bittor.pw%3A1337%2Fannounce&tr=udp%3A%2F%2Ftamas3.ynh.fr%3A6969%2Fannounce&tr=udp%3A%2F%2Frun.publictracker.xyz%3A6969%2Fannounce&tr=udp%3A%2F%2Fretracker01-msk-virt.corbina.net%3A80%2Fannounce&tr=udp%3A%2F%2Fopentracker.io%3A6969%2Fannounce&tr=udp%3A%2F%2Fopen.dstud.io%3A6969%2Fannounce&tr=udp%3A%2F%2Fnew-line.net%3A6969%2Fannounce&tr=udp%3A%2F%2Fmoonburrow.club%3A6969%2Fannounce&tr=udp%3A%2F%2Fleet-tracker.moe%3A1337%2Fannounce",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co7t2e.jpg",
+      "igdbId": 217592,
+      "videoId": "4DYYfdZ-R8I"
     },
     {
       "name": "Palworld",
@@ -1330,6 +1101,19 @@
       "videoId": "o9PGpkZNQKg"
     },
     {
+      "name": "Peak",
+      "categories": [
+        "PLATFORMER",
+        "ADVENTURE",
+        "INDIE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:abc17a1c3f316b49513d63f1b170d0d5e79c9690&dn=PEAK&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337",
+      "directLink": "",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/coat49.jpg",
+      "igdbId": 349524,
+      "videoId": "rVcAdSPO1YA"
+    },
+    {
       "name": "Phasmophobia",
       "categories": [
         "PUZZLE",
@@ -1367,6 +1151,18 @@
       "videoId": "Mh1U8qC_TUE"
     },
     {
+      "name": "Portal 2",
+      "categories": [
+        "PLATFORMER",
+        "PUZZLE",
+        "ADVENTURE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:879a394561d73a9215d83f704c3e7fa0fbd482e5&dn=Portal+2+%5BValve%5D+(2011)&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=http%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Ftracker-udp.gbitt.info%3A80%2Fannounce&tr=udp%3A%2F%2Fexplodie.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.qu.ax%3A6969%2Fannounce&tr=udp%3A%2F%2Fopentracker.io%3A6969%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.qu.ax%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.ololosh.space%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.dump.cl%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.bittor.pw%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.free-tracker.ga%3A6969%2Fannounce&tr=udp%3A%2F%2Fns-1.x-fins.com%3A6969%2Fannounce&tr=udp%3A%2F%2Fleet-tracker.moe%3A1337%2Fannounce&tr=udp%3A%2F%2Fisk.richardsw.club%3A6969%2Fannounce&tr=udp%3A%2F%2Fdiscord.heihachi.pw%3A6969%2Fannounce&tr=http%3A%2F%2Fwww.torrentsnipe.info%3A2701%2Fannounce&tr=http%3A%2F%2Fwww.genesis-sp.org%3A2710%2Fannounce&tr=http%3A%2F%2Ftracker810.xyz%3A11450%2Fannounce&tr=http%3A%2F%2Ftracker.xiaoduola.xyz%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.vanitycore.co%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.sbsub.com%3A2710%2Fannounce&tr=http%3A%2F%2Ftracker.moxing.party%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.lintk.me%3A2710%2Fannounce&tr=http%3A%2F%2Ftracker.ipv6tracker.org%3A80%2Fannounce&tr=http%3A%2F%2Ftracker.dmcomic.org%3A2710%2Fannounce&tr=http%3A%2F%2Ftracker.corpscorp.online%3A80%2Fannounce&tr=http%3A%2F%2Ftracker.bz%3A80%2Fannounce&tr=http%3A%2F%2Ftracker.bt-hash.com%3A80%2Fannounce&tr=http%3A%2F%2Ftracker.bittor.pw%3A1337%2Fannounce&tr=http%3A%2F%2Ft.jaekr.sh%3A6969%2Fannounce&tr=http%3A%2F%2Fshubt.net%3A2710%2Fannounce&tr=http%3A%2F%2Fshare.hkg-fansub.info%3A80%2Fannounce.php&tr=http%3A%2F%2Fservandroidkino.ru%3A80%2Fannounce&tr=http%3A%2F%2Fseeders-paradise.org%3A80%2Fannounce&tr=http%3A%2F%2Fretracker.spark-rostov.ru%3A80%2Fannounce&tr=http%3A%2F%2Fopen.trackerlist.xyz%3A80%2Fannounce&tr=http%3A%2F%2Fhome.yxgz.club%3A6969%2Fannounce&tr=http%3A%2F%2Fhighteahop.top%3A6960%2Fannounce&tr=http%3A%2F%2Ffinbytes.org%3A80%2Fannounce.php&tr=http%3A%2F%2Fbuny.uk%3A6969%2Fannounce&tr=http%3A%2F%2Fbt1.xxxxbt.cc%3A6969%2Fannounce&tr=http%3A%2F%2Fbt.poletracker.org%3A2710%2Fannounce&tr=http%3A%2F%2F0d.kebhana.mx%3A443%2Fannounce&tr=http%3A%2F%2F0123456789nonexistent.com%3A80%2Fannounce&tr=udp%3A%2F%2Fpublic.tracker.vraphim.com%3A6969%2Fannounce&tr=http%3A%2F%2Fpublic.tracker.vraphim.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker1.myporn.club%3A9337%2Fannounce&tr=udp%3A%2F%2Ftracker.theoks.net%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.0x7c0.com%3A6969%2Fannounce&tr=udp%3A%2F%2Fp4p.arenabg.com%3A1337%2Fannounce&tr=udp%3A%2F%2Fbt.ktrackers.com%3A6666%2Fannounce&tr=http%3A%2F%2Ftracker.renfei.net%3A8080%2Fannounce&tr=http%3A%2F%2Fp4p.arenabg.com%3A1337%2Fannounce&tr=udp%3A%2F%2Fz.mercax.com%3A53%2Fannounce&tr=udp%3A%2F%2Fwepzone.net%3A6969%2Fannounce&tr=udp%3A%2F%2Fttk2.nbaonlineservice.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker2.dler.org%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.tryhackx.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.tiny-vps.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.srv00.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.skynetcloud.site%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.gmi.gd%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.gigantino.net%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.fnix.net%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.filemail.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.edkj.club%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.dler.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftrackarr.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ftr4ck3r.duckdns.org%3A6969%2Fannounce&tr=udp%3A%2F%2Ft.overflow.biz%3A6969%2Fannounce&tr=udp%3A%2F%2Fserpb.vpsburti.com%3A6969%2Fannounce&tr=udp%3A%2F%2Fseedpeer.net%3A6969%2Fannounce&tr=udp%3A%2F%2Fretracker.lanta.me%3A2710%2Fannounce&tr=udp%3A%2F%2Fp2p.publictracker.xyz%3A6969%2Fannounce&tr=udp%3A%2F%2Fopen.dstud.io%3A6969%2Fannounce&tr=udp%3A%2F%2Fodd-hd.fr%3A6969%2Fannounce&tr=udp%3A%2F%2Fmartin-gebhardt.eu%3A25%2Fannounce&tr=udp%3A%2F%2Fjutone.com%3A6969%2Fannounce&tr=udp%3A%2F%2Fismaarino.com%3A1234%2Fannounce&tr=udp%3A%2F%2Fevan.im%3A6969%2Fannounce&tr=udp%3A%2F%2Fd40969.acod.regrucolo.ru%3A6969%2Fannounce&tr=udp%3A%2F%2Fbt.rer.lol%3A2710%2Fannounce&tr=udp%3A%2F%2Fbittorrent-tracker.e-n-c-r-y-p-t.net%3A1337%2Fannounce&tr=udp%3A%2F%2Fbandito.byterunner.io%3A6969%2Fannounce&tr=udp%3A%2F%2Famigacity.xyz%3A6969%2Fannounce&tr=https%3A%2F%2Ftracker.yemekyedim.com%3A443%2Fannounce&tr=https%3A%2F%2Ftracker.lilithraws.org%3A443%2Fannounce&tr=https%3A%2F%2Ftracker.gcrenwp.top%3A443%2Fannounce&tr=https%3A%2F%2Ftracker.cloudit.top%3A443%2Fannounce&tr=https%3A%2F%2Ftracker.bt4g.com%3A443%2Fannounce&tr=https%3A%2F%2Ftracker-zhuqiy.dgj055.icu%3A443%2Fannounce&tr=https%3A%2F%2Ftr.zukizuki.org%3A443%2Fannounce&tr=https%3A%2F%2Ftr.nyacat.pw%3A443%2Fannounce&tr=https%3A%2F%2Fsparkle.ghostchu-services.top%3A443%2Fannounce&tr=https%3A%2F%2Fapi.ipv4online.uk%3A443%2Fannounce&tr=http%3A%2F%2Fwepzone.net%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker2.dler.org%3A80%2Fannounce&tr=http%3A%2F%2Ftracker.waaa.moe%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.srv00.com%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.mywaifu.best%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.edkj.club%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.dler.org%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.dler.com%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.bt4g.com%3A2095%2Fannounce&tr=http%3A%2F%2Ftracker-zhuqiy.dgj055.icu%3A80%2Fannounce&tr=http%3A%2F%2Ftr1.aag.moe%3A2095%2Fannounce&tr=http%3A%2F%2Ftr.nyacat.pw%3A80%2Fannounce&tr=http%3A%2F%2Ftaciturn-shadow.spb.ru%3A6969%2Fannounce&tr=http%3A%2F%2Ft.overflow.biz%3A6969%2Fannounce&tr=http%3A%2F%2Fopen.acgtracker.com%3A1096%2Fannounce&tr=http%3A%2F%2Fch3oh.ru%3A6969%2Fannounce&tr=http%3A%2F%2Fbittorrent-tracker.e-n-c-r-y-p-t.net%3A1337%2Fannounce&tr=udp%3A%2F%2Ftracker.torrust-demo.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.deadorbit.nl%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.darkness.services%3A6969%2Fannounce&tr=udp%3A%2F%2Fipv4announce.sktorrent.eu%3A6969%2Fannounce&tr=udp%3A%2F%2Fipv4.rer.lol%3A2710%2Fannounce&tr=udp%3A%2F%2Fconcen.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fbt.rer.lol%3A6969%2Fannounce&tr=https%3A%2F%2Ftracker.leechshield.link%3A443%2Fannounce&tr=https%3A%2F%2Ftracker.ipfsscan.io%3A443%2Fannounce&tr=http%3A%2F%2Ftracker4.itzmx.com%3A2710%2Fannounce&tr=http%3A%2F%2Ftracker3.itzmx.com%3A6961%2Fannounce&tr=http%3A%2F%2Ftracker1.itzmx.com%3A8080%2Fannounce&tr=http%3A%2F%2F1337.abcvg.info%3A80%2Fannounce",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1rs4.jpg",
+      "igdbId": 72,
+      "videoId": "mC_u9ZwlIUc"
+    },
+    {
       "name": "R.E.P.O.",
       "categories": [
         "STRATEGY",
@@ -1378,6 +1174,18 @@
       "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co9lxz.jpg",
       "igdbId": 332780,
       "videoId": "C3IVB0Wnk1s"
+    },
+    {
+      "name": "Red Dead Redemption 2",
+      "categories": [
+        "ACTION",
+        "ROLE-PLAYING (RPG)",
+        "ADVENTURE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:9a1027149acf5a590277b28426908b3f6413bf8b&dn=Red+Dead+Redemption+2+(2018-2019)&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=https%3A%2F%2Ftracker.loligirl.cn%3A443%2Fannounce&tr=udp%3A%2F%2Ftracker1.myporn.club%3A9337%2Fannounce&tr=udp%3A%2F%2Ftracker.tiny-vps.com%3A6969%2Fannounce&tr=udp%3A%2F%2Fopentracker.io%3A6969%2Fannounce&tr=udp%3A%2F%2Fopen.free-tracker.ga%3A6969%2Fannounce&tr=udp%3A%2F%2Fmoonburrow.club%3A6969%2Fannounce&tr=udp%3A%2F%2Fisk.richardsw.club%3A6969%2Fannounce&tr=udp%3A%2F%2Fepider.me%3A6969%2Fannounce&tr=udp%3A%2F%2Fbt2.archive.org%3A6969%2Fannounce&tr=https%3A%2F%2Ftracker.tamersunion.org%3A443%2Fannounce&tr=https%3A%2F%2Ftracker.renfei.net%3A443%2Fannounce&tr=http%3A%2F%2Ftracker.renfei.net%3A8080%2Fannounce&tr=http%3A%2F%2Ftracker.ipv6tracker.org%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker2.dler.org%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.therarbg.to%3A6969%2Fannounce",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1q1f.jpg",
+      "igdbId": 25076,
+      "videoId": "94B-38sX5fs"
     },
     {
       "name": "Resident Evil",
@@ -1517,6 +1325,19 @@
       "videoId": "O7VpWghbDO8"
     },
     {
+      "name": "Rust",
+      "categories": [
+        "ACTION",
+        "ROLE-PLAYING (RPG)",
+        "ADVENTURE",
+        "INDIE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:1ABA7D7AA8BC23F5ED87E992662BD5900B2B74E2&tr=http%3A%2F%2Fbt3.t-ru.org%2Fann%3Fmagnet",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/coajjj.jpg",
+      "igdbId": 3277,
+      "videoId": "5SbKrynpliw"
+    },
+    {
       "name": "Ryse: Son of Rome",
       "categories": [
         "HACK AND SLASH/BEAT 'EM UP",
@@ -1526,6 +1347,65 @@
       "cover": "https://res.cloudinary.com/dkcui82mx/image/upload/v1770154011/uc3mlneiak8h9zqxusg7.png",
       "igdbId": 3812,
       "videoId": "tI5GfvkBr00"
+    },
+    {
+      "name": "Satisfactory: 1.0 Update",
+      "categories": [
+        "SIMULATION",
+        "STRATEGY",
+        "ADVENTURE",
+        "INDIE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:A3993755592B014CD90872DAFA6057B7D0357ABB&tr=http%3A%2F%2Fbt.t-ru.org%2Fann%3Fmagnet",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co9sd3.jpg",
+      "igdbId": 314012,
+      "videoId": "febekpSoEbA"
+    },
+    {
+      "name": "Schedule I",
+      "categories": [
+        "SIMULATION",
+        "STRATEGY",
+        "INDIE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:C488C089FC55C2F250143DF6C85CB9087097B2AD&tr=http%3A%2F%2Fbt3.t-ru.org%2Fann%3Fmagnet",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co9adi.jpg",
+      "igdbId": 328373,
+      "videoId": "fR1-GXVPbuo"
+    },
+    {
+      "name": "Senua's Saga: Hellblade II",
+      "categories": [
+        "ADVENTURE",
+        "HORROR"
+      ],
+      "magnet": "magnet:?xt=urn:btih:808d30b5713690fcdf6d16f061a29c3fed7fe6b3&dn=Senua's+Saga+Hellblade+II+(2024)&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Ftracker-udp.gbitt.info%3A80%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=https%3A%2F%2Ftracker.gbitt.info%3A443%2Fannounce&tr=http%3A%2F%2Ftracker.gbitt.info%3A80%2Fannounce&tr=udp%3A%2F%2Fexplodie.org%3A6969%2Fannounce&tr=https%3A%2F%2Ftracker.tamersunion.org%3A443%2Fannounce&tr=http%3A%2F%2Ftracker1.bt.moack.co.kr%3A80%2Fannounce&tr=http%3A%2F%2Ftracker.skyts.net%3A6969%2Fannounce&tr=http%3A%2F%2Fopen.tracker.ink%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.tiny-vps.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.theoks.net%3A6969%2Fannounce&tr=udp%3A%2F%2Fopentracker.io%3A6969%2Fannounce&tr=udp%3A%2F%2Fopen.free-tracker.ga%3A6969%2Fannounce&tr=udp%3A%2F%2Fnew-line.net%3A6969%2Fannounce&tr=udp%3A%2F%2Fepider.me%3A6969%2Fannounce&tr=udp%3A%2F%2Fbt2.archive.org%3A6969%2Fannounce",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co81i4.jpg",
+      "igdbId": 127342,
+      "videoId": "qJWI4bkD9ZM"
+    },
+    {
+      "name": "Shin Megami Tensei V: Vengeance",
+      "categories": [
+        "ROLE-PLAYING (RPG)",
+        "ADVENTURE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:37feb232eb8c7f977de7b39cda34c3c5cc3e1cb1&dn=rutor.info&tr=udp://opentor.net:6969&tr=http://retracker.local/announce",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co7sv4.jpg",
+      "igdbId": 287850,
+      "videoId": "KDiRwSeXbZM"
+    },
+    {
+      "name": "Sid Meier's Civilization V",
+      "categories": [
+        "SIMULATION",
+        "STRATEGY",
+        "STRATEGY"
+      ],
+      "magnet": "magnet:?xt=urn:btih:19de01b26f19455add635c4b64c172e753ec03ed&dn=Sid+Meier's+Civilization+VI+(2016)&tr=http%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.tracker.cl%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.tiny-vps.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.0x7c0.com%3A6969%2Fannounce&tr=udp%3A%2F%2Fopentracker.io%3A6969%2Fannounce&tr=https%3A%2F%2Ftracker.tamersunion.org%3A443%2Fannounce&tr=https%3A%2F%2Ftracker.loligirl.cn%3A443%2Fannounce&tr=udp%3A%2F%2Ftracker.theoks.net%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.dler.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fretracker01-msk-virt.corbina.net%3A80%2Fannounce&tr=udp%3A%2F%2Fretracker.lanta.me%3A2710%2Fannounce&tr=udp%3A%2F%2Fopen.u-p.pw%3A6969%2Fannounce&tr=udp%3A%2F%2Foh.fuuuuuck.com%3A6969%2Fannounce&tr=udp%3A%2F%2Fmoonburrow.club%3A6969%2Fannounce&tr=udp%3A%2F%2Fmartin-gebhardt.eu%3A25%2Fannounce&tr=udp%3A%2F%2Fexplodie.org%3A6969%2Fannounce",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co20up.jpg",
+      "igdbId": 866,
+      "videoId": "B2EDj8yfMoQ"
     },
     {
       "name": "Silent Hill f",
@@ -1539,6 +1419,125 @@
       "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co9wy4.jpg",
       "igdbId": 222343,
       "videoId": "0-eMuy6UJ6U"
+    },
+    {
+      "name": "Sonic X Shadow Generations",
+      "categories": [
+        "PLATFORMER",
+        "ADVENTURE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:f754cbb3b978a71c16d09da1e8004adc797d4b6a&dn=rutor.info&tr=udp://opentor.net:6969&tr=http://retracker.local/announce",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co8byo.jpg",
+      "igdbId": 284716,
+      "videoId": "ihUiNzrcG4Q"
+    },
+    {
+      "name": "StarCraft II: Wings of Liberty",
+      "categories": [
+        "REAL TIME STRATEGY (RTS)",
+        "STRATEGY"
+      ],
+      "magnet": "magnet:?xt=urn:btih:4e693c69ffed1d806dbb9bdfb1784c50bc180c2b",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1tnn.jpg",
+      "igdbId": 239,
+      "videoId": "kMBToA5QzeE"
+    },
+    {
+      "name": "Stardew Valley",
+      "categories": [
+        "ROLE-PLAYING (RPG)",
+        "SIMULATION",
+        "STRATEGY",
+        "ADVENTURE",
+        "INDIE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:dfb47553ccd0157b8e36f8e61a4884a7ce1c9b3d&#038;dn=Stardew%20Valley%20%5BGOG%5D%20%282016%29&#038;tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&#038;tr=udp%3A%2F%2Fopen.tracker.cl%3A1337%2Fannounce&#038;tr=udp%3A%2F%2Ftracker.auctor.tv%3A6969%2Fannounce&#038;tr=udp%3A%2F%2Fopentracker.i2p.rocks%3A6969%2Fannounce&#038;tr=https%3A%2F%2Fopentracker.i2p.rocks%3A443%2Fannounce&#038;tr=udp%3A%2F%2Fopen.demonii.com%3A1337%2Fannounce&#038;tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&#038;tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&#038;tr=udp%3A%2F%2Ftracker.moeking.me%3A6969%2Fannounce&#038;tr=udp%3A%2F%2Fexplodie.org%3A6969%2Fannounce&#038;tr=udp%3A%2F%2Ftracker-udp.gbitt.info%3A80%2Fannounce&#038;tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&#038;tr=https%3A%2F%2Ftracker.gbitt.info%3A443%2Fannounce&#038;tr=http%3A%2F%2Ftracker.gbitt.info%3A80%2Fannounce&#038;tr=udp%3A%2F%2Ftracker.tiny-vps.com%3A6969%2Fannounce&#038;tr=udp%3A%2F%2Ftracker.therarbg.to%3A6969%2Fannounce&#038;tr=udp%3A%2F%2Ftracker.therarbg.com%3A6969%2Fannounce&#038;tr=udp%3A%2F%2Ftracker.t-rb.org%3A6969%2Fannounce&#038;tr=udp%3A%2F%2Ftracker.skyts.net%3A6969%2Fannounce&#038;tr=udp%3A%2F%2Ftracker.cubonegro.lol%3A6969%2Fannounce",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/coa93h.jpg",
+      "igdbId": 17000,
+      "videoId": "ot7uXNQskhs"
+    },
+    {
+      "name": "Subnautica",
+      "categories": [
+        "ADVENTURE",
+        "INDIE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:1550e81cb7b79cf37c3aedd0d724bf35011b86c9&dn=Subnautica+(2014-2018)&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80%2Fannounc&tr=http%3A%2F%2Fretracker.local%2Fannounce&tr=http%3A%2F%2Ftracker.filetracker.pl%3A8089%2Fannounce&tr=http%3A%2F%2Ftracker2.wasabii.com.tw%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.grepler.com%3A6969%2Fannounce&tr=http%3A%2F%2F125.227.35.196%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.tiny-vps.com%3A6969%2Fannounce&tr=http%3A%2F%2F87.248.186.252%3A8080%2Fannounce&tr=http%3A%2F%2F210.244.71.25%3A6969%2Fannounce&tr=http%3A%2F%2F46.4.109.148%3A6969%2Fannounce&tr=udp%3A%2F%2F46.148.18.250%3A2710&tr=http%3A%2F%2Ftracker.dler.org%3A6969%2Fannounce&tr=udp%3A%2F%2F%5B2001%3A67c%3A28f8%3A92%3A%3A1111%3A1%5D%3A2710&tr=udp%3A%2F%2Fipv6.leechers-paradise.org%3A6969",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/coa938.jpg",
+      "igdbId": 9254,
+      "videoId": "Rz2SNm8VguE"
+    },
+    {
+      "name": "Tekken 8",
+      "categories": [
+        "ACTION"
+      ],
+      "magnet": "magnet:?xt=urn:btih:e0d90ffbb2e16acd0f7fee686ba161c6a2131273&dn=TEKKEN+8+(2024)&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.demonii.com%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.tracker.cl%3A1337%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&tr=udp%3A%2F%2Ftracker-udp.gbitt.info%3A80%2Fannounce&tr=udp%3A%2F%2Fexplodie.org%3A6969%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.theoks.net%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.dump.cl%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.ccp.ovh%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.bittor.pw%3A1337%2Fannounce&tr=udp%3A%2F%2Ftamas3.ynh.fr%3A6969%2Fannounce&tr=udp%3A%2F%2Frun.publictracker.xyz%3A6969%2Fannounce&tr=udp%3A%2F%2Fretracker01-msk-virt.corbina.net%3A80%2Fannounce&tr=udp%3A%2F%2Fopentracker.io%3A6969%2Fannounce&tr=udp%3A%2F%2Fopen.dstud.io%3A6969%2Fannounce&tr=udp%3A%2F%2Fnew-line.net%3A6969%2Fannounce&tr=udp%3A%2F%2Fmoonburrow.club%3A6969%2Fannounce&tr=udp%3A%2F%2Fleet-tracker.moe%3A1337%2Fannounce",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co7lbb.jpg",
+      "igdbId": 217590,
+      "videoId": "07FdDRbdurg"
+    },
+    {
+      "name": "Terraria",
+      "categories": [
+        "PLATFORMER",
+        "ROLE-PLAYING (RPG)",
+        "SIMULATION",
+        "STRATEGY",
+        "ADVENTURE",
+        "INDIE",
+        "HORROR"
+      ],
+      "magnet": "magnet:?xt=urn:btih:D569C084C2F63E4EEEA5213D0335E7E7C8267AD4&#038;dn=Terraria%20%5BL%5D%20%5BRUS%20%2B%20ENG%20%2B%207%5D%20(2011)%20(1.4.4.9%20v4)%20%5BGOG%5D",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/coaamg.jpg",
+      "igdbId": 1879,
+      "videoId": "w7uOhFTrrq0"
+    },
+    {
+      "name": "The Elder Scrolls V: Skyrim",
+      "categories": [
+        "ROLE-PLAYING (RPG)",
+        "ADVENTURE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:c68198e3637f211e45288b4f5d8dd9bf1119edbf&dn=The+Elder+Scrolls+V+Skyrim+VR+by+xatab&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80%2Fannounc&tr=http%3A%2F%2Fretracker.local%2Fannounce&tr=http%3A%2F%2Ftracker.filetracker.pl%3A8089%2Fannounce&tr=http%3A%2F%2Ftracker2.wasabii.com.tw%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.grepler.com%3A6969%2Fannounce&tr=http%3A%2F%2F125.227.35.196%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.tiny-vps.com%3A6969%2Fannounce&tr=http%3A%2F%2F87.248.186.252%3A8080%2Fannounce&tr=http%3A%2F%2F210.244.71.25%3A6969%2Fannounce&tr=http%3A%2F%2F46.4.109.148%3A6969%2Fannounce&tr=udp%3A%2F%2F46.148.18.250%3A2710&tr=http%3A%2F%2Ftracker.dler.org%3A6969%2Fannounce&tr=udp%3A%2F%2F%5B2001%3A67c%3A28f8%3A92%3A%3A1111%3A1%5D%3A2710&tr=udp%3A%2F%2Fipv6.leechers-paradise.org%3A6969",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1tnw.jpg",
+      "igdbId": 472,
+      "videoId": "2doLV4hNMIg"
+    },
+    {
+      "name": "The Rogue Prince of Persia",
+      "categories": [
+        "PLATFORMER",
+        "HACK AND SLASH/BEAT 'EM UP",
+        "ADVENTURE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:e86403a4ab76b7c7b9449b99ea1648e1d4360406&dn=rutor.info&tr=udp://opentor.net:6969&tr=http://retracker.local/announce",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/coab8v.jpg",
+      "igdbId": 296843,
+      "videoId": "XZzOxEK7hXo"
+    },
+    {
+      "name": "The Sims 3",
+      "categories": [
+        "ROLE-PLAYING (RPG)",
+        "SIMULATION",
+        "STRATEGY"
+      ],
+      "magnet": "magnet:?xt=urn:btih:27100d4dc952508daf28ddfd3a43efbb10910d22",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/coavu6.jpg",
+      "igdbId": 260,
+      "videoId": "DuOBaZxnfwQ"
+    },
+    {
+      "name": "The Witcher 3: Wild Hunt",
+      "categories": [
+        "ROLE-PLAYING (RPG)",
+        "ADVENTURE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:b3616f6887e42f91ab0c5b2d555aa5a0229a33de&dn=The_Witcher_3_1.32_win_gog&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80%2Fannounc&tr=http%3A%2F%2Fretracker.local%2Fannounce&tr=http%3A%2F%2Ftracker.filetracker.pl%3A8089%2Fannounce&tr=http%3A%2F%2Ftracker2.wasabii.com.tw%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.grepler.com%3A6969%2Fannounce&tr=http%3A%2F%2F125.227.35.196%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.tiny-vps.com%3A6969%2Fannounce&tr=http%3A%2F%2F87.248.186.252%3A8080%2Fannounce&tr=http%3A%2F%2F210.244.71.25%3A6969%2Fannounce&tr=http%3A%2F%2F46.4.109.148%3A6969%2Fannounce&tr=udp%3A%2F%2F46.148.18.250%3A2710&tr=http%3A%2F%2Ftracker.dler.org%3A6969%2Fannounce&tr=udp%3A%2F%2F%5B2001%3A67c%3A28f8%3A92%3A%3A1111%3A1%5D%3A2710&tr=udp%3A%2F%2Fipv6.leechers-paradise.org%3A6969&ws=https%3A%2F%2Febaniy.design%2Ftap",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/coaarl.jpg",
+      "igdbId": 1942,
+      "videoId": "yowv6_rspoM"
     },
     {
       "name": "Train Sim World 6",
@@ -1577,6 +1576,18 @@
       "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/cob1t2.jpg",
       "igdbId": 12517,
       "videoId": "1Hojv0m3TqA"
+    },
+    {
+      "name": "Valheim",
+      "categories": [
+        "ROLE-PLAYING (RPG)",
+        "ADVENTURE",
+        "INDIE"
+      ],
+      "magnet": "magnet:?xt=urn:btih:08380793ED422F71FB0324660AE42C89DE5EFF82&tr=http%3A%2F%2Fbt4.t-ru.org%2Fann%3Fmagnet",
+      "cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/cob24q.jpg",
+      "igdbId": 104967,
+      "videoId": "GlePlUL9npA"
     }
   ],
   "sagas": [
