@@ -4132,6 +4132,14 @@ body.home-active .shell {
       });
     };
 
+    // Fonction wrapper pour ouvrir une saga par ID (utilisée dans le HTML inline)
+    window.openSagaModalWrapper = function(sagaId) {
+      const saga = state.data.sagas.find(s => s.id === sagaId);
+      if (saga) {
+        openSagaModal(saga);
+      }
+    };
+
     // Fonction pour ouvrir le modal de demande de jeu
     window.openRequestGameModal = function() {
       const gameName = prompt('Quel jeu souhaites-tu demander ?');
@@ -4150,8 +4158,8 @@ body.home-active .shell {
       title.textContent = '🔥 Tous les jeux récents';
       grid.innerHTML = '';
       
-      // Afficher tous les jeux récents
-      homePageData.allRecentGames.forEach((game, index) => {
+      // Afficher les 50 premiers jeux récents seulement
+      homePageData.allRecentGames.slice(0, 50).forEach((game, index) => {
         const card = document.createElement('div');
         card.className = 'saga-game-card';
         card.style.animationDelay = `${index * 0.05}s`;
@@ -4188,8 +4196,8 @@ body.home-active .shell {
       title.textContent = '✨ Toutes les sagas';
       grid.innerHTML = '';
       
-      // Afficher toutes les sagas
-      homePageData.allSagas.forEach((saga, index) => {
+      // Afficher les 50 premières sagas seulement
+      homePageData.allSagas.slice(0, 50).forEach((saga, index) => {
         const firstGame = state.data.games.find(g => g.name === saga.games[0]);
         
         const card = document.createElement('div');
@@ -4215,7 +4223,7 @@ body.home-active .shell {
         
         card.addEventListener('click', () => {
           closeSagaModal();
-          setTimeout(() => openSagaModal(saga.id), 300);
+          setTimeout(() => openSagaModal(saga), 300);
         });
         
         grid.appendChild(card);
@@ -4225,74 +4233,20 @@ body.home-active .shell {
       document.body.style.overflow = 'hidden';
     };
 
-    // Charger les données de la page d'accueil avec tri par annee
+    // Charger les données de la page d'accueil - VERSION LEGERE avec IGDB
     async function loadHomePageData() {
       const trendingRow = document.getElementById('trendingGamesRow');
       const franchisesRow = document.getElementById('topFranchisesRow');
       
-      if (trendingRow && state.data.games && state.data.games.length > 0) {
-        const currentYear = new Date().getFullYear();
-        
-        // Filtrer les jeux 2024-2025 et trier par annee decroissante
-        homePageData.allRecentGames = state.data.games
-          .filter(game => {
-            const year = game.year;
-            return year && year >= 2024 && year <= currentYear;
-          })
-          .sort((a, b) => {
-            // Trier par annee decroissante (2026, 2025, 2024...)
-            return (b.year || 0) - (a.year || 0);
-          });
-        
-        // Afficher les 30 premiers
-        const recentGames = homePageData.allRecentGames.slice(0, 30);
-        
-        if (recentGames.length > 0) {
-          trendingRow.innerHTML = recentGames.map(game => `
-            <div class="home-game-card" onclick="window.location.href='game.html?name=${encodeURIComponent(game.name)}'">
-              <img src="${game.cover || ''}" alt="${game.name}" loading="lazy" />
-              <div class="home-game-info">
-                <div class="home-game-title">${game.name}</div>
-                <div class="home-game-meta">${game.year || '2024'}</div>
-              </div>
-            </div>
-          `).join('');
-        } else {
-          trendingRow.innerHTML = '<div class="home-loading">Les jeux recents 2024-2025 seront bientot disponibles</div>';
-        }
-      } else if (trendingRow) {
-        trendingRow.innerHTML = '<div class="home-loading">Les jeux recents 2024-2025 seront bientot disponibles</div>';
-      }
-      
-      // Afficher les sagas (30 pour permettre le scroll)
-      if (franchisesRow && state.data.sagas && state.data.sagas.length > 0) {
-        homePageData.allSagas = state.data.sagas;
-        const sagasToShow = homePageData.allSagas.slice(0, 30);
-        
-        franchisesRow.innerHTML = sagasToShow.map(saga => {
-          const firstGame = state.data.games.find(g => g.name === saga.games[0]);
-          return `
-            <div class="home-franchise-card" onclick="openSagaModal('${saga.id}')">
-              <img src="${firstGame?.cover || ''}" alt="${saga.name}" loading="lazy" />
-              <div class="home-franchise-info">
-                <div class="home-franchise-title">${saga.name}</div>
-                <div class="home-franchise-meta">${saga.games.length} jeux</div>
-              </div>
-            </div>
-          `;
-        }).join('');
-      } else if (franchisesRow) {
-        franchisesRow.innerHTML = '<div class="home-loading">Les sagas seront bientôt disponibles</div>';
-      }
-      
-      // Essayer de charger des données IGDB en arrière-plan (optionnel)
+      // 1. D'abord essayer de charger depuis IGDB (plus leger)
       try {
-        const trendingRes = await fetch(`${WORKER_URL}/api/trending-games?limit=7`);
+        const trendingRes = await fetch(`${WORKER_URL}/api/trending-games?limit=30`);
         if (trendingRes.ok) {
           const igdbData = await trendingRes.json();
           if (igdbData.games && igdbData.games.length > 0 && trendingRow) {
-            // Fusionner avec les données locales si IGDB répond
-            trendingRow.innerHTML = igdbData.games.map(game => `
+            homePageData.allRecentGames = igdbData.games;
+            
+            trendingRow.innerHTML = homePageData.allRecentGames.slice(0, 30).map(game => `
               <div class="home-game-card" onclick="window.location.href='game.html?name=${encodeURIComponent(game.name)}'">
                 <img src="${game.cover || ''}" alt="${game.name}" loading="lazy" />
                 <div class="home-game-info">
@@ -4304,7 +4258,56 @@ body.home-active .shell {
           }
         }
       } catch (error) {
-        console.log('IGDB non disponible, on garde les jeux locaux');
+        console.log('IGDB non disponible, fallback local');
+      }
+      
+      // 2. Fallback: prendre les 30 premiers jeux avec une année récente (pas de tri lourd)
+      if (!homePageData.allRecentGames || homePageData.allRecentGames.length === 0) {
+        if (trendingRow && state.data.games && state.data.games.length > 0) {
+          // Simple: prendre les 30 premiers jeux qui ont une année >= 2024
+          const recentGames = state.data.games
+            .filter(game => game.year && game.year >= 2024)
+            .slice(0, 30);
+          
+          homePageData.allRecentGames = recentGames;
+          
+          if (recentGames.length > 0) {
+            trendingRow.innerHTML = recentGames.map(game => `
+              <div class="home-game-card" onclick="window.location.href='game.html?name=${encodeURIComponent(game.name)}'">
+                <img src="${game.cover || ''}" alt="${game.name}" loading="lazy" />
+                <div class="home-game-info">
+                  <div class="home-game-title">${game.name}</div>
+                  <div class="home-game-meta">${game.year || '2024'}</div>
+                </div>
+              </div>
+            `).join('');
+          } else {
+            trendingRow.innerHTML = '<div class="home-loading">Les jeux recents 2024-2025 seront bientot disponibles</div>';
+          }
+        } else if (trendingRow) {
+          trendingRow.innerHTML = '<div class="home-loading">Les jeux recents 2024-2025 seront bientot disponibles</div>';
+        }
+      }
+      
+      // Afficher les sagas (30 pour permettre le scroll)
+      if (franchisesRow && state.data.sagas && state.data.sagas.length > 0) {
+        homePageData.allSagas = state.data.sagas;
+        const sagasToShow = homePageData.allSagas.slice(0, 30);
+        
+        franchisesRow.innerHTML = sagasToShow.map(saga => {
+          const firstGame = state.data.games.find(g => g.name === saga.games[0]);
+          return `
+            <div class="home-franchise-card" onclick="openSagaModalWrapper('${saga.id}')">
+              <img src="${firstGame?.cover || ''}" alt="${saga.name}" loading="lazy" />
+              <div class="home-franchise-info">
+                <div class="home-franchise-title">${saga.name}</div>
+                <div class="home-franchise-meta">${saga.games.length} jeux</div>
+              </div>
+            </div>
+          `;
+        }).join('');
+      } else if (franchisesRow) {
+        franchisesRow.innerHTML = '<div class="home-loading">Les sagas seront bientôt disponibles</div>';
       }
       
       // Rendre les catégories horizontales
@@ -4693,6 +4696,8 @@ body.home-active .shell {
         return;
       }
       
+      gamesToShow = gamesToShow.slice(0, 50); // Limiter à 50 jeux
+      
       gamesToShow.forEach(game => {
         const item = document.createElement('div');
         item.className = 'game-selector-item';
@@ -4865,92 +4870,6 @@ body.home-active .shell {
       renderSagaGameSelector(sagaGameSearchQuery);
     });
 
-    function exitEditMode(){
-      editIndex = null;
-      addGameBtn.style.display = "";
-      saveEditBtn.style.display = "none";
-      cancelEditBtn.style.display = "none";
-      gameName.value = "";
-      gameMagnet.value = "";
-      gameDirectLink.value = "";
-      gameCover.value = "";
-      trailerUrl.value = "";
-      state.selectedCategories = [];
-      selectedGameData = null;
-      selectedGamePreview.classList.remove('show');
-      
-      // Réinitialiser les catégories
-      if (addCustomCat) addCustomCat.value = '';
-      renderCategoriesList();
-      
-      renderCategories();
-    }
-
-    // Recherche dans l'admin
-    gameSearchInput.addEventListener("input", () => {
-      state.adminSearchQuery = gameSearchInput.value;
-      renderAdminGamesList();
-    });
-
-    // Event Enter sur gameName pour lancer la recherche IGDB
-    gameName.addEventListener("keypress", (e) => {
-      if (e.key === "Enter") {
-        e.preventDefault();
-        searchIGDBBtn.click();
-      }
-    });
-
-    // SYSTÈME IGDB
-    searchIGDBBtn.addEventListener('click', async () => {
-      const name = norm(gameName.value);
-      
-      if (!name) {
-        toastMsg("⚠️ Entre d'abord un nom de jeu");
-        return;
-      }
-
-      gameSelectorModal.classList.add('open');
-      gameSelectorModal.setAttribute('aria-hidden', 'false');
-      
-      gameSelectorContent.innerHTML = `
-        <div class="game-selector-loading">
-          <div class="spinner"></div>
-          <p>Recherche de "${name}" sur IGDB...</p>
-        </div>
-      `;
-
-      try {
-        const response = await fetch(`https://crackuzu-api.crackuzu.workers.dev/api/search-games?query=${encodeURIComponent(name)}`);
-        
-        if (!response.ok) {
-          throw new Error('Erreur de recherche');
-        }
-
-        const data = await response.json();
-        
-        if (!data.games || data.games.length === 0) {
-          gameSelectorContent.innerHTML = `
-            <div class="game-selector-empty">
-              <p style="font-size: 16px; margin-bottom: 8px;">😕 Aucun jeu trouvé</p>
-              <p style="font-size: 13px; opacity: 0.7;">Essayez avec un autre nom</p>
-            </div>
-          `;
-          return;
-        }
-
-        renderGameSelector(data.games);
-
-      } catch (error) {
-        console.error('Search error:', error);
-        gameSelectorContent.innerHTML = `
-          <div class="game-selector-error">
-            <p style="font-size: 16px; margin-bottom: 8px;">❌ Erreur de recherche</p>
-            <p style="font-size: 13px;">${error.message}</p>
-          </div>
-        `;
-      }
-    });
-
     function renderGameSelector(games) {
       const listHTML = games.map(game => `
         <div class="game-selector-item" data-game-id="${game.id}" data-game-json='${JSON.stringify(game).replace(/'/g, "&apos;")}'>
@@ -4967,13 +4886,13 @@ body.home-active .shell {
           <div class="game-selector-arrow">→</div>
         </div>
       `).join('');
-
+      
       gameSelectorContent.innerHTML = `
         <div class="game-selector-list">
           ${listHTML}
         </div>
       `;
-
+      
       document.querySelectorAll('.game-selector-item').forEach(item => {
         item.addEventListener('click', async () => {
           const gameData = JSON.parse(item.getAttribute('data-game-json'));
@@ -6223,7 +6142,9 @@ body.home-active .shell {
       
       const maxScore = results[0].score;
       
-      const html = results.map((result, index) => {
+      const topResults = results.slice(0, 10); // Limiter à 10 résultats
+      
+      const html = topResults.map((result, index) => {
         const { score, type } = result;
         const isTopMatch = score >= maxScore * 0.9;
         const animationDelay = 0.05 + (index * 0.06);
