@@ -5926,12 +5926,39 @@ body.home-active .shell {
     // FONCTION INIT
     async function init(){
       console.log("🎮 CRACKUZU - Initialisation...");
-      setStateMessage("Prêt - Cliquez sur une catégorie pour charger les jeux");
+      setStateMessage("Chargement des jeux...");
       
-      // Ne pas charger les données au démarrage - lazy loading
-      state.data = { categories: [], games: [], sagas: [] };
-      state.dataLoaded = false;
-      
+      // Charger les données au démarrage pour la HOME
+      try {
+        const data = await loadDataFromRepo();
+        
+        if (data && data.games && data.games.length > 0) {
+          console.log(`✅ ${data.games.length} jeux chargés`);
+          state.data = data;
+          state.dataLoaded = true;
+          state.homeDataLoaded = true;
+          setStateMessage(`✅ ${data.games.length} jeux chargés`);
+          setTimeout(() => setStateMessage(""), 1500);
+        } else {
+          const localDraft = loadLocalDraft();
+          if (localDraft && localDraft.games && localDraft.games.length > 0) {
+            console.log(`📦 ${localDraft.games.length} jeux chargés (local)`);
+            state.data = localDraft;
+            state.dataLoaded = true;
+            state.homeDataLoaded = true;
+            setStateMessage(`📦 ${localDraft.games.length} jeux (local)`);
+            setTimeout(() => setStateMessage(""), 1500);
+          } else {
+            console.warn("⚠️ Aucun jeu trouvé");
+            state.data = { categories: [], games: [], sagas: [] };
+            setStateMessage("📭 Aucun jeu trouvé. Ajoutez-en via le panneau admin.");
+          }
+        }
+      } catch (error) {
+        console.error("❌ Erreur chargement:", error);
+        setStateMessage("❌ Erreur de chargement");
+      }
+
       state.activeCat = "HOME";
       state.query = "";
       editIndex = null;
@@ -5952,11 +5979,7 @@ body.home-active .shell {
       // Setup game selector modal
       setupGameSelector();
       
-      console.log("✅ Initialisation terminée - En attente de sélection de catégorie");
-      
-      // Charger automatiquement les données de la page d'accueil (HOME)
-      // mais pas toutes les données des autres catégories
-      await loadHomeDataOnly();
+      console.log("✅ Initialisation terminée");
     }
     
     // Charger uniquement les données nécessaires pour la HOME (sagas, jeux récents)
@@ -5972,7 +5995,7 @@ body.home-active .shell {
           console.log(`✅ ${data.games?.length || 0} jeux chargés pour la HOME`);
           // Re-render pour afficher les jeux récents et sagas sur la home
           if (state.activeCat === "HOME") {
-            loadHomePageData();
+            await loadHomePageData();
           }
         }
       } catch (e) {
