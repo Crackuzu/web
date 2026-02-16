@@ -498,7 +498,7 @@
       filter: blur(28px);
     }
     .card:hover{
-      transform: translateY(-8px) scale(1.02);
+      transform: translateY(-12px) scale(1.04);
       border-color: rgba(100, 140, 255, 0.4);
       box-shadow: 
         0 28px 60px rgba(0,0,0,.6),
@@ -525,7 +525,27 @@
       transition: transform .5s ease;
     }
     .card:hover .card-bg img{
-      transform: scale(1.08);
+      transform: scale(1.06);
+    }
+
+    /* Shimmer effect for cards like home-game-card */
+    .card::after,
+    .saga-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.1), transparent);
+      transition: left 0.8s ease;
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    .card:hover::after,
+    .saga-card:hover::after {
+      left: 100%;
     }
 
     .card-overlay{
@@ -615,7 +635,7 @@
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .saga-card:hover {
-      transform: translateY(-8px) scale(1.02);
+      transform: translateY(-12px) scale(1.04);
       border-color: rgba(255, 215, 0, 0.5);
       box-shadow: 
         0 28px 60px rgba(0,0,0,.6),
@@ -707,7 +727,7 @@
       pointer-events: all;
     }
     .saga-modal-box {
-      width: min(900px, 95vw);
+      width: min(1600px, 95vw);
       max-height: 80vh;
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.15);
@@ -779,7 +799,7 @@
     }
     .saga-games-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      grid-template-columns: repeat(7, 1fr);
       gap: 20px;
     }
     .saga-game-card {
@@ -966,6 +986,114 @@
       padding: clamp(24px, 3vw, 36px);
       max-height: calc(90vh - 60px);
     }
+
+    body:not(.home-active) .shell {
+      width: min(2200px, calc(100dvw - (2 * var(--outer))));
+    }
+
+    body:not(.home-active) header,
+    body:not(.home-active) section {
+      margin-right: 4vw;
+    }
+
+    /* 8 jeux par ligne sur la page ALL */
+    body:not(.home-active) .grid {
+      grid-template-columns: repeat(8, 1fr);
+    }
+
+    /* Cacher le header normal sur la homepage */
+    body.home-active .shell > header.glass {
+      display: none !important;
+    }
+
+    body.home-active #gameGrid {
+      display: none !important;
+    }
+
+
+    body:not(.home-active) #homeHeader {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-100%);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    body.home-active #homeHeader {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    /* Animations pour les éléments de la homepage - PLUS LENTES ET VISIBLES */
+    .home-logo-section {
+      animation: homeBounceIn 1.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      animation-delay: 0.3s;
+      opacity: 0;
+      transform: translateY(80px) scale(0.85);
+    }
+
+    .home-search-bar {
+      animation: homeBounceIn 1.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      animation-delay: 0.8s;
+      opacity: 0;
+      transform: translateY(80px) scale(0.9);
+    }
+
+    .home-section {
+      animation: homeBounceIn 1.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      opacity: 0;
+      transform: translateY(80px) scale(0.88);
+    }
+
+    .home-section:nth-of-type(1) { animation-delay: 1.2s; }
+    .home-section:nth-of-type(2) { animation-delay: 1.6s; }
+
+    @keyframes homeBounceIn {
+      0% {
+        opacity: 0;
+        transform: translateY(80px) scale(0.85);
+      }
+      50% {
+        opacity: 1;
+        transform: translateY(-15px) scale(1.05);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    /* Animations pour la grille ALL - STYLE GAME.HTML EXACT */
+    @keyframes floatUp {
+      from { opacity: 0; transform: translateY(40px) scale(0.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes fadeScaleIn {
+      from { opacity: 0; transform: scale(0.92); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .card, .saga-card {
+      animation: floatUp 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      opacity: 0;
+    }
+
+    /* Staggered delays pour les cartes - style game.html */
+    .grid .card:nth-child(1), .grid .saga-card:nth-child(1) { animation-delay: 0.05s; }
+    .grid .card:nth-child(2), .grid .saga-card:nth-child(2) { animation-delay: 0.1s; }
+    .grid .card:nth-child(3), .grid .saga-card:nth-child(3) { animation-delay: 0.15s; }
+    .grid .card:nth-child(4), .grid .saga-card:nth-child(4) { animation-delay: 0.2s; }
+    .grid .card:nth-child(5), .grid .saga-card:nth-child(5) { animation-delay: 0.25s; }
+    .grid .card:nth-child(6), .grid .saga-card:nth-child(6) { animation-delay: 0.3s; }
+    .grid .card:nth-child(7), .grid .saga-card:nth-child(7) { animation-delay: 0.35s; }
+    .grid .card:nth-child(8), .grid .saga-card:nth-child(8) { animation-delay: 0.4s; }
+    .grid .card:nth-child(9), .grid .saga-card:nth-child(9) { animation-delay: 0.45s; }
+    .grid .card:nth-child(10), .grid .saga-card:nth-child(10) { animation-delay: 0.5s; }
+    .grid .card:nth-child(11), .grid .saga-card:nth-child(11) { animation-delay: 0.55s; }
+    .grid .card:nth-child(12), .grid .saga-card:nth-child(12) { animation-delay: 0.6s; }
+    .grid .card:nth-child(n+13), .grid .saga-card:nth-child(n+13) { animation-delay: 0.65s; }
 
     .adminSection{
       display: none;
@@ -2033,9 +2161,776 @@
       background: linear-gradient(135deg, rgba(155, 89, 182, 0.3), rgba(142, 68, 173, 0.25));
       border-color: rgba(155, 89, 182, 0.5);
     }
+
+    /* Hide glass container on HOME - show only home content */
+    body.home-active .main > section.glass {
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+
+    body.home-active #stateMsg {
+      display: none !important;
+    }
+    .home-view {
+      display: block;
+      width: 100%;
+    }
+
+    /* Hide header on HOME */
+
+body.home-active .shell {
+  padding: 20px;
+}
+
+/* Logo Lottie Section - Full width no container */
+.home-logo-section {
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  position: relative;
+  width: 100%;
+  margin: 0;
+  background: transparent;
+}
+
+    /* Logo Lottie Section - Full width no container */
+    .home-logo-section {
+      min-height: 50vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      position: relative;
+      width: 100%;
+      margin: 0;
+      background: transparent;
+    }
+
+    .lottie-container {
+      width: 100%;
+      max-width: 600px;
+      aspect-ratio: 16/9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lottie-placeholder {
+      text-align: center;
+      color: rgba(255,255,255,.9);
+    }
+
+    .logo-text {
+      font-size: clamp(48px, 8vw, 80px);
+      font-weight: 700;
+      letter-spacing: 8px;
+      background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,.7) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 60px rgba(100,140,255,.3);
+      animation: logoPulse 3s ease-in-out infinite;
+    }
+
+    @keyframes logoPulse {
+      0%, 100% { transform: scale(1); filter: brightness(1); }
+      50% { transform: scale(1.02); filter: brightness(1.1); }
+    }
+
+    .logo-subtitle {
+      font-size: clamp(16px, 2vw, 20px);
+      color: rgba(255,255,255,.6);
+      margin-top: 16px;
+      letter-spacing: 4px;
+      font-weight: 300;
+    }
+
+    /* Home Sections with glass effect */
+    .home-section {
+      margin: 0 auto 48px;
+      padding: 24px;
+      max-width: 100%;
+      width: 100%;
+      box-sizing: border-box;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 20px;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: 0 8px 32px rgba(0,0,0,.3);
+      position: relative;
+    }
+
+    /* Carousel container avec blur uniquement sur les covers aux bords */
+    .home-carousel-wrapper {
+      position: relative;
+      overflow: hidden;
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 60px, black calc(100% - 60px), transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0%, black 60px, black calc(100% - 60px), transparent 100%);
+    }
+
+    .home-games-row {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      scroll-snap-type: x mandatory;
+      padding: 8px 0 8px calc((100% - (6 * 200px + 5 * 16px)) / 2); /* Center 6 cards, show half of 7th */
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .home-games-row::-webkit-scrollbar {
+      display: none;
+    }
+
+    .home-games-row.expanded {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      overflow-x: visible;
+      scroll-snap-type: none;
+    }
+
+    /* Navigation arrows */
+    .carousel-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%) scale(0.8);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.15);
+      border: 1px solid rgba(255,255,255,.2);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 10;
+      font-size: 24px;
+      color: rgba(255,255,255,.9);
+      box-shadow: 0 4px 20px rgba(0,0,0,.3);
+    }
+
+    .home-section:hover .carousel-arrow {
+      opacity: 1;
+      transform: translateY(-50%) scale(1);
+    }
+
+    .carousel-arrow:hover {
+      background: rgba(100,140,255,.3);
+      border-color: rgba(100,140,255,.5);
+      transform: translateY(-50%) scale(1.1) !important;
+      box-shadow: 0 0 30px rgba(100,140,255,.4);
+    }
+
+    .carousel-arrow.prev {
+      left: 10px;
+    }
+
+    .carousel-arrow.next {
+      right: 10px;
+    }
+
+    .carousel-arrow:active {
+      transform: translateY(-50%) scale(0.95) !important;
+    }
+
+    /* Voir plus button */
+    .voir-plus-btn {
+      display: block;
+      width: 100%;
+      max-width: 300px;
+      margin: 24px auto 0;
+      padding: 14px 28px;
+      background: linear-gradient(135deg, rgba(100,140,255,.2), rgba(80,120,240,.15));
+      border: 1px solid rgba(100,140,255,.3);
+      border-radius: 12px;
+      color: rgba(255,255,255,.9);
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .voir-plus-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.2), transparent);
+      transition: left 0.6s ease;
+    }
+
+    .voir-plus-btn:hover::before {
+      left: 100%;
+    }
+
+    .voir-plus-btn:hover {
+      background: linear-gradient(135deg, rgba(100,140,255,.35), rgba(80,120,240,.25));
+      border-color: rgba(100,140,255,.5);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(100,140,255,.3);
+    }
+
+    .voir-plus-btn:active {
+      transform: translateY(-1px);
+    }
+
+    /* Card animations - BIGGER SIZE like ALL tab */
+    .home-game-card,
+    .home-franchise-card {
+      position: relative;
+      border-radius: var(--r-md);
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.1);
+      background: rgba(255,255,255,.04);
+      aspect-ratio: 3 / 4;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      flex: 0 0 auto;
+      width: 200px;
+      min-width: 200px;
+      scroll-snap-align: start;
+    }
+
+    @media (max-width: 1400px) {
+      .home-game-card,
+      .home-franchise-card {
+        width: 180px;
+        min-width: 180px;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .home-game-card,
+      .home-franchise-card {
+        width: 160px;
+        min-width: 160px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .home-game-card,
+      .home-franchise-card {
+        width: 140px;
+        min-width: 140px;
+      }
+    }
+
+    .home-games-row.expanded .home-game-card,
+    .home-games-row.expanded .home-franchise-card {
+      width: auto;
+      min-width: 0;
+    }
+
+    .home-game-card:hover,
+    .home-franchise-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      border-color: rgba(100,140,255,.4);
+      box-shadow: 0 20px 50px rgba(0,0,0,.4), 0 0 30px rgba(100,140,255,.15);
+      z-index: 5;
+    }
+
+    .home-game-card img,
+    .home-franchise-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .home-game-card:hover img,
+    .home-franchise-card:hover img {
+      transform: scale(1.04);
+    }
+
+    /* Card shimmer effect */
+    .home-game-card::after,
+    .home-franchise-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.1), transparent);
+      transition: left 0.8s ease;
+      pointer-events: none;
+    }
+
+    .home-game-card:hover::after,
+    .home-franchise-card:hover::after {
+      left: 100%;
+    }
+
+    .home-section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+    }
+
+    .home-section-title {
+      font-size: clamp(20px, 2.5vw, 28px);
+      font-weight: 600;
+      color: rgba(255,255,255,.95);
+      margin: 0;
+      letter-spacing: 1px;
+    }
+
+    .home-section-subtitle {
+      font-size: clamp(12px, 1.2vw, 14px);
+      color: rgba(255,255,255,.5);
+      font-weight: 400;
+    }
+
+    /* Games Row - Horizontal scrolling avec FLEX (pas grid) */
+    .home-games-row {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 16px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 8px 0;
+      padding-left: max(4px, calc((100% - (6 * 200px + 5 * 16px)) / 2)); /* Show 6 full + half of 7th */
+      scroll-behavior: smooth;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    /* Cacher la scrollbar mais garder la fonctionnalité */
+    .home-games-row::-webkit-scrollbar {
+      display: none;
+    }
+    .home-games-row {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    .voir-plus-btn {
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .voir-plus-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.2), transparent);
+      transition: left 0.6s ease;
+    }
+
+    .voir-plus-btn:hover::before {
+      left: 100%;
+    }
+
+    .voir-plus-btn:hover {
+      background: linear-gradient(135deg, rgba(100,140,255,.35), rgba(80,120,240,.25));
+      border-color: rgba(100,140,255,.5);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(100,140,255,.3);
+    }
+
+    .voir-plus-btn:active {
+      transform: translateY(-1px);
+    }
+
+    .home-game-info,
+    .home-franchise-info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,.9) 0%, rgba(0,0,0,.5) 50%, transparent 100%);
+      padding: 20px 12px 12px;
+      transform: translateY(0);
+      transition: transform 0.3s ease;
+    }
+
+    .home-game-title,
+    .home-franchise-title {
+      font-size: clamp(11px, 1vw, 14px);
+      font-weight: 600;
+      color: rgba(255,255,255,.95);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 1.3;
+    }
+
+    .home-game-meta,
+    .home-franchise-meta {
+      font-size: 11px;
+      color: rgba(255,255,255,.6);
+      margin-top: 4px;
+    }
+
+    .home-loading {
+      flex: 0 0 100%;
+      text-align: center;
+      padding: 60px 20px;
+      color: rgba(255,255,255,.5);
+      font-size: 14px;
+    }
+
+    /* ===== PAGINATION ===== */
+    .pagination-container {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 32px;
+      padding: 20px;
+      flex-wrap: wrap;
+    }
+
+    .pagination-btn {
+      padding: 10px 16px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,.15);
+      background: rgba(255,255,255,.06);
+      color: rgba(255,255,255,.8);
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .pagination-btn:hover {
+      background: rgba(255,255,255,.12);
+      border-color: rgba(255,255,255,.25);
+      transform: translateY(-2px);
+    }
+
+    .pagination-btn.active {
+      background: rgba(100,140,255,.25);
+      border-color: rgba(100,140,255,.5);
+      color: rgba(255,255,255,.95);
+      box-shadow: 0 4px 15px rgba(100,140,255,.2);
+    }
+
+    .pagination-ellipsis {
+      color: rgba(255,255,255,.4);
+      padding: 0 8px;
+      font-size: 14px;
+    }
+
+    body.home-active {
+      margin: 0;
+      padding: 70px 0 0 0;
+      overflow-x: hidden;
+      scrollbar-gutter: stable;
+    }
+
+    body.home-active::-webkit-scrollbar {
+      width: 12px;
+    }
+
+    /* ===== HOME PAGE SPECIAL LAYOUT ===== */
+    body.home-active .main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 5vw 20px 20px;
+      margin: 0;
+      width: 100%;
+      max-width: 100vw;
+      box-sizing: border-box;
+    }
+
+    body.home-active .main > section.glass {
+      background: transparent;
+      border: none;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      box-shadow: none;
+      padding: 0;
+      margin: 0 60px 0 0;
+      max-width: 1400px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    /* Home View - container principal */
+    .home-view {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      margin: 0 60px 0 0;
+      box-sizing: border-box;
+    }
+
+    /* Catégories horizontales AU-DESSUS du logo - RECTANGLE ARRONDI */
+    .home-categories-bar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      padding: 20px;
+      margin: 20px auto 16px auto;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      flex-wrap: wrap;
+      max-width: 1400px;
+      width: fit-content;
+      box-sizing: border-box;
+    }
+
+    .home-cat-btn {
+      padding: 12px 24px;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 10px;
+      color: rgba(255,255,255,.7);
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .home-cat-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.15), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .home-cat-btn:hover::before {
+      left: 100%;
+    }
+
+    .home-cat-btn:hover {
+      background: rgba(255,255,255,.1);
+      border-color: rgba(100,140,255,.5);
+      color: rgba(255,255,255,.95);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(100,140,255,.2);
+    }
+
+    .home-cat-btn.active {
+      background: linear-gradient(135deg, rgba(100,140,255,.3), rgba(80,120,240,.2));
+      border-color: rgba(100,140,255,.5);
+      color: rgba(255,255,255,.95);
+      box-shadow: 0 0 20px rgba(100,140,255,.3);
+    }
+
+    /* Barre de recherche design - RECTANGLE ARRONDI, SANS SHORTCUT */
+    .home-search-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      max-width: 600px;
+      margin: 0 auto 32px;
+      padding: 14px 24px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 12px;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .home-search-bar:hover {
+      background: rgba(255,255,255,.12);
+      border-color: rgba(100,140,255,.4);
+      box-shadow: 0 0 30px rgba(100,140,255,.2);
+      transform: translateY(-2px);
+    }
+
+    .home-search-bar svg {
+      width: 20px;
+      height: 20px;
+      color: rgba(255,255,255,.5);
+      flex-shrink: 0;
+    }
+
+    .home-search-bar span {
+      color: rgba(255,255,255,.5);
+      font-size: 14px;
+      flex: 1;
+    }
+
+    /* Centrer le logo */
+    .home-logo-section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px 20px;
+      min-height: 300px;
+    }
+
+    /* Container Lottie */
+    .lottie-container {
+      width: 100%;
+      max-width: 1100px;
+      height: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .lottie-container svg {
+      width: 100%;
+      height: auto;
+    }
+
+    /* Header avec boutons sur la homepage */
+    .home-header-outer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      background: transparent;
+      z-index: 1000;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .home-header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .home-header-left {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .home-header-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 10px;
+      color: rgba(255,255,255,.9);
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      text-decoration: none;
+      white-space: nowrap;
+      animation: headerPopIn 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      opacity: 0;
+      transform: translateY(-40px) scale(0.85);
+    }
+
+    @keyframes headerPopIn {
+      0% {
+        opacity: 0;
+        transform: translateY(-40px) scale(0.85);
+      }
+      50% {
+        opacity: 1;
+        transform: translateY(8px) scale(1.08);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .home-header-left .home-header-btn:nth-child(1) { animation-delay: 0.2s; }
+    .home-header-left .home-header-btn:nth-child(2) { animation-delay: 0.4s; }
+    .home-header-inner > .home-header-btn.discord { animation-delay: 0.6s; }
+
+    .home-header-btn.small {
+      padding: 10px 18px;
+      font-size: 13px;
+    }
+
+    .home-header-btn:hover {
+      background: rgba(255,255,255,.2);
+      border-color: rgba(100,140,255,.5);
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 10px 30px rgba(100,140,255,.3);
+    }
+
+    .home-header-btn.primary {
+      background: linear-gradient(135deg, rgba(100,140,255,.3), rgba(80,120,240,.2));
+      border-color: rgba(100,140,255,.4);
+    }
+
+    .home-header-btn.discord {
+      background: linear-gradient(135deg, rgba(88,101,242,.3), rgba(88,101,242,.2));
+      border-color: rgba(88,101,242,.4);
+      opacity: 1;
+    }
+
+    .home-header-btn span {
+      font-size: 18px;
+    }
+
+    /* Masquer sidebar sur l'accueil */
+    body.home-active .main > aside.glass {
+      display: none;
+    }
+
+    /* Masquer les catégories horizontales sur la homepage */
+    body.home-active .home-categories-bar {
+      display: none !important;
+    }
+
+    body.home-active .shell {
+      display: block;
+    }
   </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
 </head>
 <body>
+  <script>document.body.classList.add('home-active');</script>
   <!-- FOND PARALLAX -->
   <div class="parallax-bg" id="parallaxBg"></div>
   <div class="app">
@@ -2141,10 +3036,6 @@
           <button class="adminNavBtn" data-section="sagas">
             <span class="icon">✦</span>
             Sagas
-          </button>
-          <button class="adminNavBtn" data-section="batch">
-            <span class="icon">⚡</span>
-            Import Batch
           </button>
           <button class="adminNavBtn upload-btn" id="uploadToGitHubBtn">
             <span class="icon">🚀</span>
@@ -2345,75 +3236,6 @@
           </div>
         </div>
 
-        <!-- SECTION: Import Batch - AJOUT MASSIF AUTOMATIQUE -->
-        <div class="adminSection" id="sectionBatch">
-          <h2>⚡ Import Batch (Automatique)</h2>
-          <p style="color: rgba(255,255,255,0.6); margin-bottom: 16px; font-size: 13px;">
-            Collez plusieurs noms de jeux séparés par <strong>;</strong>. Le système cherchera automatiquement sur IGDB et les sources magnet.
-          </p>
-
-          <div style="margin-bottom: 16px;">
-            <label>Noms des jeux (séparés par ;)</label>
-            <textarea id="batchGamesInput" placeholder="Resident Evil 4; Silent Hill 2; God of War Ragnarok; Elden Ring..." rows="6" style="width: 100%; box-sizing: border-box; font-family: monospace; font-size: 13px;"></textarea>
-            <small style="color: rgba(255,255,255,0.4); font-size: 11px;">Exemple: "Resident Evil HD Remaster; Silent Hill 2 Remake; God of War"</small>
-          </div>
-
-          <!-- Options -->
-          <div style="display: flex; gap: 16px; margin-bottom: 16px; flex-wrap: wrap;">
-            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 13px;">
-              <input type="checkbox" id="batchSkipExisting" checked style="accent-color: #6366f1;" />
-              <span>Ignorer les jeux existants</span>
-            </label>
-            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 13px;">
-              <input type="checkbox" id="batchSkipNoMagnet" checked style="accent-color: #6366f1;" />
-              <span>Ignorer si pas de magnet</span>
-            </label>
-          </div>
-
-          <!-- Bouton Start -->
-          <div style="margin-bottom: 20px;">
-            <button type="button" id="startBatchImportBtn" class="primary" style="background: linear-gradient(135deg, rgba(100,140,255,0.3), rgba(80,120,240,0.2)); border-color: rgba(100,140,255,0.4); padding: 12px 24px; font-size: 14px;">
-              🚀 Lancer l'import batch
-            </button>
-            <button type="button" id="stopBatchImportBtn" class="danger" style="display: none; padding: 12px 24px; font-size: 14px;">
-              ⏹️ Arrêter
-            </button>
-          </div>
-
-          <!-- Progress -->
-          <div id="batchProgress" style="display: none; margin-bottom: 20px; padding: 16px; background: rgba(255,255,255,0.05); border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
-            <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px;">
-              <span id="batchProgressText">Préparation...</span>
-              <span id="batchProgressPercent">0%</span>
-            </div>
-            <div style="height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow: hidden;">
-              <div id="batchProgressBar" style="height: 100%; width: 0%; background: linear-gradient(90deg, #6366f1, #8b5cf6); transition: width 0.3s ease;"></div>
-            </div>
-            <div style="margin-top: 8px; font-size: 11px; color: rgba(255,255,255,0.5);">
-              <span id="batchStatsSuccess" style="color: #4ade80;">✓ 0 ajoutés</span> &nbsp;|&nbsp;
-              <span id="batchStatsSkipped" style="color: #fbbf24;">⏭ 0 ignorés</span> &nbsp;|&nbsp;
-              <span id="batchStatsFailed" style="color: #f87171;">✗ 0 échoués</span>
-            </div>
-          </div>
-
-          <!-- Log en temps réel -->
-          <div style="margin-bottom: 16px;">
-            <label style="display: flex; justify-content: space-between; align-items: center;">
-              <span>Journal d'import</span>
-              <button type="button" id="clearBatchLogBtn" style="padding: 4px 10px; font-size: 11px; opacity: 0.7;">Effacer</button>
-            </label>
-            <div id="batchLog" style="height: 200px; overflow-y: auto; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 12px; font-family: monospace; font-size: 12px; color: rgba(255,255,255,0.8);">
-              <div style="color: rgba(255,255,255,0.4);">Prêt pour l'import batch...</div>
-            </div>
-          </div>
-
-          <!-- Résultat final -->
-          <div id="batchResult" style="display: none; padding: 16px; background: rgba(99,102,241,0.1); border-radius: 12px; border: 1px solid rgba(99,102,241,0.3);">
-            <h4 style="margin: 0 0 12px; color: #a5b4fc;">✅ Import terminé !</h4>
-            <div id="batchResultContent" style="font-size: 13px; line-height: 1.6;"></div>
-          </div>
-        </div>
-
         <!-- SECTION: Export/Import (remplace Upload) -->
         <div class="adminSection" id="sectionExport">
           <h2>📁 Export / Import</h2>
@@ -2474,24 +3296,113 @@
 
     let state = {
       data: structuredClone(DEFAULT_DATA),
-      activeCat: "ALL",
+      activeCat: "HOME",  // Par défaut sur Accueil
       query: "",
       adminUnlocked: false,
       selectedCategories: [],
       adminSearchQuery: "",
       lastModified: null,
-      selectedSagaGames: []
+      selectedSagaGames: [],
+      currentPage: 1,  // Pour pagination All
+      itemsPerPage: 48  // 6x8 = 48 items max (8 jeux par ligne)
     };
 
     let editIndex = null;
     let selectedGameData = null;
 
-    // Éléments DOM
-    const catList = document.getElementById("catList");
+    // HOME VIEW - Vue d'accueil avec logo et sections en vedette
+    const homeView = document.createElement('div');
+    homeView.id = 'homeView';
+    homeView.className = 'home-view';
+    homeView.innerHTML = `
+      <!-- CATÉGORIES HORIZONTALES (AU-DESSUS DU LOGO) -->
+      <div class="home-categories-bar" id="homeCategoriesBar">
+        <!-- Les catégories seront injectées ici dynamiquement -->
+      </div>
+
+      <!-- LOGO LOTTIE PLACEHOLDER -->
+      <div class="home-logo-section">
+        <div id="lottieLogoContainer" class="lottie-container">
+          <!-- LOTTIE LOGO SERA INSÉRÉ ICI -->
+          <div class="lottie-placeholder">
+            <div class="logo-text">CRACKUZU</div>
+            <div class="logo-subtitle">Votre univers gaming</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BARRE DE RECHERCHE DESIGN (RECTANGLE ARRONDI, SANS SHORTCUT) -->
+      <div class="home-search-bar" id="homeSearchBar">
+        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        </svg>
+        <span>Rechercher un jeu...</span>
+      </div>
+
+      <!-- SECTION: MEILLEURS JEUX RÉCENTS -->
+      <div class="home-section">
+        <div class="home-section-header" style="justify-content: space-between;">
+          <h2 class="home-section-title">🔥 Meilleurs jeux récents</h2>
+          <button class="voir-plus-btn" style="margin: 0; width: auto; padding: 10px 20px; font-size: 13px;" onclick="openRecentGamesModal()">Voir plus</button>
+        </div>
+        <div class="home-carousel-wrapper">
+          <button class="carousel-arrow prev" onclick="scrollCarousel('trendingGamesRow', -1)">‹</button>
+          <div class="home-games-row" id="trendingGamesRow">
+            <div class="home-loading">Chargement...</div>
+          </div>
+          <button class="carousel-arrow next" onclick="scrollCarousel('trendingGamesRow', 1)">›</button>
+        </div>
+      </div>
+
+      <!-- SECTION: MEILLEURES SAGAS -->
+      <div class="home-section">
+        <div class="home-section-header" style="justify-content: space-between;">
+          <h2 class="home-section-title">✨ Meilleures sagas à tester</h2>
+          <button class="voir-plus-btn" style="margin: 0; width: auto; padding: 10px 20px; font-size: 13px;" onclick="openAllSagasModal()">Voir plus</button>
+        </div>
+        <div class="home-carousel-wrapper">
+          <button class="carousel-arrow prev" onclick="scrollCarousel('topFranchisesRow', -1)">‹</button>
+          <div class="home-games-row" id="topFranchisesRow">
+            <div class="home-loading">Chargement...</div>
+          </div>
+          <button class="carousel-arrow next" onclick="scrollCarousel('topFranchisesRow', 1)">›</button>
+        </div>
+      </div>
+    `;
+
+    // WORKER URL pour les appels API
+    const WORKER_URL = localStorage.getItem('worker_url') || 'https://crackuzu-api.crackuzu.workers.dev';
     const gameGrid = document.getElementById("gameGrid");
     const noGames = document.getElementById("noGames");
     const stateMsg = document.getElementById("stateMsg");
     const toast = document.getElementById("toast");
+
+    // Insérer la homeView avant le gameGrid (après que gameGrid soit défini)
+    const mainSection = document.querySelector('.main > section.glass');
+    if (mainSection && gameGrid) {
+      mainSection.insertBefore(homeView, gameGrid);
+    }
+
+    // Créer et insérer le header fixed directement dans le body (en dehors de tout container)
+    const homeHeader = document.createElement('div');
+    homeHeader.id = 'homeHeader';
+    homeHeader.className = 'home-header-outer';
+    homeHeader.innerHTML = `
+      <div class="home-header-inner">
+        <div class="home-header-left">
+          <button class="home-header-btn small primary" onclick="setHomeCategory('ALL')">
+            <span>🎮</span> Voir tous les jeux
+          </button>
+          <button class="home-header-btn small" onclick="openRequestGameModal()">
+            <span>📋</span> Demander des jeux
+          </button>
+        </div>
+        <a href="https://discord.gg/qvxkVubaGN" target="_blank" class="home-header-btn small discord">
+          <span>💬</span> Discord
+        </a>
+      </div>
+    `;
+    document.body.insertBefore(homeHeader, document.body.firstChild);
 
     const adminEntry = document.getElementById("adminEntry");
     const adminPill = document.getElementById("adminPill");
@@ -2619,10 +3530,22 @@
         return migrated;
       });
       
+      // Extraire les catégories uniques de tous les jeux si pas déjà défini
+      if(obj.categories.length === 0 && obj.games.length > 0){
+        const uniqueCats = new Set();
+        obj.games.forEach(g => {
+          if(Array.isArray(g.categories)){
+            g.categories.forEach(cat => uniqueCats.add(cat));
+          }
+        });
+        obj.categories = Array.from(uniqueCats).sort();
+        console.log("📂 Catégories extraites des jeux:", obj.categories.length);
+      }
+      
       return obj;
     }
 
-    // FONCTION CORRIGÉE pour charger les données
+    // FONCTION CORRIGÉE pour charger les données depuis data.json
     async function loadDataFromRepo(){
       console.log("🔍 Tentative de chargement depuis data.json...");
       
@@ -2777,7 +3700,7 @@
 
     // Render functions
     function renderCategories(){
-      const all = ["ALL", ...state.data.categories];
+      const all = ["HOME", "ALL", ...state.data.categories];
       catList.innerHTML = "";
       
       all.forEach((cat, index) => {
@@ -2785,9 +3708,11 @@
         btn.className = "catbtn";
         btn.style.animationDelay = `${0.05 + (index * 0.08)}s`;
         if(cat === state.activeCat) btn.classList.add("active");
-        btn.textContent = cat;
+        // Afficher "Accueil" au lieu de "HOME" pour l'onglet d'accueil
+        btn.textContent = cat === "HOME" ? "Accueil" : cat;
         btn.addEventListener("click", () => {
           state.activeCat = cat;
+          state.currentPage = 1; // Reset pagination
           renderCategories();
           renderGames();
         });
@@ -2892,6 +3817,29 @@
     });
 
     function renderGames(){
+      // Toggle body class for HOME view (hides header)
+      if (state.activeCat === "HOME") {
+        document.body.classList.add('home-active');
+      } else {
+        document.body.classList.remove('home-active');
+      }
+      
+      // Gérer la visibilité de la home view
+      const homeView = document.getElementById('homeView');
+      if (homeView) {
+        homeView.style.display = state.activeCat === "HOME" ? "block" : "none";
+      }
+      
+      // Si on est sur HOME, charger les données IGDB si pas encore fait
+      if (state.activeCat === "HOME") {
+        loadHomePageData();
+        gameGrid.style.display = "none";
+        if (noGames) noGames.style.display = "none";
+        return;
+      }
+      
+      gameGrid.style.display = "grid";
+      
       let filtered = state.data.games;
 
       if(state.activeCat !== "ALL"){
@@ -2906,6 +3854,17 @@
         filtered = filtered.filter(g => g.name.toLowerCase().includes(lq));
       }
       
+      // PAGINATION pour ALL - max 49 items (7x7)
+      let totalItems = filtered.length;
+      let paginatedItems = filtered;
+      
+      if (state.activeCat === "ALL" && totalItems > state.itemsPerPage) {
+        const startIndex = (state.currentPage - 1) * state.itemsPerPage;
+        const endIndex = startIndex + state.itemsPerPage;
+        paginatedItems = filtered.slice(startIndex, endIndex);
+        totalItems = filtered.length; // Conserver le total pour la pagination
+      }
+      
       // Regrouper les jeux par saga
       const gamesInSagas = new Set();
       state.data.sagas.forEach(saga => {
@@ -2914,40 +3873,57 @@
         }
       });
       
-      // Séparer les jeux qui sont dans des sagas de ceux qui ne le sont pas
-      const standaloneGames = filtered.filter(g => !gamesInSagas.has(g.name));
+      // Pour ALL avec pagination, on affiche tous les jeux paginés
+      // Pour les autres catégories, on garde la logique saga
+      let standaloneGames, visibleSagas;
       
-      // Trouver les sagas qui ont au moins un jeu visible dans le filtre actuel
-      const visibleSagas = state.data.sagas.filter(saga => {
-        if (!saga.games) return false;
-        return saga.games.some(gameName => {
-          const game = state.data.games.find(g => g.name === gameName);
-          if (!game) return false;
-          
-          // Vérifier si ce jeu est dans le filtre actuel
-          if (state.activeCat !== "ALL") {
-            const cats = Array.isArray(game.categories) ? game.categories : [];
-            if (!cats.includes(state.activeCat)) return false;
-          }
-          
-          if (state.query) {
-            if (!game.name.toLowerCase().includes(state.query.toLowerCase())) return false;
-          }
-          
-          return true;
+      if (state.activeCat === "ALL") {
+        // En ALL paginé, on affiche tout simplement les jeux paginés
+        standaloneGames = paginatedItems.filter(g => !gamesInSagas.has(g.name));
+        // Les sagas sont gérées différemment en ALL - on ne les affiche pas en double
+        visibleSagas = [];
+      } else {
+        // Logique originale pour les catégories spécifiques
+        standaloneGames = paginatedItems.filter(g => !gamesInSagas.has(g.name));
+        
+        visibleSagas = state.data.sagas.filter(saga => {
+          if (!saga.games) return false;
+          return saga.games.some(gameName => {
+            const game = state.data.games.find(g => g.name === gameName);
+            if (!game) return false;
+            
+            if (state.activeCat !== "ALL") {
+              const cats = Array.isArray(game.categories) ? game.categories : [];
+              if (!cats.includes(state.activeCat)) return false;
+            }
+            
+            if (state.query) {
+              if (!game.name.toLowerCase().includes(state.query.toLowerCase())) return false;
+            }
+            
+            return true;
+          });
         });
-      });
+      }
       
-      // Mettre à jour le compteur (sagas + jeux standalone)
-      const totalItems = visibleSagas.length + standaloneGames.length;
+      // Mettre à jour le compteur
       const gameCountDisplay = document.getElementById("gameCountDisplay");
       if (gameCountDisplay) {
-        gameCountDisplay.textContent = totalItems + (totalItems > 1 ? " éléments" : " élément");
+        if (state.activeCat === "ALL") {
+          const pageStart = (state.currentPage - 1) * state.itemsPerPage + 1;
+          const pageEnd = Math.min(state.currentPage * state.itemsPerPage, totalItems);
+          gameCountDisplay.textContent = `${pageStart}-${pageEnd} / ${totalItems} jeux`;
+        } else {
+          const displayCount = visibleSagas.length + standaloneGames.length;
+          gameCountDisplay.textContent = displayCount + (displayCount > 1 ? " éléments" : " élément");
+        }
       }
 
       gameGrid.innerHTML = "";
       
-      if(totalItems === 0){
+      const displayItems = visibleSagas.length + standaloneGames.length;
+      
+      if(displayItems === 0){
         noGames.style.display = "block";
         noGames.textContent = state.data.games.length === 0 ? 
           "Aucun jeu dans la bibliothèque. Ajoutez-en via le panneau admin." : 
@@ -2957,23 +3933,20 @@
 
       noGames.style.display = "none";
       
-      // Afficher d'abord les sagas
+      // Afficher d'abord les sagas (sauf en ALL paginé)
       visibleSagas.forEach((saga, index) => {
         const card = document.createElement("div");
         card.className = "saga-card";
         card.style.animationDelay = `${index === 0 ? 0.5 : 0.5 + (index * 0.066)}s`;
 
-        // Badge "SAGA"
         const badge = document.createElement("div");
         badge.className = "saga-badge";
         badge.textContent = "SAGA";
         
-        // Badge compteur
         const countBadge = document.createElement("div");
         countBadge.className = "saga-count";
         countBadge.textContent = `${saga.games.length} jeux`;
 
-        // Grille de covers (max 4)
         const coverGrid = document.createElement("div");
         coverGrid.className = "saga-cover-grid";
         
@@ -2992,7 +3965,6 @@
           }
         });
 
-        // Titre de la saga
         const title = document.createElement("div");
         title.className = "saga-title";
         title.textContent = saga.name;
@@ -3034,7 +4006,6 @@
         title.textContent = g.name;
 
         const downloadLink = document.createElement("a");
-        // Si lien direct disponible, on l'utilise, sinon magnet
         const hasDirectLink = g.directLink && g.directLink.trim() !== '';
         downloadLink.className = "card-download";
         downloadLink.href = hasDirectLink ? g.directLink : g.magnet;
@@ -3054,7 +4025,6 @@
         card.appendChild(overlay);
 
         card.addEventListener("click", () => {
-          // Animation de transition vers game.html
           const transition = document.createElement('div');
           transition.style.cssText = `
             position: fixed;
@@ -3077,7 +4047,344 @@
 
         gameGrid.appendChild(card);
       });
+      
+      // Ajouter la pagination pour ALL
+      if (state.activeCat === "ALL" && totalItems > state.itemsPerPage) {
+        renderPagination(totalItems);
+      }
     }
+    
+    // Fonction de pagination
+    function renderPagination(totalItems) {
+      const totalPages = Math.ceil(totalItems / state.itemsPerPage);
+      const paginationContainer = document.createElement('div');
+      paginationContainer.className = 'pagination-container';
+      
+      let paginationHTML = '';
+      
+      // Bouton Précédent
+      if (state.currentPage > 1) {
+        paginationHTML += `<button class="pagination-btn" onclick="changePage(${state.currentPage - 1})">← Précédent</button>`;
+      }
+      
+      // Pages
+      const maxVisiblePages = 5;
+      let startPage = Math.max(1, state.currentPage - Math.floor(maxVisiblePages / 2));
+      let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+      
+      if (endPage - startPage < maxVisiblePages - 1) {
+        startPage = Math.max(1, endPage - maxVisiblePages + 1);
+      }
+      
+      if (startPage > 1) {
+        paginationHTML += `<button class="pagination-btn" onclick="changePage(1)">1</button>`;
+        if (startPage > 2) paginationHTML += `<span class="pagination-ellipsis">...</span>`;
+      }
+      
+      for (let i = startPage; i <= endPage; i++) {
+        const activeClass = i === state.currentPage ? ' active' : '';
+        paginationHTML += `<button class="pagination-btn${activeClass}" onclick="changePage(${i})">${i}</button>`;
+      }
+      
+      if (endPage < totalPages) {
+        if (endPage < totalPages - 1) paginationHTML += `<span class="pagination-ellipsis">...</span>`;
+        paginationHTML += `<button class="pagination-btn" onclick="changePage(${totalPages})">${totalPages}</button>`;
+      }
+      
+      // Bouton Suivant
+      if (state.currentPage < totalPages) {
+        paginationHTML += `<button class="pagination-btn" onclick="changePage(${state.currentPage + 1})">Suivant →</button>`;
+      }
+      
+      paginationContainer.innerHTML = paginationHTML;
+      gameGrid.appendChild(paginationContainer);
+    }
+    
+    // Fonction globale pour changer de page
+    window.changePage = function(page) {
+      state.currentPage = page;
+      renderGames();
+      // Scroll vers le haut de la grille
+      gameGrid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+    
+    // Données cache pour la home page
+    let homePageData = {
+      trendingGames: null,
+      topFranchises: null,
+      lastFetch: null,
+      allRecentGames: [],
+      allSagas: []
+    };
+    
+    // Fonction pour scroller le carousel - DEFILE 5 CARTES A LA FOIS
+    window.scrollCarousel = function(rowId, direction) {
+      const row = document.getElementById(rowId);
+      if (!row) return;
+      
+      // Calculer la largeur d'une carte + gap pour un defilement precis
+      const cardWidth = 220; // 200px + marge
+      const scrollAmount = direction * cardWidth * 5; // Defile 5 cartes a la fois
+      
+      row.scrollBy({
+        left: scrollAmount,
+        behavior: 'smooth'
+      });
+    };
+
+    // Fonction pour ouvrir le modal de demande de jeu
+    window.openRequestGameModal = function() {
+      const gameName = prompt('Quel jeu souhaites-tu demander ?');
+      if (gameName && gameName.trim()) {
+        // Rediriger vers Discord avec le message pré-rempli
+        const discordUrl = `https://discord.gg/qvxkVubaGN`;
+        window.open(discordUrl, '_blank');
+        toastMsg('🎮 Demande enregistrée ! Rejoins le Discord pour la soumettre.');
+      }
+    };
+    window.openRecentGamesModal = function() {
+      const modal = document.getElementById('sagaModal');
+      const title = document.getElementById('sagaModalTitle');
+      const grid = document.getElementById('sagaGamesGrid');
+      
+      title.textContent = '🔥 Tous les jeux récents';
+      grid.innerHTML = '';
+      
+      // Afficher tous les jeux récents
+      homePageData.allRecentGames.forEach((game, index) => {
+        const card = document.createElement('div');
+        card.className = 'saga-game-card';
+        card.style.animationDelay = `${index * 0.05}s`;
+        
+        const img = document.createElement('img');
+        img.src = game.cover || '';
+        img.alt = game.name;
+        img.loading = 'lazy';
+        
+        const titleDiv = document.createElement('div');
+        titleDiv.className = 'game-title';
+        titleDiv.textContent = game.name;
+        
+        card.appendChild(img);
+        card.appendChild(titleDiv);
+        
+        card.addEventListener('click', () => {
+          window.location.href = `game.html?name=${encodeURIComponent(game.name)}`;
+        });
+        
+        grid.appendChild(card);
+      });
+      
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    };
+
+    // Fonction pour ouvrir le modal de toutes les sagas
+    window.openAllSagasModal = function() {
+      const modal = document.getElementById('sagaModal');
+      const title = document.getElementById('sagaModalTitle');
+      const grid = document.getElementById('sagaGamesGrid');
+      
+      title.textContent = '✨ Toutes les sagas';
+      grid.innerHTML = '';
+      
+      // Afficher toutes les sagas
+      homePageData.allSagas.forEach((saga, index) => {
+        const firstGame = state.data.games.find(g => g.name === saga.games[0]);
+        
+        const card = document.createElement('div');
+        card.className = 'saga-game-card';
+        card.style.animationDelay = `${index * 0.05}s`;
+        
+        const img = document.createElement('img');
+        img.src = firstGame?.cover || '';
+        img.alt = saga.name;
+        img.loading = 'lazy';
+        
+        const titleDiv = document.createElement('div');
+        titleDiv.className = 'game-title';
+        titleDiv.textContent = saga.name;
+        
+        const metaDiv = document.createElement('div');
+        metaDiv.style.cssText = 'font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 4px;';
+        metaDiv.textContent = `${saga.games.length} jeux`;
+        
+        card.appendChild(img);
+        card.appendChild(titleDiv);
+        card.appendChild(metaDiv);
+        
+        card.addEventListener('click', () => {
+          closeSagaModal();
+          setTimeout(() => openSagaModal(saga.id), 300);
+        });
+        
+        grid.appendChild(card);
+      });
+      
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    };
+
+    // Charger les données de la page d'accueil avec tri par annee
+    async function loadHomePageData() {
+      const trendingRow = document.getElementById('trendingGamesRow');
+      const franchisesRow = document.getElementById('topFranchisesRow');
+      
+      if (trendingRow && state.data.games && state.data.games.length > 0) {
+        const currentYear = new Date().getFullYear();
+        
+        // Filtrer les jeux 2024-2025 et trier par annee decroissante
+        homePageData.allRecentGames = state.data.games
+          .filter(game => {
+            const year = game.year;
+            return year && year >= 2024 && year <= currentYear;
+          })
+          .sort((a, b) => {
+            // Trier par annee decroissante (2026, 2025, 2024...)
+            return (b.year || 0) - (a.year || 0);
+          });
+        
+        // Afficher les 30 premiers
+        const recentGames = homePageData.allRecentGames.slice(0, 30);
+        
+        if (recentGames.length > 0) {
+          trendingRow.innerHTML = recentGames.map(game => `
+            <div class="home-game-card" onclick="window.location.href='game.html?name=${encodeURIComponent(game.name)}'">
+              <img src="${game.cover || ''}" alt="${game.name}" loading="lazy" />
+              <div class="home-game-info">
+                <div class="home-game-title">${game.name}</div>
+                <div class="home-game-meta">${game.year || '2024'}</div>
+              </div>
+            </div>
+          `).join('');
+        } else {
+          trendingRow.innerHTML = '<div class="home-loading">Les jeux recents 2024-2025 seront bientot disponibles</div>';
+        }
+      } else if (trendingRow) {
+        trendingRow.innerHTML = '<div class="home-loading">Les jeux recents 2024-2025 seront bientot disponibles</div>';
+      }
+      
+      // Afficher les sagas (30 pour permettre le scroll)
+      if (franchisesRow && state.data.sagas && state.data.sagas.length > 0) {
+        homePageData.allSagas = state.data.sagas;
+        const sagasToShow = homePageData.allSagas.slice(0, 30);
+        
+        franchisesRow.innerHTML = sagasToShow.map(saga => {
+          const firstGame = state.data.games.find(g => g.name === saga.games[0]);
+          return `
+            <div class="home-franchise-card" onclick="openSagaModal('${saga.id}')">
+              <img src="${firstGame?.cover || ''}" alt="${saga.name}" loading="lazy" />
+              <div class="home-franchise-info">
+                <div class="home-franchise-title">${saga.name}</div>
+                <div class="home-franchise-meta">${saga.games.length} jeux</div>
+              </div>
+            </div>
+          `;
+        }).join('');
+      } else if (franchisesRow) {
+        franchisesRow.innerHTML = '<div class="home-loading">Les sagas seront bientôt disponibles</div>';
+      }
+      
+      // Essayer de charger des données IGDB en arrière-plan (optionnel)
+      try {
+        const trendingRes = await fetch(`${WORKER_URL}/api/trending-games?limit=7`);
+        if (trendingRes.ok) {
+          const igdbData = await trendingRes.json();
+          if (igdbData.games && igdbData.games.length > 0 && trendingRow) {
+            // Fusionner avec les données locales si IGDB répond
+            trendingRow.innerHTML = igdbData.games.map(game => `
+              <div class="home-game-card" onclick="window.location.href='game.html?name=${encodeURIComponent(game.name)}'">
+                <img src="${game.cover || ''}" alt="${game.name}" loading="lazy" />
+                <div class="home-game-info">
+                  <div class="home-game-title">${game.name}</div>
+                  <div class="home-game-meta">${game.year || ''} • ${game.rating ? '⭐ ' + game.rating : 'IGDB'}</div>
+                </div>
+              </div>
+            `).join('');
+          }
+        }
+      } catch (error) {
+        console.log('IGDB non disponible, on garde les jeux locaux');
+      }
+      
+      // Rendre les catégories horizontales
+      renderHomeCategories();
+    }
+    
+    // Afficher les données sur la home page
+    function renderHomePageData() {
+      // Afficher les jeux tendance
+      const trendingRow = document.getElementById('trendingGamesRow');
+      if (trendingRow && homePageData.trendingGames && homePageData.trendingGames.games) {
+        trendingRow.innerHTML = homePageData.trendingGames.games.map(game => `
+          <div class="home-game-card" onclick="window.location.href='game.html?name=${encodeURIComponent(game.name)}'">
+            <img src="${game.cover || ''}" alt="${game.name}" loading="lazy" />
+            <div class="home-game-info">
+              <div class="home-game-title">${game.name}</div>
+              <div class="home-game-meta">${game.year || ''} • ${game.rating ? '⭐ ' + game.rating : ''}</div>
+            </div>
+          </div>
+        `).join('');
+      }
+      
+      // Afficher les sagas
+      const franchisesRow = document.getElementById('topFranchisesRow');
+      if (franchisesRow && homePageData.topFranchises && homePageData.topFranchises.franchises) {
+        franchisesRow.innerHTML = homePageData.topFranchises.franchises.map(franchise => `
+          <div class="home-franchise-card" onclick="window.location.href='game.html?name=${encodeURIComponent(franchise.games[0]?.name || '')}'">
+            <img src="${franchise.games[0]?.cover || ''}" alt="${franchise.name}" loading="lazy" />
+            <div class="home-franchise-info">
+              <div class="home-franchise-title">${franchise.name}</div>
+              <div class="home-franchise-meta">${franchise.games.length} jeux</div>
+            </div>
+          </div>
+        `).join('');
+      }
+    }
+
+    // Fonction pour afficher les catégories horizontales sur l'accueil
+    function renderHomeCategories() {
+      const homeCategoriesBar = document.getElementById('homeCategoriesBar');
+      if (!homeCategoriesBar) return;
+      
+      // Catégories à afficher: HOME, ALL, puis les catégories personnalisées
+      const categories = ['HOME', 'ALL', ...state.data.categories];
+      
+      homeCategoriesBar.innerHTML = categories.map(cat => {
+        const isActive = state.activeCat === cat;
+        const label = cat === 'HOME' ? 'Accueil' : cat === 'ALL' ? 'Tous' : cat;
+        return `<button class="home-cat-btn ${isActive ? 'active' : ''}" onclick="setHomeCategory('${cat}')">${label}</button>`;
+      }).join('');
+    }
+
+    // Fonction globale pour changer de catégorie depuis la home
+    window.setHomeCategory = function(cat) {
+      state.activeCat = cat;
+      state.currentPage = 1;
+      renderCategories();
+      renderGames();
+      // Re-render les catégories de la home pour mettre à jour l'active
+      renderHomeCategories();
+    };
+
+    // Event listener pour la barre de recherche de la home
+    setTimeout(() => {
+      const homeSearchBar = document.getElementById('homeSearchBar');
+      if (homeSearchBar) {
+        homeSearchBar.addEventListener('click', () => {
+          // Ouvrir la recherche immersive
+          const searchOverlay = document.getElementById('searchOverlay');
+          const immersiveSearchInput = document.getElementById('immersiveSearchInput');
+          if (searchOverlay) {
+            searchOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            setTimeout(() => {
+              immersiveSearchInput?.focus();
+            }, 100);
+          }
+        });
+      }
+    }, 500);
 
     function renderAdminLists(){
       // Catégories
@@ -3803,17 +5110,6 @@
       }
     });
 
-    // Event listeners pour 1337x search
-    search1337xBtn.addEventListener("click", () => {
-      search1337x(search1337xInput.value);
-    });
-
-    search1337xInput.addEventListener("keypress", (e) => {
-      if (e.key === "Enter") {
-        search1337x(search1337xInput.value);
-      }
-    });
-
     async function handleTorrentFile(file) {
       try {
         toastMsg("📁 Analyse du torrent...");
@@ -4485,7 +5781,7 @@
         const data = await loadDataFromRepo();
         
         if (data && data.games && data.games.length > 0) {
-          console.log(`✅ ${data.games.length} jeux chargés depuis data.json`);
+          console.log(`✅ ${data.games.length} jeux chargés depuis jeuxonline_enriched.json`);
           state.data = data;
           setStateMessage(`✅ ${data.games.length} jeux chargés`);
           setTimeout(() => setStateMessage(""), 2000);
@@ -4506,7 +5802,7 @@
         setStateMessage("❌ Erreur de chargement. Vérifiez la console.");
       }
 
-      state.activeCat = "ALL";
+      state.activeCat = "HOME";
       state.query = "";
       // L'ancien input de recherche a été remplacé par l'overlay immersif
 
@@ -4573,6 +5869,28 @@
 
     // Démarrer l'application
     init();
+
+    // ===== CORRECTION CENTRAGE HOME - SUPPRIMÉE (cause asymétrie) =====
+    /* 
+    function fixHomeCentering() {
+      if (!document.body.classList.contains('home-active')) return;
+      
+      // Calculer la largeur réelle de la scrollbar
+      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+      
+      // Répartir la compensation des deux côtés pour un centrage parfait
+      const main = document.querySelector('.main');
+      if (main) {
+        const compensation = scrollbarWidth / 2;
+        main.style.paddingLeft = `${20 + compensation}px`;
+        main.style.paddingRight = `${20 + compensation}px`;
+      }
+    }
+    
+    // Appliquer au chargement et au redimensionnement
+    window.addEventListener('load', fixHomeCentering);
+    window.addEventListener('resize', fixHomeCentering);
+    */
 
     // ===== EFFET SCROLL HEADER GLASS =====
     const header = document.querySelector('header');
@@ -5051,310 +6369,43 @@
         }
       });
     }
-
-    // ===== FONCTIONS IMPORT BATCH =====
-    let batchImportRunning = false;
-    let batchImportCancelled = false;
-
-    const batchGamesInput = document.getElementById('batchGamesInput');
-    const startBatchImportBtn = document.getElementById('startBatchImportBtn');
-    const stopBatchImportBtn = document.getElementById('stopBatchImportBtn');
-    const batchProgress = document.getElementById('batchProgress');
-    const batchProgressBar = document.getElementById('batchProgressBar');
-    const batchProgressText = document.getElementById('batchProgressText');
-    const batchProgressPercent = document.getElementById('batchProgressPercent');
-    const batchStatsSuccess = document.getElementById('batchStatsSuccess');
-    const batchStatsSkipped = document.getElementById('batchStatsSkipped');
-    const batchStatsFailed = document.getElementById('batchStatsFailed');
-    const batchLog = document.getElementById('batchLog');
-    const batchResult = document.getElementById('batchResult');
-    const batchResultContent = document.getElementById('batchResultContent');
-    const clearBatchLogBtn = document.getElementById('clearBatchLogBtn');
-    const batchSkipExisting = document.getElementById('batchSkipExisting');
-    const batchSkipNoMagnet = document.getElementById('batchSkipNoMagnet');
-
-    // Effacer le log
-    clearBatchLogBtn.addEventListener('click', () => {
-      batchLog.innerHTML = '<div style="color: rgba(255,255,255,0.4);">Log effacé...</div>';
-    });
-
-    // Arrêter l'import
-    stopBatchImportBtn.addEventListener('click', () => {
-      batchImportCancelled = true;
-      logBatch('⏹️ Arrêt demandé par l\'utilisateur...', 'warning');
-    });
-
-    // Démarrer l'import batch
-    startBatchImportBtn.addEventListener('click', async () => {
-      const input = batchGamesInput.value.trim();
-      if (!input) {
-        toastMsg('⚠️ Veuillez entrer des noms de jeux');
-        return;
-      }
-
-      // Parser les noms de jeux
-      const gameNames = input.split(';').map(n => n.trim()).filter(n => n.length > 0);
-      if (gameNames.length === 0) {
-        toastMsg('⚠️ Aucun nom de jeu valide trouvé');
-        return;
-      }
-
-      // Initialiser l'état
-      batchImportRunning = true;
-      batchImportCancelled = false;
-      startBatchImportBtn.style.display = 'none';
-      stopBatchImportBtn.style.display = '';
-      batchProgress.style.display = 'block';
-      batchResult.style.display = 'none';
-      batchLog.innerHTML = '';
-
-      let successCount = 0;
-      let skippedCount = 0;
-      let failedCount = 0;
-      const addedGames = [];
-      const skippedGames = [];
-      const failedGames = [];
-
-      logBatch(`🚀 Démarrage de l'import de ${gameNames.length} jeux...`, 'info');
-      logBatch('');
-
-      const workerUrl = localStorage.getItem("worker_url") || "https://crackuzu-api.crackuzu.workers.dev";
-
-      for (let i = 0; i < gameNames.length; i++) {
-        if (batchImportCancelled) {
-          logBatch('⏹️ Import annulé.', 'warning');
-          break;
-        }
-
-        const gameName = gameNames[i];
-        const progress = Math.round(((i + 1) / gameNames.length) * 100);
+    // ===== INITIALISATION LOGO LOTTIE =====
+    let lottieAnimation = null;
+    
+    function initLottieLogo() {
+      const container = document.getElementById('lottieLogoContainer');
+      if (!container || typeof lottie === 'undefined') return;
+      
+      // Vider le placeholder
+      container.innerHTML = '';
+      
+      // Charger l'animation Lottie
+      lottieAnimation = lottie.loadAnimation({
+        container: container,
+        renderer: 'svg',
+        loop: false,
+        autoplay: true,
+        path: 'logo.json'
+      });
+      
+      // Arrêter à 70% de l'animation pour garder le logo visible
+      lottieAnimation.addEventListener('enterFrame', function() {
+        const totalFrames = lottieAnimation.totalFrames;
+        const currentFrame = lottieAnimation.currentFrame;
+        const progress = currentFrame / totalFrames;
         
-        updateBatchProgress(progress, `Traitement: ${gameName} (${i + 1}/${gameNames.length})`);
-        logBatch(`[${i + 1}/${gameNames.length}] 🔍 ${gameName}`, 'info');
-
-        try {
-          logBatch('   → Recherche IGDB...', 'muted');
-          const searchResponse = await fetch(`${workerUrl}/api/search-games?query=${encodeURIComponent(gameName)}`);
-          
-          if (!searchResponse.ok) {
-            throw new Error('Erreur recherche IGDB');
-          }
-
-          const searchData = await searchResponse.json();
-          
-          if (!searchData.games || searchData.games.length === 0) {
-            logBatch('   ❌ Pas trouvé sur IGDB', 'error');
-            failedCount++;
-            failedGames.push({ name: gameName, reason: 'Non trouvé sur IGDB' });
-            continue;
-          }
-
-          // Prendre le premier résultat
-          const firstGame = searchData.games[0];
-          logBatch(`   ✓ Trouvé: ${firstGame.name}`, 'success');
-
-          // Vérifier si le jeu existe déjà
-          const existingGame = state.data.games.find(g => 
-            g.name.toLowerCase() === firstGame.name.toLowerCase() ||
-            (g.igdbId && g.igdbId === firstGame.id)
-          );
-
-          if (existingGame) {
-            logBatch('   ⏭ Jeu déjà existant', 'warning');
-            if (batchSkipExisting.checked) {
-              skippedCount++;
-              skippedGames.push({ name: firstGame.name, reason: 'Déjà existant' });
-              continue;
-            }
-          }
-
-          // Étape 2: Récupérer les détails du jeu
-          logBatch('   → Récupération des détails...', 'muted');
-          const detailsResponse = await fetch(`${workerUrl}/api/game-details?id=${firstGame.id}`);
-          
-          if (!detailsResponse.ok) {
-            throw new Error('Erreur détails IGDB');
-          }
-
-          const details = await detailsResponse.json();
-          logBatch(`   ✓ Cover et catégories récupérées`, 'success');
-
-          // Étape 3: Recherche magnet - NOUVEAU FLOW 1 requête via /api/auto-magnet
-          let magnet = null;
-          let magnetFound = false;
-          let magnetRetries = 0;
-          const maxMagnetRetries = 3;
-          
-          while (magnetRetries < maxMagnetRetries && !magnetFound) {
-            try {
-              logBatch(`   → Recherche magnet optimisée (tentative ${magnetRetries + 1}/${maxMagnetRetries})...`, 'muted');
-              
-              // 1 SEULE requête qui fait tout : IGDB + recherche magnet
-              const response = await fetch(`${workerUrl}/api/auto-magnet?id=${firstGame.id}`);
-              
-              if (response.status === 503) {
-                logBatch('   ⚠️ Erreur 503 détectée (rate limiting)', 'warning');
-                logBatch('   ⏳ Pause de 1 minute...', 'warning');
-                await new Promise(resolve => setTimeout(resolve, 60000));
-                magnetRetries++;
-                continue;
-              }
-              
-              if (!response.ok) {
-                throw new Error(`HTTP ${response.status}`);
-              }
-              
-              const data = await response.json();
-              
-              if (data.error) {
-                throw new Error(data.error);
-              }
-              
-              if (data.results && data.results.length > 0) {
-                magnet = data.results[0].magnet;
-                magnetFound = true;
-                logBatch(`   ✓ Magnet trouvé (${data.results[0].source})`, 'success');
-              } else {
-                logBatch(`   ⚠️ Pas de résultat pour "${data.searchQuery}"`, 'warning');
-              }
-              
-              if (!magnetFound && magnetRetries < maxMagnetRetries - 1) {
-                const backoffMs = 3000 * Math.pow(2, magnetRetries);
-                logBatch(`   ⚠️ Retry dans ${backoffMs/1000}s...`, 'warning');
-                await new Promise(resolve => setTimeout(resolve, backoffMs));
-              }
-            } catch (magnetError) {
-              logBatch(`   ❌ Erreur: ${magnetError.message}`, 'warning');
-              
-              if (magnetError.message.includes('fetch') || 
-                  magnetError.message.includes('network') ||
-                  magnetError.message.includes('Failed') ||
-                  magnetRetries >= 1) {
-                logBatch('   ⏳ Pause de 1 minute (erreur réseau)...', 'warning');
-                await new Promise(resolve => setTimeout(resolve, 60000));
-              } else if (magnetRetries < maxMagnetRetries - 1) {
-                const backoffMs = 3000 * Math.pow(2, magnetRetries);
-                logBatch(`   ⚠️ Retry dans ${backoffMs/1000}s...`, 'warning');
-                await new Promise(resolve => setTimeout(resolve, backoffMs));
-              }
-            }
-            magnetRetries++;
-          }
-
-          if (!magnetFound) {
-            logBatch('   ❌ Pas de magnet trouvé', 'error');
-            if (batchSkipNoMagnet.checked) {
-              skippedCount++;
-              skippedGames.push({ name: firstGame.name, reason: 'Pas de magnet' });
-              continue;
-            }
-          }
-
-          // Étape 4: Ajouter le jeu
-          const categories = details.categories || ['ACTION'];
-          
-          // S'assurer que les catégories existent dans la liste globale
-          categories.forEach(cat => {
-            if (!state.data.categories.includes(cat)) {
-              state.data.categories.push(cat);
-            }
-          });
-
-          const newGame = {
-            name: details.name,
-            categories: categories,
-            magnet: magnet || '',
-            cover: details.cover34 || '',
-            igdbId: firstGame.id,
-            videoId: details.videoId || null
-          };
-
-          state.data.games.unshift(newGame);
-          successCount++;
-          addedGames.push(details.name);
-          logBatch(`   ✅ AJOUTÉ: ${details.name}`, 'success');
-
-          // Sauvegarder après chaque jeu ajouté
-          saveLocalDraft();
-          updateStats();
-
-        } catch (error) {
-          logBatch(`   ❌ Erreur: ${error.message}`, 'error');
-          failedCount++;
-          failedGames.push({ name: gameName, reason: error.message });
+        if (progress >= 0.70) {
+          lottieAnimation.pause();
+          lottieAnimation.goToAndStop(currentFrame, true);
         }
-
-        logBatch('');
-        
-        // Pause longue tous les 7 jeux pour éviter le rate limiting Cloudflare (503)
-        if ((i + 1) % 7 === 0 && i < gameNames.length - 1) {
-          logBatch('   ⏳ Pause longue (30s) pour éviter le rate limiting...', 'warning');
-          await new Promise(resolve => setTimeout(resolve, 30000));
-        }
-        // Pause normale de 12s entre chaque jeu
-        else if (i < gameNames.length - 1) {
-          logBatch('   ⏳ Pause de 12s...', 'muted');
-          await new Promise(resolve => setTimeout(resolve, 12000));
-        }
-      }
-
-      // Terminer
-      batchImportRunning = false;
-      startBatchImportBtn.style.display = '';
-      stopBatchImportBtn.style.display = 'none';
-      
-      updateBatchStats(successCount, skippedCount, failedCount);
-      
-      // Afficher le résumé
-      batchResult.style.display = 'block';
-      batchResultContent.innerHTML = `
-        <strong>🎮 ${successCount} jeu(x) ajouté(s)</strong><br>
-        ${addedGames.map(g => `✓ ${g}`).join('<br>')}
-        ${skippedCount > 0 ? `<br><br><strong>⏭ ${skippedCount} ignoré(s)</strong><br>${skippedGames.map(g => `• ${g.name} (${g.reason})`).join('<br>')}` : ''}
-        ${failedCount > 0 ? `<br><br><strong>✗ ${failedCount} échoué(s)</strong><br>${failedGames.map(g => `• ${g.name} (${g.reason})`).join('<br>')}` : ''}
-      `;
-
-      logBatch('', 'info');
-      logBatch(`✅ Import terminé: ${successCount} ajoutés, ${skippedCount} ignorés, ${failedCount} échoués`, 'info');
-
-      // Rafraîchir l'affichage
-      renderCategories();
-      renderGames();
-      renderAdminLists();
-      renderCategoriesList();
-
-      toastMsg(`✅ Import terminé: ${successCount} ajoutés`);
-    });
-
-    function logBatch(message, type = 'muted') {
-      const div = document.createElement('div');
-      div.textContent = message;
-      
-      const colors = {
-        muted: 'rgba(255,255,255,0.4)',
-        info: 'rgba(255,255,255,0.8)',
-        success: '#4ade80',
-        warning: '#fbbf24',
-        error: '#f87171'
-      };
-      
-      div.style.color = colors[type] || colors.muted;
-      div.style.marginBottom = '2px';
-      
-      batchLog.appendChild(div);
-      batchLog.scrollTop = batchLog.scrollHeight;
+      });
     }
 
-    function updateBatchProgress(percent, text) {
-      batchProgressBar.style.width = percent + '%';
-      batchProgressPercent.textContent = percent + '%';
-      batchProgressText.textContent = text;
-    }
-
-    function updateBatchStats(success, skipped, failed) {
-      batchStatsSuccess.textContent = `✓ ${success} ajoutés`;
-      batchStatsSkipped.textContent = `⏭ ${skipped} ignorés`;
-      batchStatsFailed.textContent = `✗ ${failed} échoués`;
+    // Initialiser le logo au chargement
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initLottieLogo);
+    } else {
+      initLottieLogo();
     }
   </script>
 </body>
