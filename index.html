@@ -669,26 +669,40 @@
       border: 1px solid rgba(255,255,255,0.2);
     }
     .saga-cover-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: repeat(2, 1fr);
+      position: relative;
       width: 100%;
       height: 100%;
-      gap: 2px;
+      overflow: hidden;
     }
     .saga-cover-grid img {
-      width: 100%;
-      height: 100%;
+      position: absolute;
+      width: 65%;
+      height: 65%;
       object-fit: cover;
+      border-radius: 4px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+      transition: all 0.3s ease;
     }
-    .saga-cover-grid img:only-child,
-    .saga-cover-grid img:first-child:nth-last-child(2),
-    .saga-cover-grid img:first-child:nth-last-child(2) ~ img {
-      grid-column: span 1;
-      grid-row: span 2;
+    /* Image 1 - en haut à gauche */
+    .saga-cover-grid img:nth-child(1) {
+      top: 5%;
+      left: 5%;
+      z-index: 3;
     }
-    .saga-cover-grid img:first-child:nth-last-child(3) {
-      grid-row: span 2;
+    /* Image 2 - au centre (décalée) */
+    .saga-cover-grid img:nth-child(2) {
+      top: 20%;
+      left: 20%;
+      z-index: 2;
+    }
+    /* Image 3 - en bas à droite */
+    .saga-cover-grid img:nth-child(3) {
+      top: 35%;
+      left: 35%;
+      z-index: 1;
+    }
+    .saga-card:hover .saga-cover-grid img {
+      transform: scale(1.05);
     }
     .saga-title {
       position: absolute;
@@ -2266,12 +2280,13 @@ body.home-active .shell {
       -webkit-backdrop-filter: blur(20px);
       box-shadow: 0 8px 32px rgba(0,0,0,.3);
       position: relative;
+      overflow: visible;
     }
 
     /* Carousel container avec blur uniquement sur les covers aux bords */
     .home-carousel-wrapper {
       position: relative;
-      overflow: hidden;
+      overflow: visible;
       -webkit-mask-image: linear-gradient(to right, transparent 0%, black 60px, black calc(100% - 60px), transparent 100%);
       mask-image: linear-gradient(to right, transparent 0%, black 60px, black calc(100% - 60px), transparent 100%);
     }
@@ -2396,8 +2411,7 @@ body.home-active .shell {
     }
 
     /* Card animations - BIGGER SIZE like ALL tab */
-    .home-game-card,
-    .home-franchise-card {
+    .home-game-card {
       position: relative;
       border-radius: var(--r-md);
       overflow: hidden;
@@ -2410,6 +2424,26 @@ body.home-active .shell {
       width: 200px;
       min-width: 200px;
       scroll-snap-align: start;
+    }
+
+    .home-franchise-card {
+      position: relative;
+      border-radius: var(--r-md);
+      overflow: visible;
+      border: none;
+      background: transparent;
+      aspect-ratio: 3 / 4;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      flex: 0 0 auto;
+      width: 200px;
+      min-width: 200px;
+      scroll-snap-align: start;
+      z-index: 1;
+    }
+
+    .home-franchise-card:hover {
+      z-index: 10;
     }
 
     @media (max-width: 1400px) {
@@ -2442,11 +2476,8 @@ body.home-active .shell {
       min-width: 0;
     }
 
-    .home-game-card:hover,
     .home-franchise-card:hover {
       transform: translateY(-8px) scale(1.02);
-      border-color: rgba(100,140,255,.4);
-      box-shadow: 0 20px 50px rgba(0,0,0,.4), 0 0 30px rgba(100,140,255,.15);
       z-index: 5;
     }
 
@@ -2458,14 +2489,12 @@ body.home-active .shell {
       transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    .home-game-card:hover img,
-    .home-franchise-card:hover img {
+    .home-game-card:hover img {
       transform: scale(1.04);
     }
 
     /* Card shimmer effect */
-    .home-game-card::after,
-    .home-franchise-card::after {
+    .home-game-card::after {
       content: '';
       position: absolute;
       top: 0;
@@ -2477,9 +2506,93 @@ body.home-active .shell {
       pointer-events: none;
     }
 
-    .home-game-card:hover::after,
-    .home-franchise-card:hover::after {
+    .home-game-card:hover::after {
       left: 100%;
+    }
+
+    /* ===== STYLES POUR LES CARTES SAGA (home-franchise-card) ===== */
+    .home-franchise-card {
+      position: relative;
+    }
+    .home-franchise-card .saga-badge-home {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+      color: #000;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+      z-index: 20;
+      box-shadow: 0 2px 8px rgba(255,215,0,0.4);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .home-franchise-card .franchise-cover-stack {
+      position: absolute;
+      inset: 0;
+      overflow: visible;
+    }
+    /* Stack style - images empilées avec décalage vertical */
+    .home-franchise-card .franchise-cover-stack img {
+      position: absolute;
+      width: calc(100% - 8px);
+      height: 85%;
+      object-fit: cover;
+      border-radius: var(--r-md);
+      left: 4px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      opacity: 1;
+    }
+    /* Par défaut - stack empilé */
+    .home-franchise-card .franchise-cover-stack img:nth-child(1) {
+      z-index: 3;
+      top: 4px;
+      transform: scale(1);
+    }
+    .home-franchise-card .franchise-cover-stack img:nth-child(2) {
+      z-index: 2;
+      top: 20px;
+      transform: scale(0.96);
+      opacity: 0.85;
+    }
+    .home-franchise-card .franchise-cover-stack img:nth-child(3) {
+      z-index: 1;
+      top: 36px;
+      transform: scale(0.92);
+      opacity: 0.7;
+    }
+    /* État scroll pos 1 - image 2 au premier plan */
+    .home-franchise-card.stack-pos-1 .franchise-cover-stack img:nth-child(1) {
+      transform: translateY(-30px) scale(0.9);
+      opacity: 0;
+    }
+    .home-franchise-card.stack-pos-1 .franchise-cover-stack img:nth-child(2) {
+      top: 4px;
+      transform: scale(1);
+      opacity: 1;
+      z-index: 4;
+    }
+    .home-franchise-card.stack-pos-1 .franchise-cover-stack img:nth-child(3) {
+      top: 20px;
+      transform: scale(0.96);
+      opacity: 0.85;
+    }
+    /* État scroll pos 2 - image 3 au premier plan */
+    .home-franchise-card.stack-pos-2 .franchise-cover-stack img:nth-child(1) {
+      transform: translateY(-50px) scale(0.85);
+      opacity: 0;
+    }
+    .home-franchise-card.stack-pos-2 .franchise-cover-stack img:nth-child(2) {
+      transform: translateY(-30px) scale(0.9);
+      opacity: 0;
+    }
+    .home-franchise-card.stack-pos-2 .franchise-cover-stack img:nth-child(3) {
+      top: 4px;
+      transform: scale(1);
+      opacity: 1;
+      z-index: 4;
     }
 
     .home-section-header {
@@ -2564,16 +2677,15 @@ body.home-active .shell {
       transform: translateY(-1px);
     }
 
-    .home-game-info,
     .home-franchise-info {
       position: absolute;
       bottom: 0;
       left: 0;
       right: 0;
-      background: linear-gradient(to top, rgba(0,0,0,.9) 0%, rgba(0,0,0,.5) 50%, transparent 100%);
       padding: 20px 12px 12px;
       transform: translateY(0);
       transition: transform 0.3s ease;
+      pointer-events: none;
     }
 
     .home-game-title,
@@ -3710,9 +3822,16 @@ body.home-active .shell {
         if(cat === state.activeCat) btn.classList.add("active");
         // Afficher "Accueil" au lieu de "HOME" pour l'onglet d'accueil
         btn.textContent = cat === "HOME" ? "Accueil" : cat;
-        btn.addEventListener("click", () => {
+        btn.addEventListener("click", async () => {
           state.activeCat = cat;
           state.currentPage = 1; // Reset pagination
+          
+          // Charger les données si pas encore chargées (sauf pour HOME)
+          if (cat !== "HOME") {
+            const loaded = await ensureDataLoaded();
+            if (!loaded) return; // Si échec du chargement, ne pas continuer
+          }
+          
           renderCategories();
           renderGames();
         });
@@ -3854,15 +3973,14 @@ body.home-active .shell {
         filtered = filtered.filter(g => g.name.toLowerCase().includes(lq));
       }
       
-      // PAGINATION pour ALL - max 49 items (7x7)
+      // PAGINATION pour toutes les catégories - max 48 items (6x8)
       let totalItems = filtered.length;
       let paginatedItems = filtered;
       
-      if (state.activeCat === "ALL" && totalItems > state.itemsPerPage) {
+      if (totalItems > state.itemsPerPage) {
         const startIndex = (state.currentPage - 1) * state.itemsPerPage;
         const endIndex = startIndex + state.itemsPerPage;
         paginatedItems = filtered.slice(startIndex, endIndex);
-        totalItems = filtered.length; // Conserver le total pour la pagination
       }
       
       // Regrouper les jeux par saga
@@ -3874,48 +3992,27 @@ body.home-active .shell {
       });
       
       // Pour ALL avec pagination, on affiche tous les jeux paginés
-      // Pour les autres catégories, on garde la logique saga
-      let standaloneGames, visibleSagas;
+      // Pour les autres catégories, on affiche tous les jeux individuellement (pas de cartes saga)
+      let standaloneGames;
+      let visibleSagas = []; // Pas de sagas dans les catégories
       
       if (state.activeCat === "ALL") {
         // En ALL paginé, on affiche tout simplement les jeux paginés
-        standaloneGames = paginatedItems.filter(g => !gamesInSagas.has(g.name));
-        // Les sagas sont gérées différemment en ALL - on ne les affiche pas en double
-        visibleSagas = [];
+        standaloneGames = paginatedItems;
       } else {
-        // Logique originale pour les catégories spécifiques
-        standaloneGames = paginatedItems.filter(g => !gamesInSagas.has(g.name));
-        
-        visibleSagas = state.data.sagas.filter(saga => {
-          if (!saga.games) return false;
-          return saga.games.some(gameName => {
-            const game = state.data.games.find(g => g.name === gameName);
-            if (!game) return false;
-            
-            if (state.activeCat !== "ALL") {
-              const cats = Array.isArray(game.categories) ? game.categories : [];
-              if (!cats.includes(state.activeCat)) return false;
-            }
-            
-            if (state.query) {
-              if (!game.name.toLowerCase().includes(state.query.toLowerCase())) return false;
-            }
-            
-            return true;
-          });
-        });
+        // Dans les catégories, afficher tous les jeux individuellement
+        standaloneGames = paginatedItems;
       }
       
       // Mettre à jour le compteur
       const gameCountDisplay = document.getElementById("gameCountDisplay");
       if (gameCountDisplay) {
-        if (state.activeCat === "ALL") {
+        if (totalItems > state.itemsPerPage) {
           const pageStart = (state.currentPage - 1) * state.itemsPerPage + 1;
           const pageEnd = Math.min(state.currentPage * state.itemsPerPage, totalItems);
           gameCountDisplay.textContent = `${pageStart}-${pageEnd} / ${totalItems} jeux`;
         } else {
-          const displayCount = visibleSagas.length + standaloneGames.length;
-          gameCountDisplay.textContent = displayCount + (displayCount > 1 ? " éléments" : " élément");
+          gameCountDisplay.textContent = totalItems + (totalItems > 1 ? " jeux" : " jeu");
         }
       }
 
@@ -3935,44 +4032,20 @@ body.home-active .shell {
       
       // Afficher d'abord les sagas (sauf en ALL paginé)
       visibleSagas.forEach((saga, index) => {
+        const firstGame = state.data.games.find(g => g.name === saga.games[0]);
+        const cover = firstGame?.cover || '';
+        
         const card = document.createElement("div");
-        card.className = "saga-card";
+        card.className = "saga-simple-card";
         card.style.animationDelay = `${index === 0 ? 0.5 : 0.5 + (index * 0.066)}s`;
-
-        const badge = document.createElement("div");
-        badge.className = "saga-badge";
-        badge.textContent = "SAGA";
-        
-        const countBadge = document.createElement("div");
-        countBadge.className = "saga-count";
-        countBadge.textContent = `${saga.games.length} jeux`;
-
-        const coverGrid = document.createElement("div");
-        coverGrid.className = "saga-cover-grid";
-        
-        const gamesToShow = saga.games.slice(0, 4);
-        gamesToShow.forEach(gameName => {
-          const game = state.data.games.find(g => g.name === gameName);
-          if (game && game.cover) {
-            const img = document.createElement("img");
-            img.src = game.cover;
-            img.alt = gameName;
-            img.loading = "lazy";
-            img.onerror = function() {
-              this.style.display = 'none';
-            };
-            coverGrid.appendChild(img);
-          }
-        });
-
-        const title = document.createElement("div");
-        title.className = "saga-title";
-        title.textContent = saga.name;
-
-        card.appendChild(badge);
-        card.appendChild(countBadge);
-        card.appendChild(coverGrid);
-        card.appendChild(title);
+        card.innerHTML = `
+          <div class="saga-badge-home">SAGA</div>
+          <img src="${cover}" loading="lazy" alt="${saga.name}" onerror="this.style.display='none'">
+          <div class="home-franchise-info">
+            <div class="home-franchise-title">${saga.name}</div>
+            <div class="home-franchise-meta">${saga.games.length} jeux</div>
+          </div>
+        `;
 
         card.addEventListener("click", () => {
           openSagaModal(saga);
@@ -4048,8 +4121,8 @@ body.home-active .shell {
         gameGrid.appendChild(card);
       });
       
-      // Ajouter la pagination pour ALL
-      if (state.activeCat === "ALL" && totalItems > state.itemsPerPage) {
+      // Ajouter la pagination pour toutes les catégories si nécessaire
+      if (totalItems > state.itemsPerPage) {
         renderPagination(totalItems);
       }
     }
@@ -4188,34 +4261,58 @@ body.home-active .shell {
       title.textContent = '✨ Toutes les sagas';
       grid.innerHTML = '';
       
-      // Afficher toutes les sagas
+      // Afficher toutes les sagas avec le même style que l'accueil
       homePageData.allSagas.forEach((saga, index) => {
-        const firstGame = state.data.games.find(g => g.name === saga.games[0]);
+        const gamesForCover = saga.games.slice(0, 3);
+        const covers = gamesForCover.map(gameName => {
+          const game = state.data.games.find(g => g.name === gameName);
+          return game?.cover || '';
+        }).filter(c => c);
+        
+        // Créer le HTML du stack (pile d'images)
+        let collageHTML = '<div class="franchise-cover-stack">';
+        covers.forEach(cover => {
+          collageHTML += `<img src="${cover}" loading="lazy" alt="" onerror="this.style.display='none'">`;
+        });
+        collageHTML += '</div>';
         
         const card = document.createElement('div');
-        card.className = 'saga-game-card';
+        card.className = 'home-franchise-card';
         card.style.animationDelay = `${index * 0.05}s`;
+        card.innerHTML = `
+          <div class="saga-badge-home">SAGA</div>
+          ${collageHTML}
+          <div class="home-franchise-info">
+            <div class="home-franchise-title">${saga.name}</div>
+            <div class="home-franchise-meta">${saga.games.length} jeux</div>
+          </div>
+        `;
         
-        const img = document.createElement('img');
-        img.src = firstGame?.cover || '';
-        img.alt = saga.name;
-        img.loading = 'lazy';
+        // Ajouter le scroll handler
+        let scrollPos = 0;
+        const maxPos = 2;
+        let isHovering = false;
         
-        const titleDiv = document.createElement('div');
-        titleDiv.className = 'game-title';
-        titleDiv.textContent = saga.name;
+        card.addEventListener('mouseenter', () => { isHovering = true; });
+        card.addEventListener('mouseleave', () => { isHovering = false; });
         
-        const metaDiv = document.createElement('div');
-        metaDiv.style.cssText = 'font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 4px;';
-        metaDiv.textContent = `${saga.games.length} jeux`;
-        
-        card.appendChild(img);
-        card.appendChild(titleDiv);
-        card.appendChild(metaDiv);
+        card.addEventListener('wheel', (e) => {
+          if (!isHovering) return;
+          e.preventDefault();
+          e.stopPropagation();
+          
+          const direction = e.deltaY > 0 ? 1 : -1;
+          scrollPos = (scrollPos + direction + (maxPos + 1)) % (maxPos + 1);
+          
+          card.classList.remove('stack-pos-1', 'stack-pos-2');
+          if (scrollPos > 0) {
+            card.classList.add(`stack-pos-${scrollPos}`);
+          }
+        }, { passive: false, capture: true });
         
         card.addEventListener('click', () => {
           closeSagaModal();
-          setTimeout(() => openSagaModal(saga.id), 300);
+          setTimeout(() => openSagaModal(saga), 300);
         });
         
         grid.appendChild(card);
@@ -4269,11 +4366,24 @@ body.home-active .shell {
         homePageData.allSagas = state.data.sagas;
         const sagasToShow = homePageData.allSagas.slice(0, 30);
         
-        franchisesRow.innerHTML = sagasToShow.map(saga => {
-          const firstGame = state.data.games.find(g => g.name === saga.games[0]);
+        franchisesRow.innerHTML = sagasToShow.map((saga, idx) => {
+          const gamesForCover = saga.games.slice(0, 3);
+          const covers = gamesForCover.map(gameName => {
+            const game = state.data.games.find(g => g.name === gameName);
+            return game?.cover || '';
+          }).filter(c => c);
+          
+          // Créer le HTML du stack (pile d'images)
+          let collageHTML = '<div class="franchise-cover-stack">';
+          covers.forEach(cover => {
+            collageHTML += `<img src="${cover}" loading="lazy" alt="" onerror="this.style.display='none'">`;
+          });
+          collageHTML += '</div>';
+          
           return `
-            <div class="home-franchise-card" onclick="openSagaModal('${saga.id}')">
-              <img src="${firstGame?.cover || ''}" alt="${saga.name}" loading="lazy" />
+            <div class="home-franchise-card" onclick="openHomeSagaModal(${idx})">
+              <div class="saga-badge-home">SAGA</div>
+              ${collageHTML}
               <div class="home-franchise-info">
                 <div class="home-franchise-title">${saga.name}</div>
                 <div class="home-franchise-meta">${saga.games.length} jeux</div>
@@ -4281,6 +4391,40 @@ body.home-active .shell {
             </div>
           `;
         }).join('');
+        
+        // Fonction helper pour ouvrir le modal depuis les cartes accueil
+        window.openHomeSagaModal = function(idx) {
+          const saga = homePageData.allSagas[idx];
+          if (saga) openSagaModal(saga);
+        };
+        
+        // Ajouter le scroll handler sur chaque carte saga
+        setTimeout(() => {
+          document.querySelectorAll('.home-franchise-card').forEach((card, cardIdx) => {
+            let scrollPos = 0;
+            const maxPos = 2;
+            let isHovering = false;
+            
+            // Détecter hover pour activer le scroll
+            card.addEventListener('mouseenter', () => { isHovering = true; });
+            card.addEventListener('mouseleave', () => { isHovering = false; });
+            
+            // Utiliser capture pour intercepter l'événement avant le carousel
+            card.addEventListener('wheel', (e) => {
+              if (!isHovering) return;
+              e.preventDefault();
+              e.stopPropagation();
+              
+              const direction = e.deltaY > 0 ? 1 : -1;
+              scrollPos = (scrollPos + direction + (maxPos + 1)) % (maxPos + 1);
+              
+              card.classList.remove('stack-pos-1', 'stack-pos-2');
+              if (scrollPos > 0) {
+                card.classList.add(`stack-pos-${scrollPos}`);
+              }
+            }, { passive: false, capture: true });
+          });
+        }, 100);
       } else if (franchisesRow) {
         franchisesRow.innerHTML = '<div class="home-loading">Les sagas seront bientôt disponibles</div>';
       }
@@ -4358,9 +4502,16 @@ body.home-active .shell {
     }
 
     // Fonction globale pour changer de catégorie depuis la home
-    window.setHomeCategory = function(cat) {
+    window.setHomeCategory = async function(cat) {
       state.activeCat = cat;
       state.currentPage = 1;
+      
+      // Charger les données si pas encore chargées (sauf pour HOME)
+      if (cat !== "HOME") {
+        const loaded = await ensureDataLoaded();
+        if (!loaded) return;
+      }
+      
       renderCategories();
       renderGames();
       // Re-render les catégories de la home pour mettre à jour l'active
@@ -5775,37 +5926,14 @@ body.home-active .shell {
     // FONCTION INIT
     async function init(){
       console.log("🎮 CRACKUZU - Initialisation...");
-      setStateMessage("Chargement des jeux...");
-
-      try {
-        const data = await loadDataFromRepo();
-        
-        if (data && data.games && data.games.length > 0) {
-          console.log(`✅ ${data.games.length} jeux chargés depuis jeuxonline_enriched.json`);
-          state.data = data;
-          setStateMessage(`✅ ${data.games.length} jeux chargés`);
-          setTimeout(() => setStateMessage(""), 2000);
-        } else {
-          const localDraft = loadLocalDraft();
-          if (localDraft && localDraft.games && localDraft.games.length > 0) {
-            console.log(`📦 ${localDraft.games.length} jeux chargés depuis le draft local`);
-            state.data = localDraft;
-            setStateMessage(`📦 ${localDraft.games.length} jeux (draft local)`);
-            setTimeout(() => setStateMessage(""), 2000);
-          } else {
-            console.warn("⚠️ Aucun jeu trouvé. La bibliothèque est vide.");
-            setStateMessage("📭 Aucun jeu trouvé. Ajoutez-en via le panneau admin.");
-          }
-        }
-      } catch (error) {
-        console.error("❌ Erreur lors du chargement:", error);
-        setStateMessage("❌ Erreur de chargement. Vérifiez la console.");
-      }
-
+      setStateMessage("Prêt - Cliquez sur une catégorie pour charger les jeux");
+      
+      // Ne pas charger les données au démarrage - lazy loading
+      state.data = { categories: [], games: [], sagas: [] };
+      state.dataLoaded = false;
+      
       state.activeCat = "HOME";
       state.query = "";
-      // L'ancien input de recherche a été remplacé par l'overlay immersif
-
       editIndex = null;
       exitEditMode();
 
@@ -5815,10 +5943,78 @@ body.home-active .shell {
       renderCategoriesList();
       updateStats();
       
-      // INITIALISER LE PREVIEW DE LA COVER
       setupCoverPreview();
+      renderIGDBPanel();
       
-      console.log("✅ Initialisation terminée");
+      // Setup paste et drag/drop
+      setupPasteAndDrop();
+      
+      // Setup game selector modal
+      setupGameSelector();
+      
+      console.log("✅ Initialisation terminée - En attente de sélection de catégorie");
+      
+      // Charger automatiquement les données de la page d'accueil (HOME)
+      // mais pas toutes les données des autres catégories
+      await loadHomeDataOnly();
+    }
+    
+    // Charger uniquement les données nécessaires pour la HOME (sagas, jeux récents)
+    async function loadHomeDataOnly() {
+      if (state.homeDataLoaded) return;
+      
+      try {
+        const data = await loadDataFromRepo();
+        if (data) {
+          state.data = data;
+          state.homeDataLoaded = true;
+          state.dataLoaded = true;
+          console.log(`✅ ${data.games?.length || 0} jeux chargés pour la HOME`);
+          // Re-render pour afficher les jeux récents et sagas sur la home
+          if (state.activeCat === "HOME") {
+            loadHomePageData();
+          }
+        }
+      } catch (e) {
+        console.error("❌ Erreur chargement données HOME:", e);
+      }
+    }
+    
+    // Charger les données complètes si nécessaire
+    async function ensureDataLoaded() {
+      if (state.dataLoaded && state.data.games.length > 0) {
+        return true;
+      }
+      
+      setStateMessage("Chargement des jeux...");
+      
+      try {
+        const data = await loadDataFromRepo();
+        
+        if (data && data.games && data.games.length > 0) {
+          state.data = data;
+          state.dataLoaded = true;
+          setStateMessage(`✅ ${data.games.length} jeux chargés`);
+          setTimeout(() => setStateMessage(""), 1500);
+          return true;
+        } else {
+          const localDraft = loadLocalDraft();
+          if (localDraft && localDraft.games.length > 0) {
+            state.data = localDraft;
+            state.dataLoaded = true;
+            setStateMessage(`📦 ${localDraft.games.length} jeux (local)`);
+            setTimeout(() => setStateMessage(""), 1500);
+            return true;
+          }
+        }
+        
+        setStateMessage("📭 Aucun jeu trouvé");
+        return false;
+      } catch (error) {
+        console.error("❌ Erreur chargement:", error);
+        setStateMessage("❌ Erreur de chargement");
+        return false;
+      }
     }
 
     // FONCTION POUR LE PREVIEW DE LA COVER - CORRIGÉ
