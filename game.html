@@ -414,19 +414,22 @@
           <div class="info-card">
             <h3>📋 Informations</h3>
             
-            <!-- ✨ Catégories déplacées ici -->
+            <!-- Catégories -->
             <div class="info-item">
               <span class="info-label">Catégories</span>
               <div class="info-value" id="gameCategories"></div>
             </div>
             
+            <!-- Version -->
             <div class="info-item">
-              <span class="info-label">Statut</span>
-              <span class="info-value">Disponible</span>
+              <span class="info-label">Version</span>
+              <span class="info-value" id="gameVersion">-</span>
             </div>
+            
+            <!-- Taille -->
             <div class="info-item">
-              <span class="info-label">Source</span>
-              <span class="info-value">CRACKUZU</span>
+              <span class="info-label">Taille</span>
+              <span class="info-value" id="gameSize">-</span>
             </div>
           </div>
 
@@ -686,6 +689,18 @@
         categoriesContainer.innerHTML = categories.map(cat => 
           `<span class="game-cat-pill">${cat.toUpperCase()}</span>`
         ).join('');
+
+        // Afficher la version
+        const versionElement = document.getElementById('gameVersion');
+        if (versionElement) {
+          versionElement.textContent = currentGame.version || '-';
+        }
+
+        // Afficher la taille
+        const sizeElement = document.getElementById('gameSize');
+        if (sizeElement) {
+          sizeElement.textContent = currentGame.size || '-';
+        }
 
         fetchGameCover(currentGame.name);
 
