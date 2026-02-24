@@ -394,12 +394,12 @@
   <div class="page-container">
     <div class="detail-wrapper glass">
       <div class="detail-header">
-        <a href="index.html" class="back-btn">
+        <button class="back-btn" onclick="goBack()">
           <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path d="M19 12H5M12 19l-7-7 7-7"/>
           </svg>
           Retour
-        </a>
+        </button>
         <h1 class="game-title-header" id="gameTitle">Chargement...</h1>
         <div style="width: 100px;"></div>
       </div>
@@ -504,17 +504,36 @@
     document.querySelectorAll('a[href^="index.html"]').forEach(link => {
       link.addEventListener('click', (e) => {
         e.preventDefault();
-        const href = link.getAttribute('href');
-        if (pageTransition) {
-          pageTransition.classList.add('active');
-          setTimeout(() => {
-            window.location.href = href;
-          }, 400);
-        } else {
-          window.location.href = href;
-        }
+        goBack();
       });
     });
+    
+    // Go back function
+    window.goBack = function() {
+      const savedState = sessionStorage.getItem('lastState');
+      let url = 'index.html';
+
+      if(savedState) {
+        try {
+          const s = JSON.parse(savedState);
+          const params = new URLSearchParams();
+          if(s.activeCat && s.activeCat !== 'HOME') params.set('cat', s.activeCat);
+          if(s.currentPage && s.currentPage > 1) params.set('page', s.currentPage);
+          if(s.query && s.query.trim()) params.set('q', s.query.trim());
+          if(s.sagaName) params.set('saga', s.sagaName);
+          if(s.scrollY) params.set('scroll', Math.round(s.scrollY));
+          if(s.searchOpen) params.set('search', '1');
+          if([...params].length) url = 'index.html?' + params.toString();
+        } catch(e) {}
+      }
+
+      if(pageTransition) {
+        pageTransition.classList.add('active');
+        setTimeout(() => { window.location.href = url; }, 400);
+      } else {
+        window.location.href = url;
+      }
+    };
 
     // Stockage de l'URL de l'image RAWG pour le fond
     let rawgBackgroundUrl = null;
