@@ -420,6 +420,12 @@
               <div class="info-value" id="gameCategories"></div>
             </div>
             
+            <!-- Date de sortie -->
+            <div class="info-item">
+              <span class="info-label">Date de sortie</span>
+              <span class="info-value" id="gameReleaseDate">-</span>
+            </div>
+            
             <!-- Version -->
             <div class="info-item">
               <span class="info-label">Version</span>
@@ -709,6 +715,16 @@
           `<span class="game-cat-pill">${cat.toUpperCase()}</span>`
         ).join('');
 
+        // Afficher la date de sortie
+        const releaseDateElement = document.getElementById('gameReleaseDate');
+        if (releaseDateElement && currentGame.full_date) {
+          // Formater la date JJ/MM/AAAA
+          const [year, month, day] = currentGame.full_date.split('-');
+          releaseDateElement.textContent = `${day}/${month}/${year}`;
+        } else if (releaseDateElement) {
+          releaseDateElement.textContent = '-';
+        }
+
         // Afficher la version
         const versionElement = document.getElementById('gameVersion');
         if (versionElement) {
@@ -741,7 +757,7 @@
         }
 
         fetchSynopsis(currentGame.name, currentGame.igdbId);
-        fetchTrailer(currentGame.name, currentGame.videoId);
+        fetchTrailerFromIGDB(currentGame.name, currentGame.igdbId);
       } catch (error) {
         console.error('Error loading game data:', error);
         document.getElementById('gameTitle').textContent = 'Erreur';
@@ -777,7 +793,7 @@
               }
             }
           } catch (e) {
-            console.log('� IGDB failed:', e.message);
+            console.log('  IGDB failed:', e.message);
           }
         }
         
@@ -963,6 +979,60 @@
     function showTrailerFallback(gameName) {
       const searchUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(gameName + " official game trailer")}`;
       showTrailerFallbackWithLink(gameName, searchUrl);
+    }
+
+    async function fetchTrailerFromIGDB(gameName, igdbId) {
+      const trailerContainer = document.getElementById('trailerContent');
+      
+      try {
+        console.log('[Trailer] Fetching from IGDB for:', gameName, 'ID:', igdbId);
+        
+        if (!igdbId) {
+          throw new Error('No IGDB ID available');
+        }
+        
+        // Appeler l'API pour recuperer la video IGDB
+        const response = await fetch(`${WORKER_URL}/api/game-details?id=${igdbId}`);
+        console.log('[Trailer] Response status:', response.status);
+        
+        if (!response.ok) {
+          throw new Error(`API error: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        console.log('[Trailer] Data:', data);
+        
+        // Si on a une video IGDB
+        if (data.videoId) {
+          console.log('[Trailer] Found IGDB video:', data.videoId);
+          trailerContainer.innerHTML = `
+            <div class="trailer-container">
+              <iframe 
+                src="https://www.youtube-nocookie.com/embed/${data.videoId}?rel=0&modestbranding=1&autoplay=0"
+                title="Trailer ${gameName}"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen>
+              </iframe>
+            </div>
+            <div style="margin-top: 12px; text-align: center; color: rgba(255,255,255,.6); font-size: 13px;">
+              <a href="https://www.youtube.com/watch?v=${data.videoId}" target="_blank" 
+                 style="color: rgba(100,180,255,.8); text-decoration: none;">
+                📺 Ouvrir sur YouTube
+              </a>
+            </div>
+          `;
+          return;
+        }
+        
+        // Fallback: chercher sur YouTube si pas de video IGDB
+        console.log('[Trailer] No IGDB video, searching YouTube...');
+        await fetchTrailer(gameName, null);
+        
+      } catch (error) {
+        console.error('[Trailer] Error:', error);
+        // En cas d'erreur, fallback sur la recherche YouTube
+        await fetchTrailer(gameName, null);
+      }
     }
 
     loadGameData();
