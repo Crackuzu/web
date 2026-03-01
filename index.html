@@ -201,27 +201,33 @@
       overflow-x:hidden;
     }
     
+    body::before{
+      content:'';
+      position:fixed;
+      inset:-50px;
+      z-index:-2;
+      background:url('background.png') center/cover no-repeat;
+      filter:blur(15px) saturate(0.7);
+      pointer-events:none;
+    }
+    
+    body::after{
+      content:'';
+      position:fixed;
+      inset:0;
+      z-index:-1;
+      background:rgba(0,0,0,0.5);
+      pointer-events:none;
+    }
+    
     body{
       text-rendering:optimizeSpeed;
       -webkit-font-smoothing:antialiased;
     }
     
-    /* FOND FLOUTÉ DE BASE */
+    /* FOND STATIQUE - maintenant sur ::before */
     .parallax-bg{
-      position:fixed;
-      inset:-100px;
-      background:url('background.png') center center/cover no-repeat fixed;
-      z-index:-1;
-      filter:blur(20px) brightness(0.4) saturate(0.8);
-      transform:translateZ(0);
-      will-change:transform;
-      pointer-events:none;
-    }
-    
-    @media (pointer:coarse),(hover:none){
-      .parallax-bg{
-        filter:blur(12px) brightness(0.35) saturate(0.7);
-      }
+      display:none;
     }
     
     .app{
@@ -464,6 +470,18 @@
       will-change:transform;
       backdrop-filter:blur(12px) saturate(150%);
       -webkit-backdrop-filter:blur(12px) saturate(150%);
+      content-visibility:auto;
+      contain:layout style paint;
+    }
+    
+    /* Disable expensive effects for low-power */
+    @media (prefers-reduced-motion: reduce), (update: slow) {
+      .card {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        transition: none !important;
+        content-visibility: visible;
+      }
     }
     
     .card:hover{
@@ -525,6 +543,19 @@
       min-height:0;
       cursor:pointer;
       transition:all .3s cubic-bezier(0.4,0,0.2,1);
+      content-visibility:auto;
+      contain:layout style paint;
+    }
+    
+    /* Disable expensive saga effects for low-power */
+    @media (prefers-reduced-motion: reduce), (update: slow) {
+      .saga-card-glass {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        box-shadow: none !important;
+        transition: none !important;
+        content-visibility: visible;
+      }
     }
     
     .saga-card-glass:hover{
@@ -966,10 +997,32 @@
     .adminSection{display:none;animation:fadeIn .3s ease}
     .adminSection.active{display:block}
     
-    @media (prefers-reduced-motion:reduce),(update:slow){
-      .card{transition:none}
-      .card-bg img{transition:none}
-      .brand .big{animation:none}
+    /* Performance: Disable ALL glass effects for low-power mode */
+    body.low-power .parallax-bg { display: none !important; }
+    body.low-power .card,
+    body.low-power .saga-card-glass,
+    body.low-power header,
+    body.low-power aside,
+    body.low-power section,
+    body.low-power .modal,
+    body.low-power .adminBox,
+    body.low-power .search-overlay,
+    body.low-power .search-immersive-box {
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+      box-shadow: none !important;
+      transition: none !important;
+      content-visibility: visible !important;
+      animation: none !important;
+    }
+    
+    body.low-power .card:hover,
+    body.low-power .saga-card-glass:hover {
+      transform: none !important;
+    }
+    
+    body.low-power .brand .big {
+      animation: none !important;
     }
     
     /* ===== RECHERCHE IMMERSIVE ===== */
@@ -1237,7 +1290,7 @@
   <script>
     // ==================== CONFIGURATION ====================
     const CONFIG = {
-      ITEMS_PER_PAGE: 48,
+      ITEMS_PER_PAGE: 48,  // 6 rows × 8 columns max
       SEARCH_DEBOUNCE: 150,
       MAX_CACHE_SIZE: 5000
     };
@@ -1266,7 +1319,14 @@
     function detectLowPower(){
       const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
       const isOld = !('IntersectionObserver' in window);
-      state.isLowPower = isMobile || isOld;
+      const lowMemory = navigator.deviceMemory && navigator.deviceMemory < 4;
+      const lowCores = navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4;
+      state.isLowPower = isMobile || isOld || lowMemory || lowCores;
+      
+      // Add performance class to body for CSS optimizations
+      if(state.isLowPower) {
+        document.body.classList.add('low-power');
+      }
     }
     
     // ==================== UTILITAIRES ====================
@@ -1397,13 +1457,31 @@
     }
     
     function getFiltered(){
-      let games = state.data.games;
+      // Creer une copie pour ne pas modifier l'original
+      let games = [...state.data.games];
       if(state.activeCat !== 'ALL'){
         games = games.filter(g => (g.categories || []).includes(state.activeCat));
       }
       if(state.query.trim()){
         games = games.filter(g => fuzzyScore(state.query, g.name) > 50)
           .sort((a, b) => fuzzyScore(state.query, b.name) - fuzzyScore(state.query, a.name));
+      } else {
+        // Trier par date decroissante (plus recent en haut)
+        // Les jeux sans date sont mis a la fin
+        // Les jeux futurs (2026+) sont mis tout a la fin
+        const today = new Date().toISOString().split('T')[0];
+        
+        const pastGames = games.filter(g => g.full_date && g.full_date.length === 10 && g.full_date <= today);
+        const futureGames = games.filter(g => g.full_date && g.full_date.length === 10 && g.full_date > today);
+        const withoutDate = games.filter(g => !g.full_date || g.full_date.length !== 10);
+        
+        // Trier les jeux passes du plus recent au plus vieux
+        pastGames.sort((a, b) => b.full_date.localeCompare(a.full_date));
+        
+        // Trier les jeux futurs du plus proche au plus lointain
+        futureGames.sort((a, b) => a.full_date.localeCompare(b.full_date));
+        
+        games = [...pastGames, ...futureGames, ...withoutDate];
       }
       return games;
     }
@@ -1449,8 +1527,15 @@
         saga.games && saga.games.some(g => gamesSet.has(g))
       );
       
-      // Standalone games (not in any saga)
-      const standaloneGames = pageGames.filter(g => !gamesInSagas.has(g.name));
+      // Calculate how many standalone games we can show
+      // Each saga takes 2 slots, games take 1 slot each. Max 48 slots (6 rows × 8 cols)
+      const sagaSlots = visibleSagas.length * 2;
+      const maxStandalone = Math.max(0, CONFIG.ITEMS_PER_PAGE - sagaSlots);
+      
+      // Standalone games (not in any saga), limited to fill remaining slots
+      const standaloneGames = pageGames
+        .filter(g => !gamesInSagas.has(g.name))
+        .slice(0, maxStandalone);
       
       const fragment = document.createDocumentFragment();
       
@@ -1714,8 +1799,10 @@
         homeContainer.appendChild(sagasSection);
       }
       
-      // Recent games section
-      const recentGames = state.data.games.slice(0, 12);
+      // Recent games section - only 2026 games, exactly 16
+      const recentGames = state.data.games
+        .filter(g => g.name.includes('2026'))
+        .slice(0, 16);
       if(recentGames.length > 0){
         const gamesSection = document.createElement('div');
         gamesSection.innerHTML = `
@@ -1843,16 +1930,19 @@
             if(entry.isIntersecting){
               const img = entry.target;
               if(img.dataset.src){
-                img.src = img.dataset.src;
-                img.onload = () => img.removeAttribute('data-src');
-                img.onerror = () => {
-                  img.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='533'%3E%3Crect fill='%23222' width='400' height='533'/%3E%3C/svg%3E";
-                };
+                // Use a timeout to prevent loading too many images at once
+                setTimeout(() => {
+                  img.src = img.dataset.src;
+                  img.onload = () => img.removeAttribute('data-src');
+                  img.onerror = () => {
+                    img.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='533'%3E%3Crect fill='%23222' width='400' height='533'/%3E%3C/svg%3E";
+                  };
+                }, Math.random() * 100); // Stagger loads
               }
               imgObserver.unobserve(img);
             }
           });
-        }, { rootMargin: '50px' });
+        }, { rootMargin: '200px', threshold: 0.01 }); // Larger margin for smoother scroll
       }
       
       document.querySelectorAll('.card-bg img[data-src]').forEach(img => imgObserver.observe(img));
