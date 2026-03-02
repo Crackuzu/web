@@ -618,48 +618,124 @@
       coverLoading.style.display = 'block';
       
       try {
-        // Try RAWG first for 16:9 HD cover
+        // Essayer Steam d'abord avec un timeout de 3 secondes
+        console.log('[Cover] Fetching Steam for:', gameName);
+        const steamUrl = `${WORKER_URL}/api/steam-cover?game=${encodeURIComponent(gameName)}`;
+        console.log('[Cover] Steam URL:', steamUrl);
+        
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 8000); // 8 secondes max pour Steam
+        
+        const steamResponse = await fetch(steamUrl, { signal: controller.signal });
+        clearTimeout(timeoutId);
+        
+        console.log('[Cover] Steam response status:', steamResponse.status);
+        
+        if (steamResponse.ok) {
+          const data = await steamResponse.json();
+          console.log('[Cover] Steam data:', data);
+          if (data.coverUrl) {
+            console.log('✅ Steam cover trouvee:', data.coverUrl);
+            coverImg.src = data.coverUrl;
+            coverImg.onload = () => {
+              console.log('✅ Steam hero loaded');
+              coverContainer.classList.remove('loading');
+              coverLoading.style.display = 'none';
+              // Mettre à jour le parallax aussi
+              if (parallaxBg) {
+                parallaxBg.style.backgroundImage = `url('${data.coverUrl}')`;
+                parallaxBg.classList.add('loaded');
+              }
+            };
+            coverImg.onerror = () => {
+              console.log('❌ Steam hero failed, trying header...');
+              if (data.headerUrl) {
+                coverImg.src = data.headerUrl;
+                coverImg.onload = () => {
+                  console.log('✅ Steam header loaded');
+                  coverContainer.classList.remove('loading');
+                  coverLoading.style.display = 'none';
+                  if (parallaxBg) {
+                    parallaxBg.style.backgroundImage = `url('${data.headerUrl}')`;
+                    parallaxBg.classList.add('loaded');
+                  }
+                };
+                coverImg.onerror = () => {
+                  console.log('❌ Steam header failed, fallback RAWG...');
+                  fetchRawgCover(gameName, coverImg, coverContainer, coverLoading);
+                };
+              } else {
+                fetchRawgCover(gameName, coverImg, coverContainer, coverLoading);
+              }
+            };
+            return;
+          } else {
+            console.log('❌ Steam: no coverUrl in response');
+          }
+        } else {
+          const errorText = await steamResponse.text();
+          console.log('❌ Steam error:', steamResponse.status, errorText);
+        }
+        
+        // Fallback sur RAWG si Steam echoue
+        console.log('🔄 Steam non trouve, essai RAWG...');
         const rawgResponse = await fetch(`${WORKER_URL}/api/rawg-cover?game=${encodeURIComponent(gameName)}`);
         
         if (rawgResponse.ok) {
           const data = await rawgResponse.json();
-          
           if (data.coverUrl) {
-            // Stocker l'URL pour le fond parallax
-            rawgBackgroundUrl = data.coverUrl;
-            
-            // Appliquer l'image comme fond parallax
-            const parallaxBg = document.getElementById('parallaxBg');
-            if (parallaxBg) {
-              parallaxBg.style.backgroundImage = `url('${data.coverUrl}')`;
-              // Attendre que l'image soit chargée pour l'afficher
-              const bgImg = new Image();
-              bgImg.onload = () => {
-                parallaxBg.classList.add('loaded');
-              };
-              bgImg.src = data.coverUrl;
-            }
-            
+            console.log('✅ RAWG cover trouvee:', data.coverUrl);
             coverImg.src = data.coverUrl;
             coverImg.onload = () => {
               coverContainer.classList.remove('loading');
               coverLoading.style.display = 'none';
             };
             coverImg.onerror = () => {
-              loadFallbackCover();
+              loadFallbackCover(coverImg, coverContainer, coverLoading);
             };
             return;
           }
         }
         
-        loadFallbackCover();
+        loadFallbackCover(coverImg, coverContainer, coverLoading);
         
       } catch (error) {
         console.error('Error fetching cover:', error);
-        loadFallbackCover();
+        loadFallbackCover(coverImg, coverContainer, coverLoading);
       }
       
-      function loadFallbackCover() {
+      async function fetchRawgCover(gameName, coverImg, coverContainer, coverLoading) {
+      try {
+        console.log('🔄 Fetching RAWG for:', gameName);
+        const rawgResponse = await fetch(`${WORKER_URL}/api/rawg-cover?game=${encodeURIComponent(gameName)}`);
+        
+        if (rawgResponse.ok) {
+          const data = await rawgResponse.json();
+          if (data.coverUrl) {
+            console.log('✅ RAWG cover trouvee:', data.coverUrl);
+            coverImg.src = data.coverUrl;
+            coverImg.onload = () => {
+              coverContainer.classList.remove('loading');
+              coverLoading.style.display = 'none';
+              if (parallaxBg) {
+                parallaxBg.style.backgroundImage = `url('${data.coverUrl}')`;
+                parallaxBg.classList.add('loaded');
+              }
+            };
+            coverImg.onerror = () => {
+              loadFallbackCover(coverImg, coverContainer, coverLoading);
+            };
+            return;
+          }
+        }
+        loadFallbackCover(coverImg, coverContainer, coverLoading);
+      } catch (error) {
+        console.error('RAWG fetch error:', error);
+        loadFallbackCover(coverImg, coverContainer, coverLoading);
+      }
+    }
+
+    function loadFallbackCover(coverImg, coverContainer, coverLoading) {
         if (currentGame && currentGame.cover) {
           coverImg.src = currentGame.cover;
           coverContainer.classList.remove('loading');
@@ -793,7 +869,7 @@
               }
             }
           } catch (e) {
-            console.log('  IGDB failed:', e.message);
+            console.log('� IGDB failed:', e.message);
           }
         }
         
@@ -847,7 +923,7 @@
               <p>${synopsisFR}</p>
               ${extraInfo}
               <p style="margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.08); font-size: 12px; opacity: 0.7;">
-                <em>Source: ${source} | Traduit automatiquement</em>
+                <em>Source: ${source === 'IGDB' ? `<a href="https://www.igdb.com/games/${gameName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}" target="_blank" style="color: rgba(100,180,255,.8); text-decoration: none;">IGDB</a>` : source} | Traduit automatiquement</em>
               </p>
             </div>
           `;
